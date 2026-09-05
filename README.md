@@ -314,7 +314,7 @@ Contributions are welcome! If you'd like to improve SOLAHANA:
 
 * 🌐 **GitHub**: [github.com/mohammed-hanzala](https://github.com/mohammed-hanzala)
 * 💼 **LinkedIn**: *(Coming Soon)*
-* 📧 **Email**: [advisory@solahana.com](mailto:advisory@solahana.com)
+* 📧 **Email**: [khanhanzalajan@gmail.com](mailto:khanhanzalajan@gmail.com)
 
 ---
 
