@@ -57,14 +57,31 @@ export const BookConsultationForm = ({ onNavigateToDashboard }) => {
   const [submitted, setSubmitted] = useState(false);
   const [saved, setSaved] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [phoneTouched, setPhoneTouched] = useState(false);
+
+  const isPhoneValid = /^[6-9][0-9]{9}$/.test(formData.phone);
 
   const handleChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errorMsg) setErrorMsg('');
   };
 
+  const handlePhoneChange = (e) => {
+    const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 10);
+    setFormData(prev => ({ ...prev, phone: digitsOnly }));
+    setPhoneTouched(true);
+    if (errorMsg) setErrorMsg('');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setPhoneTouched(true);
+
+    if (!isPhoneValid) {
+      setErrorMsg('Please enter a valid 10-digit Indian mobile number.');
+      return;
+    }
+
     if (!user) {
       openAuthModal('login');
       return;
@@ -263,20 +280,45 @@ export const BookConsultationForm = ({ onNavigateToDashboard }) => {
               {/* Row 2: Contact & City */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#E8C878] mb-2">
-                    Phone Number *
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#E8C878] mb-2 flex items-center justify-between">
+                    <span>Phone Number *</span>
+                    {phoneTouched && (
+                      <span className={`text-[10px] font-mono font-normal ${isPhoneValid ? 'text-emerald-400' : 'text-red-400'}`}>
+                        {formData.phone.length}/10 digits
+                      </span>
+                    )}
                   </label>
                   <div className="relative">
-                    <Phone className="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2" />
+                    <Phone className={`w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${
+                      phoneTouched
+                        ? isPhoneValid
+                          ? 'text-emerald-400'
+                          : 'text-red-400'
+                        : 'text-white/40'
+                    }`} />
                     <input
                       type="tel"
                       required
-                      placeholder="+91 98200 12345"
+                      maxLength={10}
+                      placeholder="9820012345"
                       value={formData.phone}
-                      onChange={(e) => handleChange('phone', e.target.value)}
-                      className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-white/30 focus:outline-none transition-colors"
+                      onChange={handlePhoneChange}
+                      onBlur={() => setPhoneTouched(true)}
+                      className={`w-full bg-[#020B2D]/80 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-white/30 focus:outline-none transition-colors border ${
+                        phoneTouched
+                          ? isPhoneValid
+                            ? 'border-emerald-500/80 focus:border-emerald-500'
+                            : 'border-red-500/80 focus:border-red-500'
+                          : 'border-white/15 focus:border-[#C8A24A]'
+                      }`}
                     />
                   </div>
+                  {phoneTouched && !isPhoneValid && (
+                    <p className="text-[11px] text-red-400 mt-1.5 flex items-center gap-1 font-medium">
+                      <AlertCircle className="w-3.5 h-3.5 shrink-0 text-red-400" />
+                      <span>Please enter a valid 10-digit Indian mobile number.</span>
+                    </p>
+                  )}
                 </div>
 
                 <div>

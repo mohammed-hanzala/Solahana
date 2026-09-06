@@ -14,8 +14,8 @@ export const bookConsultationSchema = z.object({
     .email('Please provide a valid email address'),
 
   phone: z
-    .string({ required_error: 'Phone number is required' })
-    .min(10, 'Phone number must be at least 10 digits'),
+    .string({ required_error: 'Please enter a valid 10-digit Indian mobile number.' })
+    .regex(/^[6-9][0-9]{9}$/, 'Please enter a valid 10-digit Indian mobile number.'),
 
   city: z.string().optional().default(''),
 
