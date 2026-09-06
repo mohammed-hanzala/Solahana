@@ -1,25 +1,28 @@
-import React, { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  TrendingUp, 
-  IndianRupee, 
-  Percent, 
-  Calendar, 
-  Sparkles, 
-  ArrowUpRight, 
-  Info,
-  DollarSign,
-  PieChart as PieIcon
-} from 'lucide-react';
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { TrendingUp, Sparkles } from 'lucide-react';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import CalculatorLayout from './CalculatorLayout';
 import { calculateSIP, formatINR } from '../../utils/calculatorEngine';
 
 export default function SipCalculator() {
+  const location = useLocation();
+
   const [monthlySIP, setMonthlySIP] = useState(25000);
   const [returnRate, setReturnRate] = useState(12);
   const [durationYears, setDurationYears] = useState(15);
   const [stepUpPct, setStepUpPct] = useState(10);
+
+  // Pre-fill inputs if navigated from Recalculate
+  useEffect(() => {
+    const prefill = location.state?.prefill;
+    if (prefill) {
+      if (prefill.monthlySIP !== undefined) setMonthlySIP(Number(prefill.monthlySIP));
+      if (prefill.returnRate !== undefined) setReturnRate(Number(prefill.returnRate));
+      if (prefill.durationYears !== undefined) setDurationYears(Number(prefill.durationYears));
+      if (prefill.stepUpPct !== undefined) setStepUpPct(Number(prefill.stepUpPct));
+    }
+  }, [location.state]);
 
   // Form Validation Errors
   const errors = useMemo(() => {
@@ -44,12 +47,23 @@ export default function SipCalculator() {
     setStepUpPct(10);
   };
 
+  const getSavePayload = () => ({
+    inputs: { monthlySIP, returnRate, durationYears, stepUpPct },
+    results: {
+      totalInvested: result.totalInvested,
+      estimatedReturns: result.estimatedReturns,
+      futureValue: result.futureValue,
+      wealthGainPct: result.wealthGainPct,
+    },
+  });
+
   return (
     <CalculatorLayout
       title="SIP Calculator with Step-Up"
       subtitle="Calculate how regular monthly investments & annual step-up compounding can create generational wealth over time."
       icon={TrendingUp}
       onReset={handleReset}
+      getSavePayload={getSavePayload}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         

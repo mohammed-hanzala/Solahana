@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Flame, Calendar, TrendingUp, Sparkles } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
@@ -6,12 +7,26 @@ import CalculatorLayout from './CalculatorLayout';
 import { calculateRetirement, formatINR } from '../../utils/calculatorEngine';
 
 export default function RetirementCalculator() {
+  const location = useLocation();
+
   const [currentAge, setCurrentAge] = useState(30);
   const [retirementAge, setRetirementAge] = useState(60);
   const [monthlyExpensesNow, setMonthlyExpensesNow] = useState(75000);
   const [expectedInflation, setExpectedInflation] = useState(6);
   const [expectedReturn, setExpectedReturn] = useState(12);
   const [existingSavings, setExistingSavings] = useState(1000000);
+
+  useEffect(() => {
+    const prefill = location.state?.prefill;
+    if (prefill) {
+      if (prefill.currentAge !== undefined) setCurrentAge(Number(prefill.currentAge));
+      if (prefill.retirementAge !== undefined) setRetirementAge(Number(prefill.retirementAge));
+      if (prefill.monthlyExpensesNow !== undefined) setMonthlyExpensesNow(Number(prefill.monthlyExpensesNow));
+      if (prefill.expectedInflation !== undefined) setExpectedInflation(Number(prefill.expectedInflation));
+      if (prefill.expectedReturn !== undefined) setExpectedReturn(Number(prefill.expectedReturn));
+      if (prefill.existingSavings !== undefined) setExistingSavings(Number(prefill.existingSavings));
+    }
+  }, [location.state]);
 
   const result = useMemo(() => {
     return calculateRetirement(
@@ -33,12 +48,24 @@ export default function RetirementCalculator() {
     setExistingSavings(1000000);
   };
 
+  const getSavePayload = () => ({
+    inputs: { currentAge, retirementAge, monthlyExpensesNow, expectedInflation, expectedReturn, existingSavings },
+    results: {
+      requiredCorpus: result.requiredCorpus,
+      requiredMonthlySIP: result.requiredMonthlySIP,
+      futureMonthlyExpense: result.futureMonthlyExpense,
+      futureSavingsValue: result.futureSavingsValue,
+      progressPct: result.progressPct,
+    },
+  });
+
   return (
     <CalculatorLayout
       title="FIRE & Retirement Freedom Planner"
       subtitle="Calculate inflation-adjusted retirement corpus requirements and monthly SIP to achieve financial independence."
       icon={ShieldCheck}
       onReset={handleReset}
+      getSavePayload={getSavePayload}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         

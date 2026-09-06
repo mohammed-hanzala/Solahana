@@ -19,6 +19,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import consultationService from '../services/consultationService';
+import calculationService from '../services/calculationService';
+import { BookmarkPlus, TrendingUp, ArrowRight, Sparkles } from 'lucide-react';
+import { formatINR } from '../utils/calculatorEngine';
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -26,10 +29,21 @@ export default function DashboardPage() {
 
   // STEP 2: Initialize safely - Never initialize with undefined
   const [consultations, setConsultations] = useState([]);
+  const [recentCalculations, setRecentCalculations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [cancellingId, setCancellingId] = useState(null);
   const [statusFilter, setStatusFilter] = useState('');
+
+  const fetchRecentCalculations = async () => {
+    try {
+      const data = await calculationService.getMyCalculations({ sort: 'newest' });
+      setRecentCalculations(Array.isArray(data) ? data.slice(0, 3) : []);
+    } catch (err) {
+      console.warn('[Dashboard recent calculations error]:', err);
+      setRecentCalculations([]);
+    }
+  };
 
   const fetchConsultations = async () => {
     setLoading(true);
@@ -53,6 +67,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     fetchConsultations();
+    fetchRecentCalculations();
   }, [statusFilter]);
 
   // STEP 5: Cancel Flow - Re-fetch GET /api/consultations/my after cancel
@@ -315,6 +330,86 @@ export default function DashboardPage() {
             ))}
           </div>
         )}
+
+        {/* Recent Calculations Section */}
+        <div className="pt-8 border-t border-[#C8A24A]/20 space-y-4 text-left">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="font-serif-luxury text-xl font-bold text-white flex items-center gap-2">
+                <BookmarkPlus className="w-5 h-5 text-[#E8C878]" />
+                <span>Recent Calculations</span>
+              </h2>
+              <p className="text-xs text-white/60 font-light">
+                Your last 3 saved financial compounding plans.
+              </p>
+            </div>
+
+            <button
+              onClick={() => navigate('/dashboard/calculations')}
+              className="px-4 py-2 rounded-xl bg-[#071C48] hover:bg-[#071C48]/80 border border-[#C8A24A]/30 text-xs font-bold text-[#E8C878] hover:text-white transition-all flex items-center gap-1.5 cursor-pointer shadow"
+            >
+              <span>View All Calculations</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {recentCalculations.length === 0 ? (
+            <div className="p-6 rounded-2xl bg-[#071C48]/50 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="space-y-1">
+                <div className="text-sm font-semibold text-white">No saved calculations yet</div>
+                <div className="text-xs text-white/60">Use our financial calculators to compute wealth targets and save them to your account.</div>
+              </div>
+              <button
+                onClick={() => navigate('/calculators')}
+                className="gold-glow-button px-4 py-2 rounded-xl text-xs font-bold text-[#020B2D] shrink-0 cursor-pointer shadow"
+              >
+                Explore Calculators
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {recentCalculations.map((calc) => (
+                <div
+                  key={calc._id}
+                  className="p-5 rounded-2xl bg-gradient-to-b from-[#071C48] to-[#020B2D] border border-[#C8A24A]/30 hover:border-[#C8A24A]/60 transition-all space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] uppercase font-mono font-bold text-[#E8C878] px-2 py-0.5 rounded bg-[#C8A24A]/10 border border-[#C8A24A]/25">
+                      {calc.calculatorType}
+                    </span>
+                    <span className="text-[10px] text-white/40 font-mono">
+                      {new Date(calc.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
+                    </span>
+                  </div>
+
+                  <div className="font-semibold text-sm text-white truncate">
+                    {calc.calculationName || calc.title}
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      const typeUpper = (calc.calculatorType || 'SIP').toUpperCase();
+                      const routeMap = {
+                        'SIP': '/calculators/sip',
+                        'EMI': '/calculators/emi',
+                        'RETIREMENT': '/calculators/retirement',
+                        'GOAL_PLANNER': '/calculators/goal-planner',
+                        'LUMPSUM': '/calculators/lumpsum',
+                        'FD': '/calculators/fd',
+                        'INFLATION': '/calculators/inflation',
+                      };
+                      navigate(routeMap[typeUpper] || '/calculators/sip', { state: { prefill: calc.inputs } });
+                    }}
+                    className="w-full py-2 rounded-xl bg-white/5 hover:bg-[#C8A24A]/20 border border-white/10 hover:border-[#C8A24A]/30 text-xs text-[#E8C878] font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <span>Recalculate</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
       </div>
     </div>

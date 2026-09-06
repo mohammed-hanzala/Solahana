@@ -1,15 +1,29 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Target, Sparkles, Trophy, Calendar, TrendingUp } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import CalculatorLayout from './CalculatorLayout';
 import { calculateGoal, formatINR } from '../../utils/calculatorEngine';
 
 export default function GoalPlanner() {
+  const location = useLocation();
+
   const [goalName, setGoalName] = useState('Child Higher Education');
   const [targetAmount, setTargetAmount] = useState(3500000);
   const [yearsRemaining, setYearsRemaining] = useState(10);
   const [expectedReturn, setExpectedReturn] = useState(12);
   const [existingSavings, setExistingSavings] = useState(300000);
+
+  useEffect(() => {
+    const prefill = location.state?.prefill;
+    if (prefill) {
+      if (prefill.goalName !== undefined) setGoalName(prefill.goalName);
+      if (prefill.targetAmount !== undefined) setTargetAmount(Number(prefill.targetAmount));
+      if (prefill.yearsRemaining !== undefined) setYearsRemaining(Number(prefill.yearsRemaining));
+      if (prefill.expectedReturn !== undefined) setExpectedReturn(Number(prefill.expectedReturn));
+      if (prefill.existingSavings !== undefined) setExistingSavings(Number(prefill.existingSavings));
+    }
+  }, [location.state]);
 
   const result = useMemo(() => {
     return calculateGoal(goalName, targetAmount, yearsRemaining, expectedReturn, existingSavings);
@@ -23,12 +37,23 @@ export default function GoalPlanner() {
     setExistingSavings(300000);
   };
 
+  const getSavePayload = () => ({
+    inputs: { goalName, targetAmount, yearsRemaining, expectedReturn, existingSavings },
+    results: {
+      requiredMonthlySIP: result.requiredMonthlySIP,
+      requiredLumpsumToday: result.requiredLumpsumToday,
+      futureTargetValue: result.futureTargetValue,
+      netTargetNeeded: result.netTargetNeeded,
+    },
+  });
+
   return (
     <CalculatorLayout
       title="Life Goal Planning Engine"
       subtitle="Define your target milestone amount, timeline, and generate custom SIP or Lumpsum investment blueprints."
       icon={Target}
       onReset={handleReset}
+      getSavePayload={getSavePayload}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start text-left">
         

@@ -1,13 +1,25 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Percent, TrendingUp, AlertTriangle, ShieldAlert } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import CalculatorLayout from './CalculatorLayout';
 import { calculateInflation, formatINR } from '../../utils/calculatorEngine';
 
 export default function InflationCalculator() {
+  const location = useLocation();
+
   const [todayValue, setTodayValue] = useState(100000);
   const [inflationRate, setInflationRate] = useState(6.5);
   const [durationYears, setDurationYears] = useState(15);
+
+  useEffect(() => {
+    const prefill = location.state?.prefill;
+    if (prefill) {
+      if (prefill.todayValue !== undefined) setTodayValue(Number(prefill.todayValue));
+      if (prefill.inflationRate !== undefined) setInflationRate(Number(prefill.inflationRate));
+      if (prefill.durationYears !== undefined) setDurationYears(Number(prefill.durationYears));
+    }
+  }, [location.state]);
 
   const result = useMemo(() => {
     return calculateInflation(todayValue, inflationRate, durationYears);
@@ -19,12 +31,23 @@ export default function InflationCalculator() {
     setDurationYears(15);
   };
 
+  const getSavePayload = () => ({
+    inputs: { todayValue, inflationRate, durationYears },
+    results: {
+      todayValue: result.todayValue,
+      futureCost: result.futureCost,
+      costIncrease: result.costIncrease,
+      purchasingPowerLossPct: result.purchasingPowerLossPct,
+    },
+  });
+
   return (
     <CalculatorLayout
       title="Inflation & Purchasing Power Loss Calculator"
       subtitle="Analyze how inflation erodes paper currency purchasing power and calculate the future cost of goods."
       icon={Percent}
       onReset={handleReset}
+      getSavePayload={getSavePayload}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start text-left">
         

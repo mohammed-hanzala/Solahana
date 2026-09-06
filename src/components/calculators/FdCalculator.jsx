@@ -1,14 +1,27 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Building2, ShieldCheck, Sparkles, Percent } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import CalculatorLayout from './CalculatorLayout';
 import { calculateFD, formatINR } from '../../utils/calculatorEngine';
 
 export default function FdCalculator() {
+  const location = useLocation();
+
   const [depositAmount, setDepositAmount] = useState(200000);
   const [interestRate, setInterestRate] = useState(7.25);
   const [durationYears, setDurationYears] = useState(5);
   const [frequency, setFrequency] = useState('Quarterly');
+
+  useEffect(() => {
+    const prefill = location.state?.prefill;
+    if (prefill) {
+      if (prefill.depositAmount !== undefined) setDepositAmount(Number(prefill.depositAmount));
+      if (prefill.interestRate !== undefined) setInterestRate(Number(prefill.interestRate));
+      if (prefill.durationYears !== undefined) setDurationYears(Number(prefill.durationYears));
+      if (prefill.frequency !== undefined) setFrequency(prefill.frequency);
+    }
+  }, [location.state]);
 
   const result = useMemo(() => {
     return calculateFD(depositAmount, interestRate, durationYears, frequency);
@@ -21,12 +34,23 @@ export default function FdCalculator() {
     setFrequency('Quarterly');
   };
 
+  const getSavePayload = () => ({
+    inputs: { depositAmount, interestRate, durationYears, frequency },
+    results: {
+      depositAmount: result.depositAmount,
+      totalInterest: result.totalInterest,
+      maturityAmount: result.maturityAmount,
+      yieldPct: result.yieldPct,
+    },
+  });
+
   return (
     <CalculatorLayout
       title="Fixed Deposit (FD) Yield Calculator"
       subtitle="Compute guaranteed maturity returns and interest payout across quarterly, monthly, or annual compounding."
       icon={Building2}
       onReset={handleReset}
+      getSavePayload={getSavePayload}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start text-left">
         

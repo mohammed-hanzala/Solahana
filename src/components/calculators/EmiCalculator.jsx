@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calculator, Download, Table, PieChart as PieIcon, ArrowRight, ShieldCheck } from 'lucide-react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
@@ -6,14 +7,35 @@ import CalculatorLayout from './CalculatorLayout';
 import { calculateEMI, formatINR } from '../../utils/calculatorEngine';
 
 export default function EmiCalculator() {
+  const location = useLocation();
+
   const [loanAmount, setLoanAmount] = useState(5000000);
   const [interestRate, setInterestRate] = useState(8.75);
   const [tenureYears, setTenureYears] = useState(20);
   const [activeTab, setActiveTab] = useState('chart'); // 'chart' | 'schedule'
 
+  useEffect(() => {
+    const prefill = location.state?.prefill;
+    if (prefill) {
+      if (prefill.loanAmount !== undefined) setLoanAmount(Number(prefill.loanAmount));
+      if (prefill.interestRate !== undefined) setInterestRate(Number(prefill.interestRate));
+      if (prefill.tenureYears !== undefined) setTenureYears(Number(prefill.tenureYears));
+    }
+  }, [location.state]);
+
   const result = useMemo(() => {
     return calculateEMI(loanAmount, interestRate, tenureYears);
   }, [loanAmount, interestRate, tenureYears]);
+
+  const getSavePayload = () => ({
+    inputs: { loanAmount, interestRate, tenureYears },
+    results: {
+      monthlyEMI: result.monthlyEMI,
+      principalAmount: result.principalAmount,
+      totalInterest: result.totalInterest,
+      totalPayment: result.totalPayment,
+    },
+  });
 
   const pieData = [
     { name: 'Principal Amount', value: result.principalAmount, color: '#3B82F6' },
@@ -32,6 +54,7 @@ export default function EmiCalculator() {
       subtitle="Calculate monthly installments, interest breakdown, and multi-year payment amortization schedule."
       icon={Calculator}
       onReset={handleReset}
+      getSavePayload={getSavePayload}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         

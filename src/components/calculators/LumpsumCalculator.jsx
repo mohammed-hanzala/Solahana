@@ -1,13 +1,25 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { PieChart as PieIcon, TrendingUp, Sparkles, Calendar } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import CalculatorLayout from './CalculatorLayout';
 import { calculateLumpsum, formatINR } from '../../utils/calculatorEngine';
 
 export default function LumpsumCalculator() {
+  const location = useLocation();
+
   const [principalAmount, setPrincipalAmount] = useState(500000);
   const [returnRate, setReturnRate] = useState(12);
   const [durationYears, setDurationYears] = useState(10);
+
+  useEffect(() => {
+    const prefill = location.state?.prefill;
+    if (prefill) {
+      if (prefill.principalAmount !== undefined) setPrincipalAmount(Number(prefill.principalAmount));
+      if (prefill.returnRate !== undefined) setReturnRate(Number(prefill.returnRate));
+      if (prefill.durationYears !== undefined) setDurationYears(Number(prefill.durationYears));
+    }
+  }, [location.state]);
 
   const result = useMemo(() => {
     return calculateLumpsum(principalAmount, returnRate, durationYears);
@@ -19,12 +31,23 @@ export default function LumpsumCalculator() {
     setDurationYears(10);
   };
 
+  const getSavePayload = () => ({
+    inputs: { principalAmount, returnRate, durationYears },
+    results: {
+      principalAmount: result.principalAmount,
+      totalGain: result.totalGain,
+      futureValue: result.futureValue,
+      gainPct: result.gainPct,
+    },
+  });
+
   return (
     <CalculatorLayout
       title="Lumpsum Investment Calculator"
       subtitle="Simulate potential future growth and compound wealth from a single initial investment."
       icon={PieIcon}
       onReset={handleReset}
+      getSavePayload={getSavePayload}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start text-left">
         

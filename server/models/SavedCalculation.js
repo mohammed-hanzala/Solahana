@@ -5,28 +5,26 @@ const savedCalculationSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: false,
+      required: [true, 'User ID is required'],
     },
     calculatorType: {
       type: String,
-      enum: ['sip', 'emi', 'retirement', 'lumpsum', 'fd', 'swp', 'goal', 'tax', 'inflation', 'education', 'home_affordability', 'emergency_fund'],
-      required: true,
+      required: [true, 'Calculator type is required'],
+      enum: ['SIP', 'EMI', 'RETIREMENT', 'GOAL_PLANNER', 'LUMPSUM', 'FD', 'INFLATION', 'sip', 'emi', 'retirement', 'goal-planner', 'goal_planner', 'lumpsum', 'fd', 'inflation'],
     },
-    title: {
+    calculationName: {
       type: String,
-      default: 'My Calculation',
+      required: [true, 'Calculation name is required'],
+      trim: true,
+      maxlength: [120, 'Calculation name cannot exceed 120 characters'],
     },
     inputs: {
       type: mongoose.Schema.Types.Mixed,
-      required: true,
+      required: [true, 'Calculation inputs are required'],
     },
     results: {
       type: mongoose.Schema.Types.Mixed,
-      required: true,
-    },
-    sessionId: {
-      type: String,
-      default: '',
+      required: [true, 'Calculation results are required'],
     },
   },
   {
@@ -34,5 +32,13 @@ const savedCalculationSchema = new mongoose.Schema(
   }
 );
 
-const SavedCalculation = mongoose.model('SavedCalculation', savedCalculationSchema);
+// Virtual field for backward compatibility with title
+savedCalculationSchema.virtual('title').get(function () {
+  return this.calculationName;
+});
+
+savedCalculationSchema.set('toJSON', { virtuals: true });
+savedCalculationSchema.set('toObject', { virtuals: true });
+
+const SavedCalculation = mongoose.model('SavedCalculation', savedCalculationSchema, 'savedcalculations');
 export default SavedCalculation;

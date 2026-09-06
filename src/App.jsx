@@ -44,6 +44,7 @@ import GoalPlanner from './components/calculators/GoalPlanner';
 import LumpsumCalculator from './components/calculators/LumpsumCalculator';
 import FdCalculator from './components/calculators/FdCalculator';
 import InflationCalculator from './components/calculators/InflationCalculator';
+import SavedCalculationsPage from './pages/calculators/SavedCalculationsPage';
 
 function HomePage({ onOpenSearch }) {
   return (
@@ -106,6 +107,22 @@ export default function App() {
               element={
                 <ProtectedRoute>
                   <DashboardPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard/calculations"
+              element={
+                <ProtectedRoute>
+                  <SavedCalculationsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/saved-calculations"
+              element={
+                <ProtectedRoute>
+                  <SavedCalculationsPage />
                 </ProtectedRoute>
               }
             />
