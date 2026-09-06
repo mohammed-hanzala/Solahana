@@ -3,6 +3,7 @@ import apiClient from './apiClient';
 const consultationService = {
   /**
    * Book a new consultation (Authenticated User)
+   * POST /api/consultations
    */
   async bookConsultation(bookingData) {
     const response = await apiClient.post('/api/consultations', bookingData);
@@ -10,18 +11,18 @@ const consultationService = {
   },
 
   /**
-   * Get logged in user's consultations
-   * Endpoint: GET /api/consultations/my
-   * Returns: Array of user consultations directly (response.data.data)
+   * Get logged-in user's consultations
+   * GET /api/consultations/my
    */
   async getMyConsultations(params = {}) {
     const response = await apiClient.get('/api/consultations/my', { params });
-    console.log("Consultation API Response:", response.data);
-    return Array.isArray(response.data?.data) ? response.data.data : [];
+    const data = response.data?.data;
+    return Array.isArray(data) ? data : [];
   },
 
   /**
    * Cancel pending consultation
+   * PATCH /api/consultations/:id/cancel
    */
   async cancelConsultation(id) {
     const response = await apiClient.patch(`/api/consultations/${id}/cancel`);
@@ -29,7 +30,8 @@ const consultationService = {
   },
 
   /**
-   * Get all consultations with search/filters (Admin / Advisor Only)
+   * Get all consultations with search & filters (Admin Only)
+   * GET /api/admin/consultations
    */
   async getAllConsultations(params = {}) {
     const response = await apiClient.get('/api/admin/consultations', { params });
@@ -44,7 +46,8 @@ const consultationService = {
   },
 
   /**
-   * Update consultation status (Admin / Advisor Only)
+   * Update consultation status (Admin Only)
+   * PATCH /api/admin/consultations/:id/status
    */
   async updateConsultationStatus(id, updateData) {
     const response = await apiClient.patch(`/api/admin/consultations/${id}/status`, updateData);
@@ -53,6 +56,7 @@ const consultationService = {
 
   /**
    * Delete consultation (Admin Only)
+   * DELETE /api/admin/consultations/:id
    */
   async deleteConsultation(id) {
     const response = await apiClient.delete(`/api/admin/consultations/${id}`);
