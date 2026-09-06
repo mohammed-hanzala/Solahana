@@ -10,6 +10,16 @@ import {
   updateUserRole,
   deleteUserAdmin,
 } from '../controllers/adminController.js';
+import {
+  getBlogs,
+  createBlog,
+  updateBlog,
+  deleteBlog,
+} from '../controllers/blogController.js';
+import {
+  getNewsletterSubscribers,
+  deleteSubscriber,
+} from '../controllers/newsletterController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { admin } from '../middleware/adminMiddleware.js';
 import { validate } from '../middleware/validateMiddleware.js';
@@ -32,5 +42,15 @@ router.delete('/consultations/:id', deleteConsultation);
 router.get('/users', getAllUsersAdmin);
 router.patch('/users/:id/role', updateUserRole);
 router.delete('/users/:id', deleteUserAdmin);
+
+// Blog Management Endpoints
+router.get('/blogs', getBlogs);
+router.post('/blogs', createBlog);
+router.put('/blogs/:id', updateBlog);
+router.delete('/blogs/:id', deleteBlog);
+
+// Newsletter Management Endpoints
+router.get('/newsletters', getNewsletterSubscribers);
+router.delete('/newsletters/:id', deleteSubscriber);
 
 export default router;

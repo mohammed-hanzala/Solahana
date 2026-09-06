@@ -1,9 +1,8 @@
-export const validateNewsletter = (data) => {
-  const errors = [];
-  if (!data.email || !data.email.includes('@')) errors.push('Valid email is required');
+import { z } from 'zod';
 
-  return {
-    error: errors.length > 0 ? errors : null,
-    value: data,
-  };
-};
+export const validateNewsletter = z.object({
+  email: z
+    .string({ required_error: 'Please provide an email address' })
+    .email('Please provide a valid email address'),
+  source: z.string().optional(),
+});

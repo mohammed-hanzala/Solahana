@@ -92,7 +92,9 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/calculations', calculationRoutes);
 app.use('/api/calculators', calculationRoutes);
 app.use('/api/blog', blogRoutes);
+app.use('/api/blogs', blogRoutes);
 app.use('/api/newsletter', newsletterRoutes);
+app.use('/api/newsletters', newsletterRoutes);
 app.use('/api/users', userRoutes);
 
 // 7. 404 & Global Error Middleware

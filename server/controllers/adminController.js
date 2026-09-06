@@ -4,6 +4,9 @@ import ApiError from '../utils/ApiError.js';
 import User from '../models/User.js';
 import Consultation from '../models/Consultation.js';
 
+import Blog from '../models/Blog.js';
+import Newsletter from '../models/Newsletter.js';
+
 /**
  * @desc    Get Admin Analytics Stats (counts)
  * @route   GET /api/admin/stats
@@ -17,6 +20,8 @@ export const getAdminStats = asyncHandler(async (req, res) => {
     confirmedConsultations,
     completedConsultations,
     cancelledConsultations,
+    totalBlogs,
+    totalSubscribers,
   ] = await Promise.all([
     User.countDocuments().catch(() => 0),
     Consultation.countDocuments().catch(() => 0),
@@ -24,6 +29,8 @@ export const getAdminStats = asyncHandler(async (req, res) => {
     Consultation.countDocuments({ status: 'Confirmed' }).catch(() => 0),
     Consultation.countDocuments({ status: 'Completed' }).catch(() => 0),
     Consultation.countDocuments({ status: 'Cancelled' }).catch(() => 0),
+    Blog.countDocuments().catch(() => 0),
+    Newsletter.countDocuments().catch(() => 0),
   ]);
 
   return res.status(200).json(
@@ -36,6 +43,8 @@ export const getAdminStats = asyncHandler(async (req, res) => {
         confirmedConsultations: confirmedConsultations || 0,
         completedConsultations: completedConsultations || 0,
         cancelledConsultations: cancelledConsultations || 0,
+        totalBlogs: totalBlogs || 0,
+        totalSubscribers: totalSubscribers || 0,
       },
       'Admin analytics stats retrieved successfully'
     )

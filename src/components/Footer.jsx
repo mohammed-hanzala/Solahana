@@ -8,17 +8,28 @@ import {
   Globe
 } from 'lucide-react';
 
+import newsletterService from '../services/newsletterService';
+
 export default function Footer() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (!email) return;
-    setSubscribed(true);
-    setEmail('');
-    setTimeout(() => setSubscribed(false), 3000);
+    if (!email || !email.includes('@')) return;
+    setLoading(true);
+    try {
+      await newsletterService.subscribe(email, 'website_footer');
+      setSubscribed(true);
+      setEmail('');
+      setTimeout(() => setSubscribed(false), 4000);
+    } catch (err) {
+      console.error('[Newsletter Subscribe Error]:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleLinkClick = (e, target) => {

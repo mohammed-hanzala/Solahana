@@ -56,6 +56,7 @@ export default function Navbar({ onOpenSearch }) {
       'investments': '/investments',
       'tax-planning': '/tax-planning',
       'calculators': '/calculators',
+      'blogs': '/blogs',
       'contact': '/contact',
       'dashboard': '/dashboard',
       'admin': '/admin/dashboard',
@@ -238,6 +239,17 @@ export default function Navbar({ onOpenSearch }) {
               }`}
             >
               Calculators
+            </button>
+
+            <button
+              onClick={(e) => handleNavClick(e, 'blogs')}
+              className={`px-3 py-2 transition-colors rounded-lg ${
+                pathname.startsWith('/blogs')
+                  ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
+                  : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
+              }`}
+            >
+              Blogs
             </button>
 
             <button
@@ -451,6 +463,14 @@ export default function Navbar({ onOpenSearch }) {
                     }`}
                   >
                     Financial Calculators
+                  </button>
+                  <button 
+                    onClick={(e) => handleNavClick(e, 'blogs')} 
+                    className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      pathname.startsWith('/blogs') ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
+                    }`}
+                  >
+                    Financial Blog
                   </button>
                   <button 
                     onClick={(e) => handleNavClick(e, 'contact')} 

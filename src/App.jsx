@@ -46,6 +46,10 @@ import FdCalculator from './components/calculators/FdCalculator';
 import InflationCalculator from './components/calculators/InflationCalculator';
 import SavedCalculationsPage from './pages/calculators/SavedCalculationsPage';
 
+// Blog Module Imports
+import BlogsLandingPage from './pages/blogs/BlogsLandingPage';
+import BlogDetailsPage from './pages/blogs/BlogDetailsPage';
+
 function HomePage({ onOpenSearch }) {
   return (
     <>
@@ -99,6 +103,11 @@ export default function App() {
             <Route path="/calculators/lumpsum" element={<LumpsumCalculator />} />
             <Route path="/calculators/fd" element={<FdCalculator />} />
             <Route path="/calculators/inflation" element={<InflationCalculator />} />
+
+            {/* Financial Blog CMS Routes */}
+            <Route path="/blogs" element={<BlogsLandingPage />} />
+            <Route path="/blogs/:slug" element={<BlogDetailsPage />} />
+
             <Route path="/contact" element={<ContactPage />} />
 
             {/* User Dashboard */}
@@ -153,6 +162,30 @@ export default function App() {
             />
             <Route
               path="/admin/users"
+              element={
+                <AdminProtectedRoute>
+                  <AdminDashboardPage />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/blogs"
+              element={
+                <AdminProtectedRoute>
+                  <AdminDashboardPage />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/newsletters"
+              element={
+                <AdminProtectedRoute>
+                  <AdminDashboardPage />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/newsletter"
               element={
                 <AdminProtectedRoute>
                   <AdminDashboardPage />
