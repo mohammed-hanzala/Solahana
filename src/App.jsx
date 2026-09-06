@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import BackgroundEffects from './components/BackgroundEffects';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -33,48 +34,31 @@ import AdminProtectedRoute from './components/AdminProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import AuthModal from './components/AuthModal';
 
+function HomePage({ onOpenSearch }) {
+  return (
+    <>
+      {/* Full First Screen Hero Section */}
+      <Hero onOpenSearch={onOpenSearch} />
+      <TrustStrip />
+      <WhatIsFinancialPlanning />
+      <HowSolahanaWorks />
+      <WhoWeServe />
+      <FinancialGoals />
+      <SolahanaServices />
+      <WhyChooseSolahana />
+      <CalculatorsPreview onOpenSearch={onOpenSearch} />
+      <FinancialSnapshot />
+      <CalculatorsCTA onOpenSearch={onOpenSearch} />
+      <ClientStories />
+      <FinancialInsights />
+      <FAQSection />
+      <FinalCTA onOpenSearch={onOpenSearch} />
+    </>
+  );
+}
+
 export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState('home');
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash === '#about') {
-        setCurrentPage('about');
-      } else if (hash === '#financial-planning') {
-        setCurrentPage('financial-planning');
-      } else if (hash === '#goals') {
-        setCurrentPage('goals');
-      } else if (hash === '#investments') {
-        setCurrentPage('investments');
-      } else if (hash === '#tax-planning') {
-        setCurrentPage('tax-planning');
-      } else if (hash === '#calculators') {
-        setCurrentPage('calculators');
-      } else if (hash === '#contact') {
-        setCurrentPage('contact');
-      } else if (hash === '#dashboard') {
-        setCurrentPage('dashboard');
-      } else if (hash === '#admin-login') {
-        setCurrentPage('admin-login');
-      } else if (hash === '#admin' || hash === '#admin/consultations' || hash === '#admin/users') {
-        setCurrentPage('admin');
-      } else if (hash === '#home' || hash === '') {
-        setCurrentPage('home');
-      }
-    };
-    
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const handleNavigate = (page) => {
-    setCurrentPage(page);
-    window.location.hash = page;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
     <AuthProvider>
@@ -83,89 +67,66 @@ export default function App() {
         <BackgroundEffects />
 
         {/* Sticky Navbar */}
-        <Navbar 
-          onOpenSearch={() => setSearchOpen(true)} 
-          currentPage={currentPage}
-          onNavigate={handleNavigate}
-        />
+        <Navbar onOpenSearch={() => setSearchOpen(true)} />
 
         {/* Main Content Area */}
         <main className="relative z-10">
-          {currentPage === 'home' ? (
-            <>
-              {/* Full First Screen Hero Section (UI Locked Edition) */}
-              <Hero onOpenSearch={() => setSearchOpen(true)} />
+          <Routes>
+            <Route path="/" element={<HomePage onOpenSearch={() => setSearchOpen(true)} />} />
+            <Route path="/about" element={<AboutPage onOpenSearch={() => setSearchOpen(true)} />} />
+            <Route path="/financial-planning" element={<FinancialPlanningPage onOpenSearch={() => setSearchOpen(true)} />} />
+            <Route path="/goals" element={<GoalsPlanningPage onOpenSearch={() => setSearchOpen(true)} />} />
+            <Route path="/investments" element={<InvestmentsPage onOpenSearch={() => setSearchOpen(true)} />} />
+            <Route path="/tax-planning" element={<TaxPlanningPage onOpenSearch={() => setSearchOpen(true)} />} />
+            <Route path="/calculators" element={<CalculatorsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
 
-              {/* TRUST STRIP (Immediately Below Hero) */}
-              <TrustStrip />
+            {/* User Dashboard */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <DashboardPage />
+                </ProtectedRoute>
+              }
+            />
 
-              {/* PROMPT 5 SECTION 1: What Is Financial Planning? */}
-              <WhatIsFinancialPlanning />
+            {/* Dedicated Admin Login */}
+            <Route path="/admin/login" element={<AdminLoginPage />} />
 
-              {/* PROMPT 5 SECTION 2: How SOLAHANA Works */}
-              <HowSolahanaWorks />
+            {/* Admin Protected Routes */}
+            <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+            <Route
+              path="/admin/dashboard"
+              element={
+                <AdminProtectedRoute>
+                  <AdminDashboardPage />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/consultations"
+              element={
+                <AdminProtectedRoute>
+                  <AdminDashboardPage />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/users"
+              element={
+                <AdminProtectedRoute>
+                  <AdminDashboardPage />
+                </AdminProtectedRoute>
+              }
+            />
 
-              {/* PROMPT 6 SECTION 1: Who We Serve */}
-              <WhoWeServe />
-
-              {/* PROMPT 6 SECTION 2: Financial Goals We Help You Plan For */}
-              <FinancialGoals />
-
-              {/* PROMPT 6 SECTION 3: SOLAHANA Services */}
-              <SolahanaServices />
-
-              {/* PROMPT 6 SECTION 4: Why Choose SOLAHANA */}
-              <WhyChooseSolahana />
-
-              {/* PROMPT 7 SECTION 2: Financial Calculators Preview */}
-              <CalculatorsPreview onOpenSearch={() => setSearchOpen(true)} />
-
-              {/* PROMPT 7 SECTION 3: Quick Financial Snapshot */}
-              <FinancialSnapshot />
-
-              {/* PROMPT 7 SECTION 4: Mini Calculators CTA */}
-              <CalculatorsCTA onOpenSearch={() => setSearchOpen(true)} />
-
-              {/* PROMPT 8 SECTION 1: Client Success Stories */}
-              <ClientStories />
-
-              {/* PROMPT 8 SECTION 2: Financial Insights & Knowledge Center */}
-              <FinancialInsights />
-
-              {/* PROMPT 8 SECTION 3: Frequently Asked Questions */}
-              <FAQSection />
-
-              {/* PROMPT 8 SECTION 4: Final Call To Action */}
-              <FinalCTA onOpenSearch={() => setSearchOpen(true)} />
-            </>
-          ) : currentPage === 'about' ? (
-            <AboutPage onOpenSearch={() => setSearchOpen(true)} />
-          ) : currentPage === 'financial-planning' ? (
-            <FinancialPlanningPage onOpenSearch={() => setSearchOpen(true)} />
-          ) : currentPage === 'goals' ? (
-            <GoalsPlanningPage onOpenSearch={() => setSearchOpen(true)} />
-          ) : currentPage === 'investments' ? (
-            <InvestmentsPage onOpenSearch={() => setSearchOpen(true)} />
-          ) : currentPage === 'tax-planning' ? (
-            <TaxPlanningPage onOpenSearch={() => setSearchOpen(true)} />
-          ) : currentPage === 'calculators' ? (
-            <CalculatorsPage />
-          ) : currentPage === 'dashboard' ? (
-            <ProtectedRoute>
-              <DashboardPage onNavigate={handleNavigate} />
-            </ProtectedRoute>
-          ) : currentPage === 'admin-login' ? (
-            <AdminLoginPage onNavigate={handleNavigate} />
-          ) : currentPage === 'admin' ? (
-            <AdminProtectedRoute onNavigate={handleNavigate}>
-              <AdminDashboardPage onNavigate={handleNavigate} />
-            </AdminProtectedRoute>
-          ) : (
-            <ContactPage onNavigate={handleNavigate} />
-          )}
+            {/* Catch-all Fallback */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
 
           {/* Shared Footer across pages */}
-          <Footer onNavigate={handleNavigate} />
+          <Footer />
         </main>
 
         {/* Global Quick Command & Search Modal */}
@@ -183,4 +144,3 @@ export default function App() {
     </AuthProvider>
   );
 }
-

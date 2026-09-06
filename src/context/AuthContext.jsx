@@ -34,20 +34,23 @@ export const AuthProvider = ({ children }) => {
     initAuth();
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (emailOrCredentials, passwordParam) => {
     setLoading(true);
     try {
-      const response = await authService.login({ email, password });
+      const credentials = typeof emailOrCredentials === 'object'
+        ? emailOrCredentials
+        : { email: emailOrCredentials, password: passwordParam };
+
+      const response = await authService.login(credentials);
       const userData = response.data.user;
       const userToken = response.data.token;
       
       setUser(userData);
       setToken(userToken);
       setAuthModalOpen(false);
-      return { success: true, message: response.message || 'Logged in successfully' };
+      return userData;
     } catch (error) {
-      const msg = error.response?.data?.message || 'Login failed. Please check your credentials.';
-      return { success: false, message: msg };
+      throw error;
     } finally {
       setLoading(false);
     }
@@ -63,10 +66,9 @@ export const AuthProvider = ({ children }) => {
       setUser(userData);
       setToken(userToken);
       setAuthModalOpen(false);
-      return { success: true, message: response.message || 'Registration successful' };
+      return userData;
     } catch (error) {
-      const msg = error.response?.data?.message || 'Registration failed. Please try again.';
-      return { success: false, message: msg };
+      throw error;
     } finally {
       setLoading(false);
     }
@@ -76,7 +78,10 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       await authService.logout();
+    } catch (err) {
+      console.warn('[Logout]:', err?.message);
     } finally {
+      localStorage.removeItem('solahana_token');
       setUser(null);
       setToken(null);
       setLoading(false);

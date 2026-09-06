@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   ShieldCheck, 
   ArrowRight, 
@@ -7,7 +8,8 @@ import {
   Globe
 } from 'lucide-react';
 
-export default function Footer({ onNavigate }) {
+export default function Footer() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -19,11 +21,22 @@ export default function Footer({ onNavigate }) {
     setTimeout(() => setSubscribed(false), 3000);
   };
 
-  const handleLinkClick = (e, page) => {
+  const handleLinkClick = (e, target) => {
     e.preventDefault();
-    if (onNavigate) {
-      onNavigate(page);
-    }
+    const pathMap = {
+      'home': '/',
+      'about': '/about',
+      'financial-planning': '/financial-planning',
+      'goals': '/goals',
+      'investments': '/investments',
+      'tax-planning': '/tax-planning',
+      'calculators': '/calculators',
+      'contact': '/contact',
+      'dashboard': '/dashboard',
+    };
+    const dest = pathMap[target] || target;
+    navigate(dest);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -115,6 +128,10 @@ export default function Footer({ onNavigate }) {
                     <button onClick={(e) => handleLinkClick(e, 'calculators')} className="hover:text-[#E8C878] transition-colors duration-200 block py-0.5 text-left cursor-pointer">
                       {item}
                     </button>
+                  ) : item === 'Contact Us' ? (
+                    <button onClick={(e) => handleLinkClick(e, 'contact')} className="hover:text-[#E8C878] transition-colors duration-200 block py-0.5 text-left cursor-pointer">
+                      {item}
+                    </button>
                   ) : (
                     <a href="#" className="hover:text-[#E8C878] transition-colors duration-200 block py-0.5">
                       {item}
@@ -156,7 +173,6 @@ export default function Footer({ onNavigate }) {
 
             {/* Social Icons SVG */}
             <div className="pt-2 flex items-center space-x-3">
-              {/* LinkedIn */}
               <a
                 href="https://www.linkedin.com/company/solahana"
                 target="_blank"
@@ -169,7 +185,6 @@ export default function Footer({ onNavigate }) {
                 </svg>
               </a>
 
-              {/* Instagram */}
               <a
                 href="https://www.instagram.com/solahana.wealth"
                 target="_blank"
@@ -182,7 +197,6 @@ export default function Footer({ onNavigate }) {
                 </svg>
               </a>
 
-              {/* X / Twitter */}
               <a
                 href="https://x.com/solahana_wealth"
                 target="_blank"
@@ -195,7 +209,6 @@ export default function Footer({ onNavigate }) {
                 </svg>
               </a>
 
-              {/* YouTube */}
               <a
                 href="https://www.youtube.com/@solahana"
                 target="_blank"

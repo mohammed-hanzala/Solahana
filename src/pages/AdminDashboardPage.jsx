@@ -26,6 +26,7 @@ import {
   ExternalLink,
   Sparkles
 } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import adminService from '../services/adminService';
 
@@ -42,9 +43,27 @@ const GOAL_OPTIONS = [
 
 const MODE_OPTIONS = ['Video Call', 'Phone Call', 'Office Visit'];
 
-export default function AdminDashboardPage({ onNavigate }) {
+export default function AdminDashboardPage() {
   const { user: currentUser, logout } = useAuth();
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const getTabFromPath = () => {
+    if (location.pathname.includes('/admin/consultations')) return 'consultations';
+    if (location.pathname.includes('/admin/users')) return 'users';
+    if (location.pathname.includes('/admin/blogs')) return 'blogs';
+    if (location.pathname.includes('/admin/newsletter')) return 'newsletter';
+    return 'dashboard';
+  };
+
+  const activeTab = getTabFromPath();
+
+  const handleTabChange = (tab) => {
+    if (tab === 'dashboard') navigate('/admin/dashboard');
+    else if (tab === 'consultations') navigate('/admin/consultations');
+    else if (tab === 'users') navigate('/admin/users');
+    else navigate(`/admin/${tab}`);
+  };
 
   // Stats State
   const [stats, setStats] = useState({
@@ -241,8 +260,7 @@ export default function AdminDashboardPage({ onNavigate }) {
   // Logout Handler
   const handleLogout = async () => {
     await logout();
-    if (onNavigate) onNavigate('home');
-    else window.location.hash = '#home';
+    navigate('/admin/login');
   };
 
   const getStatusBadge = (status) => {
@@ -281,7 +299,7 @@ export default function AdminDashboardPage({ onNavigate }) {
           {/* Navigation Links */}
           <nav className="space-y-1 text-xs font-semibold">
             <button
-              onClick={() => setActiveTab('dashboard')}
+              onClick={() => handleTabChange('dashboard')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'dashboard'
                   ? 'bg-[#C8A24A] text-[#020B2D] font-bold shadow-lg'
@@ -293,7 +311,7 @@ export default function AdminDashboardPage({ onNavigate }) {
             </button>
 
             <button
-              onClick={() => setActiveTab('consultations')}
+              onClick={() => handleTabChange('consultations')}
               className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'consultations'
                   ? 'bg-[#C8A24A] text-[#020B2D] font-bold shadow-lg'
@@ -312,7 +330,7 @@ export default function AdminDashboardPage({ onNavigate }) {
             </button>
 
             <button
-              onClick={() => setActiveTab('users')}
+              onClick={() => handleTabChange('users')}
               className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'users'
                   ? 'bg-[#C8A24A] text-[#020B2D] font-bold shadow-lg'
@@ -327,7 +345,7 @@ export default function AdminDashboardPage({ onNavigate }) {
             </button>
 
             <button
-              onClick={() => setActiveTab('blogs')}
+              onClick={() => handleTabChange('blogs')}
               className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'blogs'
                   ? 'bg-[#C8A24A] text-[#020B2D] font-bold shadow-lg'
@@ -342,7 +360,7 @@ export default function AdminDashboardPage({ onNavigate }) {
             </button>
 
             <button
-              onClick={() => setActiveTab('newsletter')}
+              onClick={() => handleTabChange('newsletter')}
               className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'newsletter'
                   ? 'bg-[#C8A24A] text-[#020B2D] font-bold shadow-lg'

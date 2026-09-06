@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Lock, Mail, ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-export default function AdminLoginPage({ onNavigate }) {
+export default function AdminLoginPage() {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -25,12 +27,8 @@ export default function AdminLoginPage({ onNavigate }) {
         return;
       }
 
-      // Successful admin login
-      if (onNavigate) {
-        onNavigate('admin');
-      } else {
-        window.location.hash = '#admin';
-      }
+      // Successful admin login -> Navigate strictly to /admin/dashboard
+      navigate('/admin/dashboard');
     } catch (err) {
       console.error('[Admin Login Error]:', err);
       setError(
@@ -141,10 +139,7 @@ export default function AdminLoginPage({ onNavigate }) {
         <div className="mt-8 text-center border-t border-white/10 pt-4">
           <button
             type="button"
-            onClick={() => {
-              if (onNavigate) onNavigate('home');
-              else window.location.hash = '#home';
-            }}
+            onClick={() => navigate('/')}
             className="text-xs text-white/50 hover:text-[#E8C878] transition-colors cursor-pointer"
           >
             ← Return to SOLAHANA Client Portal

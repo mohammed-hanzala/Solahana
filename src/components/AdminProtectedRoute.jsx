@@ -1,9 +1,11 @@
 import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { ShieldAlert, Lock, ArrowLeft } from 'lucide-react';
+import { ShieldAlert, ArrowLeft } from 'lucide-react';
 
-export default function AdminProtectedRoute({ children, onNavigate }) {
+export default function AdminProtectedRoute({ children }) {
   const { user, isAuthenticated, loading } = useAuth();
+  const navigate = useNavigate();
 
   if (loading) {
     return (
@@ -18,36 +20,9 @@ export default function AdminProtectedRoute({ children, onNavigate }) {
     );
   }
 
-  // Not logged in -> Redirect / prompt to Admin Login
+  // Not logged in -> Redirect to /admin/login
   if (!isAuthenticated) {
-    return (
-      <div className="min-h-[75vh] bg-[#020B2D] flex items-center justify-center px-6 py-24 text-white text-center">
-        <div className="max-w-md p-8 rounded-3xl bg-gradient-to-b from-[#071C48] to-[#020B2D] border border-[#C8A24A]/30 shadow-2xl space-y-6">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-[#C8A24A]/15 border border-[#C8A24A]/40 flex items-center justify-center text-[#E8C878]">
-            <Lock className="w-8 h-8" />
-          </div>
-
-          <div className="space-y-2">
-            <h2 className="font-serif-luxury text-2xl font-bold text-white">
-              Administrator Login Required
-            </h2>
-            <p className="text-white/70 text-xs font-light leading-relaxed">
-              You must sign in with administrator credentials to access the SOLAHANA Control Center.
-            </p>
-          </div>
-
-          <button
-            onClick={() => {
-              if (onNavigate) onNavigate('admin-login');
-              else window.location.hash = '#admin-login';
-            }}
-            className="w-full gold-glow-button py-3.5 rounded-xl text-xs font-bold text-[#020B2D] cursor-pointer"
-          >
-            Proceed to Admin Login
-          </button>
-        </div>
-      </div>
-    );
+    return <Navigate to="/admin/login" replace />;
   }
 
   // Logged in but not admin -> 403 Unauthorized
@@ -73,19 +48,13 @@ export default function AdminProtectedRoute({ children, onNavigate }) {
 
           <div className="flex flex-col gap-3 pt-2">
             <button
-              onClick={() => {
-                if (onNavigate) onNavigate('admin-login');
-                else window.location.hash = '#admin-login';
-              }}
+              onClick={() => navigate('/admin/login')}
               className="w-full py-3 rounded-xl bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-200 font-bold text-xs cursor-pointer transition-colors"
             >
               Sign In with Admin Account
             </button>
             <button
-              onClick={() => {
-                if (onNavigate) onNavigate('home');
-                else window.location.hash = '#home';
-              }}
+              onClick={() => navigate('/')}
               className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 font-semibold text-xs flex items-center justify-center gap-2 cursor-pointer transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />

@@ -16,11 +16,13 @@ import {
   ShieldCheck,
   Briefcase
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import consultationService from '../services/consultationService';
 
-export default function DashboardPage({ onNavigate }) {
+export default function DashboardPage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   // STEP 2: Initialize safely - Never initialize with undefined
   const [consultations, setConsultations] = useState([]);
@@ -139,7 +141,7 @@ export default function DashboardPage({ onNavigate }) {
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             </button>
             <button
-              onClick={() => onNavigate && onNavigate('contact')}
+              onClick={() => navigate('/contact')}
               className="gold-glow-button px-5 py-3 rounded-xl text-xs font-bold text-[#020B2D] flex items-center gap-2 cursor-pointer"
             >
               <Briefcase className="w-4 h-4" />
@@ -218,7 +220,7 @@ export default function DashboardPage({ onNavigate }) {
               You haven't booked any advisory sessions yet. Connect with our certified wealth team to structure your goals.
             </p>
             <button
-              onClick={() => onNavigate && onNavigate('contact')}
+              onClick={() => navigate('/contact')}
               className="px-6 py-2.5 rounded-xl bg-[#C8A24A] text-[#020B2D] font-bold text-xs shadow-lg hover:bg-[#E8C878] transition-colors cursor-pointer"
             >
               Book Your First Consultation

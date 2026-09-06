@@ -16,6 +16,7 @@ import {
   Loader2,
   AlertCircle
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import consultationService from '../../services/consultationService';
 
@@ -38,8 +39,9 @@ const modes = [
 
 const timeSlots = ['10:00 AM', '11:30 AM', '02:00 PM', '04:00 PM', '05:30 PM'];
 
-export const BookConsultationForm = ({ onNavigateToDashboard }) => {
+export const BookConsultationForm = () => {
   const { user, openAuthModal } = useAuth();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     fullName: user ? user.name : '',
@@ -107,11 +109,7 @@ export const BookConsultationForm = ({ onNavigateToDashboard }) => {
 
       // Redirect to dashboard after successful booking
       setTimeout(() => {
-        if (onNavigateToDashboard) {
-          onNavigateToDashboard();
-        } else {
-          window.location.hash = '#dashboard';
-        }
+        navigate('/dashboard');
       }, 1500);
     } catch (err) {
       const msg = err.response?.data?.message || err.message || 'Failed to submit consultation booking';
@@ -208,14 +206,12 @@ export const BookConsultationForm = ({ onNavigateToDashboard }) => {
               </p>
 
               <div className="pt-6 flex items-center justify-center gap-4 flex-wrap">
-                {onNavigateToDashboard && (
-                  <button
-                    onClick={onNavigateToDashboard}
-                    className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#C8A24A] to-[#E8C878] text-[#020B2D] font-bold text-sm transition-all shadow-lg"
-                  >
-                    View My Consultations
-                  </button>
-                )}
+                <button
+                  onClick={() => navigate('/dashboard')}
+                  className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#C8A24A] to-[#E8C878] text-[#020B2D] font-bold text-sm transition-all shadow-lg cursor-pointer"
+                >
+                  View My Consultations
+                </button>
                 <button
                   onClick={() => setSubmitted(false)}
                   className="px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-sm transition-all"

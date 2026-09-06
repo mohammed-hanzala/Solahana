@@ -16,10 +16,14 @@ import {
   User,
   PhoneCall
 } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-export default function Navbar({ onOpenSearch, currentPage = 'home', onNavigate }) {
+export default function Navbar({ onOpenSearch }) {
   const { user, logout, openAuthModal } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -36,12 +40,27 @@ export default function Navbar({ onOpenSearch, currentPage = 'home', onNavigate 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e, page) => {
-    e.preventDefault();
-    if (onNavigate) {
-      onNavigate(page);
-    }
+  const handleNavClick = (e, targetPath) => {
+    if (e) e.preventDefault();
     setMobileMenuOpen(false);
+
+    const pathMap = {
+      'home': '/',
+      'about': '/about',
+      'financial-planning': '/financial-planning',
+      'goals': '/goals',
+      'investments': '/investments',
+      'tax-planning': '/tax-planning',
+      'calculators': '/calculators',
+      'contact': '/contact',
+      'dashboard': '/dashboard',
+      'admin': '/admin/dashboard',
+      'admin-login': '/admin/login',
+    };
+
+    const dest = pathMap[targetPath] || targetPath;
+    navigate(dest);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const navMenus = {
