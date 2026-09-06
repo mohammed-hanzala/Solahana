@@ -232,61 +232,12 @@ export default function Navbar({ onOpenSearch }) {
             <button
               onClick={(e) => handleNavClick(e, 'calculators')}
               className={`px-3 py-2 transition-colors rounded-lg ${
-                pathname === '/calculators'
+                pathname.startsWith('/calculators')
                   ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
                   : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
               }`}
-              onMouseEnter={() => setActiveDropdown('calculators')}
-              onMouseLeave={() => setActiveDropdown(null)}
             >
               Calculators
-              <AnimatePresence>
-                {activeDropdown === 'calculators' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
-                    className="absolute top-[60px] left-1/2 -translate-x-1/2 w-[460px] bg-[#071C48]/95 border border-[#C8A24A]/30 rounded-2xl p-5 shadow-[0_20px_50px_rgba(2,11,45,0.9)] backdrop-blur-2xl z-50 overflow-hidden text-left"
-                  >
-                    <div className="pb-3 mb-3 border-b border-[#C8A24A]/15">
-                      <h4 className="text-sm font-semibold text-[#E8C878] font-serif-luxury flex items-center justify-between">
-                        <span>{navMenus.calculators.title}</span>
-                        <span className="text-[10px] font-sans text-[#BAC6DA] font-normal uppercase tracking-wider">SOLAHANA</span>
-                      </h4>
-                      <p className="text-xs text-[#BAC6DA] mt-0.5">
-                        {navMenus.calculators.description}
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-2">
-                      {navMenus.calculators.items.map((item, i) => {
-                        const IconComponent = item.icon;
-                        return (
-                          <button
-                            key={i}
-                            onClick={(e) => handleNavClick(e, item.path || 'calculators')}
-                            className="w-full text-left p-2.5 rounded-xl hover:bg-[#020B2D]/80 border border-transparent hover:border-[#C8A24A]/25 transition-all flex items-start space-x-3 group/item cursor-pointer"
-                          >
-                            <div className="p-2 rounded-lg bg-[#C8A24A]/10 text-[#C8A24A] group-hover/item:bg-[#C8A24A] group-hover/item:text-[#020B2D] transition-colors mt-0.5">
-                              <IconComponent className="w-4 h-4" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="text-xs font-semibold text-[#F8F7F3] group-hover/item:text-[#E8C878] transition-colors flex items-center justify-between">
-                                {item.name}
-                                <ArrowRight className="w-3 h-3 text-[#BAC6DA] opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-1 transition-all" />
-                              </div>
-                              <div className="text-[11px] text-[#BAC6DA] mt-0.5 leading-relaxed">
-                                {item.desc}
-                              </div>
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </button>
 
             <button
