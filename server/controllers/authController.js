@@ -27,7 +27,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     lastLogin: new Date(),
   });
 
-  const token = generateToken(res, user._id);
+  const token = generateToken(res, user._id, user.role);
 
   const responseUser = {
     _id: user._id,
@@ -77,7 +77,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   user.lastLogin = new Date();
   await user.save({ validateBeforeSave: false });
 
-  const token = generateToken(res, user._id);
+  const token = generateToken(res, user._id, user.role);
 
   const responseUser = {
     _id: user._id,

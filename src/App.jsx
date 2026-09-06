@@ -27,7 +27,9 @@ import { CalculatorsPage } from './pages/CalculatorsPage';
 import { ContactPage } from './pages/ContactPage';
 import DashboardPage from './pages/DashboardPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
+import AdminLoginPage from './pages/AdminLoginPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import AdminProtectedRoute from './components/AdminProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import AuthModal from './components/AuthModal';
 
@@ -54,7 +56,9 @@ export default function App() {
         setCurrentPage('contact');
       } else if (hash === '#dashboard') {
         setCurrentPage('dashboard');
-      } else if (hash === '#admin') {
+      } else if (hash === '#admin-login') {
+        setCurrentPage('admin-login');
+      } else if (hash === '#admin' || hash === '#admin/consultations' || hash === '#admin/users') {
         setCurrentPage('admin');
       } else if (hash === '#home' || hash === '') {
         setCurrentPage('home');
@@ -150,10 +154,12 @@ export default function App() {
             <ProtectedRoute>
               <DashboardPage onNavigate={handleNavigate} />
             </ProtectedRoute>
+          ) : currentPage === 'admin-login' ? (
+            <AdminLoginPage onNavigate={handleNavigate} />
           ) : currentPage === 'admin' ? (
-            <ProtectedRoute adminOnly={true}>
-              <AdminDashboardPage />
-            </ProtectedRoute>
+            <AdminProtectedRoute onNavigate={handleNavigate}>
+              <AdminDashboardPage onNavigate={handleNavigate} />
+            </AdminProtectedRoute>
           ) : (
             <ContactPage onNavigate={handleNavigate} />
           )}

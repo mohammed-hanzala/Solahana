@@ -279,12 +279,22 @@ export default function Navbar({ onOpenSearch, currentPage = 'home', onNavigate 
           {/* Login / User Session Button */}
           {user ? (
             <div className="flex items-center gap-2">
+              {(user.role === 'admin' || user.role === 'advisor') && (
+                <button
+                  onClick={(e) => handleNavClick(e, 'admin')}
+                  className="text-xs font-bold text-[#020B2D] px-3 py-1.5 rounded-xl bg-[#C8A24A] hover:bg-[#E8C878] transition-all cursor-pointer shadow flex items-center gap-1.5"
+                  title="Admin Control Center"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Admin Dashboard</span>
+                </button>
+              )}
               <button
-                onClick={(e) => handleNavClick(e, user.role === 'admin' || user.role === 'advisor' ? 'admin' : 'dashboard')}
+                onClick={(e) => handleNavClick(e, 'dashboard')}
                 className="text-xs font-semibold text-[#E8C878] px-3 py-1.5 rounded-xl bg-[#071C48] border border-[#C8A24A]/30 hover:bg-[#C8A24A]/20 transition-all cursor-pointer"
-                title="Go to Dashboard"
+                title="Go to My Dashboard"
               >
-                {user.name.split(' ')[0]} {user.role === 'admin' ? '(Admin)' : ''}
+                {user.name.split(' ')[0]}
               </button>
               <button
                 onClick={logout}

@@ -3,11 +3,11 @@ import jwt from 'jsonwebtoken';
 /**
  * Generate JWT Token & configure secure HTTP-Only Cookie
  */
-const generateToken = (res, userId) => {
+const generateToken = (res, userId, role = 'user') => {
   const secret = process.env.JWT_SECRET || 'solahana_super_secret_jwt_key_2026_production';
   const expiresIn = process.env.JWT_EXPIRES_IN || '7d';
 
-  const token = jwt.sign({ id: userId }, secret, {
+  const token = jwt.sign({ id: userId, role }, secret, {
     expiresIn,
   });
 

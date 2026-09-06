@@ -12,7 +12,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import healthRoutes from './routes/healthRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import consultationRoutes from './routes/consultationRoutes.js';
-import adminConsultationRoutes from './routes/adminConsultationRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 import calculatorRoutes from './routes/calculatorRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
 import newsletterRoutes from './routes/newsletterRoutes.js';
@@ -88,7 +88,7 @@ app.get('/', (req, res) => {
 app.use('/api/health', healthRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/consultations', consultationRoutes);
-app.use('/api/admin', adminConsultationRoutes);
+app.use('/api/admin', adminRoutes);
 app.use('/api/calculators', calculatorRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/newsletter', newsletterRoutes);
