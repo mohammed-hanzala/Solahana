@@ -66,67 +66,27 @@ export const bookConsultation = asyncHandler(async (req, res) => {
  * @access  Private (Authenticated Users)
  */
 export const getMyConsultations = asyncHandler(async (req, res) => {
-  try {
-    if (!req.user || !req.user._id) {
-      return res.status(200).json(
-        new ApiResponse(
-          200,
-          {
-            consultations: [],
-            pagination: { totalBookings: 0, totalPages: 1, page: 1, limit: 10 },
-          },
-          'User session invalid'
-        )
-      );
-    }
-
-    const page = Math.max(parseInt(req.query.page || '1', 10), 1);
-    const limit = Math.max(parseInt(req.query.limit || '10', 10), 1);
-    const skip = (page - 1) * limit;
-
-    const query = { user: req.user._id };
-
-    if (req.query.status && ['Pending', 'Confirmed', 'Completed', 'Cancelled'].includes(req.query.status)) {
-      query.status = req.query.status;
-    }
-
-    const totalBookings = await Consultation.countDocuments(query).catch(() => 0);
-    const rawConsultations = await Consultation.find(query)
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
-      .lean();
-
-    const consultations = Array.isArray(rawConsultations) ? rawConsultations : [];
-
+  if (!req.user || !req.user._id) {
     return res.status(200).json(
-      new ApiResponse(
-        200,
-        {
-          consultations,
-          pagination: {
-            totalBookings: totalBookings || 0,
-            totalPages: Math.ceil((totalBookings || 0) / limit) || 1,
-            page,
-            limit,
-          },
-        },
-        'User consultations retrieved successfully'
-      )
-    );
-  } catch (error) {
-    console.error('[getMyConsultations Error]:', error.message);
-    return res.status(200).json(
-      new ApiResponse(
-        200,
-        {
-          consultations: [],
-          pagination: { totalBookings: 0, totalPages: 1, page: 1, limit: 10 },
-        },
-        'Retrieved consultations with fallback empty list'
-      )
+      new ApiResponse(200, [], 'Consultations fetched successfully')
     );
   }
+
+  const query = { user: req.user._id };
+
+  if (req.query.status && ['Pending', 'Confirmed', 'Completed', 'Cancelled'].includes(req.query.status)) {
+    query.status = req.query.status;
+  }
+
+  const rawConsultations = await Consultation.find(query)
+    .sort({ createdAt: -1 })
+    .lean();
+
+  const consultations = Array.isArray(rawConsultations) ? rawConsultations : [];
+
+  return res.status(200).json(
+    new ApiResponse(200, consultations, 'Consultations fetched successfully')
+  );
 });
 
 /**
@@ -174,85 +134,71 @@ export const cancelConsultation = asyncHandler(async (req, res) => {
  * @access  Private (Admin / Advisor Only)
  */
 export const getAllConsultations = asyncHandler(async (req, res) => {
-  try {
-    const page = Math.max(parseInt(req.query.page || '1', 10), 1);
-    const limit = Math.max(parseInt(req.query.limit || '10', 10), 1);
-    const skip = (page - 1) * limit;
+  const page = Math.max(parseInt(req.query.page || '1', 10), 1);
+  const limit = Math.max(parseInt(req.query.limit || '10', 10), 1);
+  const skip = (page - 1) * limit;
 
-    const query = {};
+  const query = {};
 
-    // Filters
-    if (req.query.status && ['Pending', 'Confirmed', 'Completed', 'Cancelled'].includes(req.query.status)) {
-      query.status = req.query.status;
-    }
-    if (req.query.goal) {
-      query.goal = req.query.goal;
-    }
-    if (req.query.consultationMode) {
-      query.consultationMode = req.query.consultationMode;
-    }
-    if (req.query.city) {
-      query.city = { $regex: req.query.city, $options: 'i' };
-    }
-    if (req.query.date) {
-      const searchDate = new Date(req.query.date);
-      if (!isNaN(searchDate.getTime())) {
-        const nextDate = new Date(searchDate);
-        nextDate.setDate(nextDate.getDate() + 1);
-        query.preferredDate = { $gte: searchDate, $lt: nextDate };
-      }
-    }
-
-    // Search by keyword across name, email, phone, city, goal
-    if (req.query.search && req.query.search.trim()) {
-      const searchRegex = new RegExp(req.query.search.trim(), 'i');
-      query.$or = [
-        { fullName: searchRegex },
-        { email: searchRegex },
-        { phone: searchRegex },
-        { city: searchRegex },
-        { goal: searchRegex },
-      ];
-    }
-
-    const totalBookings = await Consultation.countDocuments(query).catch(() => 0);
-    const rawConsultations = await Consultation.find(query)
-      .populate('user', 'name email phone avatar')
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
-      .lean();
-
-    const consultations = Array.isArray(rawConsultations) ? rawConsultations : [];
-
-    return res.status(200).json(
-      new ApiResponse(
-        200,
-        {
-          consultations,
-          pagination: {
-            totalBookings: totalBookings || 0,
-            totalPages: Math.ceil((totalBookings || 0) / limit) || 1,
-            page,
-            limit,
-          },
-        },
-        'All consultations retrieved successfully'
-      )
-    );
-  } catch (error) {
-    console.error('[getAllConsultations Error]:', error.message);
-    return res.status(200).json(
-      new ApiResponse(
-        200,
-        {
-          consultations: [],
-          pagination: { totalBookings: 0, totalPages: 1, page: 1, limit: 10 },
-        },
-        'Retrieved consultations with fallback empty list'
-      )
-    );
+  // Filters
+  if (req.query.status && ['Pending', 'Confirmed', 'Completed', 'Cancelled'].includes(req.query.status)) {
+    query.status = req.query.status;
   }
+  if (req.query.goal) {
+    query.goal = req.query.goal;
+  }
+  if (req.query.consultationMode) {
+    query.consultationMode = req.query.consultationMode;
+  }
+  if (req.query.city) {
+    query.city = { $regex: req.query.city, $options: 'i' };
+  }
+  if (req.query.date) {
+    const searchDate = new Date(req.query.date);
+    if (!isNaN(searchDate.getTime())) {
+      const nextDate = new Date(searchDate);
+      nextDate.setDate(nextDate.getDate() + 1);
+      query.preferredDate = { $gte: searchDate, $lt: nextDate };
+    }
+  }
+
+  // Search by keyword across name, email, phone, city, goal
+  if (req.query.search && req.query.search.trim()) {
+    const searchRegex = new RegExp(req.query.search.trim(), 'i');
+    query.$or = [
+      { fullName: searchRegex },
+      { email: searchRegex },
+      { phone: searchRegex },
+      { city: searchRegex },
+      { goal: searchRegex },
+    ];
+  }
+
+  const totalBookings = await Consultation.countDocuments(query).catch(() => 0);
+  const rawConsultations = await Consultation.find(query)
+    .populate('user', 'name email phone avatar')
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit)
+    .lean();
+
+  const consultations = Array.isArray(rawConsultations) ? rawConsultations : [];
+
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      {
+        consultations,
+        pagination: {
+          totalBookings: totalBookings || 0,
+          totalPages: Math.ceil((totalBookings || 0) / limit) || 1,
+          page,
+          limit,
+        },
+      },
+      'All consultations fetched successfully'
+    )
+  );
 });
 
 /**

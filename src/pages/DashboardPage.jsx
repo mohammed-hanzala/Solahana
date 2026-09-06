@@ -22,6 +22,7 @@ import consultationService from '../services/consultationService';
 export default function DashboardPage({ onNavigate }) {
   const { user } = useAuth();
 
+  // Initialize state safely - Never initialize with undefined
   const [consultations, setConsultations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -32,25 +33,24 @@ export default function DashboardPage({ onNavigate }) {
     setLoading(true);
     setError('');
     try {
-      const res = await consultationService.getMyConsultations({
+      const response = await consultationService.getMyConsultations({
         status: statusFilter || undefined,
       });
 
-      // Defensive array extraction matching any API response structure
-      const list = Array.isArray(res?.data?.consultations)
-        ? res.data.consultations
-        : Array.isArray(res?.data)
-        ? res.data
-        : Array.isArray(res?.consultations)
-        ? res.consultations
-        : Array.isArray(res)
-        ? res
+      // Safely parse response.data.data according to Axios & API envelope structures
+      const dataList = Array.isArray(response?.data)
+        ? response.data
+        : Array.isArray(response?.data?.consultations)
+        ? response.data.consultations
+        : Array.isArray(response)
+        ? response
         : [];
 
-      setConsultations(list);
+      setConsultations(dataList);
     } catch (err) {
       console.error('[Dashboard fetch error]:', err);
       setError(err.response?.data?.message || err.message || 'Unable to load consultations.');
+      setConsultations([]);
     } finally {
       setLoading(false);
     }
@@ -65,7 +65,7 @@ export default function DashboardPage({ onNavigate }) {
     setCancellingId(id);
     try {
       await consultationService.cancelConsultation(id);
-      // Re-fetch cleanly from server to prevent local state mutation bugs
+      // Cleanly re-fetch from server after cancel
       await fetchConsultations();
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to cancel consultation');
@@ -74,7 +74,7 @@ export default function DashboardPage({ onNavigate }) {
     }
   };
 
-  // Safe Array Fallback guarantee before rendering
+  // Safe array guarantee before rendering
   const consultationList = Array.isArray(consultations) ? consultations : [];
 
   const getStatusBadge = (status) => {
@@ -182,11 +182,24 @@ export default function DashboardPage({ onNavigate }) {
 
         {/* Consultation List Rendering */}
         {loading ? (
-          <div className="py-20 text-center rounded-3xl bg-[#071C48]/30 border border-white/10">
-            <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#C8A24A]" />
-            <p className="text-xs text-white/60 mt-3 font-mono">Loading your consultation bookings...</p>
+          /* Loading State Skeleton */
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[1, 2].map((i) => (
+              <div key={i} className="p-6 rounded-2xl bg-[#071C48]/40 border border-white/10 animate-pulse space-y-4">
+                <div className="flex justify-between items-center">
+                  <div className="h-5 bg-white/10 rounded w-1/3" />
+                  <div className="h-6 bg-[#C8A24A]/20 rounded-full w-20" />
+                </div>
+                <div className="grid grid-cols-2 gap-3 py-3 border-y border-white/5">
+                  <div className="h-4 bg-white/10 rounded w-2/3" />
+                  <div className="h-4 bg-white/10 rounded w-1/2" />
+                </div>
+                <div className="h-4 bg-white/5 rounded w-full" />
+              </div>
+            ))}
           </div>
         ) : error ? (
+          /* Error State */
           <div className="p-8 rounded-3xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm flex flex-col items-center justify-center gap-4 text-center">
             <div className="flex items-center gap-2 text-red-400 font-semibold">
               <AlertCircle className="w-5 h-5" />
@@ -202,6 +215,7 @@ export default function DashboardPage({ onNavigate }) {
             </button>
           </div>
         ) : consultationList.length === 0 ? (
+          /* Premium Empty State Card */
           <div className="py-16 px-6 text-center rounded-3xl bg-[#071C48]/40 border border-white/10 space-y-4">
             <div className="w-16 h-16 mx-auto rounded-full bg-[#C8A24A]/10 border border-[#C8A24A]/30 flex items-center justify-center text-[#C8A24A]">
               <Calendar className="w-8 h-8" />
@@ -214,10 +228,11 @@ export default function DashboardPage({ onNavigate }) {
               onClick={() => onNavigate && onNavigate('contact')}
               className="px-6 py-2.5 rounded-xl bg-[#C8A24A] text-[#020B2D] font-bold text-xs shadow-lg hover:bg-[#E8C878] transition-colors cursor-pointer"
             >
-              Schedule Consultation
+              Book Your First Consultation
             </button>
           </div>
         ) : (
+          /* Rendered Consultation Cards */
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {consultationList.map((item) => (
               <motion.div

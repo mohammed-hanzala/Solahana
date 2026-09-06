@@ -14,6 +14,7 @@ const consultationService = {
    */
   async getMyConsultations(params = {}) {
     const response = await apiClient.get('/api/consultations/my', { params });
+    console.log("Consultation API Response:", response.data);
     return response.data;
   },
 
