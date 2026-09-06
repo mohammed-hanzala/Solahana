@@ -87,6 +87,15 @@ export const BookConsultationForm = ({ onNavigateToDashboard }) => {
       });
 
       setSubmitted(true);
+
+      // Redirect to dashboard after successful booking
+      setTimeout(() => {
+        if (onNavigateToDashboard) {
+          onNavigateToDashboard();
+        } else {
+          window.location.hash = '#dashboard';
+        }
+      }, 1500);
     } catch (err) {
       const msg = err.response?.data?.message || err.message || 'Failed to submit consultation booking';
       setErrorMsg(msg);
