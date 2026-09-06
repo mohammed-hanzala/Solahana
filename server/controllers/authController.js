@@ -56,7 +56,7 @@ export const registerUser = asyncHandler(async (req, res) => {
  * @access  Public
  */
 export const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, isAdminLogin } = req.body;
 
   const user = await User.findOne({ email }).select('+password');
 
@@ -71,6 +71,21 @@ export const loginUser = asyncHandler(async (req, res) => {
   const isPasswordMatched = await user.matchPassword(password);
   if (!isPasswordMatched) {
     throw new ApiError(401, 'Invalid email or password');
+  }
+
+  // SECURITY ENFORCEMENT: Separate User and Admin Logins
+  const isExplicitAdminLogin = isAdminLogin === true || isAdminLogin === 'true';
+
+  if (isExplicitAdminLogin) {
+    // Admin login context (/admin/login)
+    if (user.role !== 'admin' && user.role !== 'advisor') {
+      throw new ApiError(403, 'Access denied. Administrator account required.');
+    }
+  } else {
+    // Normal user login context (/login or AuthModal)
+    if (user.role === 'admin' || user.role === 'advisor') {
+      throw new ApiError(403, 'Administrator accounts must sign in from the Admin Portal.');
+    }
   }
 
   // Update last login timestamp

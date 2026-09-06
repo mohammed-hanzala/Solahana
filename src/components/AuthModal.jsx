@@ -15,11 +15,11 @@ export default function AuthModal() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setAlert({ type: null, message: '' });
-    const result = await login(loginData.email, loginData.password);
+    const result = await login({ email: loginData.email, password: loginData.password, isAdminLogin: false });
     if (!result.success) {
       setAlert({ type: 'error', message: result.message });
     } else {
-      setAlert({ type: 'success', message: result.message });
+      setAlert({ type: 'success', message: result.message || 'Logged in successfully' });
       setTimeout(() => closeAuthModal(), 600);
     }
   };

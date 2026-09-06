@@ -34,23 +34,31 @@ export const AuthProvider = ({ children }) => {
     initAuth();
   }, []);
 
-  const login = async (emailOrCredentials, passwordParam) => {
+  const login = async (emailOrCredentials, passwordParam, options = {}) => {
     setLoading(true);
     try {
-      const credentials = typeof emailOrCredentials === 'object'
-        ? emailOrCredentials
-        : { email: emailOrCredentials, password: passwordParam };
+      let credentials;
+      if (typeof emailOrCredentials === 'object' && emailOrCredentials !== null) {
+        credentials = { ...emailOrCredentials };
+      } else {
+        credentials = {
+          email: emailOrCredentials,
+          password: passwordParam,
+          isAdminLogin: options.isAdminLogin || false,
+        };
+      }
 
       const response = await authService.login(credentials);
-      const userData = response.data.user;
-      const userToken = response.data.token;
+      const userData = response.data?.user || response.user;
+      const userToken = response.data?.token || response.token;
       
       setUser(userData);
       setToken(userToken);
       setAuthModalOpen(false);
-      return userData;
+      return { success: true, user: userData, message: response.message || 'Logged in successfully' };
     } catch (error) {
-      throw error;
+      const errorMsg = error.response?.data?.message || error.message || 'Authentication failed.';
+      return { success: false, message: errorMsg, status: error.response?.status };
     } finally {
       setLoading(false);
     }

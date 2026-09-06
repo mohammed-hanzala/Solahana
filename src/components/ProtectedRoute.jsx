@@ -45,6 +45,35 @@ export const ProtectedRoute = ({ children, adminOnly = false }) => {
     );
   }
 
+  if (user?.role === 'admin' || user?.role === 'advisor') {
+    return (
+      <div className="min-h-[75vh] bg-[#020B2D] flex items-center justify-center px-6 py-24 text-white text-center">
+        <div className="max-w-md p-8 rounded-3xl bg-[#071C48]/80 border border-[#C8A24A]/40 shadow-2xl space-y-6">
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-[#C8A24A]/20 border border-[#C8A24A]/40 text-[#E8C878] flex items-center justify-center">
+            <ShieldCheck className="w-8 h-8" />
+          </div>
+          <div className="space-y-2">
+            <span className="text-[10px] font-mono tracking-widest text-[#E8C878] uppercase px-3 py-1 rounded-full bg-[#C8A24A]/10 border border-[#C8A24A]/30">
+              ADMINISTRATOR GOVERNANCE
+            </span>
+            <h2 className="font-serif-luxury text-2xl font-bold text-white">
+              Admin Session Active
+            </h2>
+            <p className="text-white/70 text-xs font-light leading-relaxed">
+              Administrator accounts are restricted from accessing client dashboards. Please use the Admin Governance Portal.
+            </p>
+          </div>
+          <button
+            onClick={() => window.location.href = '/admin/dashboard'}
+            className="w-full gold-glow-button py-3.5 rounded-xl text-xs font-bold text-[#020B2D] flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+          >
+            Go to Admin Control Center
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (adminOnly && user?.role !== 'admin' && user?.role !== 'advisor') {
     return (
       <div className="min-h-[70vh] bg-[#020B2D] flex items-center justify-center px-6 py-24 text-white text-center">

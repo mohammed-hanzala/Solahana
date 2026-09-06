@@ -27,6 +27,7 @@ import TaxPlanningPage from './pages/TaxPlanningPage';
 import { CalculatorsPage } from './pages/CalculatorsPage';
 import { ContactPage } from './pages/ContactPage';
 import DashboardPage from './pages/DashboardPage';
+import LoginPage from './pages/LoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -90,6 +91,9 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
+
+            {/* Dedicated User Login Route */}
+            <Route path="/login" element={<LoginPage />} />
 
             {/* Dedicated Admin Login */}
             <Route path="/admin/login" element={<AdminLoginPage />} />
