@@ -6,16 +6,18 @@ const consultationService = {
    */
   async bookConsultation(bookingData) {
     const response = await apiClient.post('/api/consultations', bookingData);
-    return response.data;
+    return response.data?.data;
   },
 
   /**
    * Get logged in user's consultations
+   * Endpoint: GET /api/consultations/my
+   * Returns: Array of user consultations directly (response.data.data)
    */
   async getMyConsultations(params = {}) {
     const response = await apiClient.get('/api/consultations/my', { params });
     console.log("Consultation API Response:", response.data);
-    return response.data;
+    return Array.isArray(response.data?.data) ? response.data.data : [];
   },
 
   /**
@@ -23,7 +25,7 @@ const consultationService = {
    */
   async cancelConsultation(id) {
     const response = await apiClient.patch(`/api/consultations/${id}/cancel`);
-    return response.data;
+    return response.data?.data;
   },
 
   /**
@@ -31,7 +33,14 @@ const consultationService = {
    */
   async getAllConsultations(params = {}) {
     const response = await apiClient.get('/api/admin/consultations', { params });
-    return response.data;
+    const data = response.data?.data;
+    if (Array.isArray(data)) {
+      return { consultations: data, pagination: { totalBookings: data.length, totalPages: 1, page: 1, limit: 10 } };
+    }
+    return {
+      consultations: Array.isArray(data?.consultations) ? data.consultations : [],
+      pagination: data?.pagination || { totalBookings: 0, totalPages: 1, page: 1, limit: 10 },
+    };
   },
 
   /**
@@ -39,7 +48,7 @@ const consultationService = {
    */
   async updateConsultationStatus(id, updateData) {
     const response = await apiClient.patch(`/api/admin/consultations/${id}/status`, updateData);
-    return response.data;
+    return response.data?.data;
   },
 
   /**
@@ -47,7 +56,7 @@ const consultationService = {
    */
   async deleteConsultation(id) {
     const response = await apiClient.delete(`/api/admin/consultations/${id}`);
-    return response.data;
+    return response.data?.data;
   },
 };
 

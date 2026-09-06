@@ -22,7 +22,7 @@ import consultationService from '../services/consultationService';
 export default function DashboardPage({ onNavigate }) {
   const { user } = useAuth();
 
-  // Initialize state safely - Never initialize with undefined
+  // STEP 2: Initialize safely - Never initialize with undefined
   const [consultations, setConsultations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -33,20 +33,13 @@ export default function DashboardPage({ onNavigate }) {
     setLoading(true);
     setError('');
     try {
-      const response = await consultationService.getMyConsultations({
+      // STEP 1 & 2: Call GET /api/consultations/my and receive response.data.data array directly
+      const consultationList = await consultationService.getMyConsultations({
         status: statusFilter || undefined,
       });
 
-      // Safely parse response.data.data according to Axios & API envelope structures
-      const dataList = Array.isArray(response?.data)
-        ? response.data
-        : Array.isArray(response?.data?.consultations)
-        ? response.data.consultations
-        : Array.isArray(response)
-        ? response
-        : [];
-
-      setConsultations(dataList);
+      // STEP 2 & 6: Guarantee array state, fallback to empty array on any abnormality
+      setConsultations(Array.isArray(consultationList) ? consultationList : []);
     } catch (err) {
       console.error('[Dashboard fetch error]:', err);
       setError(err.response?.data?.message || err.message || 'Unable to load consultations.');
@@ -60,12 +53,12 @@ export default function DashboardPage({ onNavigate }) {
     fetchConsultations();
   }, [statusFilter]);
 
+  // STEP 5: Cancel Flow - Re-fetch GET /api/consultations/my after cancel
   const handleCancelBooking = async (id) => {
     if (!window.confirm('Are you sure you want to cancel this pending consultation?')) return;
     setCancellingId(id);
     try {
       await consultationService.cancelConsultation(id);
-      // Cleanly re-fetch from server after cancel
       await fetchConsultations();
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to cancel consultation');
@@ -74,8 +67,8 @@ export default function DashboardPage({ onNavigate }) {
     }
   };
 
-  // Safe array guarantee before rendering
-  const consultationList = Array.isArray(consultations) ? consultations : [];
+  // STEP 3: Safe Rendering Array Guard - Never call .map() on undefined
+  const validConsultations = Array.isArray(consultations) ? consultations : [];
 
   const getStatusBadge = (status) => {
     switch (status) {
@@ -160,7 +153,7 @@ export default function DashboardPage({ onNavigate }) {
           <h2 className="font-serif-luxury text-2xl font-bold text-white flex items-center gap-2">
             My Consultations
             <span className="text-xs font-sans px-2.5 py-0.5 rounded-full bg-[#071C48] border border-[#C8A24A]/30 text-[#E8C878]">
-              {consultationList.length}
+              {validConsultations.length}
             </span>
           </h2>
 
@@ -180,9 +173,9 @@ export default function DashboardPage({ onNavigate }) {
           </div>
         </div>
 
-        {/* Consultation List Rendering */}
+        {/* STEP 4 & 6: Loading, Error & Empty States */}
         {loading ? (
-          /* Loading State Skeleton */
+          /* STEP 6: Skeleton Loader */
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[1, 2].map((i) => (
               <div key={i} className="p-6 rounded-2xl bg-[#071C48]/40 border border-white/10 animate-pulse space-y-4">
@@ -199,7 +192,7 @@ export default function DashboardPage({ onNavigate }) {
             ))}
           </div>
         ) : error ? (
-          /* Error State */
+          /* STEP 6: API Failure Retry State */
           <div className="p-8 rounded-3xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm flex flex-col items-center justify-center gap-4 text-center">
             <div className="flex items-center gap-2 text-red-400 font-semibold">
               <AlertCircle className="w-5 h-5" />
@@ -214,8 +207,8 @@ export default function DashboardPage({ onNavigate }) {
               <span>Retry</span>
             </button>
           </div>
-        ) : consultationList.length === 0 ? (
-          /* Premium Empty State Card */
+        ) : validConsultations.length === 0 ? (
+          /* STEP 4: Empty State Card */
           <div className="py-16 px-6 text-center rounded-3xl bg-[#071C48]/40 border border-white/10 space-y-4">
             <div className="w-16 h-16 mx-auto rounded-full bg-[#C8A24A]/10 border border-[#C8A24A]/30 flex items-center justify-center text-[#C8A24A]">
               <Calendar className="w-8 h-8" />
@@ -232,9 +225,9 @@ export default function DashboardPage({ onNavigate }) {
             </button>
           </div>
         ) : (
-          /* Rendered Consultation Cards */
+          /* STEP 3: Safe Map Rendering */
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {consultationList.map((item) => (
+            {(Array.isArray(consultations) ? consultations : []).map((item) => (
               <motion.div
                 key={item._id || item.id || Math.random()}
                 initial={{ opacity: 0, y: 15 }}
