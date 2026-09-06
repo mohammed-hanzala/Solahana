@@ -14,7 +14,8 @@ import {
   Building2,
   TrendingUp,
   User,
-  PhoneCall
+  PhoneCall,
+  LogOut
 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -23,6 +24,9 @@ export default function Navbar({ onOpenSearch }) {
   const { user, logout, openAuthModal } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const pathname = location.pathname;
+  const isAdminRoute = pathname.startsWith('/admin');
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -61,6 +65,11 @@ export default function Navbar({ onOpenSearch }) {
     const dest = pathMap[targetPath] || targetPath;
     navigate(dest);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleAdminLogout = async () => {
+    await logout();
+    navigate('/admin/login');
   };
 
   const navMenus = {
@@ -123,7 +132,7 @@ export default function Navbar({ onOpenSearch }) {
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* Left Side: SOLAHANA Brand Logo */}
-        <button onClick={(e) => handleNavClick(e, 'home')} className="flex items-center space-x-3 group text-left cursor-pointer">
+        <button onClick={(e) => handleNavClick(e, isAdminRoute ? '/admin/dashboard' : 'home')} className="flex items-center space-x-3 group text-left cursor-pointer">
           {/* Gold Geometric Emblem */}
           <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-[#E8C878] via-[#C8A24A] to-[#B8862B] p-[1px] shadow-[0_0_15px_rgba(200,162,74,0.4)] group-hover:shadow-[0_0_25px_rgba(200,162,74,0.7)] transition-all duration-300">
             <div className="w-full h-full bg-[#020B2D] rounded-[11px] flex items-center justify-center relative overflow-hidden">
@@ -139,217 +148,259 @@ export default function Navbar({ onOpenSearch }) {
               SOLAHANA
             </span>
             <span className="text-[9px] tracking-widest uppercase text-[#BAC6DA] font-medium font-sora">
-              Financial Planning
+              {isAdminRoute ? 'Admin Control Center' : 'Financial Planning'}
             </span>
           </div>
         </button>
 
-        {/* Center Navigation Menu (Desktop) */}
-        <nav className="hidden lg:flex items-center space-x-1 font-inter text-xs font-semibold">
-          <button
-            onClick={(e) => handleNavClick(e, 'home')}
-            className={`px-3 py-2 transition-colors rounded-lg ${
-              currentPage === 'home'
-                ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
-                : 'text-[#F8F7F3] hover:text-[#E8C878] hover:bg-[#071C48]/40'
-            }`}
-          >
-            Home
-          </button>
+        {/* Center Section */}
+        {isAdminRoute ? (
+          /* Minimal Admin Navbar Center Badge */
+          <div className="hidden lg:flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C8A24A]/10 border border-[#C8A24A]/30 text-xs font-semibold text-[#E8C878]">
+            <ShieldCheck className="w-4 h-4 text-[#C8A24A]" />
+            <span>ADMINISTRATOR GOVERNANCE DESK</span>
+          </div>
+        ) : (
+          /* Public Center Navigation Menu (Desktop) */
+          <nav className="hidden lg:flex items-center space-x-1 font-inter text-xs font-semibold">
+            <button
+              onClick={(e) => handleNavClick(e, 'home')}
+              className={`px-3 py-2 transition-colors rounded-lg ${
+                pathname === '/'
+                  ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
+                  : 'text-[#F8F7F3] hover:text-[#E8C878] hover:bg-[#071C48]/40'
+              }`}
+            >
+              Home
+            </button>
 
-          <button
-            onClick={(e) => handleNavClick(e, 'about')}
-            className={`px-3 py-2 transition-colors rounded-lg ${
-              currentPage === 'about'
-                ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
-                : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
-            }`}
-          >
-            About
-          </button>
+            <button
+              onClick={(e) => handleNavClick(e, 'about')}
+              className={`px-3 py-2 transition-colors rounded-lg ${
+                pathname === '/about'
+                  ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
+                  : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
+              }`}
+            >
+              About
+            </button>
 
-          <button
-            onClick={(e) => handleNavClick(e, 'financial-planning')}
-            className={`px-3 py-2 transition-colors rounded-lg ${
-              currentPage === 'financial-planning'
-                ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
-                : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
-            }`}
-          >
-            Financial Planning
-          </button>
+            <button
+              onClick={(e) => handleNavClick(e, 'financial-planning')}
+              className={`px-3 py-2 transition-colors rounded-lg ${
+                pathname === '/financial-planning'
+                  ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
+                  : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
+              }`}
+            >
+              Financial Planning
+            </button>
 
-          <button
-            onClick={(e) => handleNavClick(e, 'goals')}
-            className={`px-3 py-2 transition-colors rounded-lg ${
-              currentPage === 'goals'
-                ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
-                : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
-            }`}
-          >
-            Goals
-          </button>
+            <button
+              onClick={(e) => handleNavClick(e, 'goals')}
+              className={`px-3 py-2 transition-colors rounded-lg ${
+                pathname === '/goals'
+                  ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
+                  : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
+              }`}
+            >
+              Goals
+            </button>
 
-          <button
-            onClick={(e) => handleNavClick(e, 'investments')}
-            className={`px-3 py-2 transition-colors rounded-lg ${
-              currentPage === 'investments'
-                ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
-                : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
-            }`}
-          >
-            Investments
-          </button>
+            <button
+              onClick={(e) => handleNavClick(e, 'investments')}
+              className={`px-3 py-2 transition-colors rounded-lg ${
+                pathname === '/investments'
+                  ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
+                  : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
+              }`}
+            >
+              Investments
+            </button>
 
-          <button
-            onClick={(e) => handleNavClick(e, 'tax-planning')}
-            className={`px-3 py-2 transition-colors rounded-lg ${
-              currentPage === 'tax-planning'
-                ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
-                : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
-            }`}
-          >
-            Tax Planning
-          </button>
+            <button
+              onClick={(e) => handleNavClick(e, 'tax-planning')}
+              className={`px-3 py-2 transition-colors rounded-lg ${
+                pathname === '/tax-planning'
+                  ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
+                  : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
+              }`}
+            >
+              Tax Planning
+            </button>
 
-          <button
-            onClick={(e) => handleNavClick(e, 'calculators')}
-            className={`px-3 py-2 transition-colors rounded-lg ${
-              currentPage === 'calculators'
-                ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
-                : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
-            }`}
-            onMouseEnter={() => setActiveDropdown('calculators')}
-            onMouseLeave={() => setActiveDropdown(null)}
-          >
-            Calculators
-            <AnimatePresence>
-              {activeDropdown === 'calculators' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 12, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                  className="absolute top-[60px] left-1/2 -translate-x-1/2 w-[460px] bg-[#071C48]/95 border border-[#C8A24A]/30 rounded-2xl p-5 shadow-[0_20px_50px_rgba(2,11,45,0.9)] backdrop-blur-2xl z-50 overflow-hidden text-left"
-                >
-                  <div className="pb-3 mb-3 border-b border-[#C8A24A]/15">
-                    <h4 className="text-sm font-semibold text-[#E8C878] font-serif-luxury flex items-center justify-between">
-                      <span>{navMenus.calculators.title}</span>
-                      <span className="text-[10px] font-sans text-[#BAC6DA] font-normal uppercase tracking-wider">SOLAHANA</span>
-                    </h4>
-                    <p className="text-xs text-[#BAC6DA] mt-0.5">
-                      {navMenus.calculators.description}
-                    </p>
-                  </div>
+            <button
+              onClick={(e) => handleNavClick(e, 'calculators')}
+              className={`px-3 py-2 transition-colors rounded-lg ${
+                pathname === '/calculators'
+                  ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
+                  : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
+              }`}
+              onMouseEnter={() => setActiveDropdown('calculators')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              Calculators
+              <AnimatePresence>
+                {activeDropdown === 'calculators' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    className="absolute top-[60px] left-1/2 -translate-x-1/2 w-[460px] bg-[#071C48]/95 border border-[#C8A24A]/30 rounded-2xl p-5 shadow-[0_20px_50px_rgba(2,11,45,0.9)] backdrop-blur-2xl z-50 overflow-hidden text-left"
+                  >
+                    <div className="pb-3 mb-3 border-b border-[#C8A24A]/15">
+                      <h4 className="text-sm font-semibold text-[#E8C878] font-serif-luxury flex items-center justify-between">
+                        <span>{navMenus.calculators.title}</span>
+                        <span className="text-[10px] font-sans text-[#BAC6DA] font-normal uppercase tracking-wider">SOLAHANA</span>
+                      </h4>
+                      <p className="text-xs text-[#BAC6DA] mt-0.5">
+                        {navMenus.calculators.description}
+                      </p>
+                    </div>
 
-                  <div className="grid grid-cols-1 gap-2">
-                    {navMenus.calculators.items.map((item, i) => {
-                      const IconComponent = item.icon;
-                      return (
-                        <a
-                          key={i}
-                          href="#"
-                          className="p-2.5 rounded-xl hover:bg-[#020B2D]/80 border border-transparent hover:border-[#C8A24A]/25 transition-all flex items-start space-x-3 group/item"
-                        >
-                          <div className="p-2 rounded-lg bg-[#C8A24A]/10 text-[#C8A24A] group-hover/item:bg-[#C8A24A] group-hover/item:text-[#020B2D] transition-colors mt-0.5">
-                            <IconComponent className="w-4 h-4" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="text-xs font-semibold text-[#F8F7F3] group-hover/item:text-[#E8C878] transition-colors flex items-center justify-between">
-                              {item.name}
-                              <ArrowRight className="w-3 h-3 text-[#BAC6DA] opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-1 transition-all" />
+                    <div className="grid grid-cols-1 gap-2">
+                      {navMenus.calculators.items.map((item, i) => {
+                        const IconComponent = item.icon;
+                        return (
+                          <a
+                            key={i}
+                            href="#"
+                            className="p-2.5 rounded-xl hover:bg-[#020B2D]/80 border border-transparent hover:border-[#C8A24A]/25 transition-all flex items-start space-x-3 group/item"
+                          >
+                            <div className="p-2 rounded-lg bg-[#C8A24A]/10 text-[#C8A24A] group-hover/item:bg-[#C8A24A] group-hover/item:text-[#020B2D] transition-colors mt-0.5">
+                              <IconComponent className="w-4 h-4" />
                             </div>
-                            <div className="text-[11px] text-[#BAC6DA] mt-0.5 leading-relaxed">
-                              {item.desc}
+                            <div className="flex-1">
+                              <div className="text-xs font-semibold text-[#F8F7F3] group-hover/item:text-[#E8C878] transition-colors flex items-center justify-between">
+                                {item.name}
+                                <ArrowRight className="w-3 h-3 text-[#BAC6DA] opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-1 transition-all" />
+                              </div>
+                              <div className="text-[11px] text-[#BAC6DA] mt-0.5 leading-relaxed">
+                                {item.desc}
+                              </div>
                             </div>
-                          </div>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </button>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
 
-          <button
-            onClick={(e) => handleNavClick(e, 'contact')}
-            className={`px-3 py-2 transition-colors rounded-lg ${
-              currentPage === 'contact'
-                ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
-                : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
-            }`}
-          >
-            Contact
-          </button>
-        </nav>
+            <button
+              onClick={(e) => handleNavClick(e, 'contact')}
+              className={`px-3 py-2 transition-colors rounded-lg ${
+                pathname === '/contact'
+                  ? 'text-[#E8C878] bg-[#071C48] font-bold border border-[#C8A24A]/30'
+                  : 'text-[#BAC6DA] hover:text-[#F8F7F3] hover:bg-[#071C48]/40'
+              }`}
+            >
+              Contact
+            </button>
+          </nav>
+        )}
 
         {/* Right Side Actions */}
         <div className="hidden lg:flex items-center space-x-4">
-          {/* Search Icon */}
-          <button
-            onClick={onOpenSearch}
-            className="p-2.5 text-[#BAC6DA] hover:text-[#E8C878] bg-[#071C48]/50 hover:bg-[#071C48] border border-[#C8A24A]/20 hover:border-[#C8A24A]/50 rounded-xl transition-all flex items-center gap-2 text-xs"
-            title="Search goals or calculators (Cmd+K)"
-          >
-            <Search className="w-4 h-4 text-[#C8A24A]" />
-          </button>
-
-          {/* Login / User Session Button */}
-          {user ? (
-            <div className="flex items-center gap-2">
-              {(user.role === 'admin' || user.role === 'advisor') && (
+          {isAdminRoute ? (
+            /* Minimal Admin Header Right Actions */
+            <div className="flex items-center gap-3">
+              {user && (
+                <span className="text-xs font-semibold text-[#E8C878] px-3 py-1.5 rounded-xl bg-[#071C48] border border-[#C8A24A]/30">
+                  {user.name} (Admin)
+                </span>
+              )}
+              {user ? (
                 <button
-                  onClick={(e) => handleNavClick(e, 'admin')}
-                  className="text-xs font-bold text-[#020B2D] px-3 py-1.5 rounded-xl bg-[#C8A24A] hover:bg-[#E8C878] transition-all cursor-pointer shadow flex items-center gap-1.5"
-                  title="Admin Control Center"
+                  onClick={handleAdminLogout}
+                  className="px-3.5 py-1.5 text-xs text-red-300 hover:text-white bg-red-500/20 hover:bg-red-500/30 rounded-xl border border-red-500/40 transition-colors cursor-pointer flex items-center gap-1.5 font-semibold"
+                  title="Admin Logout"
                 >
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Admin Dashboard</span>
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span>Logout</span>
+                </button>
+              ) : (
+                <button
+                  onClick={() => navigate('/admin/login')}
+                  className="px-4 py-2 text-xs font-bold text-[#020B2D] bg-[#C8A24A] hover:bg-[#E8C878] rounded-xl transition-all cursor-pointer"
+                >
+                  Admin Login
                 </button>
               )}
-              <button
-                onClick={(e) => handleNavClick(e, 'dashboard')}
-                className="text-xs font-semibold text-[#E8C878] px-3 py-1.5 rounded-xl bg-[#071C48] border border-[#C8A24A]/30 hover:bg-[#C8A24A]/20 transition-all cursor-pointer"
-                title="Go to My Dashboard"
-              >
-                {user.name.split(' ')[0]}
-              </button>
-              <button
-                onClick={logout}
-                className="px-3 py-1.5 text-xs text-white/70 hover:text-white bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 transition-colors cursor-pointer"
-                title="Logout"
-              >
-                Logout
-              </button>
             </div>
           ) : (
-            <button
-              onClick={() => openAuthModal('login')}
-              className="px-4 py-2 text-xs font-semibold text-[#F8F7F3] hover:text-[#E8C878] rounded-xl border border-[#BAC6DA]/20 hover:border-[#C8A24A]/50 bg-[#071C48]/30 hover:bg-[#071C48]/80 transition-all cursor-pointer"
-            >
-              Login
-            </button>
-          )}
+            /* Public Header Right Actions */
+            <>
+              {/* Search Icon */}
+              <button
+                onClick={onOpenSearch}
+                className="p-2.5 text-[#BAC6DA] hover:text-[#E8C878] bg-[#071C48]/50 hover:bg-[#071C48] border border-[#C8A24A]/20 hover:border-[#C8A24A]/50 rounded-xl transition-all flex items-center gap-2 text-xs"
+                title="Search goals or calculators (Cmd+K)"
+              >
+                <Search className="w-4 h-4 text-[#C8A24A]" />
+              </button>
 
-          {/* Golden Pill CTA: Start Planning */}
-          <button
-            onClick={(e) => handleNavClick(e, 'contact')}
-            className="gold-glow-button px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center space-x-2 group cursor-pointer"
-          >
-            <span>Start Planning</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-          </button>
+              {/* Login / User Session Button */}
+              {user ? (
+                <div className="flex items-center gap-2">
+                  {(user.role === 'admin' || user.role === 'advisor') && (
+                    <button
+                      onClick={(e) => handleNavClick(e, '/admin/dashboard')}
+                      className="text-xs font-bold text-[#020B2D] px-3 py-1.5 rounded-xl bg-[#C8A24A] hover:bg-[#E8C878] transition-all cursor-pointer shadow flex items-center gap-1.5"
+                      title="Admin Control Center"
+                    >
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      <span>Admin Dashboard</span>
+                    </button>
+                  )}
+                  <button
+                    onClick={(e) => handleNavClick(e, 'dashboard')}
+                    className="text-xs font-semibold text-[#E8C878] px-3 py-1.5 rounded-xl bg-[#071C48] border border-[#C8A24A]/30 hover:bg-[#C8A24A]/20 transition-all cursor-pointer"
+                    title="Go to My Dashboard"
+                  >
+                    {user.name.split(' ')[0]}
+                  </button>
+                  <button
+                    onClick={logout}
+                    className="px-3 py-1.5 text-xs text-white/70 hover:text-white bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 transition-colors cursor-pointer"
+                    title="Logout"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => openAuthModal('login')}
+                  className="px-4 py-2 text-xs font-semibold text-[#F8F7F3] hover:text-[#E8C878] rounded-xl border border-[#BAC6DA]/20 hover:border-[#C8A24A]/50 bg-[#071C48]/30 hover:bg-[#071C48]/80 transition-all cursor-pointer"
+                >
+                  Login
+                </button>
+              )}
+
+              {/* Golden Pill CTA: Start Planning */}
+              <button
+                onClick={(e) => handleNavClick(e, 'contact')}
+                className="gold-glow-button px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center space-x-2 group cursor-pointer"
+              >
+                <span>Start Planning</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </>
+          )}
         </div>
 
         {/* Mobile Hamburger Button */}
         <div className="flex items-center space-x-3 lg:hidden">
-          <button
-            onClick={onOpenSearch}
-            className="p-2 text-[#C8A24A] bg-[#071C48]/60 border border-[#C8A24A]/20 rounded-xl"
-          >
-            <Search className="w-4 h-4" />
-          </button>
+          {!isAdminRoute && (
+            <button
+              onClick={onOpenSearch}
+              className="p-2 text-[#C8A24A] bg-[#071C48]/60 border border-[#C8A24A]/20 rounded-xl"
+            >
+              <Search className="w-4 h-4" />
+            </button>
+          )}
           
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -370,103 +421,133 @@ export default function Navbar({ onOpenSearch }) {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-[#020B2D]/95 border-b border-[#C8A24A]/20 backdrop-blur-2xl overflow-hidden px-5 py-6 space-y-4 shadow-2xl text-left"
           >
-            <div className="space-y-2">
-              <button 
-                onClick={(e) => handleNavClick(e, 'home')} 
-                className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
-                  currentPage === 'home' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#F8F7F3]'
-                }`}
-              >
-                Home
-              </button>
-              <button 
-                onClick={(e) => handleNavClick(e, 'about')} 
-                className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
-                  currentPage === 'about' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
-                }`}
-              >
-                About SOLAHANA
-              </button>
-              <button 
-                onClick={(e) => handleNavClick(e, 'financial-planning')} 
-                className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
-                  currentPage === 'financial-planning' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
-                }`}
-              >
-                Financial Planning
-              </button>
-              <button 
-                onClick={(e) => handleNavClick(e, 'goals')} 
-                className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
-                  currentPage === 'goals' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
-                }`}
-              >
-                Life Goals
-              </button>
-              <button 
-                onClick={(e) => handleNavClick(e, 'investments')} 
-                className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
-                  currentPage === 'investments' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
-                }`}
-              >
-                Investments
-              </button>
-              <button 
-                onClick={(e) => handleNavClick(e, 'tax-planning')} 
-                className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
-                  currentPage === 'tax-planning' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
-                }`}
-              >
-                Tax Planning
-              </button>
-              <button 
-                onClick={(e) => handleNavClick(e, 'calculators')} 
-                className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
-                  currentPage === 'calculators' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
-                }`}
-              >
-                Financial Calculators
-              </button>
-              <a href="#" className="block p-3 rounded-xl bg-[#071C48]/50 text-sm font-semibold text-[#BAC6DA]">
-                Contact
-              </a>
-            </div>
-
-            <div className="pt-4 border-t border-[#C8A24A]/20 flex flex-col gap-3">
-              {user ? (
-                <div className="flex items-center justify-between p-3 rounded-xl bg-[#071C48] border border-[#C8A24A]/30">
-                  <span className="text-xs font-semibold text-[#E8C878]">{user.name}</span>
+            {isAdminRoute ? (
+              <div className="space-y-3">
+                <div className="p-3 rounded-xl bg-[#071C48] border border-[#C8A24A]/30 text-xs font-semibold text-[#E8C878]">
+                  ADMINISTRATOR CONTROL DESK
+                </div>
+                {user ? (
                   <button
-                    onClick={() => {
-                      logout();
-                      setMobileMenuOpen(false);
-                    }}
-                    className="text-xs text-red-400 hover:text-red-300 font-medium"
+                    onClick={() => { handleAdminLogout(); setMobileMenuOpen(false); }}
+                    className="w-full text-center py-2.5 rounded-xl border border-red-500/40 text-xs font-bold text-red-300 bg-red-500/20 cursor-pointer"
                   >
-                    Logout
+                    Admin Logout
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => { navigate('/admin/login'); setMobileMenuOpen(false); }}
+                    className="w-full text-center py-2.5 rounded-xl text-xs font-bold text-[#020B2D] bg-[#C8A24A] cursor-pointer"
+                  >
+                    Admin Login
+                  </button>
+                )}
+              </div>
+            ) : (
+              <>
+                <div className="space-y-2">
+                  <button 
+                    onClick={(e) => handleNavClick(e, 'home')} 
+                    className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      pathname === '/' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#F8F7F3]'
+                    }`}
+                  >
+                    Home
+                  </button>
+                  <button 
+                    onClick={(e) => handleNavClick(e, 'about')} 
+                    className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      pathname === '/about' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
+                    }`}
+                  >
+                    About SOLAHANA
+                  </button>
+                  <button 
+                    onClick={(e) => handleNavClick(e, 'financial-planning')} 
+                    className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      pathname === '/financial-planning' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
+                    }`}
+                  >
+                    Financial Planning
+                  </button>
+                  <button 
+                    onClick={(e) => handleNavClick(e, 'goals')} 
+                    className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      pathname === '/goals' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
+                    }`}
+                  >
+                    Life Goals
+                  </button>
+                  <button 
+                    onClick={(e) => handleNavClick(e, 'investments')} 
+                    className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      pathname === '/investments' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
+                    }`}
+                  >
+                    Investments
+                  </button>
+                  <button 
+                    onClick={(e) => handleNavClick(e, 'tax-planning')} 
+                    className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      pathname === '/tax-planning' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
+                    }`}
+                  >
+                    Tax Planning
+                  </button>
+                  <button 
+                    onClick={(e) => handleNavClick(e, 'calculators')} 
+                    className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      pathname === '/calculators' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
+                    }`}
+                  >
+                    Financial Calculators
+                  </button>
+                  <button 
+                    onClick={(e) => handleNavClick(e, 'contact')} 
+                    className={`w-full text-left p-3 rounded-xl text-sm font-semibold transition-colors ${
+                      pathname === '/contact' ? 'bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/30' : 'bg-[#071C48]/50 text-[#BAC6DA]'
+                    }`}
+                  >
+                    Contact
                   </button>
                 </div>
-              ) : (
-                <button
-                  onClick={() => {
-                    openAuthModal('login');
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full text-center py-2.5 rounded-xl border border-[#C8A24A]/30 text-xs font-semibold text-[#F8F7F3] bg-[#071C48]/60 cursor-pointer"
-                >
-                  Login
-                </button>
-              )}
-              <button
-                onClick={(e) => {
-                  handleNavClick(e, 'contact');
-                }}
-                className="w-full gold-glow-button text-center py-3 rounded-full text-xs font-bold flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>Start Planning</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+
+                <div className="pt-4 border-t border-[#C8A24A]/20 flex flex-col gap-3">
+                  {user ? (
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-[#071C48] border border-[#C8A24A]/30">
+                      <span className="text-xs font-semibold text-[#E8C878]">{user.name}</span>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setMobileMenuOpen(false);
+                        }}
+                        className="text-xs text-red-400 hover:text-red-300 font-medium cursor-pointer"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        openAuthModal('login');
+                        setMobileMenuOpen(false);
+                      }}
+                      className="w-full text-center py-2.5 rounded-xl border border-[#C8A24A]/30 text-xs font-semibold text-[#F8F7F3] bg-[#071C48]/60 cursor-pointer"
+                    >
+                      Login
+                    </button>
+                  )}
+                  <button
+                    onClick={(e) => {
+                      handleNavClick(e, 'contact');
+                    }}
+                    className="w-full gold-glow-button text-center py-3 rounded-full text-xs font-bold flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span>Start Planning</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
