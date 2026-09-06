@@ -35,9 +35,22 @@ export default function DashboardPage({ onNavigate }) {
       const res = await consultationService.getMyConsultations({
         status: statusFilter || undefined,
       });
-      setConsultations(res.data?.consultations || []);
+
+      // Defensive array extraction matching any API response structure
+      const list = Array.isArray(res?.data?.consultations)
+        ? res.data.consultations
+        : Array.isArray(res?.data)
+        ? res.data
+        : Array.isArray(res?.consultations)
+        ? res.consultations
+        : Array.isArray(res)
+        ? res
+        : [];
+
+      setConsultations(list);
     } catch (err) {
-      setError(err.response?.data?.message || err.message || 'Failed to fetch consultations');
+      console.error('[Dashboard fetch error]:', err);
+      setError(err.response?.data?.message || err.message || 'Unable to load consultations.');
     } finally {
       setLoading(false);
     }
@@ -52,6 +65,7 @@ export default function DashboardPage({ onNavigate }) {
     setCancellingId(id);
     try {
       await consultationService.cancelConsultation(id);
+      // Re-fetch cleanly from server to prevent local state mutation bugs
       await fetchConsultations();
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to cancel consultation');
@@ -59,6 +73,9 @@ export default function DashboardPage({ onNavigate }) {
       setCancellingId(null);
     }
   };
+
+  // Safe Array Fallback guarantee before rendering
+  const consultationList = Array.isArray(consultations) ? consultations : [];
 
   const getStatusBadge = (status) => {
     switch (status) {
@@ -123,14 +140,14 @@ export default function DashboardPage({ onNavigate }) {
           <div className="flex items-center gap-3">
             <button
               onClick={fetchConsultations}
-              className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-colors"
+              className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-colors cursor-pointer"
               title="Refresh Consultations"
             >
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             </button>
             <button
               onClick={() => onNavigate && onNavigate('contact')}
-              className="gold-glow-button px-5 py-3 rounded-xl text-xs font-bold text-[#020B2D] flex items-center gap-2"
+              className="gold-glow-button px-5 py-3 rounded-xl text-xs font-bold text-[#020B2D] flex items-center gap-2 cursor-pointer"
             >
               <Briefcase className="w-4 h-4" />
               <span>Book New Session</span>
@@ -143,7 +160,7 @@ export default function DashboardPage({ onNavigate }) {
           <h2 className="font-serif-luxury text-2xl font-bold text-white flex items-center gap-2">
             My Consultations
             <span className="text-xs font-sans px-2.5 py-0.5 rounded-full bg-[#071C48] border border-[#C8A24A]/30 text-[#E8C878]">
-              {consultations.length}
+              {consultationList.length}
             </span>
           </h2>
 
@@ -163,38 +180,48 @@ export default function DashboardPage({ onNavigate }) {
           </div>
         </div>
 
-        {/* Consultation List */}
+        {/* Consultation List Rendering */}
         {loading ? (
-          <div className="py-20 text-center">
+          <div className="py-20 text-center rounded-3xl bg-[#071C48]/30 border border-white/10">
             <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#C8A24A]" />
-            <p className="text-xs text-white/60 mt-3">Loading your consultation bookings...</p>
+            <p className="text-xs text-white/60 mt-3 font-mono">Loading your consultation bookings...</p>
           </div>
         ) : error ? (
-          <div className="p-6 rounded-2xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm flex items-center gap-3">
-            <AlertCircle className="w-5 h-5 shrink-0" />
-            <span>{error}</span>
+          <div className="p-8 rounded-3xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm flex flex-col items-center justify-center gap-4 text-center">
+            <div className="flex items-center gap-2 text-red-400 font-semibold">
+              <AlertCircle className="w-5 h-5" />
+              <span>Unable to load consultations.</span>
+            </div>
+            <p className="text-xs text-white/60 max-w-md">{error}</p>
+            <button
+              onClick={fetchConsultations}
+              className="px-6 py-2.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-200 font-bold text-xs flex items-center gap-2 transition-colors cursor-pointer"
+            >
+              <RefreshCw className="w-4 h-4" />
+              <span>Retry</span>
+            </button>
           </div>
-        ) : consultations.length === 0 ? (
+        ) : consultationList.length === 0 ? (
           <div className="py-16 px-6 text-center rounded-3xl bg-[#071C48]/40 border border-white/10 space-y-4">
             <div className="w-16 h-16 mx-auto rounded-full bg-[#C8A24A]/10 border border-[#C8A24A]/30 flex items-center justify-center text-[#C8A24A]">
               <Calendar className="w-8 h-8" />
             </div>
-            <h3 className="font-serif-luxury text-xl font-bold text-white">No Consultations Scheduled</h3>
+            <h3 className="font-serif-luxury text-xl font-bold text-white">No consultations booked yet.</h3>
             <p className="text-white/60 text-xs max-w-md mx-auto">
               You haven't booked any advisory sessions yet. Connect with our certified wealth team to structure your goals.
             </p>
             <button
               onClick={() => onNavigate && onNavigate('contact')}
-              className="px-6 py-2.5 rounded-xl bg-[#C8A24A] text-[#020B2D] font-bold text-xs shadow-lg hover:bg-[#E8C878] transition-colors"
+              className="px-6 py-2.5 rounded-xl bg-[#C8A24A] text-[#020B2D] font-bold text-xs shadow-lg hover:bg-[#E8C878] transition-colors cursor-pointer"
             >
-              Schedule First Consultation
+              Schedule Consultation
             </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {consultations.map((item) => (
+            {consultationList.map((item) => (
               <motion.div
-                key={item._id}
+                key={item._id || item.id || Math.random()}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="p-6 rounded-2xl bg-[#071C48]/80 border border-[#C8A24A]/25 shadow-xl flex flex-col justify-between space-y-4 hover:border-[#C8A24A]/50 transition-all"
@@ -202,7 +229,7 @@ export default function DashboardPage({ onNavigate }) {
                 <div>
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <h3 className="font-serif-luxury text-lg font-bold text-white">
-                      {item.goal}
+                      {item.goal || 'Financial Planning'}
                     </h3>
                     {getStatusBadge(item.status)}
                   </div>
@@ -210,22 +237,26 @@ export default function DashboardPage({ onNavigate }) {
                   <div className="grid grid-cols-2 gap-3 py-3 border-y border-white/10 text-xs">
                     <div className="flex items-center gap-2 text-white/80">
                       <Calendar className="w-4 h-4 text-[#C8A24A]" />
-                      <span>{new Date(item.preferredDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                      <span>
+                        {item.preferredDate
+                          ? new Date(item.preferredDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+                          : 'TBD'}
+                      </span>
                     </div>
 
                     <div className="flex items-center gap-2 text-white/80">
                       <Clock className="w-4 h-4 text-[#C8A24A]" />
-                      <span>{item.preferredTime}</span>
+                      <span>{item.preferredTime || 'TBD'}</span>
                     </div>
 
                     <div className="flex items-center gap-2 text-white/80">
                       {getModeIcon(item.consultationMode)}
-                      <span>{item.consultationMode}</span>
+                      <span>{item.consultationMode || 'Video Call'}</span>
                     </div>
 
                     <div className="flex items-center gap-2 text-white/80">
                       <User className="w-4 h-4 text-[#C8A24A]" />
-                      <span>{item.fullName}</span>
+                      <span>{item.fullName || user?.name || 'Client'}</span>
                     </div>
                   </div>
 
@@ -252,14 +283,14 @@ export default function DashboardPage({ onNavigate }) {
 
                 <div className="flex items-center justify-between pt-2">
                   <span className="text-[11px] text-white/40">
-                    Booked on {new Date(item.createdAt).toLocaleDateString('en-IN')}
+                    {item.createdAt ? `Booked on ${new Date(item.createdAt).toLocaleDateString('en-IN')}` : ''}
                   </span>
 
                   {item.status === 'Pending' && (
                     <button
                       onClick={() => handleCancelBooking(item._id)}
                       disabled={cancellingId === item._id}
-                      className="px-3.5 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-medium transition-colors disabled:opacity-50 flex items-center gap-1"
+                      className="px-3.5 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-medium transition-colors disabled:opacity-50 flex items-center gap-1 cursor-pointer"
                     >
                       {cancellingId === item._id ? (
                         <Loader2 className="w-3 h-3 animate-spin" />

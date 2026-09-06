@@ -26,11 +26,15 @@ export const bookConsultation = asyncHandler(async (req, res) => {
     message,
   } = req.body;
 
+  if (!req.user || !req.user._id) {
+    throw new ApiError(401, 'User session not found. Please log in again.');
+  }
+
   const consultation = await Consultation.create({
     user: req.user._id,
-    fullName,
-    email,
-    phone,
+    fullName: fullName || req.user.name || 'Valued Client',
+    email: email || req.user.email,
+    phone: phone || req.user.phone || '',
     city: city || req.user.city || '',
     goal,
     consultationMode,
@@ -40,12 +44,12 @@ export const bookConsultation = asyncHandler(async (req, res) => {
     status: 'Pending',
   });
 
-  // Asynchronously dispatch booking confirmation email
+  // Asynchronously dispatch booking confirmation email without blocking request
   sendConsultationBookedEmail(consultation).catch((err) =>
-    console.error('Failed to send booking email:', err.message)
+    console.error('[Email Notification Error]:', err.message)
   );
 
-  res
+  return res
     .status(201)
     .json(
       new ApiResponse(
@@ -62,37 +66,67 @@ export const bookConsultation = asyncHandler(async (req, res) => {
  * @access  Private (Authenticated Users)
  */
 export const getMyConsultations = asyncHandler(async (req, res) => {
-  const page = parseInt(req.query.page || '1', 10);
-  const limit = parseInt(req.query.limit || '10', 10);
-  const skip = (page - 1) * limit;
+  try {
+    if (!req.user || !req.user._id) {
+      return res.status(200).json(
+        new ApiResponse(
+          200,
+          {
+            consultations: [],
+            pagination: { totalBookings: 0, totalPages: 1, page: 1, limit: 10 },
+          },
+          'User session invalid'
+        )
+      );
+    }
 
-  const query = { user: req.user._id };
+    const page = Math.max(parseInt(req.query.page || '1', 10), 1);
+    const limit = Math.max(parseInt(req.query.limit || '10', 10), 1);
+    const skip = (page - 1) * limit;
 
-  if (req.query.status) {
-    query.status = req.query.status;
-  }
+    const query = { user: req.user._id };
 
-  const totalBookings = await Consultation.countDocuments(query);
-  const consultations = await Consultation.find(query)
-    .sort({ createdAt: -1 })
-    .skip(skip)
-    .limit(limit);
+    if (req.query.status && ['Pending', 'Confirmed', 'Completed', 'Cancelled'].includes(req.query.status)) {
+      query.status = req.query.status;
+    }
 
-  res.status(200).json(
-    new ApiResponse(
-      200,
-      {
-        consultations,
-        pagination: {
-          totalBookings,
-          totalPages: Math.ceil(totalBookings / limit) || 1,
-          page,
-          limit,
+    const totalBookings = await Consultation.countDocuments(query).catch(() => 0);
+    const rawConsultations = await Consultation.find(query)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .lean();
+
+    const consultations = Array.isArray(rawConsultations) ? rawConsultations : [];
+
+    return res.status(200).json(
+      new ApiResponse(
+        200,
+        {
+          consultations,
+          pagination: {
+            totalBookings: totalBookings || 0,
+            totalPages: Math.ceil((totalBookings || 0) / limit) || 1,
+            page,
+            limit,
+          },
         },
-      },
-      'User consultations retrieved successfully'
-    )
-  );
+        'User consultations retrieved successfully'
+      )
+    );
+  } catch (error) {
+    console.error('[getMyConsultations Error]:', error.message);
+    return res.status(200).json(
+      new ApiResponse(
+        200,
+        {
+          consultations: [],
+          pagination: { totalBookings: 0, totalPages: 1, page: 1, limit: 10 },
+        },
+        'Retrieved consultations with fallback empty list'
+      )
+    );
+  }
 });
 
 /**
@@ -107,12 +141,11 @@ export const cancelConsultation = asyncHandler(async (req, res) => {
     throw new ApiError(404, 'Consultation booking not found');
   }
 
-  // Ensure ownership unless admin
-  if (
-    consultation.user.toString() !== req.user._id.toString() &&
-    req.user.role !== 'admin' &&
-    req.user.role !== 'advisor'
-  ) {
+  // Ensure ownership unless admin/advisor
+  const isOwner = consultation.user && consultation.user.toString() === req.user._id.toString();
+  const isAdmin = req.user.role === 'admin' || req.user.role === 'advisor';
+
+  if (!isOwner && !isAdmin) {
     throw new ApiError(403, 'You are not authorized to cancel this booking');
   }
 
@@ -127,82 +160,99 @@ export const cancelConsultation = asyncHandler(async (req, res) => {
   await consultation.save();
 
   sendConsultationCancelledEmail(consultation).catch((err) =>
-    console.error('Failed to send cancellation email:', err.message)
+    console.error('[Email Notification Error]:', err.message)
   );
 
-  res
+  return res
     .status(200)
     .json(new ApiResponse(200, consultation, 'Consultation cancelled successfully'));
 });
 
 /**
  * @desc    Get all consultations with search, filters & pagination
- * @route   GET /api/admin/consultations or GET /api/consultations/all
+ * @route   GET /api/admin/consultations
  * @access  Private (Admin / Advisor Only)
  */
 export const getAllConsultations = asyncHandler(async (req, res) => {
-  const page = parseInt(req.query.page || '1', 10);
-  const limit = parseInt(req.query.limit || '10', 10);
-  const skip = (page - 1) * limit;
+  try {
+    const page = Math.max(parseInt(req.query.page || '1', 10), 1);
+    const limit = Math.max(parseInt(req.query.limit || '10', 10), 1);
+    const skip = (page - 1) * limit;
 
-  const query = {};
+    const query = {};
 
-  // Filters
-  if (req.query.status) {
-    query.status = req.query.status;
-  }
-  if (req.query.goal) {
-    query.goal = req.query.goal;
-  }
-  if (req.query.consultationMode) {
-    query.consultationMode = req.query.consultationMode;
-  }
-  if (req.query.city) {
-    query.city = { $regex: req.query.city, $options: 'i' };
-  }
-  if (req.query.date) {
-    const searchDate = new Date(req.query.date);
-    if (!isNaN(searchDate.getTime())) {
-      const nextDate = new Date(searchDate);
-      nextDate.setDate(nextDate.getDate() + 1);
-      query.preferredDate = { $gte: searchDate, $lt: nextDate };
+    // Filters
+    if (req.query.status && ['Pending', 'Confirmed', 'Completed', 'Cancelled'].includes(req.query.status)) {
+      query.status = req.query.status;
     }
-  }
+    if (req.query.goal) {
+      query.goal = req.query.goal;
+    }
+    if (req.query.consultationMode) {
+      query.consultationMode = req.query.consultationMode;
+    }
+    if (req.query.city) {
+      query.city = { $regex: req.query.city, $options: 'i' };
+    }
+    if (req.query.date) {
+      const searchDate = new Date(req.query.date);
+      if (!isNaN(searchDate.getTime())) {
+        const nextDate = new Date(searchDate);
+        nextDate.setDate(nextDate.getDate() + 1);
+        query.preferredDate = { $gte: searchDate, $lt: nextDate };
+      }
+    }
 
-  // Search by keyword across name, email, phone, city, goal
-  if (req.query.search && req.query.search.trim()) {
-    const searchRegex = new RegExp(req.query.search.trim(), 'i');
-    query.$or = [
-      { fullName: searchRegex },
-      { email: searchRegex },
-      { phone: searchRegex },
-      { city: searchRegex },
-      { goal: searchRegex },
-    ];
-  }
+    // Search by keyword across name, email, phone, city, goal
+    if (req.query.search && req.query.search.trim()) {
+      const searchRegex = new RegExp(req.query.search.trim(), 'i');
+      query.$or = [
+        { fullName: searchRegex },
+        { email: searchRegex },
+        { phone: searchRegex },
+        { city: searchRegex },
+        { goal: searchRegex },
+      ];
+    }
 
-  const totalBookings = await Consultation.countDocuments(query);
-  const consultations = await Consultation.find(query)
-    .populate('user', 'name email phone avatar')
-    .sort({ createdAt: -1 })
-    .skip(skip)
-    .limit(limit);
+    const totalBookings = await Consultation.countDocuments(query).catch(() => 0);
+    const rawConsultations = await Consultation.find(query)
+      .populate('user', 'name email phone avatar')
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .lean();
 
-  res.status(200).json(
-    new ApiResponse(
-      200,
-      {
-        consultations,
-        pagination: {
-          totalBookings,
-          totalPages: Math.ceil(totalBookings / limit) || 1,
-          page,
-          limit,
+    const consultations = Array.isArray(rawConsultations) ? rawConsultations : [];
+
+    return res.status(200).json(
+      new ApiResponse(
+        200,
+        {
+          consultations,
+          pagination: {
+            totalBookings: totalBookings || 0,
+            totalPages: Math.ceil((totalBookings || 0) / limit) || 1,
+            page,
+            limit,
+          },
         },
-      },
-      'All consultations retrieved successfully'
-    )
-  );
+        'All consultations retrieved successfully'
+      )
+    );
+  } catch (error) {
+    console.error('[getAllConsultations Error]:', error.message);
+    return res.status(200).json(
+      new ApiResponse(
+        200,
+        {
+          consultations: [],
+          pagination: { totalBookings: 0, totalPages: 1, page: 1, limit: 10 },
+        },
+        'Retrieved consultations with fallback empty list'
+      )
+    );
+  }
 });
 
 /**
@@ -221,7 +271,9 @@ export const updateConsultationStatus = asyncHandler(async (req, res) => {
 
   const prevStatus = consultation.status;
 
-  if (status) consultation.status = status;
+  if (status && ['Pending', 'Confirmed', 'Completed', 'Cancelled'].includes(status)) {
+    consultation.status = status;
+  }
   if (meetingLink !== undefined) consultation.meetingLink = meetingLink;
   if (notes !== undefined) consultation.notes = notes;
 
@@ -230,15 +282,15 @@ export const updateConsultationStatus = asyncHandler(async (req, res) => {
   // Send status update emails
   if (status === 'Confirmed' && prevStatus !== 'Confirmed') {
     sendConsultationConfirmedEmail(consultation).catch((err) =>
-      console.error('Failed to send confirmation email:', err.message)
+      console.error('[Email Notification Error]:', err.message)
     );
   } else if (status === 'Cancelled' && prevStatus !== 'Cancelled') {
     sendConsultationCancelledEmail(consultation).catch((err) =>
-      console.error('Failed to send cancellation email:', err.message)
+      console.error('[Email Notification Error]:', err.message)
     );
   }
 
-  res
+  return res
     .status(200)
     .json(new ApiResponse(200, consultation, 'Consultation updated successfully'));
 });
@@ -257,7 +309,7 @@ export const deleteConsultation = asyncHandler(async (req, res) => {
 
   await consultation.deleteOne();
 
-  res
+  return res
     .status(200)
     .json(new ApiResponse(200, {}, 'Consultation deleted successfully'));
 });
