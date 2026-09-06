@@ -35,6 +35,16 @@ import AdminProtectedRoute from './components/AdminProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import AuthModal from './components/AuthModal';
 
+// Calculators Module Imports
+import CalculatorsLandingPage from './pages/calculators/CalculatorsLandingPage';
+import SipCalculator from './components/calculators/SipCalculator';
+import EmiCalculator from './components/calculators/EmiCalculator';
+import RetirementCalculator from './components/calculators/RetirementCalculator';
+import GoalPlanner from './components/calculators/GoalPlanner';
+import LumpsumCalculator from './components/calculators/LumpsumCalculator';
+import FdCalculator from './components/calculators/FdCalculator';
+import InflationCalculator from './components/calculators/InflationCalculator';
+
 function HomePage({ onOpenSearch }) {
   return (
     <>
@@ -79,7 +89,15 @@ export default function App() {
             <Route path="/goals" element={<GoalsPlanningPage onOpenSearch={() => setSearchOpen(true)} />} />
             <Route path="/investments" element={<InvestmentsPage onOpenSearch={() => setSearchOpen(true)} />} />
             <Route path="/tax-planning" element={<TaxPlanningPage onOpenSearch={() => setSearchOpen(true)} />} />
-            <Route path="/calculators" element={<CalculatorsPage />} />
+            {/* Financial Calculators Suite Routes */}
+            <Route path="/calculators" element={<CalculatorsLandingPage />} />
+            <Route path="/calculators/sip" element={<SipCalculator />} />
+            <Route path="/calculators/emi" element={<EmiCalculator />} />
+            <Route path="/calculators/retirement" element={<RetirementCalculator />} />
+            <Route path="/calculators/goal-planner" element={<GoalPlanner />} />
+            <Route path="/calculators/lumpsum" element={<LumpsumCalculator />} />
+            <Route path="/calculators/fd" element={<FdCalculator />} />
+            <Route path="/calculators/inflation" element={<InflationCalculator />} />
             <Route path="/contact" element={<ContactPage />} />
 
             {/* User Dashboard */}

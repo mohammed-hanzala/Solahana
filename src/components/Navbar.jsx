@@ -114,9 +114,9 @@ export default function Navbar({ onOpenSearch }) {
       title: 'Financial Calculators',
       description: 'Free interactive financial planning tools.',
       items: [
-        { name: 'SIP & Compounding Calculator', desc: 'Visualize wealth growth with step-up SIPs', icon: Calculator },
-        { name: 'FIRE Retirement Calculator', desc: 'Find your target retirement net worth number', icon: Target },
-        { name: 'Tax Savings Calculator', desc: 'Compare Old vs New Tax Regime for FY 2025-26', icon: Calculator },
+        { name: 'SIP & Step-Up Calculator', desc: 'Visualize wealth growth with step-up SIPs', icon: Calculator, path: '/calculators/sip' },
+        { name: 'FIRE Retirement Calculator', desc: 'Find your target retirement net worth number', icon: Target, path: '/calculators/retirement' },
+        { name: 'EMI Loan Calculator', desc: 'Compute monthly loan EMIs & interest schedule', icon: Calculator, path: '/calculators/emi' },
       ]
     }
   };
@@ -263,10 +263,10 @@ export default function Navbar({ onOpenSearch }) {
                       {navMenus.calculators.items.map((item, i) => {
                         const IconComponent = item.icon;
                         return (
-                          <a
+                          <button
                             key={i}
-                            href="#"
-                            className="p-2.5 rounded-xl hover:bg-[#020B2D]/80 border border-transparent hover:border-[#C8A24A]/25 transition-all flex items-start space-x-3 group/item"
+                            onClick={(e) => handleNavClick(e, item.path || 'calculators')}
+                            className="w-full text-left p-2.5 rounded-xl hover:bg-[#020B2D]/80 border border-transparent hover:border-[#C8A24A]/25 transition-all flex items-start space-x-3 group/item cursor-pointer"
                           >
                             <div className="p-2 rounded-lg bg-[#C8A24A]/10 text-[#C8A24A] group-hover/item:bg-[#C8A24A] group-hover/item:text-[#020B2D] transition-colors mt-0.5">
                               <IconComponent className="w-4 h-4" />
@@ -280,7 +280,7 @@ export default function Navbar({ onOpenSearch }) {
                                 {item.desc}
                               </div>
                             </div>
-                          </a>
+                          </button>
                         );
                       })}
                     </div>
