@@ -4,7 +4,6 @@ import AboutStory from '../components/about/AboutStory';
 import AboutMissionVision from '../components/about/AboutMissionVision';
 import AboutValues from '../components/about/AboutValues';
 import WhySolahanaExists from '../components/about/WhySolahanaExists';
-import AboutPlanningApproach from '../components/about/AboutPlanningApproach';
 import AboutCTA from '../components/about/AboutCTA';
 
 export default function AboutPage({ onOpenSearch }) {
@@ -39,10 +38,7 @@ export default function AboutPage({ onOpenSearch }) {
       {/* SECTION 5: WHY SOLAHANA EXISTS */}
       <WhySolahanaExists />
 
-      {/* SECTION 6: OUR PLANNING APPROACH */}
-      <AboutPlanningApproach />
-
-      {/* SECTION 7: FINAL CTA */}
+      {/* SECTION 6: FINAL CTA */}
       <AboutCTA 
         onStartPlanning={onOpenSearch}
         onBookConsultation={onOpenSearch}

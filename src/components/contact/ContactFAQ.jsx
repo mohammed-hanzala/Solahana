@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: "Is online consultation available?",
-    answer: "Yes. We conduct seamless, high-definition 1-on-1 video consultations via Google Meet or Zoom for clients across India and globally (NRIs). In-person meetings are also available at our Mumbai BKC office."
+    answer: "Yes. We conduct seamless, high-definition 1-on-1 video consultations via Google Meet or Zoom for clients across India and globally (NRIs). In-person meetings are also available at our Mumbai office in Andheri West."
   },
   {
     question: "What should I prepare before the meeting?",

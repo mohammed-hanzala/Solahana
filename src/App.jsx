@@ -7,9 +7,7 @@ import TrustStrip from './components/TrustStrip';
 import WhatIsFinancialPlanning from './components/WhatIsFinancialPlanning';
 import HowSolahanaWorks from './components/HowSolahanaWorks';
 import WhoWeServe from './components/WhoWeServe';
-import FinancialGoals from './components/FinancialGoals';
 import SolahanaServices from './components/SolahanaServices';
-import WhyChooseSolahana from './components/WhyChooseSolahana';
 import FinancialSnapshot from './components/FinancialSnapshot';
 import ClientStories from './components/ClientStories';
 import FAQSection from './components/FAQSection';
@@ -57,9 +55,7 @@ function HomePage({ onOpenSearch }) {
       <WhatIsFinancialPlanning />
       <HowSolahanaWorks />
       <WhoWeServe />
-      <FinancialGoals />
       <SolahanaServices />
-      <WhyChooseSolahana />
       <FinancialSnapshot />
       <ClientStories />
       <FAQSection />
@@ -201,9 +197,6 @@ export default function App() {
         <SearchModal
           isOpen={searchOpen}
           onClose={() => setSearchOpen(false)}
-          onSelectAction={(action) => {
-            console.log('Action selected:', action);
-          }}
         />
 
         {/* Global Auth Modal for Login & Register */}

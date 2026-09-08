@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
 import GoalsHero from '../components/goals/GoalsHero';
-import WhyGoalPlanning from '../components/goals/WhyGoalPlanning';
 import PersonalizedGoalTimelineSection from '../components/goals/PersonalizedGoalTimelineSection';
-import GoalJourneyTimeline from '../components/goals/GoalJourneyTimeline';
-import GoalDashboardPreview from '../components/goals/GoalDashboardPreview';
-import GoalPrinciples from '../components/goals/GoalPrinciples';
-import GoalSuccessStories from '../components/goals/GoalSuccessStories';
 import GoalsCTA from '../components/goals/GoalsCTA';
 
 export default function GoalsPlanningPage({ onOpenSearch }) {
@@ -28,25 +23,10 @@ export default function GoalsPlanningPage({ onOpenSearch }) {
         onExploreCategories={handleExploreCategories}
       />
 
-      {/* SECTION 2: WHY GOAL-BASED PLANNING? */}
-      <WhyGoalPlanning />
-
-      {/* SECTION 3: PERSONALIZED GOAL TIMELINE & HORIZONS */}
+      {/* SECTION 2: HORIZON MATCHING & PERSONALIZED GOAL PLANNING */}
       <PersonalizedGoalTimelineSection />
 
-      {/* SECTION 4: YOUR GOAL JOURNEY */}
-      <GoalJourneyTimeline />
-
-      {/* SECTION 5: GOAL PLANNING DASHBOARD PREVIEW */}
-      <GoalDashboardPreview />
-
-      {/* SECTION 6: PLANNING PRINCIPLES */}
-      <GoalPrinciples />
-
-      {/* SECTION 7: CLIENT SUCCESS STORIES */}
-      <GoalSuccessStories />
-
-      {/* SECTION 8: FINAL CTA */}
+      {/* SECTION 3: CONSULTATION CTA */}
       <GoalsCTA 
         onStartPlanning={onOpenSearch}
         onBookConsultation={onOpenSearch}

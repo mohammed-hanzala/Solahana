@@ -29,7 +29,7 @@ const createTransporter = () => {
 export const sendEmail = async ({ to, subject, html, text }) => {
   try {
     const transporter = createTransporter();
-    const from = process.env.EMAIL_FROM || 'SOLAHANA Advisory <advisory@solahana.com>';
+    const from = process.env.EMAIL_FROM || 'SOLAHANA Advisory <info@solahana.com>';
 
     if (!transporter) {
       console.log(`\n[EMAIL SERVICE - MOCK MODE]`);
@@ -91,7 +91,7 @@ export const sendConsultationBookedEmail = async (booking) => {
           Our dedicated wealth advisor will confirm your slot and send video meeting credentials shortly.
         </p>
         <div style="margin-top: 32px; font-size: 12px; color: #8899B5; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;">
-          SOLAHANA Financial Planning Pvt Ltd · Level 18, BKC Financial District, Mumbai 400051
+          SOLAHANA Financial Advisory · Off Veera Desai Road, Andheri West, Mumbai, Maharashtra 400053
         </div>
       </div>
     </div>
@@ -144,7 +144,7 @@ export const sendConsultationCancelledEmail = async (booking) => {
         <h2 style="color: #EF4444;">Consultation Cancelled</h2>
         <p>Dear <strong>${booking.fullName}</strong>,</p>
         <p>Your consultation booking for <strong>${booking.goal}</strong> has been cancelled.</p>
-        <p>If you'd like to reschedule, please visit your SOLAHANA portal or contact advisory@solahana.com.</p>
+        <p>If you'd like to reschedule, please visit your SOLAHANA portal or contact info@solahana.com.</p>
       </div>
     </div>
   `;

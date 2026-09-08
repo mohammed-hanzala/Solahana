@@ -69,8 +69,8 @@ export const OfficeWorkingHours = () => {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[#C8A24A] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-medium text-white block">Solahana Wealth Tower</span>
-                    <span className="text-white/60 font-light">Level 18, BKC Financial District, Bandra East, Mumbai - 400051</span>
+                    <span className="font-medium text-white block">SOLAHANA Financial Advisory</span>
+                    <span className="text-white/60 font-light">Off Veera Desai Road, Andheri West, Mumbai, Maharashtra 400053, India</span>
                   </div>
                 </div>
 
@@ -78,15 +78,16 @@ export const OfficeWorkingHours = () => {
                   <Mail className="w-5 h-5 text-[#C8A24A] shrink-0" />
                   <div>
                     <span className="text-white/60 font-light">Email: </span>
-                    <a href="mailto:advisory@solahana.com" className="text-white hover:text-[#E8C878] transition-colors font-medium">advisory@solahana.com</a>
+                    <a href="mailto:info@solahana.com" className="text-white hover:text-[#E8C878] transition-colors font-medium">info@solahana.com</a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-[#C8A24A] shrink-0" />
-                  <div>
-                    <span className="text-white/60 font-light">Phone: </span>
-                    <a href="tel:+912248901200" className="text-white hover:text-[#E8C878] transition-colors font-medium">+91 22 4890 1200</a>
+                <div className="flex items-start gap-3">
+                  <Phone className="w-5 h-5 text-[#C8A24A] shrink-0 mt-0.5" />
+                  <div className="flex flex-col space-y-0.5">
+                    <span className="text-white/60 font-light">Phone / WhatsApp: </span>
+                    <a href="tel:+917304442171" className="text-white hover:text-[#E8C878] transition-colors font-medium">+91 73044 42171</a>
+                    <a href="tel:+917021295187" className="text-white/80 hover:text-[#E8C878] transition-colors font-medium text-xs">+91 70212 95187</a>
                   </div>
                 </div>
               </div>
@@ -162,15 +163,15 @@ export const OfficeWorkingHours = () => {
               </div>
 
               <h4 className="font-playfair text-2xl font-bold text-white mb-2">
-                BKC Financial Centre, Mumbai
+                Andheri West Office, Mumbai
               </h4>
               <p className="text-white/60 text-sm font-light max-w-sm mb-6">
-                Located at the heart of India's premier financial hub in Bandra Kurla Complex.
+                Off Veera Desai Road, Andheri West, Mumbai, Maharashtra 400053
               </p>
 
               <button
                 type="button"
-                onClick={() => window.open('https://maps.google.com/?q=Bandra+Kurla+Complex+Bandra+East+Mumbai+Maharashtra+400051', '_blank')}
+                onClick={() => window.open('https://maps.google.com/?q=Off+Veera+Desai+Road+Andheri+West+Mumbai+Maharashtra+400053', '_blank')}
                 className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#C8A24A] via-[#D4AF37] to-[#C8A24A] text-[#020B2D] font-bold text-sm shadow-lg shadow-[#C8A24A]/25 hover:shadow-xl hover:shadow-[#C8A24A]/40 transition-all flex items-center gap-2 group cursor-pointer"
               >
                 <Navigation className="w-4 h-4 text-[#020B2D] group-hover:rotate-45 transition-transform" />
@@ -179,7 +180,7 @@ export const OfficeWorkingHours = () => {
             </div>
 
             <div className="relative z-10 p-4 bg-[#020B2D]/90 border-t border-white/10 text-xs text-white/50 text-center font-mono">
-              GPS Coordinates: 19.0657° N, 72.8686° E • Solahana Tower
+              Off Veera Desai Road, Andheri West, Mumbai 400053 • SOLAHANA
             </div>
           </motion.div>
 

@@ -49,24 +49,6 @@ export default function HowSolahanaWorks() {
     },
   ];
 
-  const miniFeatures = [
-    {
-      title: 'Goal-Based Planning',
-      desc: 'Tailored investment strategies designed around your specific life milestones.',
-      icon: Target,
-    },
-    {
-      title: 'Tax-Aware Financial Strategy',
-      desc: 'Legally minimize tax drag under Section 80C, 80D & LTCG tax-loss harvesting.',
-      icon: Calculator,
-    },
-    {
-      title: 'Long-Term Wealth Planning',
-      desc: 'Disciplined compounding for inflation-protected generational prosperity.',
-      icon: TrendingUp,
-    },
-  ];
-
   return (
     <section className="relative z-10 py-24 bg-[#020B2D] border-t border-[#C8A24A]/15 overflow-hidden">
       
@@ -113,7 +95,7 @@ export default function HowSolahanaWorks() {
 
 
         {/* TIMELINE PROCESS CONTAINER */}
-        <div className="relative mb-24">
+        <div className="relative">
           
           {/* Vertical Glowing Connector Line (Desktop Center) */}
           <div className="hidden lg:block absolute left-1/2 top-8 bottom-8 w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#E8C878] via-[#C8A24A] to-[#B8862B] opacity-40 shadow-[0_0_10px_#C8A24A]" />
@@ -195,37 +177,6 @@ export default function HowSolahanaWorks() {
             })}
           </div>
 
-        </div>
-
-
-        {/* MINI FEATURE STRIP (THREE 24PX ROUNDED GLASS CARDS) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {miniFeatures.map((feat, fIdx) => {
-            const IconComp = feat.icon;
-            return (
-              <motion.div
-                key={fIdx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: fIdx * 0.12 }}
-                whileHover={{ y: -6 }}
-                className="group p-6 rounded-[24px] bg-[#071C48]/60 border border-[#C8A24A]/25 hover:border-[#C8A24A]/60 backdrop-blur-xl transition-all duration-300 flex items-start space-x-4 hover:shadow-[0_15px_40px_rgba(200,162,74,0.2)]"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-[#C8A24A]/15 border border-[#C8A24A]/30 text-[#E8C878] group-hover:bg-[#C8A24A] group-hover:text-[#020B2D] transition-colors duration-300 flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(200,162,74,0.2)]">
-                  <IconComp className="w-6 h-6" />
-                </div>
-                <div>
-                  <h4 className="text-base font-serif-luxury font-bold text-[#F8F7F3] group-hover:text-[#E8C878] transition-colors">
-                    {feat.title}
-                  </h4>
-                  <p className="text-xs text-[#BAC6DA] leading-relaxed mt-1">
-                    {feat.desc}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
         </div>
 
       </div>

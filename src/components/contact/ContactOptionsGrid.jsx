@@ -16,27 +16,27 @@ const contactOptions = [
     id: 'phone',
     icon: Phone,
     title: 'Call Our Planning Team',
-    description: 'Speak directly with our senior financial planners during working hours for quick queries.',
+    description: 'Speak directly with our senior financial planners: +91 73044 42171 or +91 70212 95187.',
     actionText: 'Call Now',
-    href: 'tel:+912248901200',
+    href: 'tel:+917304442171',
     badge: 'Direct Line'
   },
   {
     id: 'email',
     icon: Mail,
     title: 'Email Us',
-    description: 'Send us detailed questions or financial documents. We respond within 24 business hours.',
+    description: 'Send us detailed questions or documents to info@solahana.com. We respond within 24 hours.',
     actionText: 'Send Email',
-    href: 'mailto:advisory@solahana.com',
+    href: 'mailto:info@solahana.com',
     badge: '24h Response'
   },
   {
     id: 'whatsapp',
     icon: MessageSquare,
     title: 'WhatsApp Support',
-    description: 'Quick chat assistant for existing clients and instant appointment scheduling assistance.',
+    description: 'Quick chat assistance at +91 73044 42171 for instant appointment and planning support.',
     actionText: 'Chat on WhatsApp',
-    href: 'https://wa.me/919820012345',
+    href: 'https://wa.me/917304442171',
     badge: 'Instant Chat'
   }
 ];

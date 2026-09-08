@@ -34,7 +34,7 @@ const goals = [
 const modes = [
   { id: 'Video Call', label: 'Video Call', icon: Video },
   { id: 'Phone Call', label: 'Phone Call', icon: PhoneCall },
-  { id: 'Office Visit', label: 'In Person (BKC Office)', icon: Building },
+  { id: 'Office Visit', label: 'In Person (Andheri West Office)', icon: Building },
 ];
 
 const timeSlots = ['10:00 AM', '11:30 AM', '02:00 PM', '04:00 PM', '05:30 PM'];
@@ -296,7 +296,7 @@ export const BookConsultationForm = () => {
                       type="tel"
                       required
                       maxLength={10}
-                      placeholder="9820012345"
+                      placeholder="7304442171"
                       value={formData.phone}
                       onChange={handlePhoneChange}
                       onBlur={() => setPhoneTouched(true)}

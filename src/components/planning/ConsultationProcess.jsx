@@ -116,17 +116,6 @@ export default function ConsultationProcess({ onSchedule }) {
 
         </div>
 
-        {/* Action Button Below Steps */}
-        <div className="mt-14 text-center">
-          <button
-            onClick={onSchedule}
-            className="gold-glow-button px-9 py-4 rounded-full text-xs sm:text-sm font-bold tracking-wide inline-flex items-center space-x-2.5 group"
-          >
-            <span>Schedule Consultation</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-
       </div>
     </section>
   );

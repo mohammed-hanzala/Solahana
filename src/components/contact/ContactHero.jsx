@@ -71,7 +71,7 @@ export const ContactHero = () => {
               </a>
 
               <a
-                href="tel:+912248901200"
+                href="tel:+917304442171"
                 className="px-8 py-4 rounded-xl bg-white/5 border border-white/20 hover:border-[#C8A24A]/50 text-white font-semibold text-base hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <PhoneCall className="w-5 h-5 text-[#E8C878]" />

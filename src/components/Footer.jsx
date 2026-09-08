@@ -4,6 +4,7 @@ import {
   ShieldCheck, 
   ArrowRight, 
   Mail, 
+  Phone,
   Lock, 
   Globe
 } from 'lucide-react';
@@ -80,6 +81,19 @@ export default function Footer() {
             <p className="text-xs text-[#BAC6DA] leading-relaxed max-w-sm font-inter">
               SOLAHANA helps individuals and families organize, structure, and plan their money around life goals with transparent, zero-commission fiduciary advisory.
             </p>
+
+            <div className="space-y-1.5 pt-1 text-xs text-[#BAC6DA] font-num">
+              <div className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-[#C8A24A] shrink-0" />
+                <a href="tel:+917304442171" className="hover:text-[#E8C878] transition-colors">+91 73044 42171</a>
+                <span>•</span>
+                <a href="tel:+917021295187" className="hover:text-[#E8C878] transition-colors">+91 70212 95187</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="w-3.5 h-3.5 text-[#C8A24A] shrink-0" />
+                <a href="mailto:info@solahana.com" className="hover:text-[#E8C878] transition-colors font-medium">info@solahana.com</a>
+              </div>
+            </div>
 
             <div className="pt-2 flex items-center space-x-2 text-xs text-emerald-400 font-num">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
