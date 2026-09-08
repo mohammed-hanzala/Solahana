@@ -129,7 +129,7 @@ export default function Footer() {
               Tools & Company
             </h4>
             <ul className="space-y-2.5 text-xs">
-              {['Calculators Desk', 'Knowledge Center', 'FAQs', 'About SOLAHANA', 'Contact Us'].map((item, i) => (
+              {['Calculators Desk', 'Financial Blogs', 'FAQs', 'About SOLAHANA', 'Contact Us'].map((item, i) => (
                 <li key={i}>
                   {item === 'About SOLAHANA' ? (
                     <button onClick={(e) => handleLinkClick(e, 'about')} className="hover:text-[#E8C878] transition-colors duration-200 block py-0.5 text-left cursor-pointer">
@@ -137,6 +137,10 @@ export default function Footer() {
                     </button>
                   ) : item === 'Calculators Desk' ? (
                     <button onClick={(e) => handleLinkClick(e, 'calculators')} className="hover:text-[#E8C878] transition-colors duration-200 block py-0.5 text-left cursor-pointer">
+                      {item}
+                    </button>
+                  ) : item === 'Financial Blogs' ? (
+                    <button onClick={(e) => handleLinkClick(e, 'blogs')} className="hover:text-[#E8C878] transition-colors duration-200 block py-0.5 text-left cursor-pointer">
                       {item}
                     </button>
                   ) : item === 'Contact Us' ? (

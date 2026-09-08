@@ -894,7 +894,7 @@ export default function AdminDashboardPage() {
               </div>
             ) : bookings.length === 0 ? (
               <div className="py-16 text-center rounded-2xl bg-[#071C48]/40 border border-white/10">
-                <p className="text-white/60 text-xs">No consultations matching the criteria.</p>
+                <p className="text-white/60 text-xs">No consultations found.</p>
               </div>
             ) : (
               <div className="overflow-x-auto rounded-2xl border border-[#C8A24A]/25 shadow-2xl bg-[#071C48]/90">
@@ -990,6 +990,10 @@ export default function AdminDashboardPage() {
               <div className="py-20 text-center rounded-2xl bg-[#071C48]/40 border border-white/10">
                 <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#C8A24A]" />
                 <p className="text-xs text-white/60 mt-3 font-mono">Loading user directory...</p>
+              </div>
+            ) : usersList.length === 0 ? (
+              <div className="py-16 text-center rounded-2xl bg-[#071C48]/40 border border-white/10">
+                <p className="text-white/60 text-xs">No records available.</p>
               </div>
             ) : (
               <div className="overflow-x-auto rounded-2xl border border-[#C8A24A]/25 shadow-2xl bg-[#071C48]/90">

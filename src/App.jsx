@@ -10,11 +10,8 @@ import WhoWeServe from './components/WhoWeServe';
 import FinancialGoals from './components/FinancialGoals';
 import SolahanaServices from './components/SolahanaServices';
 import WhyChooseSolahana from './components/WhyChooseSolahana';
-import CalculatorsPreview from './components/CalculatorsPreview';
 import FinancialSnapshot from './components/FinancialSnapshot';
-import CalculatorsCTA from './components/CalculatorsCTA';
 import ClientStories from './components/ClientStories';
-import FinancialInsights from './components/FinancialInsights';
 import FAQSection from './components/FAQSection';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
@@ -34,6 +31,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AdminProtectedRoute from './components/AdminProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import AuthModal from './components/AuthModal';
+import ScrollToTopAndSEO from './components/ScrollToTopAndSEO';
 
 // Calculators Module Imports
 import CalculatorsLandingPage from './pages/calculators/CalculatorsLandingPage';
@@ -62,11 +60,8 @@ function HomePage({ onOpenSearch }) {
       <FinancialGoals />
       <SolahanaServices />
       <WhyChooseSolahana />
-      <CalculatorsPreview onOpenSearch={onOpenSearch} />
       <FinancialSnapshot />
-      <CalculatorsCTA onOpenSearch={onOpenSearch} />
       <ClientStories />
-      <FinancialInsights />
       <FAQSection />
       <FinalCTA onOpenSearch={onOpenSearch} />
     </>
@@ -78,6 +73,7 @@ export default function App() {
 
   return (
     <AuthProvider>
+      <ScrollToTopAndSEO />
       <div className="relative min-h-screen bg-[#020B2D] text-[#F8F7F3] selection:bg-[#C8A24A]/30 selection:text-[#E8C878]">
         {/* Background Visual Layer */}
         <BackgroundEffects />

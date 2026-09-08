@@ -399,7 +399,7 @@ export default function SavedCalculationsPage() {
 
             <div className="space-y-2">
               <h3 className="font-serif-luxury text-2xl font-bold text-white">
-                No saved financial calculations yet.
+                No saved calculations yet.
               </h3>
               <p className="text-xs text-[#BAC6DA] font-light leading-relaxed">
                 Use SOLAHANA's intelligent planning tools to compute SIP wealth, retirement corpus, or loan EMIs and save them to your account.
