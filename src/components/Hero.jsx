@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight, Check, ChevronRight, Calculator } from 'lucide-react';
 import HeroDashboard from './HeroDashboard';
@@ -64,13 +65,13 @@ export default function Hero({ onOpenSearch }) {
               className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-2"
             >
               {/* Primary Gold Button */}
-              <a
-                href="#"
+              <Link
+                to="/contact"
                 className="gold-glow-button px-8 py-4 rounded-full text-sm font-bold text-[#020B2D] tracking-wide flex items-center justify-center space-x-3 group shadow-[0_10px_30px_rgba(200,162,74,0.4)]"
               >
                 <span>Start Planning</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
 
               {/* Secondary Outline Button */}
               <button

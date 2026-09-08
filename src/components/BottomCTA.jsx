@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Calendar, ShieldCheck, Lock } from 'lucide-react';
 
@@ -35,14 +36,14 @@ export default function BottomCTA({ onOpenSearch }) {
 
           {/* Golden Button */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#"
+            <Link
+              to="/contact"
               className="gold-glow-button px-9 py-4 rounded-full text-sm font-bold text-[#020B2D] tracking-wide flex items-center justify-center space-x-3 shadow-[0_10px_35px_rgba(200,162,74,0.45)] group w-full sm:w-auto"
             >
               <Calendar className="w-4 h-4" />
               <span>Book Your First Consultation</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </Link>
 
             <button
               onClick={onOpenSearch}
