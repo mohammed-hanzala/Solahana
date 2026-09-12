@@ -5,11 +5,8 @@ import {
   Home, 
   GraduationCap, 
   ShieldCheck, 
-  PiggyBank, 
   Target, 
   TrendingUp, 
-  CheckCircle2, 
-  ArrowRight,
   Eye,
   Compass,
   Layers,
@@ -68,11 +65,10 @@ export default function WhatIsFinancialPlanning() {
   ];
 
   return (
-    <section className="relative z-10 py-24 bg-gradient-to-b from-[#020B2D] via-[#041442] to-[#020B2D] border-t border-[#C8A24A]/15 overflow-hidden">
+    <section className="relative z-10 py-24 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
       
       {/* Background Soft Glows */}
-      <div className="absolute top-1/3 left-10 w-[600px] h-[600px] bg-[#C8A24A]/8 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-blue-900/15 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/3 left-10 w-[600px] h-[600px] bg-[#C89A4B]/8 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
@@ -83,9 +79,9 @@ export default function WhatIsFinancialPlanning() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full gold-badge text-xs font-semibold text-[#E8C878] border border-[#C8A24A]/35 shadow-[0_0_15px_rgba(200,162,74,0.2)]"
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full gold-badge text-xs font-semibold text-[#9A7326] border border-[#C89A4B]/35 shadow-sm"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#E8C878] animate-pulse" />
+            <Sparkles className="w-3.5 h-3.5 text-[#C89A4B] animate-pulse" />
             <span className="font-sora tracking-wide uppercase text-[11px]">FINANCIAL PLANNING</span>
           </motion.div>
 
@@ -94,7 +90,7 @@ export default function WhatIsFinancialPlanning() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#F8F7F3] tracking-tight leading-[1.2] mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] tracking-tight leading-[1.2] mb-6"
           >
             A Financial Plan Is More Than Investing.{' '}
             <br className="hidden sm:inline" />
@@ -102,7 +98,7 @@ export default function WhatIsFinancialPlanning() {
             <span className="gold-gradient-text italic font-serif-luxury">
               roadmap
             </span>{' '}
-            for every important milestone in your life.
+            for every milestone in your life.
           </motion.h2>
 
           <motion.p
@@ -110,45 +106,39 @@ export default function WhatIsFinancialPlanning() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-[#BAC6DA] font-inter leading-relaxed"
+            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed"
           >
             Financial planning helps you organize income, savings, investments, taxes and protection into one thoughtful strategy that evolves with your life.
           </motion.p>
         </div>
 
-
         {/* TWO-COLUMN LAYOUT */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* ========================================== */}
-          {/* LEFT SIDE: LIFE JOURNEY ILLUSTRATION MAP   */}
-          {/* ========================================== */}
+          {/* LEFT SIDE: LIFE JOURNEY MAP */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-6 relative h-[520px] sm:h-[580px] rounded-3xl p-6 bg-[#071C48]/50 border border-[#C8A24A]/25 backdrop-blur-xl shadow-[0_20px_60px_rgba(2,11,45,0.8)] flex flex-col justify-between overflow-hidden"
+            className="lg:col-span-6 relative h-[520px] sm:h-[580px] rounded-3xl p-6 bg-white border border-[#C89A4B]/30 backdrop-blur-xl shadow-lg flex flex-col justify-between overflow-hidden"
           >
-            {/* Background Glow & Curved Path SVG */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#C8A24A]/10 via-transparent to-transparent pointer-events-none" />
-            
-            <svg className="absolute inset-0 w-full h-full stroke-[#C8A24A]/40 fill-none pointer-events-none" viewBox="0 0 500 550">
+            <svg className="absolute inset-0 w-full h-full stroke-[#C89A4B]/40 fill-none pointer-events-none" viewBox="0 0 500 550">
               <path d="M 80,60 C 350,120 400,220 100,280 C -50,340 380,420 400,500" strokeWidth="2.5" strokeDasharray="6 6" />
             </svg>
 
             {/* Title Badge */}
             <div className="relative z-10 flex items-center justify-between">
-              <div className="text-xs font-serif-luxury font-bold text-[#F8F7F3] uppercase tracking-wider flex items-center gap-2">
-                <Compass className="w-4 h-4 text-[#E8C878]" />
+              <div className="text-xs font-serif-luxury font-bold text-[#0F172A] uppercase tracking-wider flex items-center gap-2">
+                <Compass className="w-4 h-4 text-[#C89A4B]" />
                 SOLAHANA Life Milestone Map
               </div>
-              <span className="px-2.5 py-0.5 rounded-full bg-[#C8A24A]/20 text-[#E8C878] font-sora font-semibold text-[10px] border border-[#C8A24A]/30">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#C89A4B]/15 text-[#9A7326] font-sora font-semibold text-[10px] border border-[#C89A4B]/30">
                 Integrated Strategy
               </span>
             </div>
 
-            {/* Interactive Milestone Circular Badges on Path */}
+            {/* Interactive Milestone Circular Badges */}
             <div className="relative z-10 w-full h-full my-4">
               {journeyMilestones.map((m, idx) => {
                 const IconComponent = m.icon;
@@ -160,16 +150,16 @@ export default function WhatIsFinancialPlanning() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.12 }}
                     whileHover={{ scale: 1.08 }}
-                    className={`absolute ${m.pos} p-3 rounded-2xl glass-card border border-[#C8A24A]/35 shadow-xl flex items-center space-x-3 cursor-pointer group`}
+                    className={`absolute ${m.pos} p-3 rounded-2xl bg-white border border-[#C89A4B]/35 shadow-md flex items-center space-x-3 cursor-pointer group`}
                   >
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#E8C878] to-[#C8A24A] text-[#020B2D] flex items-center justify-center font-bold shrink-0 shadow-[0_0_12px_rgba(200,162,74,0.4)] group-hover:rotate-12 transition-transform">
+                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#E5C158] to-[#C89A4B] text-white flex items-center justify-center font-bold shrink-0 shadow-sm group-hover:rotate-12 transition-transform">
                       <IconComponent className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-xs font-semibold text-[#F8F7F3] group-hover:text-[#E8C878] transition-colors">
+                      <div className="text-xs font-semibold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors">
                         {m.name}
                       </div>
-                      <div className="text-[10px] text-[#BAC6DA] font-num">
+                      <div className="text-[10px] text-[#64748B] font-num">
                         {m.desc}
                       </div>
                     </div>
@@ -179,15 +169,12 @@ export default function WhatIsFinancialPlanning() {
             </div>
 
             {/* Footer */}
-            <div className="relative z-10 pt-3 border-t border-[#C8A24A]/15 text-center text-xs text-[#BAC6DA] font-sora">
+            <div className="relative z-10 pt-3 border-t border-[#C89A4B]/20 text-center text-xs text-[#64748B] font-sora">
               One unified financial plan evolving through every life stage.
             </div>
           </motion.div>
 
-
-          {/* ========================================== */}
-          {/* RIGHT SIDE: SIX STACKED PLANNING CARDS     */}
-          {/* ========================================== */}
+          {/* RIGHT SIDE: SIX STACKED PLANNING CARDS */}
           <div className="lg:col-span-6 space-y-4">
             {planningSteps.map((step, idx) => {
               const IconComponent = step.icon;
@@ -198,26 +185,24 @@ export default function WhatIsFinancialPlanning() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  whileHover={{ x: 6, y: -2 }}
-                  className="group p-4 sm:p-5 rounded-2xl bg-[#071C48]/60 hover:bg-[#071C48]/90 border border-[#C8A24A]/20 hover:border-[#C8A24A]/60 backdrop-blur-xl transition-all duration-300 flex items-start space-x-4 hover:shadow-[0_10px_30px_rgba(200,162,74,0.18)]"
+                  whileHover={{ x: 6 }}
+                  className="group p-4 sm:p-5 rounded-2xl bg-white hover:bg-white border border-[#C89A4B]/20 hover:border-[#C89A4B] backdrop-blur-xl transition-all duration-300 flex items-start space-x-4 shadow-sm hover:shadow-md"
                 >
-                  {/* Step Number + Gold Icon */}
-                  <div className="w-11 h-11 rounded-2xl bg-[#C8A24A]/15 border border-[#C8A24A]/30 text-[#E8C878] group-hover:bg-[#C8A24A] group-hover:text-[#020B2D] transition-colors duration-300 flex items-center justify-center shrink-0 mt-0.5 shadow-[0_0_12px_rgba(200,162,74,0.2)]">
+                  <div className="w-11 h-11 rounded-2xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-[#C89A4B] group-hover:bg-[#C89A4B] group-hover:text-white transition-colors duration-300 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                     <IconComponent className="w-5 h-5" />
                   </div>
 
-                  {/* Text Details */}
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-base font-serif-luxury font-bold text-[#F8F7F3] group-hover:text-[#E8C878] transition-colors">
+                      <h3 className="text-base font-serif-luxury font-bold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors">
                         {step.title}
                       </h3>
-                      <span className="text-xs font-num font-bold text-[#C8A24A]/70 group-hover:text-[#E8C878]">
+                      <span className="text-xs font-num font-bold text-[#C89A4B]">
                         STEP {step.step}
                       </span>
                     </div>
 
-                    <p className="text-xs text-[#BAC6DA] font-inter leading-relaxed mt-1">
+                    <p className="text-xs text-[#475569] font-inter leading-relaxed mt-1">
                       {step.desc}
                     </p>
                   </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Compass, CheckCircle2, ArrowRight, ShieldAlert, Sparkles, TrendingUp, Target } from 'lucide-react';
+import { Compass, CheckCircle2, ShieldAlert, Sparkles, TrendingUp, Target } from 'lucide-react';
 
 export default function WhySolahanaExists() {
   const pillars = [
@@ -25,15 +25,12 @@ export default function WhySolahanaExists() {
   ];
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden bg-[#020B2D]">
-      {/* Glow Effects */}
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#C8A24A]/10 rounded-full blur-[140px] pointer-events-none" />
-
+    <section className="py-20 md:py-28 relative overflow-hidden bg-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           
-          {/* Left Column — Visual Transformation Illustration */}
+          {/* Left Column — Visual Transformation Card */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -41,118 +38,99 @@ export default function WhySolahanaExists() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-5 relative"
           >
-            <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-b from-[#071C48] to-[#020B2D] border border-[#C8A24A]/30 shadow-[0_20px_50px_rgba(2,11,45,0.9)] backdrop-blur-2xl text-left space-y-6">
+            <div className="p-7 sm:p-8 rounded-3xl bg-white border border-[#C89A4B]/30 shadow-xl text-left space-y-6">
               
-              <div className="flex items-center justify-between pb-4 border-b border-[#C8A24A]/15">
-                <span className="text-xs font-sora font-bold text-[#E8C878] uppercase tracking-wider">
+              <div className="flex items-center justify-between pb-4 border-b border-[#C89A4B]/20">
+                <span className="text-xs font-sora font-bold text-[#9A7326] uppercase tracking-wider">
                   FINANCIAL TRANSFORMATION
                 </span>
-                <span className="text-[10px] text-[#BAC6DA] px-2.5 py-1 rounded bg-[#020B2D] border border-[#C8A24A]/20">
+                <span className="text-[10px] text-[#64748B] px-2.5 py-1 rounded bg-[#FAF8F5] border border-[#C89A4B]/20">
                   THE PARADIGM SHIFT
                 </span>
               </div>
 
               {/* Before: Financial Chaos Block */}
-              <div className="p-4 rounded-2xl bg-red-950/20 border border-red-500/30 space-y-2 relative">
+              <div className="p-4 rounded-2xl bg-red-50 border border-red-200 space-y-2 relative">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-red-400 flex items-center gap-1.5 font-sora">
+                  <span className="text-xs font-bold text-red-700 flex items-center gap-1.5 font-sora">
                     <ShieldAlert className="w-4 h-4" />
                     Without SOLAHANA (The Old Way)
                   </span>
-                  <span className="text-[10px] text-red-300 font-mono">HIGH ANXIETY</span>
                 </div>
-                <p className="text-xs text-[#BAC6DA] leading-relaxed">
-                  Random mutual funds, impulse crypto/equity trades, zero tax efficiency, unknown retirement corpus date.
+                <p className="text-xs text-red-800 leading-relaxed font-inter">
+                  Ad-hoc FDs, random mutual fund SIPs, unused tax limits, unlinked insurance policies, and anxiety about market dips.
                 </p>
               </div>
 
-              {/* Transformation Downward Arrow */}
-              <div className="flex justify-center my-2">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-b from-[#E8C878] to-[#B8862B] text-[#020B2D] flex items-center justify-center font-bold shadow-[0_0_15px_rgba(200,162,74,0.4)]">
-                  <ArrowRight className="w-5 h-5 rotate-90" />
+              {/* Arrow Indicator */}
+              <div className="flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-[#C89A4B]/15 text-[#C89A4B] flex items-center justify-center font-bold">
+                  ↓
                 </div>
               </div>
 
-              {/* After: Structured Solahana Roadmap Block */}
-              <div className="p-4 rounded-2xl bg-[#071C48] border border-[#E8C878]/50 space-y-2 relative shadow-[0_0_25px_rgba(200,162,74,0.2)]">
+              {/* After: Structured Clarity Block */}
+              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-2 relative">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#E8C878] flex items-center gap-1.5 font-sora">
-                    <Sparkles className="w-4 h-4 text-[#C8A24A]" />
-                    With SOLAHANA (Goal-Based Plan)
+                  <span className="text-xs font-bold text-emerald-800 flex items-center gap-1.5 font-sora">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    With SOLAHANA (The Fiduciary Way)
                   </span>
-                  <span className="text-[10px] text-[#E8C878] font-mono font-bold">100% PEACE OF MIND</span>
                 </div>
-                <p className="text-xs text-[#F8F7F3] leading-relaxed font-medium">
-                  Goal-linked step-up SIPs, annual LTCG tax harvesting, 6-month emergency shield, clear age-45 FIRE timeline.
+                <p className="text-xs text-emerald-900 leading-relaxed font-inter">
+                  One integrated 360° financial plan. Every rupee assigned to a specific goal, tax optimized, and backed by a SEBI Registered RIA.
                 </p>
-              </div>
-
-              {/* Summary Stats */}
-              <div className="pt-4 border-t border-[#C8A24A]/15 grid grid-cols-2 gap-4 text-center">
-                <div className="p-2.5 rounded-xl bg-[#020B2D]/80 border border-[#C8A24A]/20">
-                  <p className="text-lg font-bold font-sora text-[#E8C878]">₹48,500+</p>
-                  <p className="text-[10px] text-[#BAC6DA]">Avg Annual Tax Saved</p>
-                </div>
-                <div className="p-2.5 rounded-xl bg-[#020B2D]/80 border border-[#C8A24A]/20">
-                  <p className="text-lg font-bold font-sora text-[#F8F7F3]">100%</p>
-                  <p className="text-[10px] text-[#BAC6DA]">Fiduciary Clarity</p>
-                </div>
               </div>
 
             </div>
           </motion.div>
 
-          {/* Right Column — 3 Information Blocks */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-7 space-y-8 text-left"
-          >
-            <div className="space-y-3">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#071C48] border border-[#C8A24A]/30 text-[#E8C878] text-xs font-semibold uppercase tracking-widest font-sora">
-                <Compass className="w-3.5 h-3.5 text-[#C8A24A]" />
-                <span>WHY SOLAHANA EXISTS</span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#F8F7F3] tracking-tight">
-                Structure Over Speculation. <br />
-                <span className="text-gradient-gold">Goals Over Trends.</span>
-              </h2>
+          {/* Right Column — Three Pillars */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full gold-badge text-[#9A7326] text-xs font-semibold uppercase tracking-widest font-sora">
+              <Sparkles className="w-3.5 h-3.5 text-[#C89A4B]" />
+              <span>THE THREE PILLARS</span>
             </div>
 
-            {/* 3 Information Pillars */}
-            <div className="space-y-6">
-              {pillars.map((item, idx) => {
-                const IconComp = item.icon;
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] tracking-tight">
+              Why SOLAHANA Exists
+            </h2>
 
+            <p className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed">
+              We exist to replace confusion with financial architecture. We guide you through three fundamental principles that transform how you manage wealth.
+            </p>
+
+            <div className="space-y-4 pt-2">
+              {pillars.map((pillar, idx) => {
+                const IconComp = pillar.icon;
                 return (
-                  <div 
-                    key={item.title}
-                    className="p-6 rounded-2xl bg-[#071C48]/50 border border-[#C8A24A]/20 hover:border-[#C8A24A]/50 transition-all duration-300 backdrop-blur-xl flex items-start space-x-4 group"
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    className="p-5 rounded-2xl bg-white border border-[#C89A4B]/20 hover:border-[#C89A4B] shadow-sm hover:shadow-md transition-all flex items-start space-x-4"
                   >
-                    <div className="p-3 rounded-xl bg-[#C8A24A]/10 text-[#E8C878] group-hover:bg-[#C8A24A] group-hover:text-[#020B2D] transition-colors shrink-0 mt-1">
-                      <IconComp className="w-6 h-6" />
+                    <div className="w-10 h-10 rounded-xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-[#C89A4B] flex items-center justify-center shrink-0 mt-0.5">
+                      <IconComp className="w-5 h-5" />
                     </div>
-
-                    <div className="space-y-1">
-                      <h3 className="text-lg font-serif-luxury font-bold text-[#F8F7F3] group-hover:text-[#E8C878] transition-colors flex items-center gap-2">
-                        {item.title}
+                    <div>
+                      <h3 className="text-base font-serif-luxury font-bold text-[#0F172A]">
+                        {pillar.title}
                       </h3>
-                      <p className="text-xs font-semibold text-[#E8C878]">
-                        {item.subtitle}
+                      <p className="text-xs text-[#9A7326] font-sora font-medium mt-0.5">
+                        {pillar.subtitle}
                       </p>
-                      <p className="text-xs sm:text-sm text-[#BAC6DA] pt-1 leading-relaxed font-inter">
-                        {item.description}
+                      <p className="text-xs text-[#475569] font-inter leading-relaxed mt-1">
+                        {pillar.description}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
-
-          </motion.div>
+          </div>
 
         </div>
 

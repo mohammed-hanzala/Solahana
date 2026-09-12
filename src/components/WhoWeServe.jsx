@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, Building2, Globe, Rocket, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function WhoWeServe() {
   const audienceCards = [
@@ -39,11 +40,7 @@ export default function WhoWeServe() {
   ];
 
   return (
-    <section className="relative z-10 py-24 bg-[#020B2D] border-t border-[#C8A24A]/15 overflow-hidden">
-      
-      {/* Background Radial Lights */}
-      <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-[#C8A24A]/8 rounded-full blur-[140px] pointer-events-none" />
-
+    <section className="relative z-10 py-24 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
@@ -53,9 +50,9 @@ export default function WhoWeServe() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full gold-badge text-xs font-semibold text-[#E8C878] border border-[#C8A24A]/35 shadow-[0_0_15px_rgba(200,162,74,0.2)]"
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full gold-badge text-xs font-semibold text-[#9A7326] border border-[#C89A4B]/35 shadow-sm"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#E8C878]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#C89A4B]" />
             <span className="font-sora tracking-wide uppercase text-[11px]">TAILORED PLANNING DESK</span>
           </motion.div>
 
@@ -64,10 +61,10 @@ export default function WhoWeServe() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#F8F7F3] tracking-tight leading-[1.18] mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] tracking-tight leading-tight"
           >
-            Financial Planning for{' '}
-            <span className="gold-gradient-text italic font-serif-luxury">Every Stage</span> of Life
+            Who We{' '}
+            <span className="gold-gradient-text italic font-serif-luxury">Serve</span>
           </motion.h2>
 
           <motion.p
@@ -75,13 +72,13 @@ export default function WhoWeServe() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-[#BAC6DA] font-inter leading-relaxed"
+            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed"
           >
-            Whether you're building your first savings or planning retirement, SOLAHANA creates strategies around your goals.
+            Custom financial planning frameworks tailored to your career stage and financial goals.
           </motion.p>
         </div>
 
-        {/* 4 Premium Glass Cards (2x2 Grid) */}
+        {/* 4 Audience Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {audienceCards.map((card, idx) => {
             const IconComp = card.icon;
@@ -91,63 +88,59 @@ export default function WhoWeServe() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.12 }}
-                whileHover={{ y: -8 }}
-                className="group relative rounded-[28px] p-7 sm:p-8 bg-[#071C48]/70 hover:bg-[#071C48]/95 border border-[#C8A24A]/25 hover:border-[#C8A24A]/60 backdrop-blur-2xl transition-all duration-500 shadow-[0_15px_40px_rgba(2,11,45,0.8)] hover:shadow-[0_20px_50px_rgba(200,162,74,0.22)] overflow-hidden flex flex-col justify-between"
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ y: -6 }}
+                className="group p-8 rounded-3xl bg-white border border-[#C89A4B]/20 hover:border-[#C89A4B] backdrop-blur-xl transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between"
               >
-                <div>
-                  {/* Top Icon Badge & Tag */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#E8C878]/25 via-[#C8A24A]/15 to-[#020B2D] border border-[#C8A24A]/40 flex items-center justify-center text-[#E8C878] shadow-[0_0_15px_rgba(200,162,74,0.3)] group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                      <IconComp className="w-7 h-7" />
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-[#C89A4B] group-hover:bg-[#C89A4B] group-hover:text-white transition-colors duration-300 flex items-center justify-center">
+                      <IconComp className="w-6 h-6" />
                     </div>
 
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold font-sora tracking-wide bg-[#C8A24A]/15 text-[#E8C878] border border-[#C8A24A]/30">
+                    <span className="px-3 py-1 rounded-full bg-[#FAF8F5] text-[#9A7326] font-sora font-semibold text-[10px] uppercase tracking-wider border border-[#C89A4B]/20">
                       {card.tag}
                     </span>
                   </div>
 
-                  {/* Title & Subtitle */}
-                  <h3 className="text-2xl font-serif-luxury font-bold text-[#F8F7F3] group-hover:text-[#E8C878] transition-colors duration-300">
-                    {card.title}
-                  </h3>
-                  <div className="text-xs font-semibold text-[#C8A24A] font-sora mt-1 mb-3">
-                    {card.subtitle}
+                  <div>
+                    <h3 className="text-2xl font-serif-luxury font-bold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors">
+                      {card.title}
+                    </h3>
+                    <p className="text-xs text-[#9A7326] font-sora font-medium mt-1">
+                      {card.subtitle}
+                    </p>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-sm text-[#BAC6DA] font-inter leading-relaxed mb-6">
+                  <p className="text-sm text-[#475569] font-inter leading-relaxed">
                     {card.description}
                   </p>
 
-                  {/* Highlights Bullet List */}
-                  <div className="space-y-2 mb-8 border-t border-[#C8A24A]/15 pt-4">
-                    {card.highlights.map((item, hIdx) => (
-                      <div key={hIdx} className="flex items-center space-x-2.5 text-xs text-[#F8F7F3]">
-                        <CheckCircle2 className="w-4 h-4 text-[#C8A24A] shrink-0" />
-                        <span>{item}</span>
+                  <div className="space-y-2 pt-2">
+                    {card.highlights.map((h, hIdx) => (
+                      <div key={hIdx} className="flex items-center gap-2 text-xs text-[#0F172A] font-medium">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#C89A4B]" />
+                        <span>{h}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Footer Link */}
-                <div className="pt-4 border-t border-[#C8A24A]/15 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#E8C878] group-hover:text-white transition-colors">
-                    Explore Planning Strategy
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-[#C8A24A]/15 border border-[#C8A24A]/30 flex items-center justify-center text-[#E8C878] group-hover:bg-[#C8A24A] group-hover:text-[#020B2D] group-hover:translate-x-1 transition-all duration-300">
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
+                <div className="pt-6 mt-6 border-t border-[#C89A4B]/15 flex items-center justify-between">
+                  <Link
+                    to="/contact"
+                    className="text-xs font-semibold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors flex items-center space-x-2"
+                  >
+                    <span>Start Your ₹1 Plan</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
-
               </motion.div>
             );
           })}
         </div>
 
       </div>
-
     </section>
   );
 }

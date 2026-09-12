@@ -43,67 +43,55 @@ export default function AboutValues() {
   ];
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden bg-[#071C48]/40 border-t border-[#C8A24A]/15">
+    <section className="py-20 md:py-28 relative overflow-hidden bg-[#F3EFE9] border-t border-[#C89A4B]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#071C48] border border-[#C8A24A]/30 text-[#E8C878] text-xs font-semibold uppercase tracking-widest font-sora">
-            <Star className="w-3.5 h-3.5 text-[#C8A24A]" />
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full gold-badge text-[#9A7326] text-xs font-semibold uppercase tracking-widest font-sora">
+            <Star className="w-3.5 h-3.5 text-[#C89A4B]" />
             <span>CORE FOUNDATION</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#F8F7F3] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] tracking-tight">
             Our Guiding Values
           </h2>
 
-          <p className="text-base sm:text-lg text-[#BAC6DA] font-inter">
-            The bedrock principles that govern every recommendation, plan, and client partnership at SOLAHANA.
+          <p className="text-base sm:text-lg text-[#475569] font-inter">
+            These six principles define every conversation, recommendation, and strategy we build at SOLAHANA.
           </p>
         </div>
 
-        {/* 6 Premium Value Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {values.map((item, index) => {
-            const IconComponent = item.icon;
-
+        {/* 6 Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {values.map((item, idx) => {
+            const IconComp = item.icon;
             return (
               <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 25 }}
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                whileHover={{ y: -6 }}
-                className="p-7 rounded-3xl bg-[#020B2D]/90 border border-[#C8A24A]/25 hover:border-[#C8A24A]/60 transition-all duration-300 shadow-[0_10px_30px_rgba(2,11,45,0.7)] backdrop-blur-xl text-left flex flex-col justify-between group"
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ y: -4 }}
+                className="p-8 rounded-3xl bg-white border border-[#C89A4B]/20 hover:border-[#C89A4B] backdrop-blur-xl shadow-md transition-all space-y-4"
               >
-                <div>
-                  {/* Top Bar with Icon & Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#E8C878]/20 to-[#C8A24A]/10 border border-[#E8C878]/40 flex items-center justify-center text-[#E8C878] group-hover:bg-[#C8A24A] group-hover:text-[#020B2D] transition-all duration-300 shadow-[0_0_15px_rgba(200,162,74,0.2)]">
-                      <IconComponent className="w-6 h-6" />
-                    </div>
-
-                    <span className="text-[10px] font-sora font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#071C48] text-[#E8C878] border border-[#C8A24A]/20">
-                      {item.badge}
-                    </span>
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-[#C89A4B] flex items-center justify-center font-bold">
+                    <IconComp className="w-6 h-6" />
                   </div>
-
-                  {/* Title & Description */}
-                  <h3 className="text-xl font-serif-luxury font-bold text-[#F8F7F3] mb-3 group-hover:text-[#E8C878] transition-colors">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-[#BAC6DA] leading-relaxed font-inter">
-                    {item.description}
-                  </p>
+                  <span className="text-[10px] font-sora font-semibold text-[#9A7326] uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#FAF8F5] border border-[#C89A4B]/20">
+                    {item.badge}
+                  </span>
                 </div>
 
-                {/* Bottom Border Glow Accent */}
-                <div className="mt-6 pt-4 border-t border-[#C8A24A]/15 flex items-center justify-between text-[11px] text-[#BAC6DA] group-hover:text-[#E8C878] transition-colors">
-                  <span>SOLAHANA Standard</span>
-                  <span className="font-semibold font-sora">100% Commitment</span>
-                </div>
+                <h3 className="text-xl font-serif-luxury font-bold text-[#0F172A]">
+                  {item.title}
+                </h3>
+
+                <p className="text-sm text-[#475569] font-inter leading-relaxed">
+                  {item.description}
+                </p>
               </motion.div>
             );
           })}

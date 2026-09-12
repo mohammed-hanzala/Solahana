@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, HelpCircle, Sparkles } from 'lucide-react';
+import { Plus, Minus, Sparkles } from 'lucide-react';
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -20,7 +20,7 @@ export default function FAQSection() {
     },
     {
       q: 'Does SOLAHANA help with tax planning?',
-      a: 'Absoluted. We proactively optimize your tax liabilities across Section 80C, Section 80D, NPS Tier 1, and automated capital gains tax-loss harvesting, helping you keep more of your investment returns legally.',
+      a: 'Absolutely. We proactively optimize your tax liabilities across Section 80C, Section 80D, NPS Tier 1, and automated capital gains tax-loss harvesting, helping you keep more of your investment returns legally.',
     },
     {
       q: 'Can I review my financial plan regularly?',
@@ -33,11 +33,7 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="relative z-10 py-24 bg-gradient-to-b from-[#020B2D] via-[#041442] to-[#020B2D] border-t border-[#C8A24A]/15 overflow-hidden">
-      
-      {/* Background Glow */}
-      <div className="absolute top-1/3 left-10 w-[550px] h-[550px] bg-[#C8A24A]/8 rounded-full blur-[140px] pointer-events-none" />
-
+    <section className="relative z-10 py-24 bg-[#F3EFE9] border-t border-[#C89A4B]/20 overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
@@ -47,9 +43,9 @@ export default function FAQSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full gold-badge text-xs font-semibold text-[#E8C878] border border-[#C8A24A]/35 shadow-[0_0_15px_rgba(200,162,74,0.2)]"
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full gold-badge text-xs font-semibold text-[#9A7326] border border-[#C89A4B]/35 shadow-sm"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#E8C878]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#C89A4B]" />
             <span className="font-sora tracking-wide uppercase text-[11px]">FREQUENTLY ASKED QUESTIONS</span>
           </motion.div>
 
@@ -58,53 +54,32 @@ export default function FAQSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#F8F7F3] tracking-tight leading-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] tracking-tight leading-tight"
           >
-            Questions People Ask Before{' '}
-            <span className="gold-gradient-text italic font-serif-luxury">Planning Their Finances</span>
+            Clear Answers to Your{' '}
+            <span className="gold-gradient-text italic font-serif-luxury">Financial Questions</span>
           </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-[#BAC6DA] font-inter leading-relaxed"
-          >
-            Everything you need to know about starting your financial plan with SOLAHANA.
-          </motion.p>
         </div>
 
-        {/* ACCORDION PANELS */}
+        {/* Accordions */}
         <div className="space-y-4">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
-
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                  isOpen
-                    ? 'bg-[#071C48]/90 border-[#C8A24A]/60 shadow-[0_10px_30px_rgba(200,162,74,0.18)]'
-                    : 'bg-[#071C48]/50 border-[#C8A24A]/20 hover:border-[#C8A24A]/40'
-                }`}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                className="rounded-2xl bg-white border border-[#C89A4B]/20 overflow-hidden shadow-sm hover:border-[#C89A4B] transition-all"
               >
                 <button
-                  onClick={() => setOpenIndex(isOpen ? -1 : idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between space-x-4 cursor-pointer focus:outline-none"
+                  onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  className="w-full p-6 text-left flex items-center justify-between gap-4 font-serif-luxury font-bold text-lg text-[#0F172A] hover:text-[#C89A4B] transition-colors"
                 >
-                  <span className="text-base sm:text-lg font-serif-luxury font-bold text-[#F8F7F3] flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-[#E8C878] shrink-0" />
-                    {faq.q}
-                  </span>
-
-                  <div className={`w-8 h-8 rounded-full border flex items-center justify-center shrink-0 transition-colors ${
-                    isOpen ? 'bg-[#C8A24A] text-[#020B2D] border-[#C8A24A]' : 'bg-[#020B2D]/80 text-[#E8C878] border-[#C8A24A]/30'
-                  }`}>
+                  <span>{faq.q}</span>
+                  <div className="w-8 h-8 rounded-full bg-[#FAF8F5] border border-[#C89A4B]/30 flex items-center justify-center shrink-0 text-[#C89A4B]">
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
                 </button>
@@ -112,14 +87,13 @@ export default function FAQSection() {
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="px-6 pb-6 text-sm text-[#475569] font-inter leading-relaxed border-t border-[#C89A4B]/10 pt-4"
                     >
-                      <div className="px-6 pb-6 pt-1 text-sm text-[#BAC6DA] font-inter leading-relaxed border-t border-[#C8A24A]/15 ml-8">
-                        {faq.a}
-                      </div>
+                      {faq.a}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -129,7 +103,6 @@ export default function FAQSection() {
         </div>
 
       </div>
-
     </section>
   );
 }
