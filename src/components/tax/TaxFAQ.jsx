@@ -1,80 +1,60 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 
 export default function TaxFAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = [
     {
-      q: 'What is tax planning and how is it legal?',
-      a: 'Tax planning is the systematic, legal arrangement of your financial affairs to make full use of all statutory deductions, exemptions, allowances, and tax shields granted by the Income Tax Act (such as Section 80C, 80D, 80CCD, and Section 24b).'
+      q: 'Should I choose the New Tax Regime or the Old Tax Regime?',
+      a: 'The optimal regime depends on your total deductions under Section 80C, 80D, HRA, and Home Loan interest. Generally, if your total deductions exceed ₹3.75 Lakhs, the Old Tax Regime provides higher net savings. SOLAHANA advisors run comparative scenarios before you commit.',
     },
     {
-      q: 'Why should tax planning happen throughout the year?',
-      a: 'Year-round tax planning avoids frantic, sub-optimal March investments. It allows you to set up automated monthly ELSS SIPs, monitor advance tax liabilities, harvest up to ₹1 Lakh in tax-free capital gains (LTCG), and keep documents organized continuous audit readiness.'
+      q: 'What is Tax Loss Harvesting and how does it reduce my tax bill?',
+      a: 'Tax loss harvesting involves selling investments that are sitting at a loss to offset capital gains realized from profitable sales during the same financial year. This minimizes your overall net taxable capital gains liability legally.',
     },
     {
-      q: 'Can tax planning support my long-term life goals?',
-      a: 'Absolutely! At SOLAHANA, we never view tax saving as an isolated chore. We link ELSS mutual fund investments directly to 3+ year goals (like home down-payments) and NPS contributions to your FIRE retirement corpus.'
+      q: 'Is NPS (National Pension System) mandatory for tax saving?',
+      a: 'NPS is optional, but Section 80CCD(1B) provides an exclusive ₹50,000 deduction over and above the ₹1.5 Lakh 80C limit. For individuals in the 30% tax slab, this yields an instant tax saving of ₹15,600 every year.',
     },
     {
-      q: 'What documents are most useful during a tax planning review?',
-      a: 'Key documents include Form 16 (for salaried professionals), Form 26AS and AIS credit statements, home loan interest certificates (Section 24b), capital gains statements from broking/mutual fund accounts, and health insurance premium receipts (Section 80D).'
+      q: 'When should I start tax planning for the financial year?',
+      a: 'Tax planning should begin in April at the start of the financial year. Setting up systematic monthly SIPs prevents March panic buying of inappropriate products with long lock-ins.',
     },
-    {
-      q: 'How often should I review my tax plan with a financial planner?',
-      a: 'We recommend auditing your tax plan twice a year: first in April/May during financial year kickoff to set up declarations and choose between Old vs New Tax Regimes, and again in December/January to execute capital gains loss harvesting and top up remaining 80C/80D gaps.'
-    }
   ];
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden bg-[#020B2D]">
-      {/* Background Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#C8A24A]/10 rounded-full blur-[140px] pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#071C48] border border-[#C8A24A]/30 text-[#E8C878] text-xs font-semibold uppercase tracking-widest font-sora">
-            <HelpCircle className="w-3.5 h-3.5 text-[#C8A24A]" />
-            <span>TAX GUIDANCE</span>
+    <section className="py-20 md:py-28 relative overflow-hidden bg-[#FCFAF6]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+        <div className="text-center space-y-4 max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5] text-[#C89B3C] text-xs font-semibold uppercase tracking-widest font-sora">
+            <HelpCircle className="w-3.5 h-3.5" />
+            <span>TAX PLANNING FAQ</span>
           </div>
-
-          <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-[#F8F7F3] tracking-tight">
-            Frequently Asked Tax Planning Questions.
+          <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-[#1A1A1A]">
+            Frequently Asked Tax Questions
           </h2>
-
-          <p className="text-base text-[#BAC6DA] font-inter">
-            Clear, practical answers regarding tax shields, statutory deductions, and regime selection.
+          <p className="text-base text-[#555555] font-inter">
+            Clear, authoritative answers to common tax queries for Indian investors.
           </p>
         </div>
 
-        {/* Accordion Stack */}
-        <div className="space-y-4 text-left">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIndex === idx;
             return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="rounded-2xl bg-[#071C48]/70 border border-[#C8A24A]/25 overflow-hidden transition-all duration-300 backdrop-blur-xl shadow-[0_10px_30px_rgba(2,11,45,0.6)]"
+              <div
+                key={idx}
+                className="rounded-2xl bg-white border border-[#E7D7B5] overflow-hidden transition-all shadow-sm"
               >
                 <button
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between space-x-4 focus:outline-none group"
+                  onClick={() => setOpenIndex(isOpen ? -1 : idx)}
+                  className="w-full p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
                 >
-                  <span className="text-base sm:text-lg font-serif-luxury font-bold text-[#F8F7F3] group-hover:text-[#E8C878] transition-colors">
-                    {faq.q}
-                  </span>
-
-                  <div className="w-8 h-8 rounded-full bg-[#020B2D] border border-[#C8A24A]/30 flex items-center justify-center text-[#E8C878] shrink-0 group-hover:bg-[#C8A24A] group-hover:text-[#020B2D] transition-colors">
-                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  <span className="font-serif-luxury text-base font-bold text-[#1A1A1A]">{faq.q}</span>
+                  <div className={`w-8 h-8 rounded-full bg-[#FCFAF6] border border-[#E7D7B5] flex items-center justify-center text-[#C89B3C] shrink-0 transition-transform ${isOpen ? 'rotate-180 bg-[#C89B3C] text-white' : ''}`}>
+                    <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>
 
@@ -85,17 +65,16 @@ export default function TaxFAQ() {
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="px-5 sm:px-6 pb-6 pt-0 text-xs sm:text-sm text-[#BAC6DA] leading-relaxed border-t border-[#C8A24A]/10 font-inter"
+                      className="px-6 pb-6 text-xs text-[#555555] font-inter leading-relaxed border-t border-[#E7D7B5]/50 pt-4"
                     >
-                      <p className="pt-4">{faq.a}</p>
+                      {faq.a}
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             );
           })}
         </div>
-
       </div>
     </section>
   );

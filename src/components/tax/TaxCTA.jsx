@@ -1,82 +1,47 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, ShieldCheck, Calculator } from 'lucide-react';
+import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-export default function TaxCTA({ onStartPlanning, onScheduleConsultation }) {
+export default function TaxCTA() {
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-[#020B2D] border-t border-[#C8A24A]/20">
-      
-      {/* Premium Gold Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-gradient-to-r from-[#C8A24A]/20 via-[#E8C878]/15 to-transparent blur-[150px] pointer-events-none rounded-full" />
-
-      {/* Floating Particle Accents */}
-      <div className="absolute inset-0 pointer-events-none opacity-30">
-        <div className="absolute top-10 left-1/4 w-2 h-2 rounded-full bg-[#E8C878] animate-ping" />
-        <div className="absolute bottom-14 right-1/4 w-2 h-2 rounded-full bg-[#C8A24A] animate-ping" />
-      </div>
-
+    <section className="py-24 md:py-32 relative overflow-hidden bg-[#FCFAF6] border-t border-[#E7D7B5]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="p-10 sm:p-14 lg:p-16 rounded-3xl bg-gradient-to-b from-[#071C48]/95 via-[#071C48]/75 to-[#020B2D]/95 border border-[#C8A24A]/40 shadow-[0_25px_60px_rgba(2,11,45,0.9)] backdrop-blur-2xl space-y-8"
+          className="p-10 sm:p-14 lg:p-16 rounded-3xl bg-white border border-[#E7D7B5] shadow-xl space-y-8"
         >
-          {/* Badge */}
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#020B2D] border border-[#C8A24A]/40 text-[#E8C878] text-xs font-semibold uppercase tracking-widest font-sora shadow-[0_0_20px_rgba(200,162,74,0.3)]">
-            <Calculator className="w-3.5 h-3.5 text-[#C8A24A]" />
-            <span>TAX-EFFICIENT WEALTH PLANNING</span>
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5] text-[#C89B3C] text-xs font-semibold uppercase tracking-widest font-sora">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>START OPTIMIZING TODAY</span>
           </div>
 
-          {/* Heading */}
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif-luxury font-bold text-[#F8F7F3] leading-tight tracking-tight">
-            A Better Tax Strategy Starts <br />
-            <span className="text-gradient-gold">With Better Planning.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#1A1A1A] leading-tight">
+            Stop Overpaying Taxes. Build Lasting Wealth.
           </h2>
 
-          {/* Description */}
-          <p className="text-base sm:text-xl text-[#BAC6DA] font-inter max-w-2xl mx-auto leading-relaxed">
-            SOLAHANA helps you organize investments and financial goals with tax awareness built into every step of the process.
+          <p className="text-base sm:text-lg text-[#555555] font-inter max-w-2xl mx-auto leading-relaxed">
+            Schedule a 1-on-1 confidential tax strategy call with a SEBI Registered SOLAHANA Wealth Advisor.
           </p>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <button
-              onClick={onStartPlanning}
-              className="w-full sm:w-auto gold-glow-button px-9 py-4 rounded-full text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center space-x-2.5 group"
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to="/contact"
+              className="gold-glow-button px-9 py-4 rounded-full text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center space-x-2.5 text-[#1A1A1A] shadow-md w-full sm:w-auto"
             >
-              <span>Start Planning</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            <button
-              onClick={onScheduleConsultation}
-              className="w-full sm:w-auto px-9 py-4 rounded-full text-xs sm:text-sm font-semibold text-[#F8F7F3] hover:text-[#E8C878] bg-[#020B2D]/80 hover:bg-[#071C48] border border-[#C8A24A]/40 hover:border-[#C8A24A]/70 transition-all flex items-center justify-center space-x-2"
-            >
-              <span>Schedule Consultation</span>
-            </button>
+              <span>Schedule Tax Advisory Call</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
-          {/* Trust Footnote */}
-          <div className="pt-8 border-t border-[#C8A24A]/15 flex flex-wrap items-center justify-center gap-6 text-xs text-[#BAC6DA] font-inter">
-            <div className="flex items-center space-x-2">
-              <ShieldCheck className="w-4 h-4 text-[#C8A24A]" />
-              <span>SEBI Registered Fiduciary Advisory</span>
-            </div>
-            <span className="hidden sm:inline text-[#C8A24A]/40">•</span>
-            <div>
-              <span>Zero Product Commissions</span>
-            </div>
-            <span className="hidden sm:inline text-[#C8A24A]/40">•</span>
-            <div>
-              <span>Annual LTCG Loss Harvesting Included</span>
-            </div>
+          <div className="pt-4 flex items-center justify-center gap-2 text-xs font-semibold text-[#C89B3C]">
+            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <span>Confidential • Zero Commission • SEBI Registered Fiduciary</span>
           </div>
-
         </motion.div>
-
       </div>
     </section>
   );

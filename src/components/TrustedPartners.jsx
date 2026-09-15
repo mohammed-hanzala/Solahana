@@ -18,10 +18,10 @@ export default function TrustedPartners() {
   const marqueeItems = [...partners, ...partners, ...partners];
 
   return (
-    <section className="relative z-10 py-16 bg-[#020B2D] border-t border-[#D4AF37]/15 overflow-hidden">
+    <section className="relative z-10 py-16 bg-[#FCFAF6] border-t border-[#E7D7B5] overflow-hidden">
       
       {/* Background glow accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[150px] bg-[#D4AF37]/5 blur-[90px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[150px] bg-[#C89B3C]/5 blur-[90px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 mb-10">
         
@@ -31,7 +31,7 @@ export default function TrustedPartners() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-2xl sm:text-3xl lg:text-4xl font-serif-luxury font-bold text-[#F8F6F2] tracking-tight"
+          className="text-2xl sm:text-3xl lg:text-4xl font-serif-luxury font-bold text-[#1A1A1A] tracking-tight"
         >
           Trusted by India's Financial Ecosystem
         </motion.h2>
@@ -42,7 +42,7 @@ export default function TrustedPartners() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-sm sm:text-base text-[#B7C1D9] font-inter max-w-xl mx-auto"
+          className="text-sm sm:text-base text-[#555555] font-inter max-w-xl mx-auto"
         >
           Supporting investors through trusted financial institutions, depositories, and SEBI compliance standards.
         </motion.p>
@@ -53,8 +53,8 @@ export default function TrustedPartners() {
       <div className="relative w-full overflow-hidden py-4 select-none">
         
         {/* Left & Right Gradient Mask Fades */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-r from-[#020B2D] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-l from-[#020B2D] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-r from-[#FCFAF6] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-l from-[#FCFAF6] to-transparent z-10 pointer-events-none" />
 
         {/* Marquee Track */}
         <motion.div
@@ -71,18 +71,17 @@ export default function TrustedPartners() {
             return (
               <div
                 key={index}
-                className="group relative px-6 py-4 rounded-2xl bg-[#071C48]/40 border border-[#D4AF37]/10 hover:border-[#D4AF37]/50 backdrop-blur-md transition-all duration-300 flex items-center space-x-3 cursor-pointer hover:shadow-[0_0_25px_rgba(212,175,55,0.25)] hover:-translate-y-1"
+                className="group relative px-6 py-4 rounded-2xl bg-white border border-[#E7D7B5] hover:border-[#C89B3C] shadow-sm transition-all duration-300 flex items-center space-x-3 cursor-pointer hover:shadow-md hover:-translate-y-1"
               >
-                {/* Grayscale to Gold Icon */}
-                <div className="p-2 rounded-xl bg-white/5 group-hover:bg-[#D4AF37]/20 border border-white/10 group-hover:border-[#D4AF37]/40 text-[#B7C1D9] group-hover:text-[#F8D46A] transition-all duration-300">
+                <div className="p-2 rounded-xl bg-[#C89B3C]/10 group-hover:bg-[#C89B3C] border border-[#E7D7B5] text-[#C89B3C] group-hover:text-white transition-all duration-300">
                   <IconComp className="w-5 h-5" />
                 </div>
 
                 <div className="text-left">
-                  <div className="text-sm font-bold tracking-wider text-[#B7C1D9] group-hover:text-[#F8D46A] transition-colors duration-300 font-sora">
+                  <div className="text-sm font-bold tracking-wider text-[#1A1A1A] group-hover:text-[#C89B3C] transition-colors duration-300 font-sora">
                     {item.name}
                   </div>
-                  <div className="text-[10px] text-[#B7C1D9]/70 group-hover:text-[#F8F6F2] transition-colors duration-300">
+                  <div className="text-[10px] text-[#555555] transition-colors duration-300">
                     {item.type}
                   </div>
                 </div>
@@ -94,7 +93,7 @@ export default function TrustedPartners() {
 
       {/* Thin Gold Divider Below Section */}
       <div className="max-w-7xl mx-auto mt-14 px-4 sm:px-6 lg:px-8">
-        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#E7D7B5] to-transparent" />
       </div>
 
     </section>

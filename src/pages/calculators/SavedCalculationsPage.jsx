@@ -201,9 +201,9 @@ export default function SavedCalculationsPage() {
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-20 bg-[#FDFBF7] text-[#0F172A] relative overflow-hidden text-left">
-      {/* Background Lighting */}
-      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-[#C8A24A]/10 rounded-full blur-[140px] pointer-events-none" />
+    <div className="min-h-screen pt-28 pb-20 bg-[#FCFAF6] text-[#1A1A1A] relative overflow-hidden text-left">
+      {/* Ambient Gold Blurs */}
+      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-[#C89B3C]/10 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Toast Notification */}
       <AnimatePresence>
@@ -212,9 +212,9 @@ export default function SavedCalculationsPage() {
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="fixed top-24 right-6 z-50 px-5 py-3.5 rounded-2xl bg-[#071C48] border border-[#C8A24A]/50 text-xs font-semibold text-[#E8C878] shadow-[0_10px_30px_rgba(200,162,74,0.3)] flex items-center gap-2.5"
+            className="fixed top-24 right-6 z-50 px-5 py-3.5 rounded-2xl bg-white border border-[#E7D7B5] text-xs font-semibold text-[#1A1A1A] shadow-xl flex items-center gap-2.5"
           >
-            <CheckCircle2 className="w-4 h-4 text-[#C8A24A]" />
+            <CheckCircle2 className="w-4 h-4 text-[#C89B3C]" />
             <span>{toastMessage}</span>
           </motion.div>
         )}
@@ -224,34 +224,34 @@ export default function SavedCalculationsPage() {
       <AnimatePresence>
         {detailCalc && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setDetailCalc(null)} className="absolute inset-0 bg-[#020B2D]/85 backdrop-blur-md" />
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="relative w-full max-w-2xl bg-gradient-to-b from-[#071C48] via-[#041235] to-[#020B2D] border border-[#C8A24A]/40 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-2xl z-10 text-left max-h-[85vh] overflow-y-auto">
-              <button onClick={() => setDetailCalc(null)} className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setDetailCalc(null)} className="absolute inset-0 bg-black/40 backdrop-blur-md" />
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="relative w-full max-w-2xl bg-white border border-[#E7D7B5] rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-2xl z-10 text-left max-h-[85vh] overflow-y-auto">
+              <button onClick={() => setDetailCalc(null)} className="absolute top-5 right-5 p-2 rounded-full bg-[#FCFAF6] hover:bg-[#F8F5EF] text-[#555555] transition-colors">
                 <X className="w-5 h-5" />
               </button>
 
               <div className="flex items-center gap-2 mb-2">
-                <BookmarkPlus className="w-5 h-5 text-[#E8C878]" />
-                <span className="text-xs font-mono text-[#E8C878] uppercase tracking-wider">
-                  {detailCalc.calculatorType} READ-ONLY SUMMARY
+                <BookmarkPlus className="w-5 h-5 text-[#C89B3C]" />
+                <span className="text-xs font-mono text-[#C89B3C] font-bold uppercase tracking-wider">
+                  {detailCalc.calculatorType} SUMMARY
                 </span>
               </div>
 
-              <h3 className="font-serif-luxury text-2xl font-bold text-white mb-1">
+              <h3 className="font-serif-luxury text-2xl font-bold text-[#1A1A1A] mb-1">
                 {detailCalc.calculationName || detailCalc.title}
               </h3>
-              <p className="text-xs text-[#BAC6DA] font-light mb-6">
+              <p className="text-xs text-[#555555] font-light mb-6">
                 Saved on {new Date(detailCalc.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
               </p>
 
               {/* Inputs Grid */}
               <div className="space-y-4 mb-6">
-                <h4 className="text-xs font-bold text-[#E8C878] uppercase font-mono tracking-wider">Saved Parameters (Inputs)</h4>
+                <h4 className="text-xs font-bold text-[#C89B3C] uppercase font-mono tracking-wider">Saved Inputs</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {Object.entries(detailCalc.inputs || {}).map(([key, val]) => (
-                    <div key={key} className="p-3 rounded-xl bg-[#020B2D] border border-white/10">
-                      <span className="text-[10px] text-[#BAC6DA]/70 font-mono uppercase block truncate">{key}</span>
-                      <span className="text-xs font-bold font-mono text-white">{typeof val === 'number' && val > 1000 ? formatINR(val) : String(val)}</span>
+                    <div key={key} className="p-3 rounded-xl bg-[#FCFAF6] border border-[#E7D7B5]">
+                      <span className="text-[10px] text-[#555555] font-mono uppercase block truncate">{key}</span>
+                      <span className="text-xs font-bold font-mono text-[#1A1A1A]">{typeof val === 'number' && val > 1000 ? formatINR(val) : String(val)}</span>
                     </div>
                   ))}
                 </div>
@@ -259,23 +259,23 @@ export default function SavedCalculationsPage() {
 
               {/* Results Grid */}
               <div className="space-y-4 mb-6">
-                <h4 className="text-xs font-bold text-[#E8C878] uppercase font-mono tracking-wider">Computed Key Outputs</h4>
+                <h4 className="text-xs font-bold text-[#C89B3C] uppercase font-mono tracking-wider">Computed Outputs</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {Object.entries(detailCalc.results || {}).map(([key, val]) => (
-                    <div key={key} className="p-3 rounded-xl bg-[#071C48] border border-[#C8A24A]/30">
-                      <span className="text-[10px] text-[#E8C878] font-mono uppercase block truncate">{key}</span>
-                      <span className="text-xs font-bold font-mono text-white">{typeof val === 'number' && val > 100 ? formatINR(val) : String(val)}</span>
+                    <div key={key} className="p-3 rounded-xl bg-[#F8F5EF] border border-[#E7D7B5]">
+                      <span className="text-[10px] text-[#C89B3C] font-mono font-bold uppercase block truncate">{key}</span>
+                      <span className="text-xs font-bold font-mono text-[#1A1A1A]">{typeof val === 'number' && val > 100 ? formatINR(val) : String(val)}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Modal Actions */}
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
-                <button onClick={() => setDetailCalc(null)} className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs text-white/70 font-semibold cursor-pointer">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#E7D7B5]">
+                <button onClick={() => setDetailCalc(null)} className="px-4 py-2 rounded-xl bg-[#FCFAF6] hover:bg-[#F8F5EF] text-xs text-[#555555] font-semibold cursor-pointer">
                   Close
                 </button>
-                <button onClick={() => { const target = detailCalc; setDetailCalc(null); handleRecalculate(target); }} className="gold-glow-button px-5 py-2 rounded-xl text-xs font-bold text-[#020B2D] flex items-center gap-2 cursor-pointer shadow">
+                <button onClick={() => { const target = detailCalc; setDetailCalc(null); handleRecalculate(target); }} className="gold-glow-button px-5 py-2 rounded-xl text-xs font-bold text-[#1A1A1A] flex items-center gap-2 cursor-pointer shadow">
                   <RotateCcw className="w-4 h-4" />
                   <span>Recalculate in Tool</span>
                 </button>
@@ -289,22 +289,22 @@ export default function SavedCalculationsPage() {
       <AnimatePresence>
         {deleteConfirmCalc && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setDeleteConfirmCalc(null)} className="absolute inset-0 bg-[#020B2D]/85 backdrop-blur-md" />
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="relative w-full max-w-sm bg-[#071C48] border border-red-500/40 rounded-3xl p-6 shadow-2xl z-10 text-left space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setDeleteConfirmCalc(null)} className="absolute inset-0 bg-black/40 backdrop-blur-md" />
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="relative w-full max-w-sm bg-white border border-rose-200 rounded-3xl p-6 shadow-2xl z-10 text-left space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center">
                 <AlertTriangle className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-white">Delete Calculation?</h3>
-                <p className="text-xs text-white/70 font-light mt-1">
+                <h3 className="text-base font-bold text-[#1A1A1A]">Delete Calculation?</h3>
+                <p className="text-xs text-[#555555] font-light mt-1">
                   Are you sure you want to delete <strong>"{deleteConfirmCalc.calculationName || deleteConfirmCalc.title}"</strong>? This action cannot be undone.
                 </p>
               </div>
               <div className="flex items-center justify-end gap-2 pt-2">
-                <button onClick={() => setDeleteConfirmCalc(null)} className="px-4 py-2 rounded-xl bg-white/5 text-xs text-white/70 font-semibold cursor-pointer">
+                <button onClick={() => setDeleteConfirmCalc(null)} className="px-4 py-2 rounded-xl bg-[#FCFAF6] text-xs text-[#555555] font-semibold cursor-pointer">
                   Cancel
                 </button>
-                <button onClick={handleDeleteConfirm} disabled={deleteLoading} className="px-4 py-2 rounded-xl bg-red-500 hover:bg-red-600 text-xs font-bold text-white cursor-pointer shadow disabled:opacity-50">
+                <button onClick={handleDeleteConfirm} disabled={deleteLoading} className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-xs font-bold text-white cursor-pointer shadow disabled:opacity-50">
                   {deleteLoading ? 'Deleting...' : 'Delete'}
                 </button>
               </div>
@@ -316,24 +316,24 @@ export default function SavedCalculationsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header Banner */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#C8A24A]/20 pb-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#E7D7B5] pb-6">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] uppercase font-mono tracking-widest text-[#E8C878] px-2.5 py-0.5 rounded-full bg-[#C8A24A]/10 border border-[#C8A24A]/30">
+              <span className="text-[10px] uppercase font-mono font-bold tracking-widest text-[#C89B3C] px-2.5 py-0.5 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5]">
                 USER DASHBOARD
               </span>
             </div>
-            <h1 className="font-serif-luxury text-3xl font-bold text-white">
+            <h1 className="font-serif-luxury text-3xl font-bold text-[#1A1A1A]">
               My Saved Calculations
             </h1>
-            <p className="text-xs text-[#BAC6DA] font-light">
+            <p className="text-xs text-[#555555] font-light">
               Revisit, track, or recalculate your saved SIP, EMI, Retirement, and Goal planning calculations.
             </p>
           </div>
 
           <button
             onClick={() => navigate('/calculators')}
-            className="gold-glow-button px-5 py-2.5 rounded-xl text-xs font-bold text-[#020B2D] flex items-center gap-2 self-start md:self-auto cursor-pointer shadow-lg"
+            className="gold-glow-button px-5 py-2.5 rounded-xl text-xs font-bold text-[#1A1A1A] flex items-center gap-2 self-start md:self-auto cursor-pointer shadow-lg"
           >
             <Sparkles className="w-4 h-4" />
             <span>New Calculation</span>
@@ -341,17 +341,17 @@ export default function SavedCalculationsPage() {
         </div>
 
         {/* Filter & Search Controls */}
-        <div className="p-4 rounded-2xl bg-[#071C48]/70 border border-[#C8A24A]/30 shadow-xl backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="p-4 rounded-2xl bg-white border border-[#E7D7B5] shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
           
           {/* Search Form */}
           <form onSubmit={handleSearchSubmit} className="relative w-full md:w-80">
-            <Search className="w-4 h-4 text-[#C8A24A] absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#C89B3C] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search calculation name..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#020B2D] border border-white/15 focus:border-[#C8A24A] rounded-xl py-2 pl-10 pr-4 text-white text-xs placeholder-white/40 focus:outline-none transition-colors"
+              className="w-full bg-[#FCFAF6] border border-[#E7D7B5] focus:border-[#C89B3C] rounded-xl py-2 pl-10 pr-4 text-[#1A1A1A] text-xs placeholder-[#555555]/60 focus:outline-none transition-colors"
             />
           </form>
 
@@ -360,7 +360,7 @@ export default function SavedCalculationsPage() {
             <select
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className="bg-[#020B2D] border border-white/20 focus:border-[#C8A24A] rounded-xl py-2 px-3 text-white text-xs font-semibold"
+              className="bg-[#FCFAF6] border border-[#E7D7B5] focus:border-[#C89B3C] rounded-xl py-2 px-3 text-[#1A1A1A] text-xs font-semibold"
             >
               <option value="ALL">All Calculators</option>
               <option value="SIP">SIP Calculator</option>
@@ -375,7 +375,7 @@ export default function SavedCalculationsPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-[#020B2D] border border-white/20 focus:border-[#C8A24A] rounded-xl py-2 px-3 text-white text-xs font-semibold"
+              className="bg-[#FCFAF6] border border-[#E7D7B5] focus:border-[#C89B3C] rounded-xl py-2 px-3 text-[#1A1A1A] text-xs font-semibold"
             >
               <option value="newest">Newest First</option>
               <option value="oldest">Oldest First</option>
@@ -387,28 +387,28 @@ export default function SavedCalculationsPage() {
         {/* Calculations Cards Grid / Empty State */}
         {loading ? (
           <div className="py-24 text-center space-y-3">
-            <div className="w-10 h-10 border-2 border-[#C8A24A]/20 border-t-[#C8A24A] rounded-full animate-spin mx-auto" />
-            <p className="text-xs font-mono text-[#E8C878]">Loading saved wealth plans...</p>
+            <div className="w-10 h-10 border-2 border-[#C89B3C]/20 border-t-[#C89B3C] rounded-full animate-spin mx-auto" />
+            <p className="text-xs font-mono text-[#C89B3C]">Loading saved wealth plans...</p>
           </div>
         ) : calculations.length === 0 ? (
           /* Luxury Empty State Illustration */
           <div className="py-20 px-6 text-center max-w-md mx-auto space-y-6">
-            <div className="w-20 h-20 mx-auto rounded-3xl bg-[#C8A24A]/10 border border-[#C8A24A]/30 text-[#E8C878] flex items-center justify-center shadow-[0_0_30px_rgba(200,162,74,0.2)]">
+            <div className="w-20 h-20 mx-auto rounded-3xl bg-[#C89B3C]/10 border border-[#E7D7B5] text-[#C89B3C] flex items-center justify-center shadow-[0_0_30px_rgba(200,155,60,0.15)]">
               <BookmarkPlus className="w-10 h-10" />
             </div>
 
             <div className="space-y-2">
-              <h3 className="font-serif-luxury text-2xl font-bold text-white">
+              <h3 className="font-serif-luxury text-2xl font-bold text-[#1A1A1A]">
                 No saved calculations yet.
               </h3>
-              <p className="text-xs text-[#BAC6DA] font-light leading-relaxed">
+              <p className="text-xs text-[#555555] font-light leading-relaxed">
                 Use SOLAHANA's intelligent planning tools to compute SIP wealth, retirement corpus, or loan EMIs and save them to your account.
               </p>
             </div>
 
             <button
               onClick={() => navigate('/calculators')}
-              className="gold-glow-button px-6 py-3 rounded-full text-xs font-bold text-[#020B2D] inline-flex items-center gap-2 cursor-pointer shadow-lg"
+              className="gold-glow-button px-6 py-3 rounded-full text-xs font-bold text-[#1A1A1A] inline-flex items-center gap-2 cursor-pointer shadow-lg"
             >
               <span>Explore Calculators</span>
               <ArrowRight className="w-4 h-4" />
@@ -422,49 +422,49 @@ export default function SavedCalculationsPage() {
               return (
                 <div
                   key={calc._id}
-                  className="rounded-3xl bg-gradient-to-b from-[#071C48]/90 via-[#041235]/95 to-[#020B2D] border border-[#C8A24A]/25 hover:border-[#C8A24A]/50 p-6 shadow-xl backdrop-blur-2xl flex flex-col justify-between space-y-4 group text-left"
+                  className="rounded-3xl bg-white border border-[#E7D7B5] hover:border-[#C89B3C] p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-4 group text-left"
                 >
                   <div className="space-y-3">
                     {/* Top Row: Icon + Type Badge */}
                     <div className="flex items-center justify-between">
-                      <div className="p-2.5 rounded-xl bg-[#C8A24A]/15 text-[#E8C878]">
+                      <div className="p-2.5 rounded-xl bg-[#C89B3C]/10 text-[#C89B3C]">
                         <CalcIcon className="w-5 h-5" />
                       </div>
-                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#E8C878] px-2.5 py-0.5 rounded-full bg-[#C8A24A]/10 border border-[#C8A24A]/25">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#C89B3C] px-2.5 py-0.5 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5]">
                         {calc.calculatorType}
                       </span>
                     </div>
 
                     {/* Calculation Title */}
                     <div>
-                      <h4 className="font-serif-luxury text-lg font-bold text-white truncate group-hover:text-[#E8C878] transition-colors">
+                      <h4 className="font-serif-luxury text-lg font-bold text-[#1A1A1A] truncate group-hover:text-[#C89B3C] transition-colors">
                         {calc.calculationName || calc.title}
                       </h4>
-                      <span className="text-[11px] text-[#BAC6DA]/70 font-mono">
+                      <span className="text-[11px] text-[#555555] font-mono">
                         Saved {new Date(calc.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
                       </span>
                     </div>
 
                     {/* Key Result Summary */}
-                    <div className="p-3.5 rounded-2xl bg-[#020B2D]/80 border border-white/10">
+                    <div className="p-3.5 rounded-2xl bg-[#FCFAF6] border border-[#E7D7B5]">
                       {renderKeyResult(calc)}
                     </div>
                   </div>
 
                   {/* Card Actions */}
-                  <div className="pt-4 border-t border-[#C8A24A]/15 flex items-center justify-between gap-2">
+                  <div className="pt-4 border-t border-[#E7D7B5] flex items-center justify-between gap-2">
                     <button
                       onClick={() => setDetailCalc(calc)}
-                      className="px-3 py-1.5 rounded-lg bg-[#071C48] hover:bg-[#071C48]/80 text-xs font-semibold text-[#BAC6DA] hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
+                      className="px-3 py-1.5 rounded-lg bg-[#FCFAF6] hover:bg-[#F8F5EF] text-xs font-semibold text-[#555555] hover:text-[#1A1A1A] transition-colors flex items-center gap-1.5 cursor-pointer border border-[#E7D7B5]"
                     >
-                      <Eye className="w-3.5 h-3.5 text-[#C8A24A]" />
+                      <Eye className="w-3.5 h-3.5 text-[#C89B3C]" />
                       <span>Details</span>
                     </button>
 
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleRecalculate(calc)}
-                        className="px-3 py-1.5 rounded-lg bg-[#C8A24A]/20 hover:bg-[#C8A24A]/30 text-xs font-bold text-[#E8C878] transition-colors flex items-center gap-1.5 cursor-pointer border border-[#C8A24A]/30"
+                        className="px-3 py-1.5 rounded-lg bg-[#C89B3C]/10 hover:bg-[#C89B3C]/20 text-xs font-bold text-[#C89B3C] transition-colors flex items-center gap-1.5 cursor-pointer border border-[#E7D7B5]"
                         title="Open calculator with prefilled inputs"
                       >
                         <RotateCcw className="w-3.5 h-3.5" />
@@ -473,7 +473,7 @@ export default function SavedCalculationsPage() {
 
                       <button
                         onClick={() => setDeleteConfirmCalc(calc)}
-                        className="p-1.5 rounded-lg text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-colors cursor-pointer"
+                        className="p-1.5 rounded-lg text-rose-500 hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer"
                         title="Delete calculation"
                       >
                         <Trash2 className="w-4 h-4" />

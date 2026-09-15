@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Target, TrendingUp, ShieldCheck, ArrowRight, Calculator, PieChart, Lock } from 'lucide-react';
+import { Search, X, Target, ShieldCheck, ArrowRight, Calculator, PieChart } from 'lucide-react';
 
 export default function SearchModal({ isOpen, onClose, onSelectAction }) {
   const [query, setQuery] = useState('');
@@ -41,7 +41,7 @@ export default function SearchModal({ isOpen, onClose, onSelectAction }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-[#020B2D]/80 backdrop-blur-md"
+            className="absolute inset-0 bg-black/40 backdrop-blur-md"
           />
 
           {/* Modal Card */}
@@ -50,34 +50,34 @@ export default function SearchModal({ isOpen, onClose, onSelectAction }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="relative w-full max-w-2xl bg-[#071C48]/90 border border-[#C8A24A]/30 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-2xl z-10"
+            className="relative w-full max-w-2xl bg-white border border-[#E7D7B5] rounded-2xl shadow-2xl overflow-hidden text-left z-10"
           >
             {/* Input Header */}
-            <div className="flex items-center px-5 py-4 border-b border-[#C8A24A]/20 bg-[#020B2D]/40">
-              <Search className="w-5 h-5 text-[#C8A24A] mr-3" />
+            <div className="flex items-center px-5 py-4 border-b border-[#E7D7B5] bg-[#FCFAF6]">
+              <Search className="w-5 h-5 text-[#C89B3C] mr-3" />
               <input
                 type="text"
                 autoFocus
                 placeholder="Search SOLAHANA financial strategies or calculators..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full bg-transparent text-[#F8F7F3] placeholder-[#BAC6DA]/60 focus:outline-none text-base font-inter"
+                className="w-full bg-transparent text-[#1A1A1A] placeholder-[#555555]/60 focus:outline-none text-base font-inter"
               />
               {query && (
-                <button onClick={() => setQuery('')} className="p-1 text-[#BAC6DA] hover:text-white mr-2">
+                <button onClick={() => setQuery('')} className="p-1 text-[#555555] hover:text-[#1A1A1A] mr-2">
                   <X className="w-4 h-4" />
                 </button>
               )}
-              <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-xs text-[#BAC6DA] bg-[#020B2D]/60 border border-[#C8A24A]/20 rounded font-num">
+              <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-xs text-[#555555] bg-[#F8F5EF] border border-[#E7D7B5] rounded font-mono">
                 ESC
               </kbd>
             </div>
 
             {/* Content Body */}
             <div className="p-5 max-h-[60vh] overflow-y-auto space-y-4">
-              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#BAC6DA]">
+              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#555555]">
                 <span>Financial Planning Topics</span>
-                <span className="text-[#C8A24A] font-sora">SOLAHANA Wealth Desk</span>
+                <span className="text-[#C89B3C] font-sora font-bold">SOLAHANA Wealth Desk</span>
               </div>
 
               <div className="space-y-2">
@@ -91,41 +91,30 @@ export default function SearchModal({ isOpen, onClose, onSelectAction }) {
                           if (onSelectAction) onSelectAction(item);
                           onClose();
                         }}
-                        className="w-full text-left p-3.5 rounded-xl border border-[#C8A24A]/10 bg-[#020B2D]/40 hover:bg-[#020B2D]/80 hover:border-[#C8A24A]/40 transition-all flex items-center justify-between group"
+                        className="w-full text-left p-3.5 rounded-xl border border-[#E7D7B5] bg-[#FCFAF6] hover:bg-[#F8F5EF] hover:border-[#C89B3C] transition-all flex items-center justify-between group cursor-pointer"
                       >
                         <div className="flex items-center space-x-3.5">
-                          <div className="p-2 rounded-lg bg-[#C8A24A]/10 border border-[#C8A24A]/20 group-hover:bg-[#C8A24A] group-hover:text-[#020B2D] transition-colors text-[#C8A24A]">
+                          <div className="p-2 rounded-lg bg-[#C89B3C]/10 border border-[#E7D7B5] group-hover:bg-[#C89B3C] group-hover:text-white transition-colors text-[#C89B3C]">
                             <IconComp className="w-4 h-4" />
                           </div>
                           <div>
-                            <div className="text-sm font-medium text-[#F8F7F3] group-hover:text-[#E8C878] transition-colors">
+                            <p className="text-xs font-bold text-[#1A1A1A] group-hover:text-[#C89B3C] transition-colors">
                               {item.title}
-                            </div>
-                            <div className="text-xs text-[#BAC6DA]">
+                            </p>
+                            <span className="text-[10px] text-[#555555] font-mono">
                               {item.category}
-                            </div>
+                            </span>
                           </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-[#BAC6DA] group-hover:text-[#C8A24A] group-hover:translate-x-1 transition-all" />
+                        <ArrowRight className="w-4 h-4 text-[#555555] group-hover:text-[#C89B3C] group-hover:translate-x-1 transition-all" />
                       </button>
                     );
                   })
                 ) : (
-                  <div className="py-8 text-center text-[#BAC6DA]">
-                    No direct match found for <span className="text-[#E8C878]">"{query}"</span>. Search another term.
+                  <div className="py-8 text-center text-xs text-[#555555]">
+                    No matching financial tools or topics found.
                   </div>
                 )}
-              </div>
-            </div>
-
-            {/* Footer */}
-            <div className="px-5 py-3 border-t border-[#C8A24A]/15 bg-[#020B2D]/70 flex items-center justify-between text-xs text-[#BAC6DA]">
-              <div className="flex items-center space-x-2">
-                <Lock className="w-3.5 h-3.5 text-[#C8A24A]" />
-                <span>Bank-grade 256-bit Encryption • SEBI Registered</span>
-              </div>
-              <div className="text-[#E8C878]">
-                Press <span className="font-semibold text-white">Cmd + K</span>
               </div>
             </div>
           </motion.div>

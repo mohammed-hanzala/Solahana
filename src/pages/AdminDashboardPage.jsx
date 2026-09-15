@@ -595,8 +595,8 @@ export default function AdminDashboardPage() {
               onClick={() => handleTabChange('dashboard')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'dashboard'
-                  ? 'bg-[#C8A24A] text-[#020B2D] font-bold shadow-lg'
-                  : 'text-white/70 hover:text-white hover:bg-white/5'
+                  ? 'bg-[#C89B3C] text-white font-bold shadow-md'
+                  : 'text-[#555555] hover:text-[#1A1A1A] hover:bg-[#FCFAF6]'
               }`}
             >
               <LayoutDashboard className="w-4 h-4" />
@@ -607,8 +607,8 @@ export default function AdminDashboardPage() {
               onClick={() => handleTabChange('consultations')}
               className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'consultations'
-                  ? 'bg-[#C8A24A] text-[#020B2D] font-bold shadow-lg'
-                  : 'text-white/70 hover:text-white hover:bg-white/5'
+                  ? 'bg-[#C89B3C] text-white font-bold shadow-md'
+                  : 'text-[#555555] hover:text-[#1A1A1A] hover:bg-[#FCFAF6]'
               }`}
             >
               <div className="flex items-center gap-3">
@@ -616,7 +616,7 @@ export default function AdminDashboardPage() {
                 <span>Consultations</span>
               </div>
               {stats.pendingConsultations > 0 && (
-                <span className="px-2 py-0.5 rounded-full text-[10px] bg-amber-500/30 text-amber-200 border border-amber-500/40 font-mono">
+                <span className="px-2 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-800 border border-amber-300 font-mono font-bold">
                   {stats.pendingConsultations}
                 </span>
               )}
@@ -626,45 +626,45 @@ export default function AdminDashboardPage() {
               onClick={() => handleTabChange('users')}
               className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'users'
-                  ? 'bg-[#C8A24A] text-[#020B2D] font-bold shadow-lg'
-                  : 'text-white/70 hover:text-white hover:bg-white/5'
+                  ? 'bg-[#C89B3C] text-white font-bold shadow-md'
+                  : 'text-[#555555] hover:text-[#1A1A1A] hover:bg-[#FCFAF6]'
               }`}
             >
               <div className="flex items-center gap-3">
                 <UsersIcon className="w-4 h-4" />
                 <span>Users</span>
               </div>
-              <span className="text-[10px] text-white/40 font-mono">{stats.totalUsers}</span>
+              <span className="text-[10px] text-[#555555] font-mono">{stats.totalUsers}</span>
             </button>
 
             <button
               onClick={() => handleTabChange('blogs')}
               className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'blogs'
-                  ? 'bg-[#C8A24A] text-[#020B2D] font-bold shadow-lg'
-                  : 'text-white/70 hover:text-white hover:bg-white/5'
+                  ? 'bg-[#C89B3C] text-white font-bold shadow-md'
+                  : 'text-[#555555] hover:text-[#1A1A1A] hover:bg-[#FCFAF6]'
               }`}
             >
               <div className="flex items-center gap-3">
                 <BookOpen className="w-4 h-4" />
                 <span>Blog CMS</span>
               </div>
-              <span className="text-[10px] text-white/40 font-mono">{stats.totalBlogs}</span>
+              <span className="text-[10px] text-[#555555] font-mono">{stats.totalBlogs}</span>
             </button>
 
             <button
               onClick={() => handleTabChange('newsletter')}
               className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'newsletter'
-                  ? 'bg-[#C8A24A] text-[#020B2D] font-bold shadow-lg'
-                  : 'text-white/70 hover:text-white hover:bg-white/5'
+                  ? 'bg-[#C89B3C] text-white font-bold shadow-md'
+                  : 'text-[#555555] hover:text-[#1A1A1A] hover:bg-[#FCFAF6]'
               }`}
             >
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4" />
                 <span>Newsletters</span>
               </div>
-              <span className="text-[10px] text-white/40 font-mono">{stats.totalSubscribers}</span>
+              <span className="text-[10px] text-[#555555] font-mono">{stats.totalSubscribers}</span>
             </button>
           </nav>
         </div>
@@ -687,24 +687,24 @@ export default function AdminDashboardPage() {
         {/* ================= TAB 1: ANALYTICS DASHBOARD ================= */}
         {activeTab === 'dashboard' && (
           <div className="space-y-8">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-3xl bg-gradient-to-r from-[#071C48] via-[#041235] to-[#071C48] border border-[#C8A24A]/30 shadow-2xl">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-3xl bg-white border border-[#E7D7B5] shadow-sm">
               <div>
-                <span className="text-[10px] uppercase font-mono text-[#E8C878] tracking-widest px-3 py-1 rounded-full bg-[#C8A24A]/10 border border-[#C8A24A]/30">
+                <span className="text-[10px] uppercase font-mono font-bold text-[#C89B3C] tracking-widest px-3 py-1 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5]">
                   REALTIME OVERVIEW
                 </span>
-                <h1 className="font-serif-luxury text-3xl font-bold text-white mt-2">
+                <h1 className="font-serif-luxury text-3xl font-bold text-[#1A1A1A] mt-2">
                   Admin Analytics Desk
                 </h1>
-                <p className="text-xs text-white/60 mt-1">
+                <p className="text-xs text-[#555555] mt-1">
                   Live MongoDB statistics across users, advisory consultations, blogs, and newsletter subscribers.
                 </p>
               </div>
 
               <button
                 onClick={() => { fetchStats(); fetchConsultations(); fetchUsers(); fetchBlogs(); fetchSubscribers(); }}
-                className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/70 hover:text-white transition-colors cursor-pointer self-start sm:self-auto flex items-center gap-2 text-xs"
+                className="p-3 rounded-xl bg-[#FCFAF6] hover:bg-[#F8F5EF] border border-[#E7D7B5] text-[#1A1A1A] transition-colors cursor-pointer self-start sm:self-auto flex items-center gap-2 text-xs font-semibold"
               >
-                <RefreshCw className={`w-4 h-4 ${statsLoading ? 'animate-spin' : ''}`} />
+                <RefreshCw className={`w-4 h-4 text-[#C89B3C] ${statsLoading ? 'animate-spin' : ''}`} />
                 <span>Refresh Counts</span>
               </button>
             </div>
@@ -712,57 +712,57 @@ export default function AdminDashboardPage() {
             {/* Metric Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {/* Card 1: Total Users */}
-              <div className="p-6 rounded-2xl bg-[#071C48]/70 border border-[#C8A24A]/30 shadow-xl flex items-center justify-between">
+              <div className="p-6 rounded-2xl bg-white border border-[#E7D7B5] shadow-sm flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-semibold text-white/60">Registered Users</p>
-                  <h3 className="font-serif-luxury text-3xl font-bold text-white mt-2">
+                  <p className="text-xs font-semibold text-[#555555]">Registered Users</p>
+                  <h3 className="font-serif-luxury text-3xl font-bold text-[#1A1A1A] mt-2">
                     {statsLoading ? '...' : stats.totalUsers}
                   </h3>
-                  <span className="text-[10px] text-[#E8C878] mt-1 block">Active Platform Accounts</span>
+                  <span className="text-[10px] text-[#C89B3C] font-semibold mt-1 block">Active Platform Accounts</span>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-[#C8A24A]/20 border border-[#C8A24A]/40 flex items-center justify-center text-[#E8C878]">
+                <div className="w-12 h-12 rounded-xl bg-[#C89B3C]/10 border border-[#E7D7B5] flex items-center justify-center text-[#C89B3C]">
                   <UsersIcon className="w-6 h-6" />
                 </div>
               </div>
 
               {/* Card 2: Total Consultations */}
-              <div className="p-6 rounded-2xl bg-[#071C48]/70 border border-[#C8A24A]/30 shadow-xl flex items-center justify-between">
+              <div className="p-6 rounded-2xl bg-white border border-[#E7D7B5] shadow-sm flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-semibold text-white/60">Total Consultations</p>
-                  <h3 className="font-serif-luxury text-3xl font-bold text-white mt-2">
+                  <p className="text-xs font-semibold text-[#555555]">Total Consultations</p>
+                  <h3 className="font-serif-luxury text-3xl font-bold text-[#1A1A1A] mt-2">
                     {statsLoading ? '...' : stats.totalConsultations}
                   </h3>
-                  <span className="text-[10px] text-white/50 mt-1 block">All Time Requests</span>
+                  <span className="text-[10px] text-[#555555] mt-1 block">All Time Requests</span>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-300">
+                <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600">
                   <Calendar className="w-6 h-6" />
                 </div>
               </div>
 
               {/* Card 3: Total Published Blogs */}
-              <div className="p-6 rounded-2xl bg-[#071C48]/70 border border-[#C8A24A]/30 shadow-xl flex items-center justify-between">
+              <div className="p-6 rounded-2xl bg-white border border-[#E7D7B5] shadow-sm flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-semibold text-white/60">Blog Articles</p>
-                  <h3 className="font-serif-luxury text-3xl font-bold text-white mt-2">
+                  <p className="text-xs font-semibold text-[#555555]">Blog Articles</p>
+                  <h3 className="font-serif-luxury text-3xl font-bold text-[#1A1A1A] mt-2">
                     {statsLoading ? '...' : stats.totalBlogs}
                   </h3>
-                  <span className="text-[10px] text-emerald-400 mt-1 block">Published Insights</span>
+                  <span className="text-[10px] text-emerald-600 font-semibold mt-1 block">Published Insights</span>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-300">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
                   <BookOpen className="w-6 h-6" />
                 </div>
               </div>
 
               {/* Card 4: Newsletter Subscribers */}
-              <div className="p-6 rounded-2xl bg-[#071C48]/70 border border-[#C8A24A]/30 shadow-xl flex items-center justify-between">
+              <div className="p-6 rounded-2xl bg-white border border-[#E7D7B5] shadow-sm flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-semibold text-white/60">Subscribers</p>
-                  <h3 className="font-serif-luxury text-3xl font-bold text-amber-300 mt-2">
+                  <p className="text-xs font-semibold text-[#555555]">Subscribers</p>
+                  <h3 className="font-serif-luxury text-3xl font-bold text-[#C89B3C] mt-2">
                     {statsLoading ? '...' : stats.totalSubscribers}
                   </h3>
-                  <span className="text-[10px] text-amber-300/80 mt-1 block">Active Readers</span>
+                  <span className="text-[10px] text-[#C89B3C] font-semibold mt-1 block">Active Readers</span>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300">
+                <div className="w-12 h-12 rounded-xl bg-[#C89B3C]/10 border border-[#E7D7B5] flex items-center justify-center text-[#C89B3C]">
                   <Mail className="w-6 h-6" />
                 </div>
               </div>
@@ -770,31 +770,31 @@ export default function AdminDashboardPage() {
 
             {/* Quick Action Shortcuts */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-              <div className="p-6 rounded-3xl bg-[#071C48]/50 border border-[#C8A24A]/20 flex flex-col justify-between space-y-4">
+              <div className="p-6 rounded-3xl bg-white border border-[#E7D7B5] shadow-sm flex flex-col justify-between space-y-4">
                 <div>
-                  <h4 className="font-serif-luxury text-lg font-bold text-white flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-[#E8C878]" />
+                  <h4 className="font-serif-luxury text-lg font-bold text-[#1A1A1A] flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-[#C89B3C]" />
                     <span>Client Consultations</span>
                   </h4>
-                  <p className="text-xs text-white/60 mt-1">
+                  <p className="text-xs text-[#555555] mt-1">
                     Confirm pending bookings, add meeting links, or manage advisory sessions.
                   </p>
                 </div>
                 <button
                   onClick={() => handleTabChange('consultations')}
-                  className="px-5 py-2.5 rounded-xl bg-[#C8A24A] text-[#020B2D] font-bold text-xs self-start hover:bg-[#E8C878] transition-colors cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#C89B3C] text-white font-bold text-xs self-start hover:bg-[#b08530] transition-colors cursor-pointer"
                 >
                   Consultation CRM →
                 </button>
               </div>
 
-              <div className="p-6 rounded-3xl bg-[#071C48]/50 border border-[#C8A24A]/20 flex flex-col justify-between space-y-4">
+              <div className="p-6 rounded-3xl bg-white border border-[#E7D7B5] shadow-sm flex flex-col justify-between space-y-4">
                 <div>
-                  <h4 className="font-serif-luxury text-lg font-bold text-white flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-[#E8C878]" />
+                  <h4 className="font-serif-luxury text-lg font-bold text-[#1A1A1A] flex items-center gap-2">
+                    <BookOpen className="w-5 h-5 text-[#C89B3C]" />
                     <span>Blog CMS Manager</span>
                   </h4>
-                  <p className="text-xs text-white/60 mt-1">
+                  <p className="text-xs text-[#555555] mt-1">
                     Publish new financial articles, edit existing guides, toggle draft statuses.
                   </p>
                 </div>
