@@ -131,7 +131,7 @@ export default function WhoWeServe() {
                     to="/contact"
                     className="text-xs font-semibold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors flex items-center space-x-2"
                   >
-                    <span>Start Your ₹1 Plan</span>
+                    <span>Start Your Comprehensive Plan</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>

@@ -40,7 +40,7 @@ export default function FinalCTA({ onOpenSearch }) {
               to="/contact"
               className="gold-glow-button px-9 py-4 rounded-full text-sm font-bold text-white tracking-wide flex items-center justify-center space-x-3 shadow-md group w-full sm:w-auto"
             >
-              <span>Start Your ₹1 Financial Plan</span>
+              <span>Start Your Comprehensive Plan</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
 

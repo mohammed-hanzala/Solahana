@@ -50,7 +50,7 @@ export default function AboutHero({ onExplorePhilosophy, onOpenSearch }) {
                 to="/contact"
                 className="px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold text-[#0F172A] hover:text-[#C89A4B] bg-white border border-[#C89A4B]/30 hover:border-[#C89A4B] transition-all flex items-center space-x-2 shadow-sm"
               >
-                <span>Start Your ₹1 Plan</span>
+                <span>Start Your Comprehensive Plan</span>
               </Link>
             </div>
 

@@ -46,6 +46,8 @@ import SavedCalculationsPage from './pages/calculators/SavedCalculationsPage';
 import BlogsLandingPage from './pages/blogs/BlogsLandingPage';
 import BlogDetailsPage from './pages/blogs/BlogDetailsPage';
 
+import StagePlanningSection from './components/StagePlanningSection';
+
 function HomePage({ onOpenSearch }) {
   return (
     <>
@@ -55,6 +57,7 @@ function HomePage({ onOpenSearch }) {
       <WhatIsFinancialPlanning />
       <HowSolahanaWorks />
       <WhoWeServe />
+      <StagePlanningSection onOpenSearch={onOpenSearch} />
       <SolahanaServices />
       <FinancialSnapshot />
       <ClientStories />

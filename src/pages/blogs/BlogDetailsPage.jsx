@@ -174,7 +174,7 @@ export default function BlogDetailsPage() {
             onClick={() => navigate('/contact')}
             className="gold-glow-button px-8 py-3.5 rounded-full text-xs font-bold text-white inline-flex items-center gap-2 shadow-md"
           >
-            <span>Start Your ₹1 Plan</span>
+            <span>Start Your Comprehensive Plan</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

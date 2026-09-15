@@ -42,7 +42,7 @@ export default function PlanningHero({ onBookConsultation, onExploreGoals }) {
                 to="/contact"
                 className="gold-glow-button px-7 py-4 rounded-full text-xs sm:text-sm font-bold tracking-wide flex items-center space-x-2.5 group shadow-md"
               >
-                <span>Start Your ₹1 Plan</span>
+                <span>Start Your Comprehensive Plan</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
 

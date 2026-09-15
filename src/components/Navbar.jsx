@@ -284,7 +284,7 @@ export default function Navbar({ onOpenSearch }) {
                   onClick={(e) => handleNavClick(e, 'contact')}
                   className="gold-glow-button px-5 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center space-x-1.5 group cursor-pointer shadow-md"
                 >
-                  <span>Start Your ₹1 Plan</span>
+                  <span>Start Your Comprehensive Plan</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </>
@@ -396,7 +396,7 @@ export default function Navbar({ onOpenSearch }) {
                 onClick={(e) => handleNavClick(e, 'contact')}
                 className="w-full gold-glow-button text-center py-3 rounded-full text-xs font-bold flex items-center justify-center gap-2"
               >
-                <span>Start Your ₹1 Plan</span>
+                <span>Start Your Comprehensive Plan</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
