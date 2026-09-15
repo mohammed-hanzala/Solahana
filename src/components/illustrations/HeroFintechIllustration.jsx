@@ -10,8 +10,8 @@ import {
 } from 'lucide-react';
 
 export default function HeroFintechIllustration({ onOpenSearch }) {
-  // Constant Orbit Radius (205px) for a Perfect Circular Orbit (Diameter 410px)
-  const ORBIT_RADIUS = 205;
+  // Constant Orbit Radius (195px) for a Perfect Circular Orbit (Diameter 390px)
+  const ORBIT_RADIUS = 195;
 
   // 6 Floating Orbital Badges placed at exact Clock Positions (60° Spacing)
   // Top 3 labels sit ABOVE (bottom-full), Bottom 3 labels sit BELOW (top-full) for 100% radial symmetry outside orbit ring
@@ -28,19 +28,53 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
     <div className="relative w-full max-w-[580px] aspect-square flex items-center justify-center select-none">
       
       {/* ------------------------------------------------------------- */}
-      {/* AMBIENT GLOW & PERFECT GOLD DOTTED ORBIT                      */}
+      {/* AMBIENT GLOW & PERFECT MATHEMATICAL SVG ORBIT PATH             */}
       {/* ------------------------------------------------------------- */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         {/* Soft Radial Gold & Blue Backlight Glow */}
-        <div className="w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[#38BDF8]/15 via-[#C89B3C]/20 to-transparent blur-[90px] animate-pulse-glow" />
-        
-        {/* ONE CLEAN GOLD DOTTED CIRCULAR ORBIT (Diameter 410px = 2 * 205px radius) */}
-        {/* Perfectly centered around illustration, matching badge centers */}
-        <div className="absolute w-[410px] h-[410px] rounded-full border-2 border-dashed border-[#C89B3C]/40 animate-spin-slow" />
-        
-        {/* Inner Guide Ring */}
-        <div className="absolute w-[300px] h-[300px] rounded-full border border-[#0F172A]/10" />
+        <div className="w-[380px] h-[380px] rounded-full bg-gradient-to-tr from-[#38BDF8]/15 via-[#C89B3C]/20 to-transparent blur-[90px] animate-pulse-glow" />
       </div>
+
+      {/* SVG Orbit Path (Matches (290, 290) center & ORBIT_RADIUS = 195px with 100% mathematical precision) */}
+      <svg 
+        className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible" 
+        viewBox="0 0 580 580"
+      >
+        {/* Outer Glow Halo Ring */}
+        <circle 
+          cx="290" 
+          cy="290" 
+          r={ORBIT_RADIUS} 
+          stroke="#C89B3C" 
+          strokeWidth="6" 
+          strokeOpacity="0.2" 
+          fill="none" 
+        />
+
+        {/* Primary Gold Dashed Orbit Line passing EXACTLY through center of every badge */}
+        <circle 
+          cx="290" 
+          cy="290" 
+          r={ORBIT_RADIUS} 
+          stroke="#C89B3C" 
+          strokeWidth="2" 
+          strokeDasharray="8 6" 
+          strokeOpacity="0.6"
+          fill="none" 
+        />
+
+        {/* Inner Guide Ring */}
+        <circle 
+          cx="290" 
+          cy="290" 
+          r="135" 
+          stroke="#0F172A" 
+          strokeWidth="1" 
+          strokeDasharray="4 4" 
+          strokeOpacity="0.1" 
+          fill="none" 
+        />
+      </svg>
 
       {/* ------------------------------------------------------------- */}
       {/* 6 CIRCULAR BADGES EXACTLY ON THE ORBIT CIRCUMFERENCE          */}
