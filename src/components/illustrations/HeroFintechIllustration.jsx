@@ -10,40 +10,47 @@ import {
 } from 'lucide-react';
 
 export default function HeroFintechIllustration({ onOpenSearch }) {
-  // 6 Floating Orbital Badges (Evenly distributed around 360° orbit with no overlaps)
+  // Constant Orbit Radius (215px) for a Perfect Circular Orbit (Diameter 430px)
+  const ORBIT_RADIUS = 215;
+
+  // 6 Floating Orbital Badges placed at exact Clock Positions (60° Spacing)
+  // 12 O'Clock (-90°), 2 O'Clock (-30°), 4 O'Clock (30°), 6 O'Clock (90°), 8 O'Clock (150°), 10 O'Clock (-150°)
   const circularNodes = [
-    { id: 'home', title: 'Dream Home', icon: Building2, symbol: '₹', angle: -150, radius: 210 },
-    { id: 'tax', title: 'Tax Saving', icon: FileText, symbol: '₹', angle: -90, radius: 220 },
-    { id: 'growth', title: 'Investments', icon: TrendingUp, symbol: '₹', angle: -30, radius: 210 },
-    { id: 'advisory', title: 'Expert Advisory', icon: MessageSquare, symbol: '₹', angle: 30, radius: 215 },
-    { id: 'insurance', title: 'Health Cover', icon: ShieldCheck, symbol: '₹', angle: 95, radius: 210 },
-    { id: 'retirement', title: 'Retirement FIRE', icon: Umbrella, symbol: '₹', angle: 160, radius: 215 },
+    { id: 'tax', title: 'Tax Saving', icon: FileText, symbol: '₹', angle: -90, clock: "12 O'Clock" },
+    { id: 'growth', title: 'Investments', icon: TrendingUp, symbol: '₹', angle: -30, clock: "2 O'Clock" },
+    { id: 'advisory', title: 'Expert Advisory', icon: MessageSquare, symbol: '₹', angle: 30, clock: "4 O'Clock" },
+    { id: 'insurance', title: 'Health Cover', icon: ShieldCheck, symbol: '₹', angle: 90, clock: "6 O'Clock" },
+    { id: 'retirement', title: 'Retirement FIRE', icon: Umbrella, symbol: '₹', angle: 150, clock: "8 O'Clock" },
+    { id: 'home', title: 'Dream Home', icon: Building2, symbol: '₹', angle: -150, clock: "10 O'Clock" },
   ];
 
   return (
     <div className="relative w-full max-w-[580px] aspect-square flex items-center justify-center select-none">
       
       {/* ------------------------------------------------------------- */}
-      {/* AMBIENT GLOW & ORBIT RINGS                                    */}
+      {/* AMBIENT GLOW & PERFECT GOLD DOTTED ORBIT                      */}
       {/* ------------------------------------------------------------- */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         {/* Soft Radial Gold & Blue Backlight Glow */}
-        <div className="w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-[#38BDF8]/15 via-[#C89A4B]/20 to-transparent blur-[90px] animate-pulse-glow" />
+        <div className="w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-[#38BDF8]/15 via-[#C89B3C]/20 to-transparent blur-[90px] animate-pulse-glow" />
         
-        {/* Concentric Dashed Arc Rings */}
-        <div className="absolute w-[460px] h-[460px] rounded-full border-2 border-dashed border-[#C89A4B]/30 animate-spin-slow" />
-        <div className="absolute w-[360px] h-[360px] rounded-full border border-[#0F172A]/10" />
+        {/* ONE CLEAN GOLD DOTTED CIRCULAR ORBIT (Diameter 430px = 2 * 215px radius) */}
+        {/* Perfectly centered around illustration, matching badge centers */}
+        <div className="absolute w-[430px] h-[430px] rounded-full border-2 border-dotted border-[#C89B3C]/50 animate-spin-slow" />
+        
+        {/* Inner Guide Ring */}
+        <div className="absolute w-[320px] h-[320px] rounded-full border border-[#0F172A]/10" />
       </div>
 
       {/* ------------------------------------------------------------- */}
-      {/* CIRCULAR NODES ARC (EXACT MATCH TO CLIENT REFERENCE IMAGE)     */}
+      {/* 6 CIRCULAR BADGES EXACTLY ON THE ORBIT CIRCUMFERENCE          */}
       {/* ------------------------------------------------------------- */}
       {circularNodes.map((node, index) => {
         const Icon = node.icon;
-        // Calculate Cartesian coordinates based on angle & radius
+        // Calculate exact Cartesian coordinates on circumference (radius = 215px)
         const rad = (node.angle * Math.PI) / 180;
-        const x = Math.cos(rad) * node.radius;
-        const y = Math.sin(rad) * node.radius;
+        const x = Math.cos(rad) * ORBIT_RADIUS;
+        const y = Math.sin(rad) * ORBIT_RADIUS;
 
         return (
           <motion.div
@@ -60,18 +67,18 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
               transform: 'translate(-50%, -50%)',
             }}
           >
-            {/* White & Gold Circular Badge */}
-            <div className="relative w-14 h-14 rounded-full bg-white border-2 border-[#C89A4B] shadow-[0_10px_25px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.4)] transition-all flex items-center justify-center">
-              <Icon className="w-6 h-6 text-[#9A7326] group-hover:text-[#C89A4B] transition-colors" />
+            {/* White & Gold Circular Badge (Touches orbit line perfectly at center) */}
+            <div className="relative w-14 h-14 rounded-full bg-white border-2 border-[#C89B3C] shadow-[0_10px_25px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.4)] transition-all flex items-center justify-center">
+              <Icon className="w-6 h-6 text-[#9A7326] group-hover:text-[#C89B3C] transition-colors" />
               
               {/* Rupee Symbol Badge */}
-              <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-gradient-to-r from-[#C89A4B] to-[#9A7326] text-white text-[10px] font-bold flex items-center justify-center border border-white shadow">
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-gradient-to-r from-[#C89B3C] to-[#9A7326] text-white text-[10px] font-bold flex items-center justify-center border border-white shadow">
                 {node.symbol}
               </div>
             </div>
 
             {/* Label Tooltip Badge */}
-            <span className="mt-1.5 text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3 py-0.5 rounded-full border border-[#C89A4B]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            <span className="mt-1.5 text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center">
               {node.title}
             </span>
           </motion.div>
