@@ -5,7 +5,8 @@ import {
   ArrowRight, 
   Mail, 
   Phone,
-  MapPin
+  MapPin,
+  Loader2
 } from 'lucide-react';
 
 import newsletterService from '../services/newsletterService';
@@ -177,20 +178,21 @@ export default function Footer() {
 
             <form onSubmit={handleSubscribe} className="flex items-center space-x-2">
               <div className="relative flex-1">
-                <Mail className="w-4 h-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="email"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-[#1E293B] border border-[#C89A4B]/30 rounded-xl pl-9 pr-3 py-2.5 text-xs text-white placeholder-[#94A3B8] focus:outline-none focus:border-[#C89A4B] transition-colors"
+                  className="w-full bg-[#1E293B] border border-[#C8A24A]/30 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl pl-9 pr-3 py-2.5 text-xs text-white placeholder-[#94A3B8] focus:outline-none transition-all"
                 />
               </div>
               <button
                 type="submit"
-                className="gold-glow-button px-4 py-2.5 rounded-xl text-xs font-bold text-white flex items-center justify-center shrink-0"
+                disabled={loading}
+                className="gold-glow-button px-4 py-2.5 rounded-xl text-xs font-bold text-white flex items-center justify-center shrink-0 cursor-pointer disabled:opacity-50"
               >
-                {subscribed ? 'Subscribed!' : <ArrowRight className="w-4 h-4" />}
+                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : subscribed ? 'Subscribed!' : <ArrowRight className="w-4 h-4" />}
               </button>
             </form>
 

@@ -194,7 +194,7 @@ export default function CalculatorLayout({ title, subtitle, icon: HeaderIcon, on
             >
               <button
                 onClick={() => setSaveModalOpen(false)}
-                className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors"
+                className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -229,7 +229,7 @@ export default function CalculatorLayout({ title, subtitle, icon: HeaderIcon, on
                     required
                     value={calcNameInput}
                     onChange={(e) => setCalcNameInput(e.target.value)}
-                    className="w-full bg-[#020B2D]/90 border border-white/20 focus:border-[#C8A24A] rounded-xl py-3 px-4 text-white text-xs font-semibold focus:outline-none transition-colors"
+                    className="w-full bg-[#020B2D]/90 border border-white/20 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-3 px-4 text-white text-xs font-semibold focus:outline-none transition-all"
                     placeholder="e.g. My Early Retirement Goal 2035"
                   />
                 </div>

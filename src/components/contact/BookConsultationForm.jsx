@@ -243,14 +243,14 @@ export const BookConsultationForm = () => {
                     Full Name *
                   </label>
                   <div className="relative">
-                    <User className="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2" />
+                    <User className="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                     <input
                       type="text"
                       required
                       placeholder="e.g. Vikramaditya Sharma"
                       value={formData.fullName}
                       onChange={(e) => handleChange('fullName', e.target.value)}
-                      className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-white/30 focus:outline-none transition-colors"
+                      className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-white/40 focus:outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -260,14 +260,14 @@ export const BookConsultationForm = () => {
                     Email Address *
                   </label>
                   <div className="relative">
-                    <Mail className="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2" />
+                    <Mail className="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                     <input
                       type="email"
                       required
                       placeholder="vikram@domain.com"
                       value={formData.email}
                       onChange={(e) => handleChange('email', e.target.value)}
-                      className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-white/30 focus:outline-none transition-colors"
+                      className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-white/40 focus:outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -285,7 +285,7 @@ export const BookConsultationForm = () => {
                     )}
                   </label>
                   <div className="relative">
-                    <Phone className={`w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${
+                    <Phone className={`w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 transition-colors pointer-events-none ${
                       phoneTouched
                         ? isPhoneValid
                           ? 'text-emerald-400'
@@ -300,12 +300,12 @@ export const BookConsultationForm = () => {
                       value={formData.phone}
                       onChange={handlePhoneChange}
                       onBlur={() => setPhoneTouched(true)}
-                      className={`w-full bg-[#020B2D]/80 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-white/30 focus:outline-none transition-colors border ${
+                      className={`w-full bg-[#020B2D]/80 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-white/40 focus:outline-none transition-all border ${
                         phoneTouched
                           ? isPhoneValid
-                            ? 'border-emerald-500/80 focus:border-emerald-500'
-                            : 'border-red-500/80 focus:border-red-500'
-                          : 'border-white/15 focus:border-[#C8A24A]'
+                            ? 'border-emerald-500/80 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20'
+                            : 'border-red-500/80 focus:border-red-500 focus:ring-2 focus:ring-red-500/20'
+                          : 'border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25'
                       }`}
                     />
                   </div>
@@ -322,13 +322,13 @@ export const BookConsultationForm = () => {
                     City / Location
                   </label>
                   <div className="relative">
-                    <MapPin className="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2" />
+                    <MapPin className="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                     <input
                       type="text"
                       placeholder="e.g. Mumbai / Bengaluru / Delhi"
                       value={formData.city}
                       onChange={(e) => handleChange('city', e.target.value)}
-                      className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-white/30 focus:outline-none transition-colors"
+                      className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-white/40 focus:outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -342,7 +342,7 @@ export const BookConsultationForm = () => {
                 <select
                   value={formData.goal}
                   onChange={(e) => handleChange('goal', e.target.value)}
-                  className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] rounded-xl py-3.5 px-4 text-white text-sm focus:outline-none transition-colors cursor-pointer"
+                  className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-3.5 px-4 text-white text-sm focus:outline-none transition-all cursor-pointer"
                 >
                   {goals.map(g => (
                     <option key={g} value={g} className="bg-[#020B2D] text-white">
@@ -394,7 +394,7 @@ export const BookConsultationForm = () => {
                       min={new Date().toISOString().split('T')[0]}
                       value={formData.preferredDate}
                       onChange={(e) => handleChange('preferredDate', e.target.value)}
-                      className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none transition-colors"
+                      className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -435,7 +435,7 @@ export const BookConsultationForm = () => {
                   placeholder="Tell us about any specific investments, retirement timelines or tax questions you'd like to cover..."
                   value={formData.message}
                   onChange={(e) => handleChange('message', e.target.value)}
-                  className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] rounded-xl p-4 text-white text-sm placeholder-white/30 focus:outline-none transition-colors"
+                  className="w-full bg-[#020B2D]/80 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl p-4 text-white text-sm placeholder-white/40 focus:outline-none transition-all"
                 />
               </div>
 
@@ -444,7 +444,7 @@ export const BookConsultationForm = () => {
                 <button
                   type="button"
                   onClick={handleSaveDraft}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/5 border border-white/15 hover:border-white/30 text-white text-sm font-medium flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/5 border border-white/15 hover:border-white/30 text-white text-sm font-medium flex items-center justify-center gap-2 transition-all cursor-pointer hover:bg-white/10"
                 >
                   <Save className="w-4 h-4 text-[#E8C878]" />
                   <span>{saved ? 'Draft Saved ✓' : 'Save For Later'}</span>
@@ -453,7 +453,7 @@ export const BookConsultationForm = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full sm:w-auto px-9 py-4 rounded-xl bg-gradient-to-r from-[#C8A24A] via-[#D4AF37] to-[#C8A24A] text-[#020B2D] font-bold text-base shadow-lg shadow-[#C8A24A]/25 hover:shadow-xl hover:shadow-[#C8A24A]/40 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+                  className="w-full sm:w-auto px-9 py-4 rounded-xl gold-glow-button text-[#020B2D] font-bold text-base shadow-lg shadow-[#C8A24A]/25 hover:shadow-xl hover:shadow-[#C8A24A]/40 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
                 >
                   {loading ? (
                     <Loader2 className="w-5 h-5 animate-spin text-[#020B2D]" />

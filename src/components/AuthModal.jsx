@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { X, Lock, Mail, User, Phone, MapPin, ArrowRight, ShieldCheck, CheckCircle2, AlertCircle } from 'lucide-react';
+import { X, Lock, Mail, User, Phone, MapPin, ArrowRight, ShieldCheck, CheckCircle2, AlertCircle, Eye, EyeOff, Loader2 } from 'lucide-react';
 
 export default function AuthModal() {
   const { authModalOpen, authModalTab, closeAuthModal, openAuthModal, login, signup, loading } = useAuth();
 
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [signupData, setSignupData] = useState({ name: '', email: '', password: '', phone: '', city: '' });
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showSignupPassword, setShowSignupPassword] = useState(false);
   const [alert, setAlert] = useState({ type: null, message: '' });
 
   if (!authModalOpen) return null;
@@ -67,7 +69,7 @@ export default function AuthModal() {
           {/* Close Button */}
           <button
             onClick={closeAuthModal}
-            className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors"
+            className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -81,7 +83,7 @@ export default function AuthModal() {
               </span>
             </div>
 
-            <h2 className="font-playfair text-2xl font-bold text-white">
+            <h2 className="font-serif-luxury text-2xl font-bold text-white">
               {authModalTab === 'login' ? 'Welcome Back to Solahana' : 'Create Your Solahana Account'}
             </h2>
 
@@ -89,9 +91,9 @@ export default function AuthModal() {
             <div className="flex items-center gap-2 mt-4 p-1 rounded-xl bg-[#020B2D]/80 border border-white/10">
               <button
                 onClick={() => { setAlert({ type: null, message: '' }); openAuthModal('login'); }}
-                className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                   authModalTab === 'login'
-                    ? 'bg-[#C8A24A] text-[#020B2D] shadow'
+                    ? 'bg-[#C8A24A] text-[#020B2D] shadow font-bold'
                     : 'text-white/60 hover:text-white'
                 }`}
               >
@@ -99,9 +101,9 @@ export default function AuthModal() {
               </button>
               <button
                 onClick={() => { setAlert({ type: null, message: '' }); openAuthModal('signup'); }}
-                className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all ${
+                className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                   authModalTab === 'signup'
-                    ? 'bg-[#C8A24A] text-[#020B2D] shadow'
+                    ? 'bg-[#C8A24A] text-[#020B2D] shadow font-bold'
                     : 'text-white/60 hover:text-white'
                 }`}
               >
@@ -121,7 +123,7 @@ export default function AuthModal() {
                   : 'bg-emerald-950/40 border-emerald-500/40 text-emerald-300'
               }`}
             >
-              {alert.type === 'error' ? <AlertCircle className="w-4 h-4 shrink-0" /> : <CheckCircle2 className="w-4 h-4 shrink-0" />}
+              {alert.type === 'error' ? <AlertCircle className="w-4 h-4 shrink-0 text-red-400" /> : <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />}
               <span>{alert.message}</span>
             </motion.div>
           )}
@@ -134,14 +136,14 @@ export default function AuthModal() {
                   Email Address
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Mail className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <input
                     type="email"
                     required
                     placeholder="name@domain.com"
                     value={loginData.email}
                     onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
-                    className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] rounded-xl py-3 pl-10 pr-4 text-white text-xs placeholder-white/30 focus:outline-none transition-colors"
+                    className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-3 pl-10 pr-4 text-white text-xs placeholder-white/30 focus:outline-none transition-all"
                   />
                 </div>
               </div>
@@ -151,15 +153,22 @@ export default function AuthModal() {
                   Password
                 </label>
                 <div className="relative">
-                  <Lock className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Lock className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <input
-                    type="password"
+                    type={showLoginPassword ? 'text' : 'password'}
                     required
                     placeholder="••••••••"
                     value={loginData.password}
                     onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-                    className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] rounded-xl py-3 pl-10 pr-4 text-white text-xs placeholder-white/30 focus:outline-none transition-colors"
+                    className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-3 pl-10 pr-10 text-white text-xs placeholder-white/30 focus:outline-none transition-all"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowLoginPassword(!showLoginPassword)}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"
+                  >
+                    {showLoginPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
                 </div>
               </div>
 
@@ -167,10 +176,19 @@ export default function AuthModal() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full gold-glow-button py-3.5 rounded-xl text-xs font-bold text-[#020B2D] flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full gold-glow-button py-3.5 rounded-xl text-xs font-bold text-[#020B2D] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 transition-all hover:scale-[1.01]"
                 >
-                  {loading ? 'Authenticating...' : 'Log In to Account'}
-                  {!loading && <ArrowRight className="w-4 h-4" />}
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Authenticating...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Log In to Account</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </div>
             </form>
@@ -181,14 +199,14 @@ export default function AuthModal() {
                   Full Name *
                 </label>
                 <div className="relative">
-                  <User className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <User className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <input
                     type="text"
                     required
                     placeholder="e.g. Vikramaditya Sharma"
                     value={signupData.name}
                     onChange={(e) => setSignupData({ ...signupData, name: e.target.value })}
-                    className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] rounded-xl py-2.5 pl-10 pr-4 text-white text-xs placeholder-white/30 focus:outline-none transition-colors"
+                    className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-2.5 pl-10 pr-4 text-white text-xs placeholder-white/30 focus:outline-none transition-all"
                   />
                 </div>
               </div>
@@ -198,14 +216,14 @@ export default function AuthModal() {
                   Email Address *
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Mail className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <input
                     type="email"
                     required
                     placeholder="vikram@domain.com"
                     value={signupData.email}
                     onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
-                    className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] rounded-xl py-2.5 pl-10 pr-4 text-white text-xs placeholder-white/30 focus:outline-none transition-colors"
+                    className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-2.5 pl-10 pr-4 text-white text-xs placeholder-white/30 focus:outline-none transition-all"
                   />
                 </div>
               </div>
@@ -216,13 +234,13 @@ export default function AuthModal() {
                     Phone (Optional)
                   </label>
                   <div className="relative">
-                    <Phone className="w-4 h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <Phone className="w-4 h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                     <input
                       type="tel"
                       placeholder="+91 98765..."
                       value={signupData.phone}
                       onChange={(e) => setSignupData({ ...signupData, phone: e.target.value })}
-                      className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] rounded-xl py-2.5 pl-9 pr-3 text-white text-xs placeholder-white/30 focus:outline-none transition-colors"
+                      className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-2.5 pl-9 pr-3 text-white text-xs placeholder-white/30 focus:outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -232,13 +250,13 @@ export default function AuthModal() {
                     City (Optional)
                   </label>
                   <div className="relative">
-                    <MapPin className="w-4 h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <MapPin className="w-4 h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                     <input
                       type="text"
                       placeholder="e.g. Mumbai"
                       value={signupData.city}
                       onChange={(e) => setSignupData({ ...signupData, city: e.target.value })}
-                      className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] rounded-xl py-2.5 pl-9 pr-3 text-white text-xs placeholder-white/30 focus:outline-none transition-colors"
+                      className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-2.5 pl-9 pr-3 text-white text-xs placeholder-white/30 focus:outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -249,15 +267,22 @@ export default function AuthModal() {
                   Password (Min 8 Chars) *
                 </label>
                 <div className="relative">
-                  <Lock className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Lock className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <input
-                    type="password"
+                    type={showSignupPassword ? 'text' : 'password'}
                     required
                     placeholder="••••••••"
                     value={signupData.password}
                     onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
-                    className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] rounded-xl py-2.5 pl-10 pr-4 text-white text-xs placeholder-white/30 focus:outline-none transition-colors"
+                    className="w-full bg-[#020B2D]/90 border border-white/15 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-2.5 pl-10 pr-10 text-white text-xs placeholder-white/30 focus:outline-none transition-all"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowSignupPassword(!showSignupPassword)}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"
+                  >
+                    {showSignupPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
                 </div>
               </div>
 
@@ -265,10 +290,19 @@ export default function AuthModal() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full gold-glow-button py-3.5 rounded-xl text-xs font-bold text-[#020B2D] flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full gold-glow-button py-3.5 rounded-xl text-xs font-bold text-[#020B2D] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 transition-all hover:scale-[1.01]"
                 >
-                  {loading ? 'Creating Account...' : 'Register & Start Planning'}
-                  {!loading && <ArrowRight className="w-4 h-4" />}
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Creating Account...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Register & Start Planning</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </div>
             </form>
