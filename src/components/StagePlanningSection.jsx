@@ -125,9 +125,9 @@ export default function StagePlanningSection({ onOpenSearch }) {
   const [selectedStage, setSelectedStage] = useState(lifeStages[1]); // Default to First Salary
 
   return (
-    <section className="py-24 relative overflow-hidden bg-[#FDFBF7] border-y border-[#C89A4B]/20 text-left">
+    <section className="py-24 relative overflow-hidden bg-[#FCFAF6] border-y border-[#E7D7B5] text-left">
       {/* Background Ambient Glows */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-[#C89A4B]/8 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-[#C89B3C]/8 rounded-full blur-[180px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-14">
         
@@ -137,10 +137,10 @@ export default function StagePlanningSection({ onOpenSearch }) {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-xs font-semibold uppercase tracking-widest text-[#9A7326]"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5] text-xs font-semibold uppercase tracking-widest text-[#C89B3C]"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#C89A4B]" />
-            <span>LIFE STAGES ADVISORY ENGINE</span>
+            <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
+            <span className="font-bold">LIFE STAGES ADVISORY ENGINE</span>
           </motion.div>
 
           <motion.h2
@@ -148,10 +148,10 @@ export default function StagePlanningSection({ onOpenSearch }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-serif-luxury text-3xl sm:text-5xl font-bold text-[#0F172A] tracking-tight leading-tight"
+            className="font-serif-luxury text-3xl sm:text-5xl font-bold text-[#1A1A1A] tracking-tight leading-tight"
           >
             Stage Planning Across Your{' '}
-            <span className="gold-gradient-text italic font-serif-luxury">
+            <span className="text-[#C89B3C] italic font-serif-luxury">
               Financial Lifecycle.
             </span>
           </motion.h2>
@@ -161,18 +161,18 @@ export default function StagePlanningSection({ onOpenSearch }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-[#475569] font-normal leading-relaxed"
+            className="text-base sm:text-lg text-[#555555] font-normal leading-relaxed"
           >
             Every stage of life requires a distinct financial strategy. Explore our tailored wealth roadmap designed for your current life milestone.
           </motion.p>
         </div>
 
         {/* ------------------------------------------------------------- */}
-        {/* HORIZONTAL CONNECTED TIMELINE TRACK (DESKTOP & MOBILE RESPONSIVE) */}
+        {/* HORIZONTAL CONNECTED TIMELINE TRACK (ALL 7 STAGES CONTINUOUSLY CONNECTED) */}
         {/* ------------------------------------------------------------- */}
         <div className="relative pt-6 pb-2">
-          {/* Timeline Connecting Path Line */}
-          <div className="hidden lg:block absolute top-12 left-10 right-10 h-1 bg-gradient-to-r from-[#C89A4B]/40 via-[#D4AF37] to-[#C89A4B]/40 rounded-full -translate-y-1/2 opacity-60 z-0" />
+          {/* Continuous Gold Roadmap Connecting Line Passing Center Through ALL 7 Milestones */}
+          <div className="hidden lg:block absolute top-[46px] left-[6%] right-[6%] h-[3px] bg-gradient-to-r from-[#C89B3C] via-[#D4AF37] to-[#C89B3C] rounded-full z-0 opacity-80" />
 
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4 relative z-10">
             {lifeStages.map((stage) => {
@@ -187,23 +187,23 @@ export default function StagePlanningSection({ onOpenSearch }) {
                   whileHover={{ y: -6 }}
                   className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between relative group ${
                     isSelected
-                      ? 'bg-gradient-to-b from-white to-[#FAF7F2] border-[#C89A4B] shadow-[0_12px_35px_rgba(200,154,75,0.25)] ring-2 ring-[#C89A4B]/40'
-                      : 'bg-white/80 border-[#C89A4B]/20 hover:border-[#C89A4B]/50 hover:bg-white shadow-sm'
+                      ? 'bg-white border-[#C89B3C] shadow-lg ring-2 ring-[#C89B3C]/40'
+                      : 'bg-white/90 border-[#E7D7B5] hover:border-[#C89B3C] shadow-sm'
                   }`}
                 >
                   {/* Stage Icon */}
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center justify-between mb-3 relative z-10">
                     <div 
                       className={`w-11 h-11 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${
                         isSelected 
-                          ? 'bg-gradient-to-br from-[#D4AF37] via-[#C89A4B] to-[#9A7326] text-white shadow-md font-bold' 
-                          : 'bg-[#C89A4B]/10 text-[#9A7326]'
+                          ? 'bg-[#C89B3C] text-white shadow-md font-bold' 
+                          : 'bg-[#FCFAF6] text-[#C89B3C] border border-[#E7D7B5]'
                       }`}
                     >
                       <IconComp className="w-5 h-5" />
                     </div>
 
-                    <span className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#FAF7F2] text-[#9A7326] border border-[#C89A4B]/20">
+                    <span className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#FCFAF6] text-[#C89B3C] border border-[#E7D7B5]">
                       {stage.ageRange}
                     </span>
                   </div>
@@ -211,11 +211,11 @@ export default function StagePlanningSection({ onOpenSearch }) {
                   {/* Stage Title */}
                   <div>
                     <h3 className={`text-xs font-bold leading-snug transition-colors ${
-                      isSelected ? 'text-[#9A7326]' : 'text-[#0F172A] group-hover:text-[#9A7326]'
+                      isSelected ? 'text-[#C89B3C]' : 'text-[#1A1A1A] group-hover:text-[#C89B3C]'
                     }`}>
                       {stage.title.split('&')[0]}
                     </h3>
-                    <p className="text-[10px] text-[#64748B] font-light mt-0.5 truncate">
+                    <p className="text-[10px] text-[#555555] font-light mt-0.5 truncate">
                       {stage.subtitle}
                     </p>
                   </div>
