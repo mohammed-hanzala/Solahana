@@ -10,14 +10,14 @@ import {
 } from 'lucide-react';
 
 export default function HeroFintechIllustration({ onOpenSearch }) {
-  // 6 Floating Orbital Badges (matching client reference photo arc)
+  // 6 Floating Orbital Badges (Evenly distributed around 360° orbit with no overlaps)
   const circularNodes = [
-    { id: 'home', title: 'Dream Home', icon: Building2, symbol: '₹', angle: -140, radius: 210 },
-    { id: 'tax', title: 'Tax Saving', icon: FileText, symbol: '₹', angle: -85, radius: 230 },
-    { id: 'growth', title: 'Investments', icon: TrendingUp, symbol: '₹', angle: -25, radius: 210 },
-    { id: 'advisory', title: 'Expert Advisory', icon: MessageSquare, symbol: '₹', angle: 30, radius: 220 },
-    { id: 'insurance', title: 'Health Cover', icon: ShieldCheck, symbol: '₹', angle: 155, radius: 210 },
-    { id: 'retirement', title: 'Retirement FIRE', icon: Umbrella, symbol: '₹', angle: -200, radius: 220 },
+    { id: 'home', title: 'Dream Home', icon: Building2, symbol: '₹', angle: -150, radius: 210 },
+    { id: 'tax', title: 'Tax Saving', icon: FileText, symbol: '₹', angle: -90, radius: 220 },
+    { id: 'growth', title: 'Investments', icon: TrendingUp, symbol: '₹', angle: -30, radius: 210 },
+    { id: 'advisory', title: 'Expert Advisory', icon: MessageSquare, symbol: '₹', angle: 30, radius: 215 },
+    { id: 'insurance', title: 'Health Cover', icon: ShieldCheck, symbol: '₹', angle: 95, radius: 210 },
+    { id: 'retirement', title: 'Retirement FIRE', icon: Umbrella, symbol: '₹', angle: 160, radius: 215 },
   ];
 
   return (
