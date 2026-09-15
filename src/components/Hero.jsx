@@ -41,13 +41,13 @@ export default function Hero({ onOpenSearch }) {
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
-  // 6 Client-Approved Premium Storytelling Slides
+  // Client-Approved Premium Storytelling Slides
   const heroSlides = [
     {
       id: 'slide-1',
-      badge: 'YOUR GOALS. OUR PLAN.',
-      titleLine1: 'One Plan.',
-      titleLine2: 'Every Goal.',
+      badge: 'FINANCIAL PLANNING',
+      titleLine1: 'Your Money Deserves a Plan.',
+      titleLine2: 'Not Just an Investment.',
       scriptText: 'Fiduciary Advisory.',
       subtitle: 'From marriage to retirement, education to wealth creation — Solahana brings every financial goal into one personalised financial roadmap.',
       ctaText: 'Start Your Comprehensive Plan',
@@ -56,47 +56,47 @@ export default function Hero({ onOpenSearch }) {
     },
     {
       id: 'slide-2',
-      badge: 'TAX-EFFICIENT WEALTH',
-      titleLine1: 'Save Taxes.',
-      titleLine2: 'Build Wealth.',
-      scriptText: 'Smarter Strategy.',
-      subtitle: 'Optimize Section 80C, 80D, NPS and long-term tax planning with personalised tax-saving strategies designed for your financial goals.',
-      ctaText: 'Explore Tax Saving Plan',
-      ctaRoute: '/tax-planning',
-      emotion: 'Confidence. Savings.'
+      badge: 'WEALTH CREATION',
+      titleLine1: 'Saving Builds Security.',
+      titleLine2: 'Planning Builds Wealth.',
+      scriptText: 'Every Rupee Has A Job.',
+      subtitle: 'Personalised investment planning across SIPs, direct mutual funds, fixed income, emergency funds and compounding long-term wealth creation.',
+      ctaText: 'Build My Wealth Plan',
+      ctaRoute: '/investments',
+      emotion: 'Growth. Confidence.'
     },
     {
       id: 'slide-3',
-      badge: 'RETIREMENT ROADMAP',
-      titleLine1: 'Retire Rich.',
-      titleLine2: 'Live Freely.',
-      scriptText: 'Tomorrow Starts Today.',
-      subtitle: 'Build a retirement corpus with inflation-adjusted planning, SIP projections and long-term wealth creation strategies.',
+      badge: 'RETIREMENT PLANNING',
+      titleLine1: 'Retirement Is Not the End.',
+      titleLine2: 'It\'s the Freedom You Plan For.',
+      scriptText: 'Live Freely.',
+      subtitle: 'Build an inflation-adjusted retirement corpus with personalized drawdown planning, pension structuring, and long-term wealth freedom.',
       ctaText: 'Plan My Retirement',
       ctaRoute: '/calculators/retirement',
       emotion: 'Peace. Freedom.'
     },
     {
       id: 'slide-4',
-      badge: 'WEALTH CREATION',
-      titleLine1: 'Invest With Purpose.',
-      titleLine2: 'Grow With Confidence.',
-      scriptText: 'Every Rupee Has A Job.',
-      subtitle: 'Personalised investment planning across SIPs, mutual funds, fixed income, emergency funds and long-term wealth creation.',
-      ctaText: 'Build My Investment Plan',
-      ctaRoute: '/investments',
-      emotion: 'Growth. Confidence.'
-    },
-    {
-      id: 'slide-5',
-      badge: 'LIFE GOALS PLANNING',
-      titleLine1: 'Every Dream.',
-      titleLine2: 'Financially Planned.',
+      badge: 'FINANCIAL GOALS',
+      titleLine1: 'Dreams Need More Than Hope.',
+      titleLine2: 'They Need a Plan.',
       scriptText: 'Together We Grow.',
       subtitle: 'Marriage, children\'s education, home purchase, emergency fund and every important milestone planned through one financial strategy.',
       ctaText: 'Plan My Family Goals',
       ctaRoute: '/goals',
       emotion: 'Security. Family. Future.'
+    },
+    {
+      id: 'slide-5',
+      badge: 'TAX PLANNING',
+      titleLine1: 'Save Taxes Legally.',
+      titleLine2: 'Compound Wealth Faster.',
+      scriptText: 'Smarter Strategy.',
+      subtitle: 'Optimize Section 80C, 80D, NPS and long-term tax harvesting with personalised tax-saving strategies designed for your financial goals.',
+      ctaText: 'Explore Tax Advisory',
+      ctaRoute: '/tax-planning',
+      emotion: 'Confidence. Savings.'
     },
     {
       id: 'slide-6',
