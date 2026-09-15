@@ -10,18 +10,18 @@ import {
 } from 'lucide-react';
 
 export default function HeroFintechIllustration({ onOpenSearch }) {
-  // Constant Orbit Radius (215px) for a Perfect Circular Orbit (Diameter 430px)
-  const ORBIT_RADIUS = 215;
+  // Constant Orbit Radius (205px) for a Perfect Circular Orbit (Diameter 410px)
+  const ORBIT_RADIUS = 205;
 
   // 6 Floating Orbital Badges placed at exact Clock Positions (60° Spacing)
-  // 12 O'Clock (-90°), 2 O'Clock (-30°), 4 O'Clock (30°), 6 O'Clock (90°), 8 O'Clock (150°), 10 O'Clock (-150°)
+  // Top 3 labels sit ABOVE (bottom-full), Bottom 3 labels sit BELOW (top-full) for 100% radial symmetry outside orbit ring
   const circularNodes = [
-    { id: 'tax', title: 'Tax Saving', icon: FileText, symbol: '₹', angle: -90, clock: "12 O'Clock" },
-    { id: 'growth', title: 'Investments', icon: TrendingUp, symbol: '₹', angle: -30, clock: "2 O'Clock" },
-    { id: 'advisory', title: 'Expert Advisory', icon: MessageSquare, symbol: '₹', angle: 30, clock: "4 O'Clock" },
-    { id: 'insurance', title: 'Health Cover', icon: ShieldCheck, symbol: '₹', angle: 90, clock: "6 O'Clock" },
-    { id: 'retirement', title: 'Retirement FIRE', icon: Umbrella, symbol: '₹', angle: 150, clock: "8 O'Clock" },
-    { id: 'home', title: 'Dream Home', icon: Building2, symbol: '₹', angle: -150, clock: "10 O'Clock" },
+    { id: 'tax', title: 'Tax Saving', icon: FileText, symbol: '₹', angle: -90, labelPos: 'above' },
+    { id: 'growth', title: 'Investments', icon: TrendingUp, symbol: '₹', angle: -30, labelPos: 'above' },
+    { id: 'advisory', title: 'Expert Advisory', icon: MessageSquare, symbol: '₹', angle: 30, labelPos: 'below' },
+    { id: 'insurance', title: 'Health Cover', icon: ShieldCheck, symbol: '₹', angle: 90, labelPos: 'below' },
+    { id: 'retirement', title: 'Retirement FIRE', icon: Umbrella, symbol: '₹', angle: 150, labelPos: 'below' },
+    { id: 'home', title: 'Dream Home', icon: Building2, symbol: '₹', angle: -150, labelPos: 'above' },
   ];
 
   return (
@@ -32,14 +32,14 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
       {/* ------------------------------------------------------------- */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         {/* Soft Radial Gold & Blue Backlight Glow */}
-        <div className="w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-[#38BDF8]/15 via-[#C89B3C]/20 to-transparent blur-[90px] animate-pulse-glow" />
+        <div className="w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[#38BDF8]/15 via-[#C89B3C]/20 to-transparent blur-[90px] animate-pulse-glow" />
         
-        {/* ONE CLEAN GOLD DOTTED CIRCULAR ORBIT (Diameter 430px = 2 * 215px radius) */}
+        {/* ONE CLEAN GOLD DOTTED CIRCULAR ORBIT (Diameter 410px = 2 * 205px radius) */}
         {/* Perfectly centered around illustration, matching badge centers */}
-        <div className="absolute w-[430px] h-[430px] rounded-full border-2 border-dotted border-[#C89B3C]/50 animate-spin-slow" />
+        <div className="absolute w-[410px] h-[410px] rounded-full border-2 border-dashed border-[#C89B3C]/40 animate-spin-slow" />
         
         {/* Inner Guide Ring */}
-        <div className="absolute w-[320px] h-[320px] rounded-full border border-[#0F172A]/10" />
+        <div className="absolute w-[300px] h-[300px] rounded-full border border-[#0F172A]/10" />
       </div>
 
       {/* ------------------------------------------------------------- */}
@@ -47,10 +47,11 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
       {/* ------------------------------------------------------------- */}
       {circularNodes.map((node, index) => {
         const Icon = node.icon;
-        // Calculate exact Cartesian coordinates on circumference (radius = 215px)
+        // Calculate exact Cartesian coordinates on circumference (radius = 205px)
         const rad = (node.angle * Math.PI) / 180;
         const x = Math.cos(rad) * ORBIT_RADIUS;
         const y = Math.sin(rad) * ORBIT_RADIUS;
+        const isLabelAbove = node.labelPos === 'above';
 
         return (
           <motion.div
@@ -60,7 +61,7 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
             transition={{ duration: 0.6, delay: index * 0.08 }}
             whileHover={{ scale: 1.15 }}
             onClick={onOpenSearch}
-            className="absolute z-30 cursor-pointer group flex flex-col items-center justify-center"
+            className="absolute z-30 cursor-pointer group flex flex-col items-center justify-center pointer-events-auto"
             style={{
               left: `calc(50% + ${x}px)`,
               top: `calc(50% + ${y}px)`,
@@ -79,8 +80,12 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
               </div>
             </div>
 
-            {/* Label Tooltip Badge (Positioned below badge without shifting circle center) */}
-            <span className="absolute top-full mt-2 text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center pointer-events-none">
+            {/* Label Tooltip Badge (Positioned radially OUTSIDE orbit ring: ABOVE for top 3, BELOW for bottom 3) */}
+            <span 
+              className={`absolute ${
+                isLabelAbove ? 'bottom-full mb-2' : 'top-full mt-2'
+              } text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center pointer-events-none`}
+            >
               {node.title}
             </span>
           </motion.div>
