@@ -572,17 +572,17 @@ export default function AdminDashboardPage() {
   };
 
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-[#020B2D] text-[#F8F7F3] flex flex-col md:flex-row">
+    <div className="pt-24 pb-20 min-h-screen bg-[#FDFBF7] text-[#0F172A] flex flex-col md:flex-row">
       {/* Sidebar Layout */}
-      <aside className="w-full md:w-64 bg-[#071C48]/60 border-r border-[#C8A24A]/20 p-6 flex flex-col justify-between shrink-0">
+      <aside className="w-full md:w-64 bg-white border-r border-[#C89A4B]/20 p-6 flex flex-col justify-between shrink-0 shadow-sm">
         <div className="space-y-6">
           {/* Admin Info */}
-          <div className="p-4 rounded-2xl bg-[#020B2D] border border-[#C8A24A]/30 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#C8A24A]/20 border border-[#C8A24A]/40 flex items-center justify-center text-[#E8C878] font-bold">
+          <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#C89A4B]/30 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 flex items-center justify-center text-[#9A7326] font-bold">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div className="overflow-hidden">
-              <div className="text-xs font-bold text-white truncate">{currentUser?.name || 'Administrator'}</div>
+              <div className="text-xs font-bold text-[#0F172A] truncate">{currentUser?.name || 'Administrator'}</div>
               <div className="text-[10px] text-[#E8C878] uppercase font-mono tracking-wider">
                 {currentUser?.role || 'Admin'}
               </div>

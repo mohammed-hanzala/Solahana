@@ -1,77 +1,60 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Lock, Mail, ArrowRight, AlertCircle, Loader2, ShieldCheck, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, ShieldCheck, ArrowRight, AlertCircle, Loader2, Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError(null);
     setLoading(true);
 
     try {
-      const res = await login({ email, password, isAdminLogin: false });
-
-      if (!res.success) {
-        setError(res.message || 'Login failed.');
-        setLoading(false);
-        return;
-      }
-
-      // Ensure user login page NEVER redirects to admin dashboard
-      if (res.user?.role === 'admin' || res.user?.role === 'advisor') {
-        setError('Administrator accounts must sign in from the Admin Portal.');
-        setLoading(false);
-        return;
-      }
-
-      // Successful normal user login -> Navigate strictly to user dashboard
+      await login(email, password);
       navigate('/dashboard');
     } catch (err) {
-      console.error('[User Login Error]:', err);
-      setError(
-        err.response?.data?.message || err.message || 'Invalid email or password.'
-      );
+      setError(err.response?.data?.message || err.message || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-20 bg-[#020B2D] text-[#F8F7F3] flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-28 pb-20 bg-[#FDFBF7] text-[#0F172A] flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="w-full max-w-md bg-gradient-to-b from-[#071C48] via-[#041238] to-[#020B2D] border border-[#C8A24A]/35 rounded-3xl p-8 shadow-[0_20px_50px_rgba(2,11,45,0.9)] text-left relative overflow-hidden backdrop-blur-xl"
+        className="w-full max-w-md bg-white/95 border border-[#C89A4B]/35 rounded-3xl p-8 shadow-[0_20px_50px_rgba(200,154,75,0.15)] text-left relative overflow-hidden backdrop-blur-xl"
       >
         {/* Ambient Decorative Lighting */}
-        <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#C8A24A]/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[2px] bg-gradient-to-r from-transparent via-[#C8A24A] to-transparent" />
+        <div className="absolute -top-24 -left-24 w-48 h-48 bg-[#C89A4B]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[2.5px] bg-gradient-to-r from-transparent via-[#C89A4B] to-transparent" />
 
         {/* Emblem */}
-        <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#C8A24A]/15 border border-[#C8A24A]/40 flex items-center justify-center text-[#E8C878] shadow-[0_0_20px_rgba(200,162,74,0.3)]">
+        <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 flex items-center justify-center text-[#9A7326] shadow-sm">
           <ShieldCheck className="w-8 h-8" />
         </div>
 
         {/* Title */}
         <div className="text-center space-y-2 mb-8">
-          <span className="text-[10px] uppercase font-mono tracking-widest text-[#E8C878] px-3.5 py-1 rounded-full bg-[#C8A24A]/10 border border-[#C8A24A]/30">
+          <span className="text-[10px] uppercase font-mono tracking-widest text-[#9A7326] px-3.5 py-1 rounded-full bg-[#C89A4B]/10 border border-[#C89A4B]/30">
             SOLAHANA CLIENT PORTAL
           </span>
-          <h1 className="font-serif-luxury text-3xl font-bold text-white tracking-tight">
+          <h1 className="font-serif-luxury text-3xl font-bold text-[#0F172A] tracking-tight">
             Client Login
           </h1>
-          <p className="text-xs text-white/70 font-light leading-relaxed">
+          <p className="text-xs text-[#64748B] font-light leading-relaxed">
             Sign in to access your personalized wealth planning dashboard, saved calculations, and consultation history.
           </p>
         </div>
@@ -81,9 +64,9 @@ export default function LoginPage() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs flex items-start gap-3"
+            className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-3"
           >
-            <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+            <AlertCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
             <span>{error}</span>
           </motion.div>
         )}
@@ -91,40 +74,40 @@ export default function LoginPage() {
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-xs font-semibold text-white/90 mb-2">
+            <label className="block text-xs font-semibold text-[#0F172A] mb-2">
               Email Address
             </label>
             <div className="relative">
-              <Mail className="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <Mail className="w-4 h-4 text-[#94A3B8] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="email"
                 required
                 placeholder="name@domain.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#020B2D]/90 border border-white/20 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-3 pl-11 pr-4 text-white text-xs placeholder-white/40 focus:outline-none transition-all"
+                className="w-full bg-[#FAF8F5] border border-[#C89A4B]/30 focus:border-[#C89A4B] focus:ring-2 focus:ring-[#C89A4B]/20 rounded-xl py-3 pl-11 pr-4 text-[#0F172A] text-xs placeholder-[#94A3B8] focus:outline-none transition-all"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-white/90 mb-2">
+            <label className="block text-xs font-semibold text-[#0F172A] mb-2">
               Password
             </label>
             <div className="relative">
-              <Lock className="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <Lock className="w-4 h-4 text-[#94A3B8] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type={showPassword ? 'text' : 'password'}
                 required
                 placeholder="••••••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-[#020B2D]/90 border border-white/20 focus:border-[#C8A24A] focus:ring-2 focus:ring-[#C8A24A]/25 rounded-xl py-3 pl-11 pr-11 text-white text-xs placeholder-white/40 focus:outline-none transition-all"
+                className="w-full bg-[#FAF8F5] border border-[#C89A4B]/30 focus:border-[#C89A4B] focus:ring-2 focus:ring-[#C89A4B]/20 rounded-xl py-3 pl-11 pr-11 text-[#0F172A] text-xs placeholder-[#94A3B8] focus:outline-none transition-all"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#94A3B8] hover:text-[#0F172A] transition-colors"
                 title={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -135,7 +118,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 mt-2 rounded-xl gold-glow-button font-bold text-xs text-[#020B2D] flex items-center justify-center gap-2 cursor-pointer shadow-lg disabled:opacity-50 transition-all hover:scale-[1.01] active:scale-[0.99]"
+            className="w-full py-3.5 mt-2 rounded-xl gold-glow-button font-bold text-xs text-white flex items-center justify-center gap-2 cursor-pointer shadow-lg disabled:opacity-50 transition-all hover:scale-[1.01] active:scale-[0.99]"
           >
             {loading ? (
               <>
@@ -151,15 +134,15 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <div className="mt-8 text-center border-t border-white/10 pt-4 space-y-2">
-          <p className="text-[11px] text-white/50">
+        <div className="mt-8 text-center border-t border-[#C89A4B]/15 pt-4 space-y-2">
+          <p className="text-[11px] text-[#64748B]">
             Are you an administrator?{' '}
             <button
               type="button"
               onClick={() => navigate('/admin/login')}
-              className="text-[#E8C878] font-semibold hover:underline cursor-pointer"
+              className="text-[#9A7326] font-semibold hover:underline cursor-pointer"
             >
-              Go to Admin Portal →
+              Admin Portal Login →
             </button>
           </p>
         </div>

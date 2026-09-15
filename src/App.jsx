@@ -73,7 +73,7 @@ export default function App() {
   return (
     <AuthProvider>
       <ScrollToTopAndSEO />
-      <div className="relative min-h-screen bg-[#020B2D] text-[#F8F7F3] selection:bg-[#C8A24A]/30 selection:text-[#E8C878]">
+      <div className="relative min-h-screen bg-[#FDFBF7] text-[#0F172A] selection:bg-[#C89A4B]/20 selection:text-[#9A7326]">
         {/* Background Visual Layer */}
         <BackgroundEffects />
 

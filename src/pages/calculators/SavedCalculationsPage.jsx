@@ -201,7 +201,7 @@ export default function SavedCalculationsPage() {
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-20 bg-[#020B2D] text-[#F8F7F3] relative overflow-hidden text-left">
+    <div className="min-h-screen pt-28 pb-20 bg-[#FDFBF7] text-[#0F172A] relative overflow-hidden text-left">
       {/* Background Lighting */}
       <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-[#C8A24A]/10 rounded-full blur-[140px] pointer-events-none" />
 

@@ -60,9 +60,9 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
               transform: 'translate(-50%, -50%)',
             }}
           >
-            {/* Dark Navy Circular Badge with Gold/Cyan Border */}
-            <div className="relative w-14 h-14 rounded-full bg-[#0F172A] border-2 border-[#C89A4B]/60 shadow-[0_10px_25px_rgba(15,23,42,0.4)] group-hover:border-[#E5C158] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.45)] transition-all flex items-center justify-center">
-              <Icon className="w-6 h-6 text-[#E8C878] group-hover:text-white transition-colors" />
+            {/* White & Gold Circular Badge */}
+            <div className="relative w-14 h-14 rounded-full bg-white border-2 border-[#C89A4B] shadow-[0_10px_25px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.4)] transition-all flex items-center justify-center">
+              <Icon className="w-6 h-6 text-[#9A7326] group-hover:text-[#C89A4B] transition-colors" />
               
               {/* Rupee Symbol Badge */}
               <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-gradient-to-r from-[#C89A4B] to-[#9A7326] text-white text-[10px] font-bold flex items-center justify-center border border-white shadow">

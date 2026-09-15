@@ -14,7 +14,7 @@ export const ContactPage = ({ onNavigate }) => {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#020B2D] text-white selection:bg-[#C8A24A]/30 selection:text-[#E8C878]">
+    <main className="min-h-screen bg-[#FDFBF7] text-[#0F172A] selection:bg-[#C89A4B]/20 selection:text-[#9A7326]">
       {/* 1. Hero Banner */}
       <ContactHero />
 
