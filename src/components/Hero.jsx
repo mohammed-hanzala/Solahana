@@ -28,7 +28,6 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 
 import HeroFintechIllustration from './illustrations/HeroFintechIllustration';
-import FinancialRoadmapIllustration from './illustrations/FinancialRoadmapIllustration';
 import TaxPlanningIllustration from './illustrations/TaxPlanningIllustration';
 import InvestmentPortfolioIllustration from './illustrations/InvestmentPortfolioIllustration';
 import RetirementIllustration from './illustrations/RetirementIllustration';
@@ -331,12 +330,6 @@ export default function Hero({ onOpenSearch }) {
 
         </div>
 
-        {/* ------------------------------------------------------------- */}
-        {/* INTERACTIVE 7-STAGE FINANCIAL JOURNEY ROADMAP                 */}
-        {/* ------------------------------------------------------------- */}
-        <div className="mt-12 sm:mt-16 w-full">
-          <FinancialRoadmapIllustration />
-        </div>
       </div>
 
       {/* ========================================================= */}
