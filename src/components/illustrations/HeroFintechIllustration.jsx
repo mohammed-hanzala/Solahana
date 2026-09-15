@@ -58,17 +58,19 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: index * 0.08 }}
-            whileHover={{ scale: 1.15, y: -4 }}
+            whileHover={{ scale: 1.15 }}
             onClick={onOpenSearch}
-            className="absolute z-30 cursor-pointer group flex flex-col items-center"
+            className="absolute z-30 cursor-pointer group flex flex-col items-center justify-center"
             style={{
               left: `calc(50% + ${x}px)`,
               top: `calc(50% + ${y}px)`,
+              width: '56px',
+              height: '56px',
               transform: 'translate(-50%, -50%)',
             }}
           >
-            {/* White & Gold Circular Badge (Touches orbit line perfectly at center) */}
-            <div className="relative w-14 h-14 rounded-full bg-white border-2 border-[#C89B3C] shadow-[0_10px_25px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.4)] transition-all flex items-center justify-center">
+            {/* White & Gold Circular Badge (Center sits 100% ON the gold dotted orbit line) */}
+            <div className="relative w-14 h-14 rounded-full bg-white border-2 border-[#C89B3C] shadow-[0_10px_25px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.4)] transition-all flex items-center justify-center shrink-0">
               <Icon className="w-6 h-6 text-[#9A7326] group-hover:text-[#C89B3C] transition-colors" />
               
               {/* Rupee Symbol Badge */}
@@ -77,8 +79,8 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
               </div>
             </div>
 
-            {/* Label Tooltip Badge */}
-            <span className="mt-1.5 text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center">
+            {/* Label Tooltip Badge (Positioned below badge without shifting circle center) */}
+            <span className="absolute top-full mt-2 text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center pointer-events-none">
               {node.title}
             </span>
           </motion.div>
