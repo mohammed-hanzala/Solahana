@@ -4,10 +4,11 @@ import {
   GraduationCap, 
   Briefcase, 
   HeartHandshake, 
-  Users, 
   Building2, 
   TrendingUp, 
   Umbrella,
+  ShieldCheck,
+  Scroll,
   ArrowRight,
   CheckCircle2,
   Sparkles
@@ -15,114 +16,139 @@ import {
 
 const lifeStages = [
   {
-    id: 'student',
-    title: 'Student & Early Career',
-    subtitle: 'Financial Foundations',
+    id: 'education',
+    title: 'Education',
+    fullTitle: 'Education & Early Foundation',
+    subtitle: 'Financial Discipline',
     ageRange: 'Age 18 - 23',
     icon: GraduationCap,
-    summary: 'Build early money discipline, master basic budgeting, and set up your first emergency reserve.',
+    summary: 'Build early money discipline, master basic budgeting, and set up your first liquid emergency reserve.',
     keyActions: [
       'Learn compound interest mechanics',
       'Create zero-debt budgeting habits',
-      'Build initial ₹25k-₹50k emergency buffer',
+      'Build initial emergency buffer',
       'Open first Direct Mutual Fund SIP'
     ],
     targetFocus: 'Financial Literacy & Discipline'
   },
   {
-    id: 'first-salary',
-    title: 'First Salary & Career Start',
+    id: 'career',
+    title: 'Career',
+    fullTitle: 'First Salary & Career Start',
     subtitle: 'Wealth Acceleration',
     ageRange: 'Age 24 - 28',
     icon: Briefcase,
-    summary: 'Channel 20-30% of salary directly into automated goal SIPs before discretionary expenses.',
+    summary: 'Channel 20-30% of your rising salary directly into automated goal-based SIPs before discretionary expenses.',
     keyActions: [
       'Automate monthly 80C & 80D tax planning',
       'Construct 6-month liquid emergency fund',
-      'Purchase early term life & health insurance',
+      'Purchase early term life insurance cover',
       'Initiate equity-focused long-term SIPs'
     ],
     targetFocus: 'Savings Rate & Risk Protection'
   },
   {
     id: 'marriage',
-    title: 'Marriage & Partnership',
-    subtitle: 'Joint Goal Alignment',
+    title: 'Marriage',
+    fullTitle: 'Marriage & Partnership',
+    subtitle: 'Joint Life Planning',
     ageRange: 'Age 28 - 32',
     icon: HeartHandshake,
     summary: 'Consolidate joint financial goals, combine risk coverage, and map short-term milestone budgets.',
     keyActions: [
       'Create shared household budget system',
       'Upgrade family floater health insurance',
-      'Set dedicated wedding & honeymoon reserve',
+      'Set dedicated wedding & milestone reserve',
       'Align joint long-term wealth targets'
     ],
     targetFocus: 'Joint Security & Protection'
   },
   {
-    id: 'family',
-    title: 'Family & Children',
-    subtitle: 'Child Future Planning',
-    ageRange: 'Age 32 - 38',
-    icon: Users,
-    summary: 'Secure children higher education corpus with inflation-adjusted step-up mutual fund plans.',
-    keyActions: [
-      'Lock in ₹50L-₹1Cr education fund target',
-      'Increase term insurance to 15x annual income',
-      'Add super top-up health insurance buffer',
-      'Establish annual tax-efficient gifting strategy'
-    ],
-    targetFocus: 'Education & Family Resilience'
-  },
-  {
-    id: 'home',
-    title: 'Home Purchase & Assets',
-    subtitle: 'Real Estate & Debt Optimization',
-    ageRange: 'Age 35 - 45',
+    id: 'property',
+    title: 'Property',
+    fullTitle: 'Home Purchase & Assets',
+    subtitle: 'Real Estate & Assets',
+    ageRange: 'Age 32 - 40',
     icon: Building2,
-    summary: 'Structure home loan down payments without liquidating emergency or retirement reserves.',
+    summary: 'Structure home loan down payments and real estate investments without liquidating core equity reserves.',
     keyActions: [
       'Compute 20%+ home down payment buffer',
       'Maintain EMI under 35% of net income',
       'Pre-pay home loan principal strategically',
-      'Protect property with home insurance cover'
+      'Protect property with comprehensive home cover'
     ],
     targetFocus: 'Asset Creation & Debt Control'
   },
   {
-    id: 'accumulation',
-    title: 'Peak Wealth Accumulation',
-    subtitle: 'Tax Harvesting & Multi-Asset',
-    ageRange: 'Age 45 - 55',
+    id: 'wealth',
+    title: 'Wealth Creation',
+    fullTitle: 'Peak Wealth Accumulation',
+    subtitle: 'Tax Harvesting & Growth',
+    ageRange: 'Age 40 - 50',
     icon: TrendingUp,
-    summary: 'Harvest annual LTCG tax exemptions, balance debt-to-equity ratio, and prepare for FIRE transition.',
+    summary: 'Harvest annual LTCG tax exemptions, balance debt-to-equity ratio, and accelerate portfolio compounding.',
     keyActions: [
       'Rebalance portfolio equity-to-debt ratio',
       'Harvest ₹1.25L annual LTCG tax exemption',
       'Maximize NPS & corporate superannuation',
-      'Stress-test retirement FIRE corpus numbers'
+      'Stress-test target FIRE wealth numbers'
     ],
     targetFocus: 'Tax Harvesting & Capital Growth'
   },
   {
     id: 'retirement',
-    title: 'Retirement & Legacy Transfer',
-    subtitle: 'FIRE & Estate Planning',
-    ageRange: 'Age 55+',
+    title: 'Retirement',
+    fullTitle: 'Retirement & SWP Stream',
+    subtitle: 'FIRE & Cashflow',
+    ageRange: 'Age 50 - 58',
     icon: Umbrella,
-    summary: 'Generate predictable inflation-adjusted monthly pension via Systematic Withdrawal Plans (SWPs).',
+    summary: 'Generate predictable inflation-adjusted monthly pension via Systematic Withdrawal Plans (SWP).',
     keyActions: [
       'Establish SWP monthly payout stream',
       'Maintain 3-year liquid debt ladder buffer',
-      'Draft legally binding Will & Estate Trust',
-      'Ensure smooth multi-generational transfer'
+      'Structure inflation-proof pension pool',
+      'Optimize tax-free retirement corpus'
     ],
-    targetFocus: 'Passive Cashflow & Legacy Transfer'
+    targetFocus: 'Passive Cashflow & FIRE'
+  },
+  {
+    id: 'health',
+    title: 'Health Protection',
+    fullTitle: 'Health & Medical Cover',
+    subtitle: 'Healthcare Shield',
+    ageRange: 'Age 55 - 65',
+    icon: ShieldCheck,
+    summary: 'Protect accumulated wealth against medical inflation with senior top-up health policies and dedicated medical reserves.',
+    keyActions: [
+      'Lock in senior top-up health insurance',
+      'Create dedicated critical illness reserve',
+      'Set up emergency hospital liquidity pool',
+      'Review annual health coverage benefits'
+    ],
+    targetFocus: 'Health Shield & Capital Protection'
+  },
+  {
+    id: 'estate',
+    title: 'Estate Planning',
+    fullTitle: 'Estate & Legacy Transfer',
+    subtitle: 'Will & Trust Succession',
+    ageRange: 'Age 60+',
+    icon: Scroll,
+    summary: 'Ensure seamless multi-generational wealth transfer through legally binding registered Wills and Private Family Trusts.',
+    keyActions: [
+      'Draft legally binding registered Will',
+      'Establish Private Family Trust structure',
+      'Assign updated nominees across all assets',
+      'Plan tax-efficient wealth succession transfer'
+    ],
+    targetFocus: 'Legacy Transfer & Will Trust'
   }
 ];
 
 export default function StagePlanningSection({ onOpenSearch }) {
-  const [selectedStage, setSelectedStage] = useState(lifeStages[1]); // Default to First Salary
+  const [selectedStage, setSelectedStage] = useState(lifeStages[1]); // Default to Career
+
+  const selectedIndex = lifeStages.findIndex(s => s.id === selectedStage.id);
 
   return (
     <section className="py-24 relative overflow-hidden bg-[#FCFAF6] border-y border-[#E7D7B5] text-left">
@@ -163,59 +189,81 @@ export default function StagePlanningSection({ onOpenSearch }) {
             transition={{ delay: 0.2 }}
             className="text-base sm:text-lg text-[#555555] font-normal leading-relaxed"
           >
-            Every stage of life requires a distinct financial strategy. Explore our tailored wealth roadmap designed for your current life milestone.
+            Every stage of life requires a distinct financial strategy. Explore our 8-stage continuous wealth roadmap designed for your life milestones.
           </motion.p>
         </div>
 
         {/* ------------------------------------------------------------- */}
-        {/* HORIZONTAL CONNECTED TIMELINE TRACK (ALL 7 STAGES CONTINUOUSLY CONNECTED) */}
+        {/* HORIZONTAL CONNECTED TIMELINE TRACK (ALL 8 STAGES CONTINUOUSLY CONNECTED) */}
         {/* ------------------------------------------------------------- */}
-        <div className="relative pt-6 pb-2">
-          {/* Continuous Gold Roadmap Connecting Line Passing Center Through ALL 7 Milestones */}
-          <div className="hidden lg:block absolute top-[46px] left-[6%] right-[6%] h-[3px] bg-gradient-to-r from-[#C89B3C] via-[#D4AF37] to-[#C89B3C] rounded-full z-0 opacity-80" />
+        <div className="relative pt-4 pb-2">
+          {/* Desktop 8-Column Continuous Trace Line */}
+          <div className="hidden lg:block absolute top-[36px] left-[6.25%] right-[6.25%] h-[3px] pointer-events-none z-0">
+            {/* Base Metallic Gold Track */}
+            <div className="w-full h-full bg-gradient-to-r from-[#E7D7B5] via-[#C89B3C]/40 to-[#E7D7B5] rounded-full shadow-sm" />
+            
+            {/* Active Illuminated Gold Progress Path */}
+            <motion.div 
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#C89B3C] via-[#E5C158] to-[#9A7326] rounded-full shadow-[0_0_12px_rgba(200,154,75,0.6)]"
+              initial={false}
+              animate={{
+                width: `${(selectedIndex / (lifeStages.length - 1)) * 100}%`
+              }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+            />
+          </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4 relative z-10">
-            {lifeStages.map((stage) => {
+          {/* 8 Milestone Grid Layout */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 sm:gap-3 lg:gap-3.5 relative z-10">
+            {lifeStages.map((stage, idx) => {
               const IconComp = stage.icon;
               const isSelected = selectedStage.id === stage.id;
+              const isPassed = idx <= selectedIndex;
 
               return (
                 <motion.button
                   key={stage.id}
                   type="button"
                   onClick={() => setSelectedStage(stage)}
-                  whileHover={{ y: -6 }}
-                  className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between relative group ${
+                  whileHover={{ y: -5 }}
+                  className={`p-3.5 sm:p-4 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-between relative group ${
                     isSelected
                       ? 'bg-white border-[#C89B3C] shadow-lg ring-2 ring-[#C89B3C]/40'
-                      : 'bg-white/90 border-[#E7D7B5] hover:border-[#C89B3C] shadow-sm'
+                      : 'bg-white/95 border-[#E7D7B5] hover:border-[#C89B3C] shadow-sm'
                   }`}
                 >
-                  {/* Stage Icon */}
-                  <div className="flex items-center justify-between mb-3 relative z-10">
+                  {/* Top Icon Badge Header */}
+                  <div className="relative mb-2 flex flex-col items-center">
                     <div 
-                      className={`w-11 h-11 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${
+                      className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
                         isSelected 
-                          ? 'bg-[#C89B3C] text-white shadow-md font-bold' 
-                          : 'bg-[#FCFAF6] text-[#C89B3C] border border-[#E7D7B5]'
+                          ? 'bg-gradient-to-br from-[#E5C158] via-[#C89B3C] to-[#9A7326] text-white shadow-md font-bold scale-110' 
+                          : isPassed
+                            ? 'bg-[#C89B3C]/15 text-[#9A7326] border border-[#C89B3C]'
+                            : 'bg-[#FCFAF6] text-[#C89B3C] border border-[#E7D7B5] group-hover:border-[#C89B3C]'
                       }`}
                     >
                       <IconComp className="w-5 h-5" />
                     </div>
 
-                    <span className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#FCFAF6] text-[#C89B3C] border border-[#E7D7B5]">
+                    {/* Age Range Badge Pill */}
+                    <span className={`text-[9px] font-mono font-bold mt-2 px-2 py-0.5 rounded-full border ${
+                      isSelected
+                        ? 'bg-[#C89B3C] text-white border-[#9A7326]'
+                        : 'bg-[#FCFAF6] text-[#C89B3C] border-[#E7D7B5]'
+                    }`}>
                       {stage.ageRange}
                     </span>
                   </div>
 
-                  {/* Stage Title */}
-                  <div>
-                    <h3 className={`text-xs font-bold leading-snug transition-colors ${
+                  {/* Title & Subtitle */}
+                  <div className="w-full text-center">
+                    <h3 className={`text-xs font-bold font-serif-luxury leading-tight transition-colors ${
                       isSelected ? 'text-[#C89B3C]' : 'text-[#1A1A1A] group-hover:text-[#C89B3C]'
                     }`}>
-                      {stage.title.split('&')[0]}
+                      {stage.title}
                     </h3>
-                    <p className="text-[10px] text-[#555555] font-light mt-0.5 truncate">
+                    <p className="text-[10px] text-[#64748B] font-light mt-0.5 truncate">
                       {stage.subtitle}
                     </p>
                   </div>
@@ -253,7 +301,7 @@ export default function StagePlanningSection({ onOpenSearch }) {
 
               <div>
                 <h3 className="font-serif-luxury text-2xl sm:text-4xl font-bold text-[#0F172A] tracking-tight">
-                  {selectedStage.title}
+                  {selectedStage.fullTitle}
                 </h3>
                 <p className="text-sm sm:text-base text-[#475569] font-normal leading-relaxed mt-3">
                   {selectedStage.summary}
@@ -282,7 +330,7 @@ export default function StagePlanningSection({ onOpenSearch }) {
                   onClick={onOpenSearch}
                   className="gold-glow-button px-7 py-3.5 rounded-full text-xs font-bold tracking-wide flex items-center space-x-2 cursor-pointer shadow-lg"
                 >
-                  <span>Build {selectedStage.title.split('&')[0]} Plan</span>
+                  <span>Build {selectedStage.title} Plan</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
