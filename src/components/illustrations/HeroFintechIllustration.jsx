@@ -1,41 +1,42 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Building2, 
+  GraduationCap, 
+  Coins, 
+  Umbrella, 
+  Heart, 
   FileText, 
-  TrendingUp, 
-  MessageSquare, 
-  ShieldCheck, 
-  Umbrella
+  Building2, 
+  HeartHandshake 
 } from 'lucide-react';
 
 export default function HeroFintechIllustration({ onOpenSearch }) {
-  // Constant Orbit Radius (195px) for a Perfect Circular Orbit (Diameter 390px)
-  const ORBIT_RADIUS = 195;
+  // Constant Orbit Radius (235px) - Exact match for Retirement & all 7 orbital nodes
+  const ORBIT_RADIUS = 235;
 
-  // 6 Floating Orbital Badges placed at exact Clock Positions (60° Spacing)
-  // Top 3 labels sit ABOVE (bottom-full), Bottom 3 labels sit BELOW (top-full) for 100% radial symmetry outside orbit ring
+  // 7 Floating Goal Bubbles placed at exact radius 235px on the gold dashed orbit line
   const circularNodes = [
-    { id: 'tax', title: 'Tax Saving', icon: FileText, symbol: '₹', angle: -90, labelPos: 'above' },
-    { id: 'growth', title: 'Investments', icon: TrendingUp, symbol: '₹', angle: -30, labelPos: 'above' },
-    { id: 'advisory', title: 'Expert Advisory', icon: MessageSquare, symbol: '₹', angle: 30, labelPos: 'below' },
-    { id: 'insurance', title: 'Health Cover', icon: ShieldCheck, symbol: '₹', angle: 90, labelPos: 'below' },
-    { id: 'retirement', title: 'Retirement FIRE', icon: Umbrella, symbol: '₹', angle: 150, labelPos: 'below' },
-    { id: 'home', title: 'Dream Home', icon: Building2, symbol: '₹', angle: -150, labelPos: 'above' },
+    { id: 'wealth', title: 'Wealth Creation', icon: Coins, angle: -90, labelPos: 'above' },
+    { id: 'retirement', title: 'Retirement', icon: Umbrella, angle: -40, labelPos: 'above' },
+    { id: 'insurance', title: 'Health Insurance', icon: Heart, angle: 15, labelPos: 'below' },
+    { id: 'tax', title: 'Tax Planning', icon: FileText, angle: 65, labelPos: 'below' },
+    { id: 'property', title: 'Property', icon: Building2, angle: 115, labelPos: 'below' },
+    { id: 'marriage', title: 'Marriage', icon: HeartHandshake, angle: 165, labelPos: 'below' },
+    { id: 'education', title: 'Education', icon: GraduationCap, angle: -140, labelPos: 'above' },
   ];
 
   return (
     <div className="relative w-full max-w-[580px] aspect-square flex items-center justify-center select-none">
       
       {/* ------------------------------------------------------------- */}
-      {/* AMBIENT GLOW & PERFECT MATHEMATICAL SVG ORBIT PATH             */}
+      {/* 1. AMBIENT GLOW & GOLD DASHED ORBIT PATH                      */}
       {/* ------------------------------------------------------------- */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Soft Radial Gold & Blue Backlight Glow */}
-        <div className="w-[380px] h-[380px] rounded-full bg-gradient-to-tr from-[#38BDF8]/15 via-[#C89B3C]/20 to-transparent blur-[90px] animate-pulse-glow" />
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        {/* Soft Radial Gold Backlight Glow */}
+        <div className="w-[460px] h-[460px] rounded-full bg-gradient-to-tr from-[#E5C158]/20 via-[#C89B3C]/25 to-transparent blur-[100px] animate-pulse-glow" />
       </div>
 
-      {/* SVG Orbit Path (Matches (290, 290) center & ORBIT_RADIUS = 195px with 100% mathematical precision) */}
+      {/* SVG Orbit Line passing through exact center of every badge (r = 235px) */}
       <svg 
         className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible" 
         viewBox="0 0 580 580"
@@ -51,153 +52,160 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
           fill="none" 
         />
 
-        {/* Primary Gold Dashed Orbit Line passing EXACTLY through center of every badge */}
+        {/* Primary Gold Dashed Orbit Line */}
         <circle 
           cx="290" 
           cy="290" 
           r={ORBIT_RADIUS} 
           stroke="#C89B3C" 
-          strokeWidth="2" 
+          strokeWidth="2.5" 
           strokeDasharray="8 6" 
-          strokeOpacity="0.6"
-          fill="none" 
-        />
-
-        {/* Inner Guide Ring */}
-        <circle 
-          cx="290" 
-          cy="290" 
-          r="135" 
-          stroke="#0F172A" 
-          strokeWidth="1" 
-          strokeDasharray="4 4" 
-          strokeOpacity="0.1" 
+          strokeOpacity="0.75"
           fill="none" 
         />
       </svg>
 
       {/* ------------------------------------------------------------- */}
-      {/* 6 CIRCULAR BADGES EXACTLY ON THE ORBIT CIRCUMFERENCE          */}
+      {/* 2. CENTRAL GOLDEN PORTAL RING & REALISTIC 3D GOLD ₹ COIN      */}
+      {/* ------------------------------------------------------------- */}
+      <div className="absolute z-10 w-[300px] h-[300px] sm:w-[320px] sm:h-[320px] rounded-full p-[6px] bg-gradient-to-tr from-[#9A7326] via-[#E5C158] to-[#C89B3C] shadow-[0_0_60px_rgba(200,154,75,0.4)] flex items-center justify-center">
+        <div className="w-full h-full rounded-full bg-gradient-to-b from-[#FFFDF9] via-[#FAF6EE] to-[#F3E5C8] border-4 border-white flex flex-col items-center justify-center relative overflow-hidden shadow-inner">
+          
+          {/* Light Rays & Golden Horizon Background */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-[#FDF7EA]/80 to-[#F5E5C4]/90" />
+
+          {/* Golden Rays Texture */}
+          <div className="absolute inset-0 opacity-20 bg-[repeating-linear-gradient(45deg,#C89B3C_0,#C89B3C_10px,transparent_0,transparent_20px)] pointer-events-none" />
+
+          {/* Centerpiece REALISTIC 3D Metallic Gold ₹ Coin */}
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 rounded-full p-[5px] bg-gradient-to-br from-[#FFEBAA] via-[#C89B3C] to-[#593E0B] shadow-[0_20px_45px_rgba(154,115,38,0.5)] flex items-center justify-center group cursor-pointer"
+            onClick={onOpenSearch}
+          >
+            {/* Outer Coin Edge Texture */}
+            <div className="w-full h-full rounded-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#FFF5D6] via-[#D4AF37] to-[#805B16] p-[4px] shadow-lg flex items-center justify-center relative overflow-hidden">
+              
+              {/* Micro Ridges Edge Effect */}
+              <div className="absolute inset-0 opacity-25 bg-[repeating-conic-gradient(#FFE8A3_0_3deg,#805B16_3deg_6deg)]" />
+
+              {/* Inner Coin Surface (Embossed Center) */}
+              <div className="relative w-full h-full rounded-full bg-gradient-to-br from-[#FFF8E7] via-[#E6C875] to-[#B38728] border-2 border-[#FFE8A3] shadow-[inset_0_4px_10px_rgba(255,255,255,0.8),_inset_0_-4px_10px_rgba(89,62,11,0.6)] flex flex-col items-center justify-center overflow-hidden">
+                
+                {/* Specular Light Reflection */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/45 to-transparent opacity-70 transform -rotate-45" />
+                
+                {/* Double Inner Ring Line */}
+                <div className="absolute inset-1.5 rounded-full border border-[#9A7326]/40 pointer-events-none" />
+
+                {/* 3D Embossed Rupee Symbol ₹ */}
+                <span className="relative z-10 font-serif-luxury font-black text-5xl sm:text-6xl text-transparent bg-clip-text bg-gradient-to-br from-[#6E4F0F] via-[#9A7326] to-[#402C06] drop-shadow-[0_2px_1px_rgba(255,245,214,0.9)]">
+                  ₹
+                </span>
+              </div>
+            </div>
+          </motion.div>
+          
+          {/* Subtle Label Below Coin */}
+          <span className="relative z-10 mt-2 text-[10px] font-extrabold tracking-widest text-[#9A7326] uppercase font-inter">
+            Fiduciary Ecosystem
+          </span>
+        </div>
+      </div>
+
+      {/* ------------------------------------------------------------- */}
+      {/* 3. SCALED-DOWN WALKING HUMAN ILLUSTRATION (PROPER PROPORTION) */}
+      {/* ------------------------------------------------------------- */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="absolute z-20 bottom-1 w-28 h-44 flex flex-col items-center justify-end pointer-events-none"
+      >
+        <svg className="w-full h-full drop-shadow-xl" viewBox="0 0 120 200" fill="none">
+          {/* Ground Shadow */}
+          <ellipse cx="60" cy="190" rx="35" ry="6" fill="#0F172A" opacity="0.2" />
+
+          {/* Shoes (White Sneakers) */}
+          <ellipse cx="48" cy="187" rx="8" ry="4" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="1.5" />
+          <ellipse cx="72" cy="185" rx="8" ry="4" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="1.5" />
+
+          {/* Trousers (Beige/Tan Khaki Trousers - Walking Motion) */}
+          <path d="M 42 110 L 40 186 L 54 186 L 57 115 Z" fill="#D4B688" />
+          <path d="M 63 115 L 66 184 L 80 184 L 78 110 Z" fill="#C5A574" />
+          
+          {/* Belt */}
+          <rect x="46" y="106" width="28" height="5" rx="1" fill="#334155" />
+          <rect x="57" y="106" width="6" height="5" fill="#C89B3C" />
+
+          {/* Shirt / Torso (Crisp White Fitted Shirt Seen From Behind) */}
+          <path d="M 36 55 C 36 48, 46 45, 60 45 C 74 45, 84 48, 84 55 L 75 108 L 45 108 Z" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1" />
+          {/* Back Seam / Folds */}
+          <path d="M 60 48 L 60 105" stroke="#F1F5F9" strokeWidth="1.5" />
+
+          {/* Arms (Casual Walking Posture) */}
+          <path d="M 38 55 Q 30 80 34 105" stroke="#FFFFFF" strokeWidth="11" strokeLinecap="round" />
+          <path d="M 82 55 Q 90 80 86 105" stroke="#FFFFFF" strokeWidth="11" strokeLinecap="round" />
+
+          {/* Hands */}
+          <circle cx="34" cy="107" r="4" fill="#FDBA74" />
+          <circle cx="86" cy="107" r="4" fill="#FDBA74" />
+
+          {/* Neck */}
+          <rect x="55" y="36" width="10" height="10" rx="2" fill="#FDBA74" />
+
+          {/* Head & Hair (Dark Neat Hairstyle Seen From Behind) */}
+          <circle cx="60" cy="30" r="13" fill="#1E293B" />
+          <path d="M 49 28 C 49 16, 71 16, 71 28 C 71 36, 49 36, 49 28 Z" fill="#0F172A" />
+        </svg>
+      </motion.div>
+
+      {/* ------------------------------------------------------------- */}
+      {/* 4. 7 GOAL BUBBLES ALL MATCHING RETIREMENT RADIUS (235px)     */}
       {/* ------------------------------------------------------------- */}
       {circularNodes.map((node, index) => {
         const Icon = node.icon;
-        // Calculate exact Cartesian coordinates on circumference (radius = 205px)
         const rad = (node.angle * Math.PI) / 180;
         const x = Math.cos(rad) * ORBIT_RADIUS;
         const y = Math.sin(rad) * ORBIT_RADIUS;
         const isLabelAbove = node.labelPos === 'above';
 
         return (
-          <motion.div
+          <div
             key={node.id}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: index * 0.08 }}
-            whileHover={{ scale: 1.15 }}
-            onClick={onOpenSearch}
-            className="absolute z-30 cursor-pointer group flex flex-col items-center justify-center pointer-events-auto"
+            className="absolute z-30 -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
             style={{
               left: `calc(50% + ${x}px)`,
               top: `calc(50% + ${y}px)`,
-              width: '56px',
-              height: '56px',
-              transform: 'translate(-50%, -50%)',
             }}
           >
-            {/* White & Gold Circular Badge (Center sits 100% ON the gold dotted orbit line) */}
-            <div className="relative w-14 h-14 rounded-full bg-white border-2 border-[#C89B3C] shadow-[0_10px_25px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.4)] transition-all flex items-center justify-center shrink-0">
-              <Icon className="w-6 h-6 text-[#9A7326] group-hover:text-[#C89B3C] transition-colors" />
-              
-              {/* Rupee Symbol Badge */}
-              <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-gradient-to-r from-[#C89B3C] to-[#9A7326] text-white text-[10px] font-bold flex items-center justify-center border border-white shadow">
-                {node.symbol}
-              </div>
-            </div>
-
-            {/* Label Tooltip Badge (Positioned radially OUTSIDE orbit ring: ABOVE for top 3, BELOW for bottom 3) */}
-            <span 
-              className={`absolute ${
-                isLabelAbove ? 'bottom-full mb-2' : 'top-full mt-2'
-              } text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center pointer-events-none`}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.06 }}
+              whileHover={{ scale: 1.15 }}
+              onClick={onOpenSearch}
+              className="relative cursor-pointer group flex flex-col items-center justify-center"
             >
-              {node.title}
-            </span>
-          </motion.div>
+              {/* White & Gold Circular Goal Bubble */}
+              <div className="w-14 h-14 rounded-full bg-white border-2 border-[#C89B3C] shadow-[0_10px_25px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.45)] transition-all flex items-center justify-center shrink-0">
+                <Icon className="w-6 h-6 text-[#9A7326] group-hover:text-[#C89B3C] transition-colors" />
+              </div>
+
+              {/* Label Tooltip Pill */}
+              <span 
+                className={`absolute ${
+                  isLabelAbove ? 'bottom-full mb-2' : 'top-full mt-2'
+                } text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center pointer-events-none`}
+              >
+                {node.title}
+              </span>
+            </motion.div>
+          </div>
         );
       })}
-
-      {/* ------------------------------------------------------------- */}
-      {/* CENTRAL VECTOR CHARACTER ILLUSTRATION (REFERENCE PHOTO MATCH) */}
-      {/* ------------------------------------------------------------- */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-20 w-80 h-80 flex flex-col items-center justify-center"
-      >
-        <svg className="w-full h-full drop-shadow-2xl overflow-visible" viewBox="0 0 320 320" fill="none">
-          
-          {/* Subtle Shadow Oval on Ground */}
-          <ellipse cx="160" cy="285" rx="100" ry="14" fill="#0F172A" opacity="0.12" />
-
-          {/* Cross-legged Legs Base (Dark Navy Trousers) */}
-          <path d="M 65 260 C 65 240, 95 240, 120 255 C 145 270, 175 270, 200 255 C 225 240, 255 240, 255 260 C 255 280, 215 285, 160 285 C 105 285, 65 280, 65 260 Z" fill="#0A1128" />
-
-          {/* Torso / Navy Shirt (Matching Reference Image Character) */}
-          <path d="M 110 145 C 110 135, 125 130, 160 130 C 195 130, 210 135, 210 145 L 220 250 C 220 255, 210 260, 160 260 C 110 260, 100 255, 100 250 Z" fill="#0F172A" />
-
-          {/* Neck & Collar */}
-          <path d="M 148 115 L 172 115 L 168 135 L 152 135 Z" fill="#FCD34D" opacity="0.3" />
-          <path d="M 145 110 C 145 105, 175 105, 175 110 L 172 130 L 148 130 Z" fill="#F87171" opacity="0.9" />
-
-          {/* Floating Tie Dynamic Curve (Matching Reference Image) */}
-          <path d="M 160 130 Q 185 140 205 130 Q 215 125 225 135" stroke="#0F172A" strokeWidth="6" strokeLinecap="round" fill="none" />
-
-          {/* Head & Face */}
-          <circle cx="160" cy="85" r="24" fill="#FBCFE8" opacity="0.4" />
-          <circle cx="160" cy="85" r="22" fill="#FDBA74" />
-          
-          {/* Hair (Sleek Modern Hairstyle) */}
-          <path d="M 140 85 C 140 60, 180 60, 180 85 C 175 68, 145 68, 140 85 Z" fill="#0F172A" />
-          <path d="M 142 75 C 150 62, 175 65, 178 78 C 168 70, 150 72, 142 75 Z" fill="#1E293B" />
-
-          {/* Face Features (Peaceful Focus) */}
-          <path d="M 152 87 Q 156 89 160 87" stroke="#0F172A" strokeWidth="2" strokeLinecap="round" fill="none" />
-          <path d="M 164 87 Q 168 89 172 87" stroke="#0F172A" strokeWidth="2" strokeLinecap="round" fill="none" />
-          <path d="M 158 96 Q 160 99 164 96" stroke="#0F172A" strokeWidth="2" strokeLinecap="round" fill="none" />
-
-          {/* Left Arm holding laptop */}
-          <path d="M 115 150 Q 100 185 125 210" stroke="#0F172A" strokeWidth="16" strokeLinecap="round" fill="none" />
-          {/* Right Arm working on laptop */}
-          <path d="M 205 150 Q 220 185 195 210" stroke="#0F172A" strokeWidth="16" strokeLinecap="round" fill="none" />
-
-          {/* LAPTOP (Silver/Slate with Screen Glow & Logo) */}
-          {/* Laptop Base Keyboard Surface */}
-          <polygon points="115,225 205,225 220,240 100,240" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1.5" />
-          {/* Laptop Trackpad */}
-          <rect x="150" y="230" width="20" height="7" rx="1" fill="#94A3B8" />
-
-          {/* Laptop Screen Lid */}
-          <rect x="110" y="175" width="100" height="52" rx="5" fill="#E2E8F0" stroke="#64748B" strokeWidth="2" />
-          {/* Laptop Screen Inner Display Glow */}
-          <rect x="114" y="179" width="92" height="44" rx="3" fill="#020B2D" />
-          
-          {/* SOLAHANA Financial Dashboard Screen Graphic */}
-          <line x1="120" y1="190" x2="160" y2="190" stroke="#C8A24A" strokeWidth="2.5" strokeLinecap="round" />
-          <line x1="120" y1="198" x2="145" y2="198" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" />
-          
-          {/* Mini Portfolio Growth Chart on Screen */}
-          <path d="M 165 215 L 175 205 L 185 210 L 198 192" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-          <circle cx="198" cy="192" r="2.5" fill="#34D399" />
-
-          {/* Center Brand Logo Circle on Back Lid */}
-          <circle cx="160" cy="201" r="5" fill="#C8A24A" opacity="0.9" />
-
-          {/* Hands Typing on Keyboard */}
-          <circle cx="132" cy="225" r="5" fill="#FDBA74" />
-          <circle cx="188" cy="225" r="5" fill="#FDBA74" />
-        </svg>
-      </motion.div>
 
     </div>
   );

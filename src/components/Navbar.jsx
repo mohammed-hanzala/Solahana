@@ -127,7 +127,7 @@ export default function Navbar({ onOpenSearch }) {
             <img 
               src="/solahana-logo.png" 
               alt="SOLAHANA" 
-              className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              className="h-12 sm:h-14 lg:h-[54px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </button>
 
@@ -462,7 +462,7 @@ export default function Navbar({ onOpenSearch }) {
               <div className="space-y-6">
                 {/* Mobile Drawer Header */}
                 <div className="flex items-center justify-between pb-4 border-b border-[#C89B3C]/20">
-                  <img src="/solahana-logo.png" alt="SOLAHANA" className="h-8 w-auto object-contain" />
+                  <img src="/solahana-logo.png" alt="SOLAHANA" className="h-10 w-auto object-contain" />
                   <button 
                     onClick={() => setMobileMenuOpen(false)}
                     className="p-2 rounded-full hover:bg-gray-100 text-[#0F172A]"
