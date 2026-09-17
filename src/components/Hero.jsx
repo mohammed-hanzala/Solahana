@@ -304,7 +304,7 @@ export default function Hero({ onOpenSearch }) {
           {/* ========================================================= */}
           {/* RIGHT COLUMN: ILLUSTRATION FOCUS                           */}
           {/* ========================================================= */}
-          <div className="w-full lg:w-[58%] relative flex items-center justify-center min-h-[280px] sm:min-h-[420px] lg:min-h-[620px]">
+          <div className="w-full lg:w-[58%] relative flex items-center justify-center min-h-[350px] sm:min-h-[460px] lg:min-h-[620px] -mt-2 sm:mt-0 lg:mt-0">
             
             <AnimatePresence mode="wait">
               <motion.div
@@ -313,7 +313,7 @@ export default function Hero({ onOpenSearch }) {
                 animate={{ opacity: 1, scale: 1.0, x: 0 }}
                 exit={{ opacity: 0, scale: 0.97, x: -15 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] }}
-                className="w-full max-w-[320px] sm:max-w-[460px] lg:max-w-[620px] aspect-square relative flex items-center justify-center overflow-visible"
+                className="w-full max-w-[390px] sm:max-w-[480px] lg:max-w-[620px] aspect-square relative flex items-center justify-center overflow-visible"
               >
                 {activeSlide === 0 && <HeroFintechIllustration onOpenSearch={onOpenSearch} />}
                 {activeSlide === 1 && <TaxPlanningIllustration />}

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import FinancialPlanningIllustration from './illustrations/FinancialPlanningIllustration';
 import WealthCreationIllustration from './illustrations/WealthCreationIllustration';
 import RetirementCoupleIllustration from './illustrations/RetirementCoupleIllustration';
+import TaxPlanningIllustration from './illustrations/TaxPlanningIllustration';
+import EstatePlanningIllustration from './illustrations/EstatePlanningIllustration';
 import GoalPlanningIllustration from './illustrations/GoalPlanningIllustration';
 
 export default function TrustStrip() {
@@ -38,6 +40,24 @@ export default function TrustStrip() {
       illustrationComponent: RetirementCoupleIllustration,
     },
     {
+      category: 'TAX PLANNING',
+      titleLine1: 'Save Taxes Legally.',
+      titleLine2: 'Optimize Wealth Faster.',
+      description: 'Minimize tax drag under Section 80C, 80D, NPS, and automated capital gains harvesting to keep more of what you earn.',
+      cta: 'Explore Tax Advisory',
+      link: '/tax-planning',
+      illustrationComponent: TaxPlanningIllustration,
+    },
+    {
+      category: 'ESTATE PLANNING',
+      titleLine1: 'Protect Your Assets.',
+      titleLine2: 'Preserve Your Legacy.',
+      description: 'Protect your wealth, family assets, and legacy with legal Will drafting, private family trusts, and smooth succession planning.',
+      cta: 'Secure Your Legacy',
+      link: '/goals',
+      illustrationComponent: EstatePlanningIllustration,
+    },
+    {
       category: 'FINANCIAL GOALS',
       titleLine1: 'Dreams Need More Than Hope.',
       titleLine2: 'They Need a Plan.',
@@ -63,17 +83,17 @@ export default function TrustStrip() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center space-x-2.5 px-5 py-2 rounded-full border border-[#E7D7B5] bg-white backdrop-blur-xl shadow-sm"
+            className="inline-flex items-center space-x-2.5 px-5 py-2 rounded-full border border-[#E7D7B5] bg-white backdrop-blur-xl shadow-sm text-center"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#C89B3C] animate-pulse" />
+            <Sparkles className="w-3.5 h-3.5 text-[#C89B3C] animate-pulse shrink-0" />
             <span className="text-[11px] sm:text-xs font-sora font-bold tracking-widest text-[#C89B3C] uppercase">
               PAY WHAT YOU SHOULD. NOT MORE THAN YOU NEED TO.
             </span>
           </motion.div>
         </div>
 
-        {/* 4 Equal-Height Advisory Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+        {/* 6 Equal-Height Advisory Cards Grid (3x2 Desktop, 2x3 Tablet, 1-Column Mobile) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {cards.map((card, idx) => {
             const IllustrationComp = card.illustrationComponent;
             return (
@@ -82,7 +102,7 @@ export default function TrustStrip() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                transition={{ duration: 0.6, delay: idx * 0.08 }}
                 whileHover={{ y: -6 }}
                 className="group relative rounded-[24px] p-6 bg-white border border-[#E7D7B5] hover:border-[#C89B3C] backdrop-blur-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full overflow-hidden"
               >
@@ -92,7 +112,7 @@ export default function TrustStrip() {
                     {card.category}
                   </div>
 
-                  {/* 20-30% Larger Human Vector Illustration Header Container */}
+                  {/* Vector Illustration Header Container */}
                   <div className="w-full h-44 sm:h-48 mb-4 overflow-hidden rounded-2xl bg-[#FCFAF6] border border-[#E7D7B5] p-2 flex items-center justify-center">
                     <IllustrationComp />
                   </div>

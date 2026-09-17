@@ -153,7 +153,7 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute z-20 bottom-1 w-28 h-44 flex flex-col items-center justify-end pointer-events-none"
+        className="absolute z-20 bottom-1 w-24 h-40 sm:w-28 sm:h-44 flex flex-col items-center justify-end pointer-events-none"
       >
         <svg className="w-full h-full drop-shadow-xl" viewBox="0 0 120 200" fill="none">
           {/* Ground Shadow */}
@@ -223,15 +223,15 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
               className="relative cursor-pointer group flex flex-col items-center justify-center"
             >
               {/* White & Gold Circular Goal Bubble */}
-              <div className="w-9 h-9 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full bg-white border-2 border-[#C89B3C] shadow-[0_6px_18px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.45)] transition-all flex items-center justify-center shrink-0">
-                <Icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#9A7326] group-hover:text-[#C89B3C] transition-colors" />
+              <div className="w-11 h-11 sm:w-13 sm:h-13 lg:w-14 lg:h-14 rounded-full bg-white border-2 border-[#C89B3C] shadow-[0_6px_18px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.45)] transition-all flex items-center justify-center shrink-0">
+                <Icon className="w-5 h-5 sm:w-5.5 sm:h-5.5 lg:w-6 lg:h-6 text-[#9A7326] group-hover:text-[#C89B3C] transition-colors" />
               </div>
 
               {/* Label Tooltip Pill */}
               <span 
                 className={`absolute ${
                   isLabelAbove ? 'bottom-full mb-1 sm:mb-2' : 'top-full mt-1 sm:mt-2'
-                } text-[9px] sm:text-[10px] lg:text-[11px] font-semibold text-[#0F172A] bg-white/95 px-2 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center pointer-events-none`}
+                } text-[10px] sm:text-[10.5px] lg:text-[11px] font-semibold text-[#0F172A] bg-white/95 px-2.5 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center pointer-events-none`}
               >
                 {node.title}
               </span>
