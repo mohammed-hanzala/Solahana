@@ -107,7 +107,7 @@ export default function Navbar({ onOpenSearch }) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       <div
-        className={`h-[80px] transition-all duration-300 ${
+        className={`h-[88px] transition-all duration-300 ${
           isScrolled
             ? 'bg-[#FCFAF6]/95 backdrop-blur-xl border-b border-[#C89B3C]/30 shadow-[0_10px_30px_rgba(200,154,75,0.12)]'
             : 'bg-[#FCFAF6]/90 backdrop-blur-md border-b border-[#C89B3C]/20'
@@ -116,7 +116,7 @@ export default function Navbar({ onOpenSearch }) {
         <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* ========================================================= */}
-          {/* LEFT: SOLAHANA LOGO (EXACT USER UPLOADED LOGO)            */}
+          {/* LEFT: SOLAHANA LOGO (PROMINENT BRAND PRESENCE)            */}
           {/* ========================================================= */}
           <button 
             onClick={(e) => handleNavClick(e, isAdminRoute ? '/admin/dashboard' : 'home')} 
@@ -127,7 +127,7 @@ export default function Navbar({ onOpenSearch }) {
             <img 
               src="/solahana-logo.png" 
               alt="SOLAHANA" 
-              className="h-12 sm:h-14 lg:h-[54px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              className="h-14 sm:h-[60px] lg:h-[66px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03] drop-shadow-sm"
             />
           </button>
 
@@ -462,7 +462,7 @@ export default function Navbar({ onOpenSearch }) {
               <div className="space-y-6">
                 {/* Mobile Drawer Header */}
                 <div className="flex items-center justify-between pb-4 border-b border-[#C89B3C]/20">
-                  <img src="/solahana-logo.png" alt="SOLAHANA" className="h-10 w-auto object-contain" />
+                  <img src="/solahana-logo.png" alt="SOLAHANA" className="h-12 w-auto object-contain" />
                   <button 
                     onClick={() => setMobileMenuOpen(false)}
                     className="p-2 rounded-full hover:bg-gray-100 text-[#0F172A]"
