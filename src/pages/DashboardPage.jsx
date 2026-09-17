@@ -143,7 +143,7 @@ export default function DashboardPage() {
               Welcome back, <span className="text-[#9A7326]">{user?.name}</span>
             </h1>
             <p className="text-[#64748B] text-sm mt-1">
-              Manage your private 1-on-1 financial advisory consultations and milestone planning sessions.
+              Manage your private 1-on-1 financial planning consultations and milestone planning sessions.
             </p>
           </div>
 
@@ -232,7 +232,7 @@ export default function DashboardPage() {
             </div>
             <h3 className="font-serif-luxury text-xl font-bold text-[#0F172A]">No consultations booked yet.</h3>
             <p className="text-[#64748B] text-xs max-w-md mx-auto">
-              You haven't booked any advisory sessions yet. Connect with our certified wealth team to structure your goals.
+              You haven't booked any planning sessions yet. Connect with our certified wealth team to structure your goals.
             </p>
             <button
               onClick={() => navigate('/contact')}

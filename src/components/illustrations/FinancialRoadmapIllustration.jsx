@@ -84,7 +84,7 @@ export default function FinancialRoadmapIllustration() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 border-b border-white/10 pb-5">
         <div>
           <span className="text-[10px] font-mono uppercase tracking-widest text-[#E8C878] px-3 py-1 rounded-full bg-[#C8A24A]/15 border border-[#C8A24A]/30">
-            FINANCIAL ADVISORY ROADMAP
+            FINANCIAL PLANNING ROADMAP
           </span>
           <h3 className="font-serif-luxury text-2xl sm:text-3xl font-bold text-white mt-2">
             Your 7-Stage Financial Journey

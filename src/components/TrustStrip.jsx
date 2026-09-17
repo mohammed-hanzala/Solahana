@@ -16,13 +16,13 @@ export default function TrustStrip() {
       category: 'FINANCIAL PLANNING',
       titleLine1: 'Your Money Deserves a Plan.',
       titleLine2: 'Not Just an Investment.',
-      description: '360° fiduciary wealth architecture bringing your salary, savings, protection, and life goals into one unified strategy.',
+      description: '360° fiduciary wealth architecture bringing salary, savings, protection, and life goals into one unified strategy.',
       cta: 'Start Your Financial Plan',
       link: '/financial-planning',
       illustrationComponent: FinancialPlanningIllustration,
     },
     {
-      category: 'WEALTH CREATION',
+      category: 'INVESTMENT PLANNING',
       titleLine1: 'Saving Builds Security.',
       titleLine2: 'Planning Builds Wealth.',
       description: 'Disciplined multi-asset SIP portfolios across direct mutual funds, bonds, and equities for compounding long-term growth.',
@@ -33,18 +33,27 @@ export default function TrustStrip() {
     {
       category: 'RETIREMENT PLANNING',
       titleLine1: 'Retirement Is Not the End.',
-      titleLine2: "It's the Freedom You Plan For.",
+      titleLine2: "It's Freedom You Plan For.",
       description: 'Build an inflation-adjusted FIRE target corpus with automated pension drawdown and long-term capital preservation.',
       cta: 'Plan Your Retirement',
       link: '/calculators/retirement',
       illustrationComponent: RetirementCoupleIllustration,
     },
     {
+      category: 'RISK MANAGEMENT',
+      titleLine1: 'Protect Your Wealth.',
+      titleLine2: 'Protect Your Family.',
+      description: 'Ring-fence your family against uncertainties with comprehensive health, term insurance, and emergency liquidity reserves.',
+      cta: 'Explore Risk Protection',
+      link: '/contact',
+      illustrationComponent: GoalPlanningIllustration,
+    },
+    {
       category: 'TAX PLANNING',
       titleLine1: 'Save Taxes Legally.',
       titleLine2: 'Optimize Wealth Faster.',
       description: 'Minimize tax drag under Section 80C, 80D, NPS, and automated capital gains harvesting to keep more of what you earn.',
-      cta: 'Explore Tax Advisory',
+      cta: 'Explore Tax Planning',
       link: '/tax-planning',
       illustrationComponent: TaxPlanningIllustration,
     },
@@ -57,19 +66,10 @@ export default function TrustStrip() {
       link: '/goals',
       illustrationComponent: EstatePlanningIllustration,
     },
-    {
-      category: 'FINANCIAL GOALS',
-      titleLine1: 'Dreams Need More Than Hope.',
-      titleLine2: 'They Need a Plan.',
-      description: 'Structured milestone savings for dream home purchases, children\'s higher education funds, and family financial security.',
-      cta: 'Plan Your Life Goals',
-      link: '/goals',
-      illustrationComponent: GoalPlanningIllustration,
-    },
   ];
 
   return (
-    <section className="relative z-20 py-16 md:py-24 bg-[#FCFAF6] border-y border-[#E7D7B5] overflow-hidden text-left">
+    <section className="relative z-20 py-8 sm:py-10 lg:py-12 bg-[#FCFAF6] border-y border-[#E7D7B5] overflow-hidden text-left">
       
       {/* Background Soft Glows */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#C89B3C]/5 rounded-full blur-[140px] pointer-events-none" />
@@ -77,7 +77,7 @@ export default function TrustStrip() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Tagline Badge Above Cards */}
-        <div className="flex justify-center mb-10 md:mb-14">
+        <div className="flex justify-center mb-6 md:mb-8">
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -92,8 +92,8 @@ export default function TrustStrip() {
           </motion.div>
         </div>
 
-        {/* 6 Equal-Height Advisory Cards Grid (3x2 Desktop, 2x3 Tablet, 1-Column Mobile) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        {/* 6 Equal-Height Planning Cards Grid (3x2 Desktop, 2x3 Tablet, 1-Column Mobile) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 items-stretch">
           {cards.map((card, idx) => {
             const IllustrationComp = card.illustrationComponent;
             return (
@@ -104,7 +104,7 @@ export default function TrustStrip() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.08 }}
                 whileHover={{ y: -6 }}
-                className="group relative rounded-[24px] p-6 bg-white border border-[#E7D7B5] hover:border-[#C89B3C] backdrop-blur-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full overflow-hidden"
+                className="group relative rounded-[28px] p-7 sm:p-8 bg-white border border-[#E7D7B5] hover:border-[#C89B3C] backdrop-blur-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full overflow-hidden"
               >
                 <div>
                   {/* Category Tag */}
@@ -113,20 +113,20 @@ export default function TrustStrip() {
                   </div>
 
                   {/* Vector Illustration Header Container */}
-                  <div className="w-full h-44 sm:h-48 mb-4 overflow-hidden rounded-2xl bg-[#FCFAF6] border border-[#E7D7B5] p-2 flex items-center justify-center">
+                  <div className="w-full h-44 sm:h-48 mb-5 overflow-hidden rounded-2xl bg-[#FCFAF6] border border-[#E7D7B5] p-3 flex items-center justify-center">
                     <IllustrationComp />
                   </div>
 
                   {/* Editorial Headline Content */}
-                  <h3 className="text-lg font-serif-luxury font-bold text-[#1A1A1A] leading-snug tracking-tight mb-2">
+                  <h3 className="text-lg sm:text-xl font-serif-luxury font-bold text-[#1A1A1A] leading-snug tracking-tight mb-2.5">
                     <span className="block">{card.titleLine1}</span>
                     <span className="block text-[#C89B3C] italic font-serif-luxury mt-0.5 leading-snug">
                       {card.titleLine2}
                     </span>
                   </h3>
 
-                  {/* Supporting Description */}
-                  <p className="text-xs text-[#555555] font-inter leading-relaxed mb-4">
+                  {/* Supporting Description (Restricted to 2-3 lines max) */}
+                  <p className="text-xs sm:text-sm text-[#555555] font-inter leading-relaxed mb-5 line-clamp-3">
                     {card.description}
                   </p>
                 </div>
@@ -135,10 +135,10 @@ export default function TrustStrip() {
                 <div className="pt-4 border-t border-[#E7D7B5] mt-auto">
                   <Link
                     to={card.link}
-                    className="inline-flex items-center space-x-1.5 text-xs font-sora font-bold text-[#C89B3C] group-hover:text-[#1A1A1A] transition-colors"
+                    className="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-sora font-bold text-[#C89B3C] group-hover:text-[#1A1A1A] transition-colors"
                   >
                     <span>{card.cta}</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </motion.div>

@@ -52,7 +52,7 @@ export default function CalculatorsCTA({ onOpenSearch }) {
         >
           <button
             onClick={onOpenSearch}
-            className="gold-glow-button px-9 py-4 rounded-full text-sm font-bold text-[#020B2D] tracking-wide flex items-center space-x-3 shadow-[0_10px_35px_rgba(200,162,74,0.45)] group"
+            className="gold-glow-button group w-full sm:w-auto"
           >
             <Calculator className="w-4 h-4" />
             <span>Explore All Calculators</span>

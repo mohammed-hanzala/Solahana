@@ -63,11 +63,11 @@ export default function GoalsCTA({ onStartPlanning, onBookConsultation }) {
           <div className="pt-8 border-t border-[#C8A24A]/15 flex flex-wrap items-center justify-center gap-6 text-xs text-[#BAC6DA] font-inter">
             <div className="flex items-center space-x-2">
               <ShieldCheck className="w-4 h-4 text-[#C8A24A]" />
-              <span>100% Goal-Aligned Fiduciary Advisory</span>
+              <span>100% Goal-Aligned Fiduciary Planning</span>
             </div>
             <span className="hidden sm:inline text-[#C8A24A]/40">•</span>
             <div>
-              <span>SEBI Registered RIA #INA000018241</span>
+              <span>SEBI-Registered Planning Standard</span>
             </div>
             <span className="hidden sm:inline text-[#C8A24A]/40">•</span>
             <div>

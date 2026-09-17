@@ -143,7 +143,7 @@ export default function AdminDashboardPage() {
     excerpt: '',
     content: '',
     category: 'SIP & Mutual Funds',
-    author: 'SOLAHANA Advisory Team',
+    author: 'SOLAHANA Planning Team',
     featuredImage: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1200',
     readTime: '5 min read',
     status: 'published',
@@ -439,7 +439,7 @@ export default function AdminDashboardPage() {
       excerpt: '',
       content: '',
       category: 'SIP & Mutual Funds',
-      author: 'SOLAHANA Advisory Team',
+      author: 'SOLAHANA Planning Team',
       featuredImage: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1200',
       readTime: '5 min read',
       status: 'published',
@@ -455,7 +455,7 @@ export default function AdminDashboardPage() {
       excerpt: blog.excerpt || blog.summary || '',
       content: blog.content || '',
       category: blog.category || 'SIP & Mutual Funds',
-      author: blog.author || 'SOLAHANA Advisory Team',
+      author: blog.author || 'SOLAHANA Planning Team',
       featuredImage: blog.featuredImage || blog.coverImage || '',
       readTime: blog.readTime || '5 min read',
       status: blog.status || (blog.isPublished ? 'published' : 'draft'),
@@ -696,7 +696,7 @@ export default function AdminDashboardPage() {
                   Admin Analytics Desk
                 </h1>
                 <p className="text-xs text-[#555555] mt-1">
-                  Live MongoDB statistics across users, advisory consultations, blogs, and newsletter subscribers.
+                  Live MongoDB statistics across users, planning consultations, blogs, and newsletter subscribers.
                 </p>
               </div>
 
@@ -777,7 +777,7 @@ export default function AdminDashboardPage() {
                     <span>Client Consultations</span>
                   </h4>
                   <p className="text-xs text-[#555555] mt-1">
-                    Confirm pending bookings, add meeting links, or manage advisory sessions.
+                    Confirm pending bookings, add meeting links, or manage planning sessions.
                   </p>
                 </div>
                 <button
@@ -839,7 +839,7 @@ export default function AdminDashboardPage() {
                   Client Booking Desk
                 </h2>
                 <p className="text-xs text-white/60 mt-1">
-                  Manage, confirm, complete, cancel or remove advisory appointments instantly.
+                  Manage, confirm, complete, cancel or remove planning appointments instantly.
                 </p>
               </div>
 

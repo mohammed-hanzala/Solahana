@@ -58,7 +58,7 @@ export default function HowSolahanaWorks() {
             className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full gold-badge text-xs font-semibold text-[#9A7326] border border-[#C89A4B]/35 shadow-sm"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#C89A4B] animate-pulse" />
-            <span className="font-sora tracking-wide uppercase text-[11px]">OUR ADVISORY PROCESS</span>
+            <span className="font-sora tracking-wide uppercase text-[11px]">OUR PLANNING PROCESS</span>
           </motion.div>
 
           <motion.h2

@@ -28,16 +28,16 @@ export default function FAQSection() {
     },
     {
       q: 'Who should use SOLAHANA?',
-      a: 'SOLAHANA is tailored for salaried professionals, business owners, NRI families, and young professionals looking for a disciplined, goal-aligned, and transparent fiduciary advisory platform.',
+      a: 'SOLAHANA is tailored for salaried professionals, business owners, NRI families, and young professionals looking for a disciplined, goal-aligned, and transparent fiduciary planning platform.',
     },
   ];
 
   return (
-    <section className="relative z-10 py-12 sm:py-20 lg:py-24 bg-[#F3EFE9] border-t border-[#C89A4B]/20 overflow-hidden">
+    <section className="relative z-10 py-8 sm:py-10 lg:py-12 bg-[#F3EFE9] border-t border-[#C89A4B]/20 overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
-        <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16">
+        <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto mb-5 sm:mb-6 lg:mb-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}

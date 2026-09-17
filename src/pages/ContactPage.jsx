@@ -10,7 +10,7 @@ import { ContactNewsletter } from '../components/contact/ContactNewsletter';
 export const ContactPage = ({ onNavigate }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Contact & Book Consultation | SOLAHANA — Wealth Advisory";
+    document.title = "Contact & Book Consultation | SOLAHANA — Wealth Planning";
   }, []);
 
   return (

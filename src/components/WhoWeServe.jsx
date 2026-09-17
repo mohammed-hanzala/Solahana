@@ -40,11 +40,11 @@ export default function WhoWeServe() {
   ];
 
   return (
-    <section className="relative z-10 py-12 sm:py-20 lg:py-24 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
+    <section className="relative z-10 py-8 sm:py-10 lg:py-12 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
-        <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16">
+        <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto mb-5 sm:mb-6 lg:mb-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -72,7 +72,7 @@ export default function WhoWeServe() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed"
+            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed line-clamp-2"
           >
             Custom financial planning frameworks tailored to your career stage and financial goals.
           </motion.p>

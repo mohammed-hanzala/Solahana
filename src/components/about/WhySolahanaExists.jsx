@@ -7,25 +7,25 @@ export default function WhySolahanaExists() {
     {
       title: 'Planning Before Investing',
       subtitle: 'Establish your blueprint before allocating capital.',
-      description: 'Buying random mutual funds without a financial roadmap is like building a house without architecture. SOLAHANA designs the blueprint first.',
+      description: 'Design the financial blueprint before investing into products.',
       icon: Target
     },
     {
       title: 'Goals Before Products',
       subtitle: 'Align instruments to timelines, not sales targets.',
-      description: 'We match asset classes (equity, debt, gold, real estate) directly to your short-term and multi-decadal life milestones.',
+      description: 'Match asset classes directly to your short-term and long-term life milestones.',
       icon: Compass
     },
     {
       title: 'Strategy Before Decisions',
       subtitle: 'Execute with mathematical discipline, not emotional reactions.',
-      description: 'Markets fluctuate, but a well-constructed plan withstands volatility. We protect you from emotional panic selling and impulsive buys.',
+      description: 'Protecting your wealth from market noise and emotional panic selling.',
       icon: TrendingUp
     }
   ];
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden bg-[#FAF8F5]">
+    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">

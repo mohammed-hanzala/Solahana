@@ -93,7 +93,7 @@ export default function PricingPage({ onOpenSearch }) {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5] text-xs font-semibold uppercase tracking-widest text-[#9A7326]"
         >
           <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
-          <span>SOLAHANA ADVISORY SOLUTIONS</span>
+          <span>SOLAHANA PLANNING SOLUTIONS</span>
         </motion.div>
 
         <motion.h1
@@ -119,10 +119,10 @@ export default function PricingPage({ onOpenSearch }) {
       </section>
 
       {/* ------------------------------------------------------------- */}
-      {/* 2. TWO SOLUTION PRICING CARDS (NO PRICES / NUMBERS DISPLAYED) */}
+      {/* 2. TWO SOLUTION PRICING CARDS (CUSTOM FINANCIAL & TAX PLANNING) */}
       {/* ------------------------------------------------------------- */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 lg:mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           
           {/* CARD 1: CUSTOM FINANCIAL PLANNING */}
           <motion.div
@@ -130,54 +130,52 @@ export default function PricingPage({ onOpenSearch }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ y: -6 }}
-            className="rounded-3xl bg-white border-2 border-[#E7D7B5] hover:border-[#C89B3C] shadow-lg hover:shadow-2xl transition-all duration-300 p-8 sm:p-10 flex flex-col justify-between relative group"
+            className="rounded-3xl bg-white border-2 border-[#E7D7B5] hover:border-[#C89B3C] shadow-xl hover:shadow-2xl transition-all duration-300 p-8 sm:p-10 lg:p-12 flex flex-col justify-between relative group h-full"
           >
-            {/* Top Accent Badge */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#E5C158]/20 via-[#C89B3C]/15 to-[#9A7326]/10 border border-[#C89B3C]/30 flex items-center justify-center text-[#9A7326]">
-                <PieChart className="w-7 h-7" />
-              </div>
-              <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#C89B3C]/10 text-[#9A7326] border border-[#C89B3C]/30 uppercase tracking-wider">
-                Comprehensive 360°
-              </span>
-            </div>
-
-            <div className="space-y-3 mb-8">
-              <h2 className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#0F172A] group-hover:text-[#9A7326] transition-colors">
-                Custom Financial Planning
-              </h2>
-              <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-                A 360-degree holistic financial blueprint crafted around your career, family, property, retirement, and multi-generational legacy goals.
-              </p>
-            </div>
-
-            {/* Checklist */}
-            <div className="space-y-3.5 mb-10 pt-4 border-t border-[#E7D7B5]/60 flex-1">
-              <h3 className="text-xs font-mono font-semibold text-[#9A7326] uppercase tracking-wider mb-2">
-                What's Included:
-              </h3>
-              {[
-                'Personalized Financial Planning',
-                'Goal-Based Wealth Planning',
-                'Retirement Planning',
-                'Investment Planning',
-                'Tax Optimization',
-                'Risk Management',
-                'Estate Planning',
-                'Dedicated Financial Advisor',
-                'Annual Financial Review'
-              ].map((feature, idx) => (
-                <div key={idx} className="flex items-center space-x-3">
-                  <CheckCircle2 className="w-4 h-4 text-[#C89B3C] shrink-0" />
-                  <span className="text-xs sm:text-sm text-[#0F172A] font-medium">{feature}</span>
+            <div>
+              {/* Top Accent Badge */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#E5C158]/20 via-[#C89B3C]/15 to-[#9A7326]/10 border border-[#C89B3C]/30 flex items-center justify-center text-[#9A7326]">
+                  <PieChart className="w-7 h-7" />
                 </div>
-              ))}
+                <span className="text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-[#C89B3C]/10 text-[#9A7326] border border-[#C89B3C]/30 uppercase tracking-wider">
+                  Comprehensive 360°
+                </span>
+              </div>
+
+              <div className="space-y-3 mb-6">
+                <h2 className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#0F172A] group-hover:text-[#9A7326] transition-colors">
+                  Custom Financial Planning
+                </h2>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed line-clamp-2">
+                  A 360-degree holistic financial blueprint crafted around your career, family, property, retirement, and multi-generational goals.
+                </p>
+              </div>
+
+              {/* Concise Checklist */}
+              <div className="space-y-3 mb-8 pt-4 border-t border-[#E7D7B5]/60">
+                <h3 className="text-xs font-mono font-semibold text-[#9A7326] uppercase tracking-wider mb-3">
+                  What's Included:
+                </h3>
+                {[
+                  '360° Fiduciary Wealth Architecture',
+                  'Goal-Based Multi-Asset SIP Portfolios',
+                  'FIRE Retirement & Pension Planning',
+                  'Estate & Legacy Wealth Protection',
+                  'Dedicated Personal Financial Advisor'
+                ].map((feature, idx) => (
+                  <div key={idx} className="flex items-center space-x-3">
+                    <CheckCircle2 className="w-4 h-4 text-[#C89B3C] shrink-0" />
+                    <span className="text-xs sm:text-sm text-[#0F172A] font-medium">{feature}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* CTA Button */}
+            {/* One "Get Started" CTA Button */}
             <button
               onClick={() => scrollToCallbackForm('Custom Financial Planning')}
-              className="w-full gold-glow-button py-4 rounded-2xl text-xs sm:text-sm font-bold text-white tracking-wide flex items-center justify-center space-x-2 cursor-pointer shadow-md group-hover:shadow-xl transition-all"
+              className="w-full gold-glow-button py-4 rounded-2xl text-xs sm:text-sm font-bold text-white tracking-wide flex items-center justify-center space-x-2 cursor-pointer shadow-md group-hover:shadow-xl transition-all mt-auto"
             >
               <span>Get Started</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -191,53 +189,52 @@ export default function PricingPage({ onOpenSearch }) {
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
             whileHover={{ y: -6 }}
-            className="rounded-3xl bg-white border-2 border-[#E7D7B5] hover:border-[#C89B3C] shadow-lg hover:shadow-2xl transition-all duration-300 p-8 sm:p-10 flex flex-col justify-between relative group"
+            className="rounded-3xl bg-white border-2 border-[#E7D7B5] hover:border-[#C89B3C] shadow-xl hover:shadow-2xl transition-all duration-300 p-8 sm:p-10 lg:p-12 flex flex-col justify-between relative group h-full"
           >
-            {/* Top Accent Badge */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#E5C158]/20 via-[#C89B3C]/15 to-[#9A7326]/10 border border-[#C89B3C]/30 flex items-center justify-center text-[#9A7326]">
-                <FileText className="w-7 h-7" />
-              </div>
-              <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#C89B3C]/10 text-[#9A7326] border border-[#C89B3C]/30 uppercase tracking-wider">
-                Tax Optimization
-              </span>
-            </div>
-
-            <div className="space-y-3 mb-8">
-              <h2 className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#0F172A] group-hover:text-[#9A7326] transition-colors">
-                Tax Planning
-              </h2>
-              <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-                Strategic tax-saving solutions to optimize your annual savings under Section 80C, 80D, NPS, capital gains, and salary restructuring.
-              </p>
-            </div>
-
-            {/* Checklist */}
-            <div className="space-y-3.5 mb-10 pt-4 border-t border-[#E7D7B5]/60 flex-1">
-              <h3 className="text-xs font-mono font-semibold text-[#9A7326] uppercase tracking-wider mb-2">
-                What's Included:
-              </h3>
-              {[
-                'Income Tax Planning',
-                'Section 80C & 80D Optimization',
-                'Capital Gains Tax Planning',
-                'NPS Tax Benefits',
-                'Salary Tax Optimization',
-                'Tax Filing Guidance',
-                'Personalized Tax Saving Strategy',
-                'Expert Tax Consultation'
-              ].map((feature, idx) => (
-                <div key={idx} className="flex items-center space-x-3">
-                  <CheckCircle2 className="w-4 h-4 text-[#C89B3C] shrink-0" />
-                  <span className="text-xs sm:text-sm text-[#0F172A] font-medium">{feature}</span>
+            <div>
+              {/* Top Accent Badge */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#E5C158]/20 via-[#C89B3C]/15 to-[#9A7326]/10 border border-[#C89B3C]/30 flex items-center justify-center text-[#9A7326]">
+                  <FileText className="w-7 h-7" />
                 </div>
-              ))}
+                <span className="text-xs font-mono font-bold px-3.5 py-1.5 rounded-full bg-[#C89B3C]/10 text-[#9A7326] border border-[#C89B3C]/30 uppercase tracking-wider">
+                  Tax Optimization
+                </span>
+              </div>
+
+              <div className="space-y-3 mb-6">
+                <h2 className="font-serif-luxury text-2xl sm:text-3xl font-bold text-[#0F172A] group-hover:text-[#9A7326] transition-colors">
+                  Tax Planning
+                </h2>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed line-clamp-2">
+                  Strategic tax-saving solutions to optimize your annual savings under Section 80C, 80D, NPS, capital gains, and salary structuring.
+                </p>
+              </div>
+
+              {/* Concise Checklist */}
+              <div className="space-y-3 mb-8 pt-4 border-t border-[#E7D7B5]/60">
+                <h3 className="text-xs font-mono font-semibold text-[#9A7326] uppercase tracking-wider mb-3">
+                  What's Included:
+                </h3>
+                {[
+                  'Section 80C, 80D & 80CCD(1B) Optimization',
+                  'Automated Capital Gains Tax-Loss Harvesting',
+                  'Salary Structuring & Take-Home Maximization',
+                  'Proactive Year-Round Tax Strategy',
+                  'Expert Fiduciary Tax Planning'
+                ].map((feature, idx) => (
+                  <div key={idx} className="flex items-center space-x-3">
+                    <CheckCircle2 className="w-4 h-4 text-[#C89B3C] shrink-0" />
+                    <span className="text-xs sm:text-sm text-[#0F172A] font-medium">{feature}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* CTA Button */}
+            {/* One "Get Started" CTA Button */}
             <button
               onClick={() => scrollToCallbackForm('Tax Planning')}
-              className="w-full gold-glow-button py-4 rounded-2xl text-xs sm:text-sm font-bold text-white tracking-wide flex items-center justify-center space-x-2 cursor-pointer shadow-md group-hover:shadow-xl transition-all"
+              className="w-full gold-glow-button py-4 rounded-2xl text-xs sm:text-sm font-bold text-white tracking-wide flex items-center justify-center space-x-2 cursor-pointer shadow-md group-hover:shadow-xl transition-all mt-auto"
             >
               <span>Get Started</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

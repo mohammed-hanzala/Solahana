@@ -23,7 +23,7 @@ export default function InvestDetailPage({ optionKey }) {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = `${data.title} Investment Advisory | SOLAHANA — Wealth Management`;
+    document.title = `${data.title} Investment Planning | SOLAHANA — Wealth Management`;
   }, [key, data.title]);
 
   const scrollToConsultation = () => {
@@ -40,14 +40,14 @@ export default function InvestDetailPage({ optionKey }) {
       {/* ========================================================= */}
       {/* 1. HERO SECTION WITH HUMAN MINIATURE / ILLUSTRATION       */}
       {/* ========================================================= */}
-      <section className="relative pt-32 pb-20 lg:pt-36 lg:pb-28 overflow-hidden bg-gradient-to-b from-[#FCFAF6] via-[#FAF6EE] to-[#FCFAF6] border-b border-[#C89B3C]/15">
+      <section className="relative pt-24 pb-14 lg:pt-32 lg:pb-20 overflow-hidden bg-gradient-to-b from-[#FCFAF6] via-[#FAF6EE] to-[#FCFAF6] border-b border-[#C89B3C]/15">
         {/* Glow backlight */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#C89B3C]/10 rounded-full blur-[160px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Breadcrumbs */}
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#64748B] mb-8">
+          <div className="flex items-center gap-2 text-xs font-semibold text-[#64748B] mb-6">
             <button onClick={() => navigate('/')} className="hover:text-[#C89B3C] transition-colors">Home</button>
             <ChevronRight className="w-3.5 h-3.5 text-[#C89B3C]" />
             <button onClick={() => navigate('/investments')} className="hover:text-[#C89B3C] transition-colors">Invest</button>
@@ -55,14 +55,14 @@ export default function InvestDetailPage({ optionKey }) {
             <span className="text-[#9A7326] font-bold">{data.title}</span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-7 space-y-6 text-left"
+              className="lg:col-span-6 space-y-5 text-left"
             >
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-xs font-mono font-bold uppercase tracking-widest text-[#9A7326]">
                 <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
@@ -73,12 +73,12 @@ export default function InvestDetailPage({ optionKey }) {
                 {data.headline}
               </h1>
 
-              <p className="text-base sm:text-lg text-[#475569] font-normal leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-lg text-[#475569] font-normal leading-relaxed max-w-xl line-clamp-2">
                 {data.description}
               </p>
 
               {/* Key Highlights Stats Bar */}
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#E7D7B5]/60">
+              <div className="grid grid-cols-3 gap-4 pt-3 border-t border-[#E7D7B5]/60">
                 {data.keyStats.map((stat, idx) => (
                   <div key={idx} className="p-3.5 rounded-2xl bg-white border border-[#E7D7B5]/80 shadow-sm">
                     <div className="text-base sm:text-xl font-bold font-mono text-[#9A7326]">{stat.value}</div>
@@ -88,7 +88,7 @@ export default function InvestDetailPage({ optionKey }) {
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 flex flex-wrap items-center gap-4">
+              <div className="pt-3 flex flex-wrap items-center gap-4">
                 <button
                   onClick={scrollToConsultation}
                   className="gold-glow-button px-8 py-4 rounded-full text-xs sm:text-sm font-bold text-white tracking-wide flex items-center gap-2 cursor-pointer shadow-lg hover:shadow-xl transition-all"
@@ -108,14 +108,14 @@ export default function InvestDetailPage({ optionKey }) {
 
             </motion.div>
 
-            {/* Right Illustration Column */}
+            {/* Right Illustration Column (Enlarged Container) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="lg:col-span-5 flex justify-center"
+              className="lg:col-span-6 flex justify-center"
             >
-              <div className="relative w-full max-w-lg p-6 rounded-3xl bg-white/80 border border-[#C89B3C]/30 shadow-2xl backdrop-blur-xl">
+              <div className="relative w-full max-w-[500px] sm:max-w-[560px] lg:max-w-[640px] p-6 rounded-3xl bg-white/80 border border-[#C89B3C]/30 shadow-2xl backdrop-blur-xl overflow-hidden flex items-center justify-center">
                 <InvestHeroIllustration type={data.slug} />
               </div>
             </motion.div>
@@ -127,10 +127,10 @@ export default function InvestDetailPage({ optionKey }) {
       {/* ========================================================= */}
       {/* 2. WHY INVEST IN THIS ASSET CLASS (FEATURE MATRIX)        */}
       {/* ========================================================= */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-xs font-mono font-bold text-[#9A7326]">
-            <Zap className="w-3.5 h-3.5 text-[#C89B3C]" />
+      <section className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-xs font-mono font-bold text-[#9A7326]">
+            <Zap className="w-3.5 h-3.5 text-[#C89A4B]" />
             <span>FINANCIAL ADVANTAGES</span>
           </div>
           <h2 className="font-serif-luxury text-3xl sm:text-4xl font-bold text-[#0F172A]">

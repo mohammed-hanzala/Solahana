@@ -53,11 +53,11 @@ export default function SolahanaServices() {
   ];
 
   return (
-    <section className="relative z-10 py-12 sm:py-20 lg:py-24 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
+    <section className="relative z-10 py-8 sm:py-10 lg:py-12 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16">
+        <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto mb-5 sm:mb-6 lg:mb-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -66,7 +66,7 @@ export default function SolahanaServices() {
             className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full gold-badge text-xs font-semibold text-[#9A7326] border border-[#C89A4B]/35 shadow-sm"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#C89A4B] animate-pulse" />
-            <span className="font-sora tracking-wide uppercase text-[11px]">OUR ADVISORY SERVICES</span>
+            <span className="font-sora tracking-wide uppercase text-[11px]">OUR PLANNING SERVICES</span>
           </motion.div>
 
           <motion.h2
@@ -88,7 +88,7 @@ export default function SolahanaServices() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed"
+            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed line-clamp-2"
           >
             Every service is built around your individual goals, zero-commission fiduciary standards, and long-term peace of mind.
           </motion.p>
@@ -133,7 +133,7 @@ export default function SolahanaServices() {
                     to="/contact"
                     className="text-xs font-semibold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors flex items-center space-x-2"
                   >
-                    <span>Schedule Advisory</span>
+                    <span>Schedule Planning Call</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>

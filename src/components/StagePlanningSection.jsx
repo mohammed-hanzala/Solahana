@@ -151,11 +151,11 @@ export default function StagePlanningSection({ onOpenSearch }) {
   const selectedIndex = lifeStages.findIndex(s => s.id === selectedStage.id);
 
   return (
-    <section className="py-24 relative overflow-hidden bg-[#FCFAF6] border-y border-[#E7D7B5] text-left">
+    <section className="py-8 sm:py-10 lg:py-12 relative overflow-hidden bg-[#FCFAF6] border-y border-[#E7D7B5] text-left">
       {/* Background Ambient Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-[#C89B3C]/8 rounded-full blur-[180px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -166,7 +166,7 @@ export default function StagePlanningSection({ onOpenSearch }) {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5] text-xs font-semibold uppercase tracking-widest text-[#C89B3C]"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
-            <span className="font-bold">LIFE STAGES ADVISORY ENGINE</span>
+            <span className="font-bold">LIFE STAGES PLANNING ENGINE</span>
           </motion.div>
 
           <motion.h2

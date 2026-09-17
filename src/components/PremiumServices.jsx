@@ -33,7 +33,7 @@ export default function PremiumServices() {
       badge: 'Fixed Yield',
     },
     {
-      title: 'NRI Wealth Advisory',
+      title: 'NRI Wealth Planning',
       description: 'Cross-border investment and tax planning for global Indians with FEMA compliance, NRE/NRO account rules, and DTAA double tax relief.',
       icon: Globe,
       stat: 'US, Gulf & UK Desk',
@@ -88,7 +88,7 @@ export default function PremiumServices() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base sm:text-lg text-[#555555] font-inter leading-relaxed"
           >
-            AI-powered financial engineering combined with SEBI registered wealth advisory for complete peace of mind.
+            AI-powered financial engineering combined with SEBI registered wealth planning for complete peace of mind.
           </motion.p>
         </div>
 

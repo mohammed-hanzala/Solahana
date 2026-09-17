@@ -65,7 +65,7 @@ export default function WhatIsFinancialPlanning() {
   ];
 
   return (
-    <section className="relative z-10 py-12 sm:py-20 lg:py-24 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
+    <section className="relative z-10 py-8 sm:py-10 lg:py-12 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
       
       {/* Background Soft Glows */}
       <div className="absolute top-1/3 left-10 w-[600px] h-[600px] bg-[#C89A4B]/8 rounded-full blur-[150px] pointer-events-none" />
@@ -73,7 +73,7 @@ export default function WhatIsFinancialPlanning() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
         {/* Section Heading */}
-        <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16">
+        <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto mb-5 sm:mb-6 lg:mb-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -90,7 +90,7 @@ export default function WhatIsFinancialPlanning() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] tracking-tight leading-[1.2] mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] tracking-tight leading-[1.2] mb-4"
           >
             A Financial Plan Is More Than Investing.{' '}
             <br className="hidden sm:inline" />
@@ -106,9 +106,9 @@ export default function WhatIsFinancialPlanning() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed"
+            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed max-w-2xl mx-auto line-clamp-2"
           >
-            Financial planning helps you organize income, savings, investments, taxes and protection into one thoughtful strategy that evolves with your life.
+            Organize income, savings, investments, and risk protection into one unified strategy evolving with your life.
           </motion.p>
         </div>
 

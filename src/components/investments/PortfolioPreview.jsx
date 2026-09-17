@@ -170,7 +170,7 @@ export default function PortfolioPreview() {
 
           {/* Footer Note */}
           <div className="pt-4 border-t border-[#C8A24A]/15 flex items-center justify-between text-xs text-[#BAC6DA]">
-            <span>Methodology: SEBI Registered Investment Advisory</span>
+            <span>Methodology: SEBI Registered Investment Planning</span>
             <span className="text-[#E8C878] font-semibold font-sora">Annual Tax-Loss Harvesting Included</span>
           </div>
 

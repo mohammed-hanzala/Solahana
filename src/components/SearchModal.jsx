@@ -21,7 +21,7 @@ export default function SearchModal({ isOpen, onClose, onSelectAction }) {
 
   const quickPrompts = [
     { title: 'Calculate Tax Savings for FY 2025-26', category: 'Tax Optimization', icon: Calculator, link: 'tax' },
-    { title: 'Simulate Early Retirement FIRE Target at 48', category: 'Goal Planner', icon: Target, link: 'advisory' },
+    { title: 'Simulate Early Retirement FIRE Target at 48', category: 'Goal Planner', icon: Target, link: 'planning' },
     { title: 'Section 80C & 80D Investment Placement', category: 'Tax Strategy', icon: ShieldCheck, link: 'tax' },
     { title: 'NRI DTAA Tax Benefit & FEMA Regulations', category: 'NRI Wealth', icon: ShieldCheck, link: 'nri' },
     { title: 'Explore Multi-Asset Mutual Funds & SIPs', category: 'Investments', icon: PieChart, link: 'invest' },

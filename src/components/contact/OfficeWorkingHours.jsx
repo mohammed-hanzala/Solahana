@@ -40,7 +40,7 @@ export const OfficeWorkingHours = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/70 text-base md:text-lg font-light leading-relaxed"
           >
-            Visit our corporate headquarters in Mumbai or schedule a digital advisory session from anywhere in the world.
+            Visit our corporate headquarters in Mumbai or schedule a digital planning session from anywhere in the world.
           </motion.p>
         </div>
 
@@ -69,7 +69,7 @@ export const OfficeWorkingHours = () => {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[#C8A24A] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-medium text-white block">SOLAHANA Financial Advisory</span>
+                    <span className="font-medium text-white block">SOLAHANA Financial Planning</span>
                     <span className="text-white/60 font-light">Off Veera Desai Road, Andheri West, Mumbai, Maharashtra 400053, India</span>
                   </div>
                 </div>

@@ -16,7 +16,7 @@ export default function TaxPlanningIllustration() {
               <Calculator className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-sm font-serif-luxury font-bold text-[#0F172A]">Tax Harvesting & Advisory</div>
+              <div className="text-sm font-serif-luxury font-bold text-[#0F172A]">Tax Harvesting & Planning</div>
               <div className="text-[11px] text-[#64748B]">Section 80C, 80D, NPS & LTCG Structuring</div>
             </div>
           </div>

@@ -42,7 +42,7 @@ export default function WhatYouReceive() {
             What You Receive as a SOLAHANA Client
           </h2>
           <p className="text-base text-[#555555] font-inter">
-            Tangible, action-oriented documentation and ongoing institutional advisory support.
+            Tangible, action-oriented documentation and ongoing institutional planning support.
           </p>
         </div>
 

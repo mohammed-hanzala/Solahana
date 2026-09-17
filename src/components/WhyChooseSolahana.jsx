@@ -108,7 +108,7 @@ export default function WhyChooseSolahana() {
                   </div>
                   <div>
                     <div className="text-sm font-serif-luxury font-bold text-[#1A1A1A]">Fiduciary Excellence</div>
-                    <div className="text-[10px] text-[#555555]">SEBI Registered Advisory • Zero Conflict</div>
+                    <div className="text-[10px] text-[#555555]">SEBI Registered Planning • Zero Conflict</div>
                   </div>
                 </div>
 
@@ -147,7 +147,7 @@ export default function WhyChooseSolahana() {
               {/* Trust Badge Bar */}
               <div className="pt-4 border-t border-[#E7D7B5] flex items-center justify-between text-xs text-[#555555] font-sora">
                 <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
-                  <ShieldCheck className="w-4 h-4" /> SEBI Reg #INA000018241
+                  <ShieldCheck className="w-4 h-4" /> SEBI-Registered Fiduciary
                 </span>
                 <span className="text-[#C89B3C] font-bold">50,000+ Families</span>
               </div>

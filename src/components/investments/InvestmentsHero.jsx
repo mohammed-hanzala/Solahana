@@ -22,7 +22,7 @@ export default function InvestmentsHero({ onExploreOptions, onStartPlanning }) {
             {/* Small Gold Pill */}
             <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full gold-badge text-[#9A7326] text-xs font-semibold uppercase tracking-widest font-sora">
               <Compass className="w-3.5 h-3.5 text-[#C89A4B]" />
-              <span>INVESTMENT ADVISORY</span>
+              <span>INVESTMENT PLANNING</span>
             </div>
 
             {/* Main Editorial Heading */}

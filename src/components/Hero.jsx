@@ -48,7 +48,7 @@ export default function Hero({ onOpenSearch }) {
       badge: 'FINANCIAL PLANNING',
       titleLine1: 'Your Money Deserves a Plan.',
       titleLine2: 'Not Just an Investment.',
-      scriptText: 'Fiduciary Advisory.',
+      scriptText: 'Fiduciary Planning.',
       subtitle: 'From marriage to retirement, education to wealth creation — Solahana brings every financial goal into one personalised financial roadmap.',
       ctaText: 'Start Your Comprehensive Plan',
       ctaRoute: '/contact',
@@ -94,7 +94,7 @@ export default function Hero({ onOpenSearch }) {
       titleLine2: 'Compound Wealth Faster.',
       scriptText: 'Smarter Strategy.',
       subtitle: 'Optimize Section 80C, 80D, NPS and long-term tax harvesting with personalised tax-saving strategies designed for your financial goals.',
-      ctaText: 'Explore Tax Advisory',
+      ctaText: 'Explore Tax Planning',
       ctaRoute: '/tax-planning',
       emotion: 'Confidence. Savings.'
     },
@@ -104,7 +104,7 @@ export default function Hero({ onOpenSearch }) {
       titleLine1: 'Protect Your Wealth.',
       titleLine2: 'Protect Your Family.',
       scriptText: 'Plan Beyond Investments.',
-      subtitle: 'Health insurance, life insurance, emergency planning and estate planning integrated into one financial advisory platform.',
+      subtitle: 'Health insurance, life insurance, emergency planning and estate planning integrated into one financial planning platform.',
       ctaText: 'Secure My Future',
       ctaRoute: '/contact',
       emotion: 'Protection. Trust.'
@@ -157,7 +157,7 @@ export default function Hero({ onOpenSearch }) {
     { title: 'Education', icon: GraduationCap, x: -170, y: -130 },
   ];  return (
     <section 
-      className="relative min-h-[85vh] sm:min-h-[90vh] lg:min-h-screen pt-24 sm:pt-28 pb-12 sm:pb-16 lg:pt-32 lg:pb-20 bg-[#FAF8F5] overflow-hidden flex flex-col justify-between select-none"
+      className="relative min-h-[70vh] sm:min-h-[80vh] lg:min-h-[85vh] pt-16 sm:pt-20 lg:pt-20 pb-6 sm:pb-8 lg:pb-10 bg-[#FAF8F5] overflow-hidden flex flex-col justify-between select-none"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={handleTouchStart}
@@ -175,7 +175,7 @@ export default function Hero({ onOpenSearch }) {
         <div className="absolute top-10 right-10 w-[280px] sm:w-[550px] h-[280px] sm:h-[550px] bg-[#E5C158]/12 blur-[80px] sm:blur-[140px] rounded-full" />
 
         {/* Sunrise Skyline Silhouette Horizon */}
-        <div className="absolute bottom-0 inset-x-0 h-28 sm:h-44 opacity-15 pointer-events-none flex items-end justify-center">
+        <div className="absolute bottom-0 inset-x-0 h-24 sm:h-36 opacity-15 pointer-events-none flex items-end justify-center">
           <svg className="w-full h-full" viewBox="0 0 1440 200" preserveAspectRatio="none" fill="none">
             <path d="M0 200 L0 160 L40 160 L40 120 L80 120 L80 160 L140 160 L140 90 L180 90 L180 160 L240 160 L240 70 L290 70 L290 160 L360 160 L360 110 L410 110 L410 160 L500 160 L500 40 L560 40 L560 160 L640 160 L640 85 L700 85 L700 160 L780 160 L780 60 L840 60 L840 160 L920 160 L920 100 L980 100 L980 160 L1060 160 L1060 50 L1120 50 L1120 160 L1200 160 L1200 95 L1260 95 L1260 160 L1340 160 L1340 130 L1440 130 L1440 200 Z" fill="url(#skylineGrad)" />
             <defs>
@@ -211,7 +211,7 @@ export default function Hero({ onOpenSearch }) {
       {/* ------------------------------------------------------------- */}
       <button
         onClick={() => setActiveSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-        className="absolute left-2 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-4 rounded-full bg-white/80 hover:bg-white border border-[#C89A4B]/40 text-[#0F172A] shadow-lg backdrop-blur-md transition-all hover:scale-110 hover:border-[#C89A4B] cursor-pointer"
+        className="absolute left-2 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3.5 rounded-full bg-white/80 hover:bg-white border border-[#C89A4B]/40 text-[#0F172A] shadow-lg backdrop-blur-md transition-all hover:scale-110 hover:border-[#C89A4B] cursor-pointer"
         title="Previous Slide"
         aria-label="Previous Slide"
       >
@@ -220,7 +220,7 @@ export default function Hero({ onOpenSearch }) {
 
       <button
         onClick={() => setActiveSlide((prev) => (prev + 1) % heroSlides.length)}
-        className="absolute right-2 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-4 rounded-full bg-white/80 hover:bg-white border border-[#C89A4B]/40 text-[#0F172A] shadow-lg backdrop-blur-md transition-all hover:scale-110 hover:border-[#C89A4B] cursor-pointer"
+        className="absolute right-2 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3.5 rounded-full bg-white/80 hover:bg-white border border-[#C89A4B]/40 text-[#0F172A] shadow-lg backdrop-blur-md transition-all hover:scale-110 hover:border-[#C89A4B] cursor-pointer"
         title="Next Slide"
         aria-label="Next Slide"
       >
@@ -236,7 +236,7 @@ export default function Hero({ onOpenSearch }) {
           {/* ========================================================= */}
           {/* LEFT COLUMN: TYPOGRAPHY & STORYTELLING COPY               */}
           {/* ========================================================= */}
-          <div className="w-full lg:w-[42%] text-left space-y-3 sm:space-y-5 shrink-0">
+          <div className="w-full lg:w-[42%] text-left space-y-3 sm:space-y-4 shrink-0">
             {/* Left Column Text Animation */}
             <AnimatePresence mode="wait">
               <motion.div
@@ -245,7 +245,7 @@ export default function Hero({ onOpenSearch }) {
                 animate={{ opacity: 1, y: 0, x: 0 }}
                 exit={{ opacity: 0, y: -15, x: 10 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] }}
-                className="space-y-2 sm:space-y-4"
+                className="space-y-2.5 sm:space-y-3"
               >
                 {/* Eyebrow Category Label */}
                 <div className="inline-flex items-center space-x-2">
@@ -254,46 +254,46 @@ export default function Hero({ onOpenSearch }) {
                   </span>
                 </div>
 
-                {/* Editorial Luxury Headline */}
-                <h1 className="text-2xl sm:text-4xl lg:text-6xl font-serif-luxury font-bold text-[#0F172A] leading-tight tracking-tight">
+                {/* Editorial Luxury Headline with Increased Whitespace */}
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif-luxury font-bold text-[#0F172A] leading-[1.12] tracking-tight my-2 sm:my-3">
                   {currentSlide.titleLine1} <br />
                   <span>{currentSlide.titleLine2}</span> <br />
-                  <span className="font-alex-brush text-4xl sm:text-5xl lg:text-7xl text-[#C89A4B] font-normal block mt-0.5 sm:mt-1">
+                  <span className="font-alex-brush text-4xl sm:text-5xl lg:text-7xl text-[#C89A4B] font-normal block mt-1 sm:mt-1.5">
                     {currentSlide.scriptText}
                   </span>
                 </h1>
 
-                {/* Description */}
-                <p className="text-xs sm:text-base lg:text-lg text-[#475569] leading-relaxed max-w-xl font-inter font-normal pt-0.5">
+                {/* Description (Restricted to max 2 lines for clean minimal look) */}
+                <p className="text-xs sm:text-base lg:text-lg text-[#475569] leading-relaxed max-w-xl font-inter font-normal line-clamp-2">
                   {currentSlide.subtitle}
                 </p>
               </motion.div>
             </AnimatePresence>
 
-            {/* Primary Action Button (Gold Pill with Shimmer & Arrow Slide) */}
-            <div className="pt-1 sm:pt-2">
+            {/* Primary Action Button (Single Gold CTA Button) */}
+            <div className="pt-2 sm:pt-3">
               <Link
                 to={currentSlide.ctaRoute}
-                className="gold-glow-button px-6 sm:px-9 py-3 sm:py-4 rounded-full text-xs sm:text-sm font-bold text-white tracking-wide inline-flex items-center justify-center space-x-2.5 sm:space-x-3 group shadow-[0_10px_30px_rgba(200,154,75,0.35)] cursor-pointer hover:shadow-[0_15px_40px_rgba(200,154,75,0.5)] transition-all"
+                className="gold-glow-button px-7 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold text-white tracking-wide inline-flex items-center justify-center space-x-2.5 sm:space-x-3 group shadow-[0_10px_30px_rgba(200,154,75,0.35)] cursor-pointer hover:shadow-[0_15px_40px_rgba(200,154,75,0.5)] transition-all"
               >
                 <span>{currentSlide.ctaText}</span>
                 <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </div>
 
-            {/* Trust Strip Indicator */}
-            <div className="pt-4 sm:pt-6 border-t border-[#C89A4B]/20 flex flex-wrap items-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-[#0F172A] font-inter">
-              <div className="flex items-center space-x-1.5 sm:space-x-2 group cursor-pointer transition-transform hover:scale-105">
+            {/* Compact Trust Strip Indicator */}
+            <div className="pt-3 sm:pt-4 border-t border-[#C89A4B]/20 flex items-center flex-nowrap overflow-x-auto gap-3 sm:gap-4 text-[11px] sm:text-xs text-[#0F172A] font-inter whitespace-nowrap scrollbar-none">
+              <div className="flex items-center space-x-1.5 sm:space-x-2 group cursor-pointer transition-transform hover:scale-105 shrink-0">
                 <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C89A4B] shrink-0" />
                 <span className="font-semibold">Trusted <span className="text-[#64748B] font-normal">by Thousands</span></span>
               </div>
-              <span className="text-[#C89A4B]/40 hidden sm:inline">|</span>
-              <div className="flex items-center space-x-1.5 sm:space-x-2 group cursor-pointer transition-transform hover:scale-105">
+              <span className="text-[#C89A4B]/40 shrink-0">|</span>
+              <div className="flex items-center space-x-1.5 sm:space-x-2 group cursor-pointer transition-transform hover:scale-105 shrink-0">
                 <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C89A4B] shrink-0" />
                 <span className="font-semibold">Transparent <span className="text-[#64748B] font-normal">Process</span></span>
               </div>
-              <span className="text-[#C89A4B]/40 hidden sm:inline">|</span>
-              <div className="flex items-center space-x-1.5 sm:space-x-2 group cursor-pointer transition-transform hover:scale-105">
+              <span className="text-[#C89A4B]/40 shrink-0">|</span>
+              <div className="flex items-center space-x-1.5 sm:space-x-2 group cursor-pointer transition-transform hover:scale-105 shrink-0">
                 <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C89A4B] shrink-0" />
                 <span className="font-semibold">Personalised <span className="text-[#64748B] font-normal">For You</span></span>
               </div>

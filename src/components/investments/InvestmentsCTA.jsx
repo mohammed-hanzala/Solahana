@@ -27,7 +27,7 @@ export default function InvestmentsCTA({ onStartPlanning, onBookConsultation }) 
           {/* Badge */}
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#020B2D] border border-[#C8A24A]/40 text-[#E8C878] text-xs font-semibold uppercase tracking-widest font-sora shadow-[0_0_20px_rgba(200,162,74,0.3)]">
             <TrendingUp className="w-3.5 h-3.5 text-[#C8A24A]" />
-            <span>INVESTMENT ADVISORY FRAMEWORK</span>
+            <span>INVESTMENT PLANNING FRAMEWORK</span>
           </div>
 
           {/* Heading */}
@@ -63,7 +63,7 @@ export default function InvestmentsCTA({ onStartPlanning, onBookConsultation }) 
           <div className="pt-8 border-t border-[#C8A24A]/15 flex flex-wrap items-center justify-center gap-6 text-xs text-[#BAC6DA] font-inter">
             <div className="flex items-center space-x-2">
               <ShieldCheck className="w-4 h-4 text-[#C8A24A]" />
-              <span>SEBI Registered RIA #INA000018241</span>
+              <span>SEBI-Registered Fiduciary Standard</span>
             </div>
             <span className="hidden sm:inline text-[#C8A24A]/40">•</span>
             <div>
@@ -71,7 +71,7 @@ export default function InvestmentsCTA({ onStartPlanning, onBookConsultation }) 
             </div>
             <span className="hidden sm:inline text-[#C8A24A]/40">•</span>
             <div>
-              <span>100% Unbiased Fiduciary Advisory</span>
+              <span>100% Unbiased Fiduciary Planning</span>
             </div>
           </div>
 

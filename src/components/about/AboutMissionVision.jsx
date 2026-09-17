@@ -4,11 +4,11 @@ import { Target, Eye, Sparkles } from 'lucide-react';
 
 export default function AboutMissionVision() {
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden bg-[#FAF8F5]">
+    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-10 sm:mb-12">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full gold-badge text-[#9A7326] text-xs font-semibold uppercase tracking-widest font-sora">
             <Sparkles className="w-3.5 h-3.5 text-[#C89A4B]" />
             <span>PURPOSE & FUTURE</span>
@@ -33,7 +33,7 @@ export default function AboutMissionVision() {
             whileHover={{ y: -6 }}
             className="p-8 sm:p-10 rounded-3xl bg-white border border-[#C89A4B]/30 hover:border-[#C89A4B] transition-all duration-300 shadow-lg text-left group"
           >
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-6">
               <div className="w-14 h-14 rounded-2xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-[#C89A4B] flex items-center justify-center">
                 <Target className="w-7 h-7" />
               </div>
@@ -43,16 +43,16 @@ export default function AboutMissionVision() {
               </span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-serif-luxury font-bold text-[#0F172A] mb-4 group-hover:text-[#C89A4B] transition-colors">
+            <h3 className="text-2xl sm:text-3xl font-serif-luxury font-bold text-[#0F172A] mb-3 group-hover:text-[#C89A4B] transition-colors">
               Thoughtful Financial Leadership
             </h3>
 
-            <p className="text-base sm:text-lg text-[#0F172A] font-serif-luxury italic leading-relaxed mb-6 font-medium">
-              "Helping individuals and families make confident financial decisions through thoughtful planning."
+            <p className="text-base sm:text-lg text-[#0F172A] font-serif-luxury italic leading-relaxed mb-4 font-medium">
+              "Helping families make confident financial decisions through goal-aligned fiduciary planning."
             </p>
 
-            <p className="text-sm text-[#475569] font-inter leading-relaxed">
-              We replace guesswork with structured planning. Every recommendation is built around your individual risk profile, cashflow surplus, tax optimization, and long-term goal horizons.
+            <p className="text-sm text-[#475569] font-inter leading-relaxed line-clamp-2">
+              Replacing guesswork with structured strategy tailored around your risk profile, cashflow surplus, and tax optimization.
             </p>
           </motion.div>
 
@@ -65,7 +65,7 @@ export default function AboutMissionVision() {
             whileHover={{ y: -6 }}
             className="p-8 sm:p-10 rounded-3xl bg-white border border-[#C89A4B]/30 hover:border-[#C89A4B] transition-all duration-300 shadow-lg text-left group"
           >
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-6">
               <div className="w-14 h-14 rounded-2xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-[#C89A4B] flex items-center justify-center">
                 <Eye className="w-7 h-7" />
               </div>
@@ -75,16 +75,16 @@ export default function AboutMissionVision() {
               </span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-serif-luxury font-bold text-[#0F172A] mb-4 group-hover:text-[#C89A4B] transition-colors">
-              India's Benchmark Fiduciary Advisory
+            <h3 className="text-2xl sm:text-3xl font-serif-luxury font-bold text-[#0F172A] mb-3 group-hover:text-[#C89A4B] transition-colors">
+              India's Benchmark Fiduciary Planning
             </h3>
 
-            <p className="text-base sm:text-lg text-[#0F172A] font-serif-luxury italic leading-relaxed mb-6 font-medium">
-              "To become India's most trusted goal-first financial planning platform — where fiduciary integrity comes first."
+            <p className="text-base sm:text-lg text-[#0F172A] font-serif-luxury italic leading-relaxed mb-4 font-medium">
+              "To be India's most trusted goal-first wealth platform — where fiduciary integrity comes first."
             </p>
 
-            <p className="text-sm text-[#475569] font-inter leading-relaxed">
-              We envision a future where every Indian family accesses transparent, zero-commission financial planning, ensuring their hard-earned money works efficiently towards lifelong security.
+            <p className="text-sm text-[#475569] font-inter leading-relaxed line-clamp-2">
+              Empowering every Indian family with transparent, zero-commission financial advice that ensures long-term peace of mind.
             </p>
           </motion.div>
 

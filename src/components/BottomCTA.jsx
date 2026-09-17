@@ -38,7 +38,7 @@ export default function BottomCTA({ onOpenSearch }) {
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="gold-glow-button px-9 py-4 rounded-full text-sm font-bold text-[#020B2D] tracking-wide flex items-center justify-center space-x-3 shadow-[0_10px_35px_rgba(200,162,74,0.45)] group w-full sm:w-auto"
+              className="gold-glow-button group w-full sm:w-auto"
             >
               <Calendar className="w-4 h-4" />
               <span>Book Your First Consultation</span>
@@ -56,7 +56,7 @@ export default function BottomCTA({ onOpenSearch }) {
           {/* Security Subtext */}
           <div className="pt-6 border-t border-[#C8A24A]/15 flex flex-wrap items-center justify-center gap-6 text-xs text-[#BAC6DA]">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" /> SEBI Registered RIA #INA000018241
+              <ShieldCheck className="w-4 h-4 text-emerald-400" /> SEBI-Registered Fiduciary
             </span>
             <span>•</span>
             <span className="flex items-center gap-1.5">

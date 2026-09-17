@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustStrip from './components/TrustStrip';
 import WhatIsFinancialPlanning from './components/WhatIsFinancialPlanning';
-import HowSolahanaWorks from './components/HowSolahanaWorks';
 import WhoWeServe from './components/WhoWeServe';
 import SolahanaServices from './components/SolahanaServices';
 import FinancialSnapshot from './components/FinancialSnapshot';
@@ -67,7 +66,6 @@ function HomePage({ onOpenSearch }) {
       <Hero onOpenSearch={onOpenSearch} />
       <TrustStrip />
       <WhatIsFinancialPlanning />
-      <HowSolahanaWorks />
       <WhoWeServe />
       <StagePlanningSection onOpenSearch={onOpenSearch} />
       <SolahanaServices />

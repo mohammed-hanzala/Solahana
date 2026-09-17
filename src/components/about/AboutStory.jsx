@@ -8,7 +8,7 @@ export default function AboutStory() {
       step: '01',
       title: 'Understanding Finances',
       subtitle: 'Mapping total clarity across all assets & liabilities',
-      description: 'Most investors hold fragmented fixed deposits, mutual funds, and insurance policies across multiple apps without knowing if they add up to real financial security. We begin by organizing your complete financial landscape into one clear, transparent snapshot.',
+      description: 'We organize your fragmented FDs, mutual funds, and insurance into one transparent, unified snapshot.',
       icon: Layers,
       highlight: 'From Fragmented Accounts to Total Clarity'
     },
@@ -16,7 +16,7 @@ export default function AboutStory() {
       step: '02',
       title: 'Building a Roadmap',
       subtitle: 'Translating life ambitions into inflation-adjusted goals',
-      description: 'Instead of chasing speculative returns, we anchor every rupee to concrete life goals — early retirement, children’s overseas education, property purchases, or tax savings. Every goal gets its own dedicated timeline and target corpus.',
+      description: 'Every rupee is anchored to concrete life goals — early retirement, education, real estate, or tax savings.',
       icon: Milestone,
       highlight: 'Goals First, Products Second'
     },
@@ -24,7 +24,7 @@ export default function AboutStory() {
       step: '03',
       title: 'Planning Consistently',
       subtitle: 'Executing systematic step-up SIPs and tax harvesting',
-      description: 'Wealth accumulation is not built on market timing, but on systematic discipline. We construct tax-efficient portfolios with automated step-up investments, tax-loss harvesting, and risk-managed asset allocation.',
+      description: 'Disciplined multi-asset portfolios built with automated step-ups, tax harvesting, and risk control.',
       icon: CheckCircle2,
       highlight: 'Disciplined Execution Over Market Timing'
     },
@@ -32,18 +32,18 @@ export default function AboutStory() {
       step: '04',
       title: 'Reviewing Regularly',
       subtitle: 'Adapting your plan through life changes and market cycles',
-      description: 'Life isn’t static — career promotions, marriage, child births, and market shifts require plan adjustments. We conduct structured quarterly and annual reviews to ensure your strategy stays continuously aligned with your evolving life.',
+      description: 'Structured reviews to adjust your portfolio as your salary grows, career evolves, or family expands.',
       icon: RefreshCw,
       highlight: 'Ongoing Fiduciary Care'
     }
   ];
 
   return (
-    <section id="our-story" className="py-20 md:py-28 relative overflow-hidden bg-[#F3EFE9] border-y border-[#C89A4B]/20">
+    <section id="our-story" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-[#F3EFE9] border-y border-[#C89A4B]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full gold-badge text-[#9A7326] text-xs font-semibold uppercase tracking-widest font-sora">
             <BookOpen className="w-3.5 h-3.5 text-[#C89A4B]" />
             <span>OUR STORY</span>
@@ -53,8 +53,8 @@ export default function AboutStory() {
             Why SOLAHANA Was Created
           </h2>
 
-          <p className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed">
-            For years, investors in India have been bombarded with product pitches — insurance policies sold as investments, trending funds without risk context, and speculative hype. SOLAHANA was born out of a simple belief: <span className="text-[#9A7326] font-semibold">Money should be organized around your life goals, not financial products.</span>
+          <p className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed line-clamp-2">
+            SOLAHANA was created on a simple principle: <span className="text-[#9A7326] font-semibold">Money should be organized around your life goals, not financial products.</span>
           </p>
         </div>
 

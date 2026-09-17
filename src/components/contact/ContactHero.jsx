@@ -104,7 +104,7 @@ export const ContactHero = () => {
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <h3 className="text-2xl font-serif-luxury font-bold text-[#0F172A]">
-                SOLAHANA Advisory Office
+                SOLAHANA Planning Office
               </h3>
               <p className="text-sm text-[#475569] font-inter leading-relaxed">
                 Visit our office or schedule a private virtual video consultation with a certified SEBI Registered RIA advisor.

@@ -48,7 +48,7 @@ export default function PlanningAreas() {
         <div className="text-center space-y-4 max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5] text-[#C89B3C] text-xs font-semibold uppercase tracking-widest font-sora">
             <Compass className="w-3.5 h-3.5" />
-            <span>CORE ADVISORY PILLARS</span>
+            <span>CORE PLANNING PILLARS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-[#1A1A1A]">
             Comprehensive Financial Planning Areas

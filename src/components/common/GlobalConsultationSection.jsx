@@ -129,52 +129,52 @@ export default function GlobalConsultationSection() {
   };
 
   return (
-    <section id="global-consultation-section" className="relative py-16 sm:py-20 lg:py-24 bg-[#FCFAF6] border-t border-b border-[#C89B3C]/20 overflow-hidden font-inter">
+    <section id="global-consultation-section" className="relative py-12 sm:py-16 lg:py-20 bg-[#FCFAF6] border-t border-b border-[#E7D7B5]/50 overflow-hidden font-inter">
       {/* Background Subtle Luxury Accents */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#C89B3C]/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-1/3 right-0 -translate-y-1/2 w-96 h-96 bg-[#C89B3C]/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* ========================================================= */}
-          {/* LEFT COLUMN: HEADLINE, DESCRIPTION & TRUST HIGHLIGHTS     */}
+          {/* LEFT COLUMN: HEADLINE, CONCISE COPY & FIDUCIARY HIGHLIGHTS */}
           {/* ========================================================= */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-6 space-y-6 text-left"
+            className="lg:col-span-5 space-y-6 text-left"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-xs font-semibold uppercase tracking-widest text-[#9A7326]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-[11px] font-semibold uppercase tracking-widest text-[#9A7326]">
               <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
-              <span>SOLAHANA ADVISORY SERVICES</span>
+              <span>SOLAHANA PLANNING</span>
             </div>
 
             <h2 className="font-serif-luxury text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F172A] leading-tight tracking-tight">
-              Schedule a Call with Our Financial Advisor & Get{' '}
+              Schedule Your Free{' '}
               <span className="text-[#C89B3C] italic font-serif-luxury">
-                Expert Insights Today!
+                Wealth Consultation
               </span>
             </h2>
 
             <p className="text-sm sm:text-base text-[#475569] leading-relaxed font-normal">
-              Speak with a dedicated fiduciary wealth advisor to build a personalized, inflation-protected financial strategy tailored around your life goals.
+              Speak with a dedicated SEBI-registered advisor to create an inflation-protected financial strategy tailored to your goals.
             </p>
 
             {/* Key Fiduciary Features */}
-            <div className="pt-2 space-y-4">
+            <div className="pt-2 space-y-3.5">
               {[
-                { title: '100% Confidential & Fiduciary Guidance', desc: 'Zero product bias — purely independent financial advice.', icon: ShieldCheck },
-                { title: 'Custom Wealth & Tax Optimization', desc: 'Comprehensive strategy covering Section 80C, capital gains & SWP.', icon: TrendingUp },
-                { title: 'SEBI-Registered Advisory Standard', desc: 'Transparent planning tailored to your exact life milestones.', icon: Award },
+                { title: '100% Confidential & Fiduciary', desc: 'Zero product bias — independent advice tailored to you.', icon: ShieldCheck },
+                { title: 'Custom Wealth & Tax Optimization', desc: 'Comprehensive strategy covering Section 80C, SWP & capital gains.', icon: TrendingUp },
+                { title: 'SEBI-Registered Planning Standard', desc: 'Transparent, goal-aligned financial planning.', icon: Award },
               ].map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                  <div key={idx} className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white/70 border border-[#E7D7B5]/60 shadow-sm">
+                  <div key={idx} className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white/80 border border-[#E7D7B5]/50 shadow-xs">
                     <div className="p-2 rounded-xl bg-[#C89B3C]/10 text-[#9A7326] shrink-0 mt-0.5">
-                      <Icon className="w-5 h-5" />
+                      <Icon className="w-4.5 h-4.5" />
                     </div>
                     <div>
                       <h4 className="text-xs sm:text-sm font-bold text-[#0F172A]">{item.title}</h4>
@@ -187,32 +187,32 @@ export default function GlobalConsultationSection() {
           </motion.div>
 
           {/* ========================================================= */}
-          {/* RIGHT COLUMN: CONSULTATION FORM CARD (FINTOO STYLE)      */}
+          {/* RIGHT COLUMN: LIGHT & SPACIOUS CONSULTATION FORM CARD     */}
           {/* ========================================================= */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-6"
+            className="lg:col-span-7"
           >
-            <div className="bg-white rounded-3xl p-4.5 sm:p-8 lg:p-10 border-2 border-[#C89B3C]/30 shadow-2xl relative overflow-hidden">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#E7D7B5]/70 shadow-xl relative overflow-hidden">
               
-              {/* Top Accent Line */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-[#C89B3C] to-transparent rounded-full" />
+              {/* Subtle Top Accent Bar */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C89B3C]/20 via-[#C89B3C] to-[#C89B3C]/20" />
 
-              {/* SOLAHANA Logo at top of form card */}
-              <div className="text-center mb-6">
+              {/* Prominent SOLAHANA Logo Header */}
+              <div className="text-center mb-8">
                 <img 
                   src={solahanaLogo} 
                   alt="SOLAHANA" 
-                  className="h-10 sm:h-12 w-auto mx-auto object-contain mb-2"
+                  className="h-12 sm:h-14 w-auto mx-auto object-contain mb-3"
                 />
                 <h3 className="font-serif-luxury text-xl sm:text-2xl font-bold text-[#0F172A]">
-                  Enter Details
+                  Book Free Consultation
                 </h3>
                 <p className="text-xs text-[#64748B] mt-1">
-                  Book your complimentary 1-on-1 wealth strategy call.
+                  Fill in your details below to schedule your 1-on-1 strategy call.
                 </p>
               </div>
 
@@ -220,7 +220,7 @@ export default function GlobalConsultationSection() {
                 <motion.div
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  className="py-8 text-center space-y-4"
+                  className="py-10 text-center space-y-4"
                 >
                   <div className="w-16 h-16 mx-auto rounded-full bg-[#C89B3C]/15 border-2 border-[#C89B3C] flex items-center justify-center text-[#9A7326]">
                     <CheckCircle2 className="w-8 h-8" />
@@ -229,7 +229,7 @@ export default function GlobalConsultationSection() {
                     Consultation Request Received!
                   </h4>
                   <p className="text-xs sm:text-sm text-[#475569] max-w-sm mx-auto leading-relaxed">
-                    Thank you, <strong>{formData.fullName}</strong>. A dedicated SOLAHANA financial advisor will reach out to you at <strong>+91 {formData.phone}</strong> during your selected slot (<strong>{formData.preferredTime}</strong>).
+                    Thank you, <strong>{formData.fullName}</strong>. A dedicated SOLAHANA financial advisor will contact you at <strong>+91 {formData.phone}</strong> during your selected slot (<strong>{formData.preferredTime}</strong>).
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -239,19 +239,19 @@ export default function GlobalConsultationSection() {
                   </button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4 text-left">
+                <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 text-left">
                   
                   {errorMsg && (
-                    <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs flex items-center gap-2">
+                    <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
                       <span>{errorMsg}</span>
                     </div>
                   )}
 
                   {/* 1. Full Name */}
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-[#0F172A] flex items-center gap-1">
-                      <span>Name *</span>
+                  <div>
+                    <label className="block text-xs font-semibold text-[#0F172A] mb-1.5">
+                      Full Name *
                     </label>
                     <div className="relative">
                       <User className="w-4 h-4 text-[#C89B3C] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -262,21 +262,23 @@ export default function GlobalConsultationSection() {
                         placeholder="e.g. Ananya Sharma"
                         value={formData.fullName}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 pl-10 rounded-xl border border-[#E7D7B5] focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/20 text-xs sm:text-sm outline-none bg-white text-[#0F172A] transition-all"
+                        className="w-full px-4 py-3.5 pl-10 rounded-xl border border-slate-200 focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/15 text-xs sm:text-sm outline-none bg-[#FCFAF6]/40 focus:bg-white text-[#0F172A] transition-all"
                       />
                     </div>
                   </div>
 
                   {/* 2. Mobile Number (+91) */}
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-[#0F172A] flex items-center justify-between">
-                      <span>Mobile Number *</span>
+                  <div>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label className="text-xs font-semibold text-[#0F172A]">
+                        Mobile Number *
+                      </label>
                       {phoneTouched && (
-                        <span className={`text-[10px] font-mono ${isPhoneValid ? 'text-emerald-600' : 'text-red-500'}`}>
+                        <span className={`text-[10px] font-mono ${isPhoneValid ? 'text-emerald-600 font-bold' : 'text-red-500'}`}>
                           {formData.phone.length}/10 digits
                         </span>
                       )}
-                    </label>
+                    </div>
                     <div className="relative flex items-center">
                       <div className="absolute left-3.5 flex items-center gap-1.5 pointer-events-none text-xs font-semibold text-[#0F172A]">
                         <span className="text-sm">🇮🇳</span>
@@ -291,21 +293,21 @@ export default function GlobalConsultationSection() {
                         value={formData.phone}
                         onChange={handlePhoneChange}
                         onBlur={() => setPhoneTouched(true)}
-                        className={`w-full px-4 py-3 pl-16 rounded-xl text-xs sm:text-sm outline-none bg-white text-[#0F172A] transition-all border ${
+                        className={`w-full px-4 py-3.5 pl-16 rounded-xl text-xs sm:text-sm outline-none bg-[#FCFAF6]/40 focus:bg-white text-[#0F172A] transition-all border ${
                           phoneTouched
                             ? isPhoneValid
                               ? 'border-emerald-500 focus:ring-2 focus:ring-emerald-500/20'
                               : 'border-red-500 focus:ring-2 focus:ring-red-500/20'
-                            : 'border-[#E7D7B5] focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/20'
+                            : 'border-slate-200 focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/15'
                         }`}
                       />
                     </div>
                   </div>
 
                   {/* 3. Email Address */}
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-[#0F172A]">
-                      Email *
+                  <div>
+                    <label className="block text-xs font-semibold text-[#0F172A] mb-1.5">
+                      Email Address *
                     </label>
                     <div className="relative">
                       <Mail className="w-4 h-4 text-[#C89B3C] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -316,15 +318,15 @@ export default function GlobalConsultationSection() {
                         placeholder="ananya@example.com"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 pl-10 rounded-xl border border-[#E7D7B5] focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/20 text-xs sm:text-sm outline-none bg-white text-[#0F172A] transition-all"
+                        className="w-full px-4 py-3.5 pl-10 rounded-xl border border-slate-200 focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/15 text-xs sm:text-sm outline-none bg-[#FCFAF6]/40 focus:bg-white text-[#0F172A] transition-all"
                       />
                     </div>
                   </div>
 
                   {/* 4. City & Planning Interest */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <div className="space-y-1">
-                      <label className="text-xs font-semibold text-[#0F172A]">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                    <div>
+                      <label className="block text-xs font-semibold text-[#0F172A] mb-1.5">
                         City *
                       </label>
                       <div className="relative">
@@ -336,20 +338,20 @@ export default function GlobalConsultationSection() {
                           placeholder="e.g. Mumbai"
                           value={formData.city}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 pl-10 rounded-xl border border-[#E7D7B5] focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/20 text-xs sm:text-sm outline-none bg-white text-[#0F172A] transition-all"
+                          className="w-full px-4 py-3.5 pl-10 rounded-xl border border-slate-200 focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/15 text-xs sm:text-sm outline-none bg-[#FCFAF6]/40 focus:bg-white text-[#0F172A] transition-all"
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-1">
-                      <label className="text-xs font-semibold text-[#0F172A]">
+                    <div>
+                      <label className="block text-xs font-semibold text-[#0F172A] mb-1.5">
                         Planning Interest *
                       </label>
                       <select
                         name="goal"
                         value={formData.goal}
                         onChange={handleChange}
-                        className="w-full px-3 py-3 rounded-xl border border-[#E7D7B5] focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/20 text-xs sm:text-sm outline-none bg-white text-[#0F172A] cursor-pointer transition-all"
+                        className="w-full px-3.5 py-3.5 rounded-xl border border-slate-200 focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/15 text-xs sm:text-sm outline-none bg-[#FCFAF6]/40 focus:bg-white text-[#0F172A] cursor-pointer transition-all"
                       >
                         {planningInterests.map(interest => (
                           <option key={interest} value={interest}>
@@ -361,8 +363,8 @@ export default function GlobalConsultationSection() {
                   </div>
 
                   {/* 5. Preferred Callback Time */}
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-[#0F172A] flex items-center gap-1">
+                  <div>
+                    <label className="block text-xs font-semibold text-[#0F172A] mb-1.5 flex items-center gap-1.5">
                       <Clock className="w-3.5 h-3.5 text-[#C89B3C]" />
                       <span>Preferred Callback Time</span>
                     </label>
@@ -370,7 +372,7 @@ export default function GlobalConsultationSection() {
                       name="preferredTime"
                       value={formData.preferredTime}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-[#E7D7B5] focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/20 text-xs sm:text-sm outline-none bg-white text-[#0F172A] cursor-pointer transition-all"
+                      className="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/15 text-xs sm:text-sm outline-none bg-[#FCFAF6]/40 focus:bg-white text-[#0F172A] cursor-pointer transition-all"
                     >
                       {timeSlots.map(slot => (
                         <option key={slot} value={slot}>
@@ -381,8 +383,8 @@ export default function GlobalConsultationSection() {
                   </div>
 
                   {/* 6. Message (Optional) */}
-                  <div className="space-y-1">
-                    <label className="text-xs font-semibold text-[#0F172A]">
+                  <div>
+                    <label className="block text-xs font-semibold text-[#0F172A] mb-1.5">
                       Message (Optional)
                     </label>
                     <textarea
@@ -391,7 +393,7 @@ export default function GlobalConsultationSection() {
                       placeholder="Specify any questions regarding retirement, SIP, tax or investments..."
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full px-4 py-2.5 rounded-xl border border-[#E7D7B5] focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/20 text-xs outline-none bg-white text-[#0F172A] resize-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#C89B3C] focus:ring-2 focus:ring-[#C89B3C]/15 text-xs outline-none bg-[#FCFAF6]/40 focus:bg-white text-[#0F172A] resize-none transition-all"
                     />
                   </div>
 
@@ -405,7 +407,7 @@ export default function GlobalConsultationSection() {
                         onChange={handleChange}
                         className="rounded border-[#C89B3C] text-[#C89B3C] focus:ring-[#C89B3C]"
                       />
-                      <span>I agree to the <a href="/contact" className="text-[#9A7326] underline">Terms & Conditions</a> and <a href="/contact" className="text-[#9A7326] underline">Privacy Policy</a></span>
+                      <span>I agree to the <a href="/contact" className="text-[#9A7326] underline font-medium">Terms & Conditions</a> and <a href="/contact" className="text-[#9A7326] underline font-medium">Privacy Policy</a></span>
                     </label>
 
                     <label className="flex items-center gap-2 cursor-pointer">
@@ -422,23 +424,23 @@ export default function GlobalConsultationSection() {
                     </label>
                   </div>
 
-                  {/* CTA Button */}
+                  {/* Single Strong CTA Button */}
                   <div className="pt-2">
                     <button
                       type="submit"
                       disabled={loading}
-                      className="gold-glow-button w-full py-4 rounded-full text-white font-bold text-sm tracking-wide flex items-center justify-center space-x-2 cursor-pointer shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
+                      className="gold-glow-button w-full py-4 rounded-full text-white font-bold text-sm sm:text-base tracking-wide flex items-center justify-center space-x-2 cursor-pointer shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
                     >
                       {loading ? (
-                        <Loader2 className="w-4 h-4 animate-spin text-white" />
+                        <Loader2 className="w-4.5 h-4.5 animate-spin text-white" />
                       ) : (
-                        <Send className="w-4 h-4" />
+                        <Send className="w-4.5 h-4.5" />
                       )}
                       <span>{loading ? 'Submitting Details...' : 'Book Free Consultation'}</span>
                     </button>
-                    <p className="text-[10px] text-center text-[#64748B] mt-2 flex items-center justify-center gap-1">
-                      <Lock className="w-3 h-3 text-[#C89B3C]" />
-                      <span>100% Secure & Confidential. No spam, guaranteed.</span>
+                    <p className="text-[11px] text-center text-[#64748B] mt-2.5 flex items-center justify-center gap-1">
+                      <Lock className="w-3.5 h-3.5 text-[#C89B3C]" />
+                      <span>100% Secure & Confidential. No spam guaranteed.</span>
                     </p>
                   </div>
 

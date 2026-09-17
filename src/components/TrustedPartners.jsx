@@ -11,7 +11,7 @@ export default function TrustedPartners() {
     { name: 'CAMS', full: 'Computer Age Management', type: 'Registrar', icon: CheckCircle2 },
     { name: 'MCX', full: 'Multi Commodity Exchange', type: 'Exchange', icon: Landmark },
     { name: 'RBI', full: 'RBI Regulated Entities', type: 'Banking Gateway', icon: Landmark },
-    { name: 'SEBI', full: 'SEBI Registered RIA #INA000018241', type: 'Compliance', icon: Award },
+    { name: 'SEBI', full: 'SEBI Registered Planning Standard', type: 'Compliance', icon: Award },
   ];
 
   // Duplicate for seamless infinite marquee loop

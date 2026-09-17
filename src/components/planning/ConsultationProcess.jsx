@@ -39,7 +39,7 @@ export default function ConsultationProcess() {
             <span>HOW IT WORKS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-[#1A1A1A]">
-            Advisory Consultation Process
+            Planning Consultation Process
           </h2>
           <p className="text-base text-[#555555] font-inter">
             Simple, transparent onboarding to launch your fiduciary wealth relationship.

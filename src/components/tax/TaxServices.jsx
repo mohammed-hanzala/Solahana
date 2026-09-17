@@ -36,7 +36,7 @@ export default function TaxServices() {
         <div className="text-center space-y-4 max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5] text-[#C89B3C] text-xs font-semibold uppercase tracking-widest font-sora">
             <Calculator className="w-3.5 h-3.5" />
-            <span>SPECIALIZED ADVISORY</span>
+            <span>SPECIALIZED TAX PLANNING</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-[#1A1A1A]">
             Comprehensive Tax Structuring Solutions
@@ -75,7 +75,7 @@ export default function TaxServices() {
                   </p>
                 </div>
                 <div className="pt-6 mt-6 border-t border-[#E7D7B5] flex items-center justify-between text-xs font-semibold text-[#C89B3C]">
-                  <span>Explore Advisor Details</span>
+                  <span>Explore Strategy Details</span>
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </motion.div>

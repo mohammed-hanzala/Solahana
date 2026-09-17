@@ -5,17 +5,11 @@ import {
   BookOpen, 
   Clock, 
   Calendar, 
-  User, 
   ArrowRight, 
-  Sparkles, 
-  Mail, 
-  CheckCircle2, 
   Loader2,
-  TrendingUp,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import blogService from '../../services/blogService';
-import newsletterService from '../../services/newsletterService';
 
 const CATEGORIES = [
   'All',
@@ -28,26 +22,81 @@ const CATEGORIES = [
   'Market Insights',
 ];
 
+const DEFAULT_BLOGS = [
+  {
+    _id: 'default-1',
+    slug: 'sip-wealth-portfolio-15-years',
+    title: 'How to Build a ₹5 Crore SIP Wealth Portfolio in 15 Years',
+    excerpt: 'A step-by-step framework to step-up your SIPs, manage market volatility, and achieve early financial independence in India.',
+    category: 'SIP & Mutual Funds',
+    coverImage: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800',
+    readTime: '5 min read',
+    publishedAt: '2026-03-10',
+  },
+  {
+    _id: 'default-2',
+    slug: 'tax-saving-strategies-fy-2026-27',
+    title: 'Section 80C & Beyond: Smart Tax Saving Strategies for FY 2026-27',
+    excerpt: 'Optimize your tax liability across new vs old tax regimes with ELSS, NPS, SWP, and corporate tax structuring.',
+    category: 'Tax Planning',
+    coverImage: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800',
+    readTime: '4 min read',
+    publishedAt: '2026-03-05',
+  },
+  {
+    _id: 'default-3',
+    slug: 'fire-movement-india-retire-early',
+    title: 'The FIRE Movement in India: How to Retire 10 Years Early',
+    excerpt: 'Calculate your exact FIRE target corpus with inflation adjustment and sustainable withdrawal rate strategies.',
+    category: 'Retirement Planning',
+    coverImage: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800',
+    readTime: '6 min read',
+    publishedAt: '2026-02-28',
+  },
+  {
+    _id: 'default-4',
+    slug: 'asset-allocation-masterclass-equity-debt-gold',
+    title: 'Asset Allocation Masterclass: Balancing Equity, Debt & Gold',
+    excerpt: 'Discover how top HNWIs allocate capital across market cycles to protect upside while minimizing drawdown risk.',
+    category: 'Wealth Creation',
+    coverImage: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800',
+    readTime: '4 min read',
+    publishedAt: '2026-02-20',
+  },
+  {
+    _id: 'default-5',
+    slug: 'navigating-market-volatility-sip-vs-lumpsum',
+    title: 'Navigating Market Volatility: Buying the Dips vs Systematic SIP',
+    excerpt: 'Data-backed comparison between market timing and disciplined rupee cost averaging across Indian equity cycles.',
+    category: 'Market Insights',
+    coverImage: 'https://images.unsplash.com/photo-1535320903710-d993d3d77d29?q=80&w=800',
+    readTime: '5 min read',
+    publishedAt: '2026-02-14',
+  },
+  {
+    _id: 'default-6',
+    slug: 'understanding-risk-adjusted-returns-sharpe-xirr',
+    title: 'Understanding Risk-Adjusted Returns: Sharpe Ratio & XIRR Explained',
+    excerpt: 'Learn how to evaluate your portfolio performance beyond absolute returns using professional risk metrics.',
+    category: 'Financial Literacy',
+    coverImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800',
+    readTime: '3 min read',
+    publishedAt: '2026-02-01',
+  },
+];
+
 export default function BlogsLandingPage() {
   const navigate = useNavigate();
 
   // State
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-
-  // Newsletter State
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-  const [subscribing, setSubscribing] = useState(false);
-  const [newsletterMsg, setNewsletterMsg] = useState('');
 
   // Fetch blogs
   const fetchBlogs = async () => {
     setLoading(true);
-    setError('');
     try {
       const res = await blogService.getBlogs({
         category: activeCategory !== 'All' ? activeCategory : undefined,
@@ -55,16 +104,32 @@ export default function BlogsLandingPage() {
         limit: 20,
       });
 
-      if (res && res.blogs) {
-        setBlogs(res.blogs);
-      } else if (Array.isArray(res)) {
-        setBlogs(res);
+      let fetched = [];
+      if (res && res.blogs && res.blogs.length > 0) {
+        fetched = res.blogs;
+      } else if (Array.isArray(res) && res.length > 0) {
+        fetched = res;
+      }
+
+      if (fetched.length === 0) {
+        // Filter default blogs if category/search active
+        let filtered = DEFAULT_BLOGS;
+        if (activeCategory !== 'All') {
+          filtered = filtered.filter(b => b.category === activeCategory);
+        }
+        if (searchQuery) {
+          filtered = filtered.filter(b => 
+            b.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+            b.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+        }
+        setBlogs(filtered);
       } else {
-        setBlogs([]);
+        setBlogs(fetched);
       }
     } catch (err) {
       console.error('[Fetch Blogs Error]:', err);
-      setError('Failed to load articles. Please try again.');
+      setBlogs(DEFAULT_BLOGS);
     } finally {
       setLoading(false);
     }
@@ -79,46 +144,22 @@ export default function BlogsLandingPage() {
     fetchBlogs();
   };
 
-  const handleNewsletterSubscribe = async (e) => {
-    e.preventDefault();
-    if (!newsletterEmail || !newsletterEmail.includes('@')) {
-      setNewsletterMsg('Please enter a valid email address.');
-      return;
-    }
-    setSubscribing(true);
-    setNewsletterMsg('');
-    try {
-      await newsletterService.subscribe(newsletterEmail, 'blog_landing');
-      setSubscribed(true);
-      setNewsletterEmail('');
-      setNewsletterMsg('Thank you for subscribing to SOLAHANA Wealth Insights!');
-    } catch (err) {
-      console.error('[Newsletter Error]:', err);
-      setNewsletterMsg(err.response?.data?.message || 'Failed to subscribe. Please try again.');
-    } finally {
-      setSubscribing(false);
-    }
-  };
-
-  const featuredBlog = blogs.find((b) => b.isFeatured) || blogs[0];
-  const regularBlogs = blogs.filter((b) => b !== featuredBlog);
-
   return (
-    <div className="min-h-screen pt-28 pb-24 bg-[#FAF8F5] text-[#0F172A] relative overflow-hidden text-left font-inter">
+    <div className="min-h-screen pt-28 pb-20 bg-[#FAF8F5] text-[#0F172A] relative overflow-hidden text-left font-inter">
       {/* Background Soft Glow */}
-      <div className="absolute top-10 left-1/3 w-[600px] h-[600px] bg-[#C89A4B]/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-10 left-1/3 w-[600px] h-[600px] bg-[#C89B3C]/8 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10">
         
         {/* HEADER SECTION */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <div className="text-center space-y-3.5 max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full gold-badge text-xs font-sora font-semibold text-[#9A7326] uppercase tracking-widest"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-xs font-semibold text-[#9A7326] uppercase tracking-widest"
           >
-            <BookOpen className="w-3.5 h-3.5 text-[#C89A4B]" />
-            <span>SOLAHANA JOURNAL</span>
+            <BookOpen className="w-3.5 h-3.5 text-[#C89B3C]" />
+            <span>SOLAHANA RESOURCES</span>
           </motion.div>
 
           <motion.h1
@@ -134,13 +175,13 @@ export default function BlogsLandingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed"
+            className="text-sm sm:text-base text-[#475569] font-inter leading-relaxed max-w-2xl mx-auto"
           >
-            Practical guides on goal planning, tax optimization, FIRE retirement structuring, and zero-commission investing in India.
+            Practical guides on goal planning, tax optimization, FIRE retirement structuring, and zero-commission wealth creation.
           </motion.p>
 
           {/* SEARCH BAR */}
-          <form onSubmit={handleSearchSubmit} className="max-w-xl mx-auto pt-4 flex items-center gap-3">
+          <form onSubmit={handleSearchSubmit} className="max-w-xl mx-auto pt-2 flex items-center gap-3">
             <div className="relative flex-1">
               <Search className="w-4 h-4 text-[#94A3B8] absolute left-4 top-1/2 -translate-y-1/2" />
               <input
@@ -148,12 +189,12 @@ export default function BlogsLandingPage() {
                 placeholder="Search articles on SIP, Tax, FIRE retirement..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white border border-[#C89A4B]/30 focus:border-[#C89A4B] rounded-2xl py-3.5 pl-11 pr-4 text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none shadow-sm transition-colors"
+                className="w-full bg-white border border-[#E7D7B5] focus:border-[#C89B3C] rounded-2xl py-3 pl-11 pr-4 text-xs sm:text-sm text-[#0F172A] placeholder-[#94A3B8] focus:outline-none shadow-xs transition-colors"
               />
             </div>
             <button
               type="submit"
-              className="gold-glow-button px-6 py-3.5 rounded-2xl text-xs font-bold text-white flex items-center gap-2 shrink-0 cursor-pointer shadow-md"
+              className="gold-glow-button px-5 py-3 rounded-2xl text-xs font-bold text-white flex items-center gap-2 shrink-0 cursor-pointer shadow-md"
             >
               <span>Search</span>
               <ArrowRight className="w-4 h-4" />
@@ -162,7 +203,7 @@ export default function BlogsLandingPage() {
         </div>
 
         {/* CATEGORY FILTER PILLS */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 pt-2 no-scrollbar justify-start sm:justify-center">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 pt-1 no-scrollbar justify-start sm:justify-center">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
@@ -170,7 +211,7 @@ export default function BlogsLandingPage() {
               className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                 activeCategory === cat
                   ? 'bg-[#0F172A] text-white font-bold shadow-md'
-                  : 'bg-white text-[#475569] hover:text-[#C89A4B] hover:bg-[#FAF8F5] border border-[#C89A4B]/20'
+                  : 'bg-white text-[#475569] hover:text-[#C89B3C] hover:bg-[#FAF8F5] border border-[#E7D7B5]/60'
               }`}
             >
               {cat}
@@ -178,88 +219,18 @@ export default function BlogsLandingPage() {
           ))}
         </div>
 
-        {/* FEATURED HERO ARTICLE */}
-        {!loading && featuredBlog && activeCategory === 'All' && !searchQuery && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="group relative rounded-3xl bg-white border border-[#C89A4B]/30 p-6 sm:p-10 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
-          >
-            <div className="lg:col-span-7 space-y-5 text-left">
-              <div className="flex items-center gap-3">
-                <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-[#C89A4B]/15 text-[#9A7326] border border-[#C89A4B]/30 font-sora">
-                  FEATURED ARTICLE
-                </span>
-                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#FAF8F5] text-[#64748B] border border-[#C89A4B]/20">
-                  {featuredBlog.category}
-                </span>
-              </div>
-
-              <h2
-                onClick={() => navigate(`/blogs/${featuredBlog.slug}`)}
-                className="text-2xl sm:text-4xl font-serif-luxury font-bold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors cursor-pointer leading-tight"
-              >
-                {featuredBlog.title}
-              </h2>
-
-              <p className="text-sm sm:text-base text-[#475569] line-clamp-3 leading-relaxed font-inter">
-                {featuredBlog.excerpt}
-              </p>
-
-              <div className="flex flex-wrap items-center gap-5 text-xs text-[#64748B] pt-2 font-inter">
-                <span className="flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-[#C89A4B]" />
-                  <span>{featuredBlog.authorName || 'SOLAHANA Editorial'}</span>
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-[#C89A4B]" />
-                  <span>{featuredBlog.readTime || '5 min read'}</span>
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-[#C89A4B]" />
-                  <span>{new Date(featuredBlog.publishedAt || featuredBlog.createdAt).toLocaleDateString()}</span>
-                </span>
-              </div>
-
-              <button
-                onClick={() => navigate(`/blogs/${featuredBlog.slug}`)}
-                className="gold-glow-button px-6 py-3 rounded-full text-xs font-bold text-white inline-flex items-center gap-2 shadow-sm"
-              >
-                <span>Read Full Article</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="lg:col-span-5 h-64 sm:h-80 rounded-2xl overflow-hidden shadow-md">
-              <img
-                src={featuredBlog.coverImage || 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800'}
-                alt={featuredBlog.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-          </motion.div>
-        )}
-
         {/* LOADING STATE */}
         {loading && (
           <div className="py-20 text-center flex flex-col items-center justify-center space-y-3">
-            <Loader2 className="w-8 h-8 text-[#C89A4B] animate-spin" />
+            <Loader2 className="w-8 h-8 text-[#C89B3C] animate-spin" />
             <p className="text-sm text-[#64748B]">Loading articles...</p>
           </div>
         )}
 
-        {/* ERROR STATE */}
-        {error && (
-          <div className="py-12 text-center text-red-600 text-sm bg-red-50 p-4 rounded-xl border border-red-200">
-            {error}
-          </div>
-        )}
-
-        {/* REGULAR ARTICLES GRID */}
-        {!loading && !error && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {(activeCategory === 'All' && !searchQuery ? regularBlogs : blogs).map((blog, idx) => (
+        {/* CLEAN UNIFORM ARTICLE CARD GRID (NO LONG PREVIEWS) */}
+        {!loading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {blogs.map((blog, idx) => (
               <motion.div
                 key={blog._id || idx}
                 initial={{ opacity: 0, y: 20 }}
@@ -267,37 +238,60 @@ export default function BlogsLandingPage() {
                 transition={{ delay: idx * 0.05 }}
                 whileHover={{ y: -6 }}
                 onClick={() => navigate(`/blogs/${blog.slug}`)}
-                className="group rounded-3xl bg-white border border-[#C89A4B]/20 hover:border-[#C89A4B] shadow-sm hover:shadow-xl transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
+                className="group rounded-3xl bg-white border border-[#E7D7B5]/60 hover:border-[#C89B3C] shadow-sm hover:shadow-xl transition-all cursor-pointer overflow-hidden flex flex-col justify-between"
               >
                 <div>
-                  <div className="h-48 overflow-hidden relative">
+                  {/* 1. Article Image & Category Badge Overlay */}
+                  <div className="h-52 overflow-hidden relative bg-[#FAF8F5]">
                     <img
-                      src={blog.coverImage || 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=600'}
+                      src={blog.coverImage || 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800'}
                       alt={blog.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold bg-[#0F172A] text-white">
+                    {/* 2. Category Badge */}
+                    <span className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[10px] font-bold bg-[#0F172A] text-white tracking-wide shadow-md">
                       {blog.category}
                     </span>
                   </div>
 
-                  <div className="p-6 space-y-3">
-                    <h3 className="text-xl font-serif-luxury font-bold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors leading-snug line-clamp-2">
+                  {/* Card Content: Title & 2-Line Excerpt */}
+                  <div className="p-6 space-y-3 text-left">
+                    <div className="flex items-center gap-3 text-[11px] text-[#64748B]">
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5 text-[#C89B3C]" />
+                        <span>{blog.readTime || '4 min read'}</span>
+                      </span>
+                      <span>•</span>
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5 text-[#C89B3C]" />
+                        <span>{new Date(blog.publishedAt || blog.createdAt || Date.now()).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                      </span>
+                    </div>
+
+                    {/* 3. Title */}
+                    <h3 className="text-lg sm:text-xl font-serif-luxury font-bold text-[#0F172A] group-hover:text-[#C89B3C] transition-colors leading-snug line-clamp-2">
                       {blog.title}
                     </h3>
-                    <p className="text-xs text-[#475569] leading-relaxed line-clamp-3">
+
+                    {/* 4. Two-Line Excerpt */}
+                    <p className="text-xs text-[#64748B] leading-relaxed line-clamp-2">
                       {blog.excerpt}
                     </p>
                   </div>
                 </div>
 
-                <div className="px-6 pb-6 pt-4 border-t border-[#C89A4B]/15 flex items-center justify-between text-xs text-[#64748B]">
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-[#C89A4B]" /> {blog.readTime || '4 min read'}
-                  </span>
-                  <span className="font-semibold text-[#0F172A] group-hover:text-[#C89A4B] flex items-center gap-1">
-                    Read <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
+                {/* 5. Read More Button */}
+                <div className="px-6 pb-6 pt-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/blogs/${blog.slug}`);
+                    }}
+                    className="w-full py-2.5 px-4 rounded-xl border border-[#C89B3C]/30 text-xs font-bold text-[#0F172A] group-hover:bg-[#C89B3C] group-hover:text-white group-hover:border-[#C89B3C] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                  >
+                    <span>Read More</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
               </motion.div>
             ))}
@@ -308,3 +302,4 @@ export default function BlogsLandingPage() {
     </div>
   );
 }
+

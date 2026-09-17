@@ -203,7 +203,7 @@ export default function AIWealthAdvisor() {
                 </div>
 
                 <div className="text-[11px] font-num text-[#D4AF37] bg-[#020B2D]/60 px-2.5 py-1 rounded-full border border-[#D4AF37]/20">
-                  ⚡ Live Advisory
+                  ⚡ Live Planning
                 </div>
               </div>
 

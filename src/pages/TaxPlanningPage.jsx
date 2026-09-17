@@ -20,7 +20,7 @@ export default function TaxPlanningPage({ onOpenSearch }) {
       {/* SECTION 2: WHY TAX PLANNING MATTERS */}
       <WhyTaxPlanningMatters />
 
-      {/* SECTION 3: HOLISTIC TAX ADVISORY */}
+      {/* SECTION 3: HOLISTIC TAX PLANNING */}
       <TaxServices onSelectService={onOpenSearch} />
 
       {/* SECTION 4: CONSULTATION CTA */}

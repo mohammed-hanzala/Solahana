@@ -6,48 +6,48 @@ export default function AboutValues() {
   const values = [
     {
       title: 'Transparency',
-      description: 'Zero hidden commissions, complete clarity on fees, and unbiased advisory on every decision.',
+      description: 'Zero hidden commissions, complete fee clarity, and unbiased planning.',
       icon: ShieldCheck,
       badge: 'Uncompromising'
     },
     {
       title: 'Trust',
-      description: 'A strict fiduciary commitment that puts your family’s interests above everything else.',
+      description: 'A strict fiduciary commitment putting your family’s interests first.',
       icon: HeartHandshake,
       badge: 'Fiduciary Guarantee'
     },
     {
       title: 'Long-Term Thinking',
-      description: 'Building multi-decadal compounding strategy instead of chasing short-term market noise.',
+      description: 'Multi-decadal compounding strategy over short-term market noise.',
       icon: Hourglass,
       badge: 'Generational Growth'
     },
     {
       title: 'Simplicity',
-      description: 'Demystifying financial jargon into intuitive roadmaps that anyone can understand.',
+      description: 'Demystifying complex finance into intuitive, actionable roadmaps.',
       icon: Feather,
       badge: 'Clear & Intuitive'
     },
     {
       title: 'Personal Guidance',
-      description: 'Custom-tailored financial blueprints tailored to your specific family milestones and risk profile.',
+      description: 'Tailored financial blueprints for your family milestones and risk profile.',
       icon: UserCheck,
       badge: 'Human Expertise'
     },
     {
       title: 'Continuous Review',
-      description: 'Proactive quarterly and annual rebalancing to keep your plan aligned with real-world changes.',
+      description: 'Proactive reviews keeping your plan aligned with real-world shifts.',
       icon: RefreshCw,
       badge: 'Always On Track'
     }
   ];
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden bg-[#F3EFE9] border-t border-[#C89A4B]/20">
+    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-[#F3EFE9] border-t border-[#C89A4B]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full gold-badge text-[#9A7326] text-xs font-semibold uppercase tracking-widest font-sora">
             <Star className="w-3.5 h-3.5 text-[#C89A4B]" />
             <span>CORE FOUNDATION</span>
@@ -58,7 +58,7 @@ export default function AboutValues() {
           </h2>
 
           <p className="text-base sm:text-lg text-[#475569] font-inter">
-            These six principles define every conversation, recommendation, and strategy we build at SOLAHANA.
+            These six principles define every strategy we build at SOLAHANA.
           </p>
         </div>
 

@@ -12,7 +12,7 @@ export default function PlanningJourney() {
     {
       step: 'Step 02',
       title: 'Gap Analysis & Strategy Architecture',
-      desc: 'Our SEBI advisory team stress-tests your assets against inflation, market downturns, and target retirement timelines.',
+      desc: 'Our SEBI planning team stress-tests your assets against inflation, market downturns, and target retirement timelines.',
     },
     {
       step: 'Step 03',
@@ -32,7 +32,7 @@ export default function PlanningJourney() {
         <div className="text-center space-y-4 max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5] text-[#C89B3C] text-xs font-semibold uppercase tracking-widest font-sora">
             <Compass className="w-3.5 h-3.5" />
-            <span>ADVISORY PROCESS</span>
+            <span>PLANNING PROCESS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-[#1A1A1A]">
             Your 4-Step Financial Planning Journey

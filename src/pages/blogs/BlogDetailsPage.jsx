@@ -162,13 +162,13 @@ export default function BlogDetailsPage() {
           dangerouslySetInnerHTML={{ __html: blog.content }}
         />
 
-        {/* Advisory CTA Banner inside Blog */}
+        {/* Planning CTA Banner inside Blog */}
         <div className="p-8 rounded-3xl bg-white border border-[#C89A4B]/30 shadow-xl space-y-4 text-center">
           <h3 className="text-2xl font-serif-luxury font-bold text-[#0F172A]">
             Ready to Structure Your Financial Goals?
           </h3>
           <p className="text-sm text-[#475569] max-w-xl mx-auto font-inter">
-            Schedule a 1-on-1 private advisory session with a SEBI Registered RIA advisor.
+            Schedule a 1-on-1 private planning session with a SEBI Registered RIA advisor.
           </p>
           <button
             onClick={() => navigate('/contact')}

@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ROUTE_TITLES = {
-  '/': 'SOLAHANA — Fiduciary Wealth Management & Financial Advisory',
+  '/': 'SOLAHANA — Fiduciary Wealth Management & Financial Planning',
   '/about': 'About Us — SOLAHANA Financial Planning',
   '/financial-planning': 'Financial Planning Services — SOLAHANA',
   '/goals': 'Life Goal Roadmap — SOLAHANA',
-  '/investments': 'Goal-Based Investment Advisory — SOLAHANA',
+  '/investments': 'Goal-Based Investment Planning — SOLAHANA',
   '/tax-planning': 'Tax Optimization & Harvesting — SOLAHANA',
   '/calculators': 'Financial Calculators Suite — SOLAHANA Desk',
   '/calculators/sip': 'SIP Calculator — SOLAHANA',

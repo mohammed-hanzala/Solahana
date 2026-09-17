@@ -142,7 +142,7 @@ export const BookConsultationForm = () => {
           >
             <Sparkles className="w-3.5 h-3.5 text-[#E8C878]" />
             <span className="text-xs font-semibold uppercase tracking-widest text-[#E8C878]">
-              1-ON-1 ADVISORY CRM
+              1-ON-1 PLANNING CRM
             </span>
           </motion.div>
 

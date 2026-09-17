@@ -28,7 +28,7 @@ export default function WhyPlanningMatters() {
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#C89B3C]/10 border border-[#E7D7B5] text-[#C89B3C] text-xs font-semibold uppercase tracking-widest font-sora">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>ESSENTIAL ADVISORY</span>
+              <span>ESSENTIAL PLANNING</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-[#1A1A1A] leading-tight">
               Why Professional Financial Planning Matters

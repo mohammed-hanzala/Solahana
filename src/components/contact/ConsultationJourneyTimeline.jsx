@@ -7,7 +7,7 @@ const steps = [
     step: '01',
     icon: FileText,
     title: 'Tell Us About Your Goals',
-    description: 'Complete our brief 1-on-1 advisory form detailing your key milestones, income stability, and financial priorities.'
+    description: 'Complete our brief 1-on-1 planning form detailing your key milestones, income stability, and financial priorities.'
   },
   {
     step: '02',
@@ -25,7 +25,7 @@ const steps = [
     step: '04',
     icon: Compass,
     title: 'Begin Your Planning Journey',
-    description: 'Execute your long-term wealth plan with quarterly portfolio reviews, zero commission direct mutual funds, and ongoing advisory.'
+    description: 'Execute your long-term wealth plan with quarterly portfolio reviews, zero commission direct mutual funds, and ongoing planning.'
   }
 ];
 
@@ -70,7 +70,7 @@ export const ConsultationJourneyTimeline = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/70 text-base md:text-lg font-light leading-relaxed"
           >
-            A transparent four-step advisory process designed to move you from initial clarity to lifelong financial confidence.
+            A transparent four-step planning process designed to move you from initial clarity to lifelong financial confidence.
           </motion.p>
         </div>
 

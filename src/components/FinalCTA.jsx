@@ -56,7 +56,7 @@ export default function FinalCTA({ onOpenSearch }) {
           {/* Security Subtext */}
           <div className="pt-6 border-t border-[#C89A4B]/15 flex flex-wrap items-center justify-center gap-6 text-xs text-[#64748B]">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" /> SEBI Registered RIA #INA000018241
+              <ShieldCheck className="w-4 h-4 text-emerald-600" /> SEBI-Registered Fiduciary
             </span>
             <span>•</span>
             <span className="flex items-center gap-1.5">

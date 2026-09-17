@@ -12,7 +12,7 @@ export default function BusinessFinancialPlanningIllustration() {
               <Briefcase className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-sm font-serif-luxury font-bold text-[#1A1A1A]">Business & Co-Founder Advisory</div>
+              <div className="text-sm font-serif-luxury font-bold text-[#1A1A1A]">Business & Co-Founder Planning</div>
               <div className="text-[11px] text-[#666666]">Corporate Treasury & Succession Structuring</div>
             </div>
           </div>

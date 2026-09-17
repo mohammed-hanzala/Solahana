@@ -273,7 +273,7 @@ export default function HeroPhones() {
 
           {/* Phone Footer CTA */}
           <div className="p-3 bg-[#071C48] border-t border-[#D4AF37]/20 flex items-center justify-between text-xs">
-            <span className="text-[10px] text-[#B7C1D9]">SEBI Reg: INA000018241</span>
+            <span className="text-[10px] text-[#B7C1D9]">SEBI-Registered Fiduciary</span>
             <button className="px-3 py-1 rounded-full bg-[#D4AF37] text-[#020B2D] font-bold text-[10px] hover:bg-[#F8D46A] transition-colors">
               Invest Now
             </button>

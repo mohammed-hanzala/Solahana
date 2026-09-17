@@ -30,10 +30,10 @@ export default function PlanningCTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="gold-glow-button px-9 py-4 rounded-full text-xs sm:text-sm font-bold tracking-wide flex items-center justify-center space-x-2.5 text-[#1A1A1A] shadow-md w-full sm:w-auto"
+              className="gold-glow-button group w-full sm:w-auto"
             >
-              <span>Book Financial Advisory Call</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Book Financial Planning Call</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 

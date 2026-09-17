@@ -5,7 +5,7 @@ import { ChevronDown, HelpCircle } from 'lucide-react';
 const faqs = [
   {
     question: "How long is the first consultation?",
-    answer: "Our initial consultation typically lasts 45 minutes. This provides ample time to review your current financial snapshot, discuss your primary life goals, and answer key questions about our fee-only wealth advisory framework."
+    answer: "Our initial consultation typically lasts 45 minutes. This provides ample time to review your current financial snapshot, discuss your primary life goals, and answer key questions about our fee-only wealth planning framework."
   },
   {
     question: "Who is financial planning suitable for?",
@@ -72,7 +72,7 @@ export const ContactFAQ = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/70 text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto"
           >
-            Answers to common questions regarding session duration, preparation, advisory scope, and meeting format.
+            Answers to common questions regarding session duration, preparation, planning scope, and meeting format.
           </motion.p>
         </div>
 
