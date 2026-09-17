@@ -37,3 +37,29 @@ export const protect = asyncHandler(async (req, res, next) => {
     throw new ApiError(401, 'Invalid or expired token. Please log in again.');
   }
 });
+
+export const optionalAuth = asyncHandler(async (req, res, next) => {
+  let token;
+
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies && req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+
+  if (token) {
+    try {
+      const secret = process.env.JWT_SECRET || 'solahana_super_secret_jwt_key_2026_production';
+      const decoded = jwt.verify(token, secret);
+      const user = await User.findById(decoded.id).select('-password');
+      if (user && user.isActive !== false) {
+        req.user = user;
+      }
+    } catch {
+      // Ignore token verification errors for optional auth
+    }
+  }
+
+  next();
+});
+

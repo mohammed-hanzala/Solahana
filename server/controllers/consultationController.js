@@ -26,20 +26,18 @@ export const bookConsultation = asyncHandler(async (req, res) => {
     message,
   } = req.body;
 
-  if (!req.user || !req.user._id) {
-    throw new ApiError(401, 'User session not found. Please log in again.');
-  }
+  const userId = req.user ? req.user._id : null;
 
   const consultation = await Consultation.create({
-    user: req.user._id,
-    fullName: fullName || req.user.name || 'Valued Client',
-    email: email || req.user.email,
-    phone: phone || req.user.phone || '',
-    city: city || req.user.city || '',
-    goal,
-    consultationMode,
-    preferredDate: new Date(preferredDate),
-    preferredTime,
+    user: userId,
+    fullName: fullName || (req.user ? req.user.name : 'Valued Client'),
+    email: email || (req.user ? req.user.email : ''),
+    phone: phone || (req.user ? req.user.phone : ''),
+    city: city || (req.user ? req.user.city : ''),
+    goal: goal || 'Financial Planning',
+    consultationMode: consultationMode || 'Phone Call',
+    preferredDate: preferredDate ? new Date(preferredDate) : new Date(),
+    preferredTime: preferredTime || 'Morning (9 AM - 12 PM)',
     message: message || '',
     status: 'Pending',
   });
@@ -59,6 +57,7 @@ export const bookConsultation = asyncHandler(async (req, res) => {
       )
     );
 });
+
 
 /**
  * @desc    Get logged-in user's consultations

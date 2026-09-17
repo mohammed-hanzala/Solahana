@@ -1,10 +1,14 @@
 import mongoose from 'mongoose';
 
 export const GOAL_ENUM = [
-  'Dream Home',
+  'Financial Planning',
   'Retirement Planning',
-  'Tax Planning',
   'Investment Planning',
+  'Tax Planning',
+  'Risk Management',
+  'Estate Planning',
+  'Custom Wealth Planning',
+  'Dream Home',
   'Emergency Fund',
   'Wealth Creation',
   'Child Education',
@@ -20,7 +24,8 @@ const consultationSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: [true, 'User ID is required for consultation booking'],
+      required: false,
+      default: null,
     },
     fullName: {
       type: String,
@@ -46,26 +51,19 @@ const consultationSchema = new mongoose.Schema(
     goal: {
       type: String,
       required: [true, 'Financial goal is required'],
-      enum: {
-        values: GOAL_ENUM,
-        message: '{VALUE} is not a supported financial goal',
-      },
+      default: 'Financial Planning',
     },
     consultationMode: {
       type: String,
-      required: [true, 'Consultation mode is required'],
-      enum: {
-        values: MODE_ENUM,
-        message: '{VALUE} is not a supported consultation mode',
-      },
+      default: 'Phone Call',
     },
     preferredDate: {
       type: Date,
-      required: [true, 'Preferred date is required'],
+      default: Date.now,
     },
     preferredTime: {
       type: String,
-      required: [true, 'Preferred time slot is required'],
+      default: 'Morning (9 AM - 12 PM)',
       trim: true,
     },
     message: {
@@ -101,5 +99,6 @@ const consultationSchema = new mongoose.Schema(
 consultationSchema.index({ user: 1, createdAt: -1 });
 consultationSchema.index({ status: 1, createdAt: -1 });
 
-const Consultation = mongoose.model('Consultation', consultationSchema);
+const Consultation = mongoose.model('Consultation', consultationSchema, 'consultation_requests');
 export default Consultation;
+

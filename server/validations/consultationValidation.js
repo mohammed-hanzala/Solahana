@@ -19,30 +19,17 @@ export const bookConsultationSchema = z.object({
 
   city: z.string().optional().default(''),
 
-  goal: z.enum(GOAL_ENUM, {
-    required_error: 'Financial goal selection is required',
-    invalid_type_error: 'Invalid financial goal selected',
-  }),
+  goal: z.string().optional().default('Financial Planning'),
 
-  consultationMode: z.enum(MODE_ENUM, {
-    required_error: 'Consultation mode selection is required',
-    invalid_type_error: 'Invalid consultation mode selected',
-  }),
+  consultationMode: z.string().optional().default('Phone Call'),
 
-  preferredDate: z.string({ required_error: 'Preferred date is required' }).refine(
-    (val) => {
-      const selected = new Date(val);
-      return !isNaN(selected.getTime()) && selected >= today;
-    },
-    { message: 'Preferred date must be today or a future date' }
-  ),
+  preferredDate: z.string().optional().default(() => new Date().toISOString().split('T')[0]),
 
-  preferredTime: z
-    .string({ required_error: 'Preferred time slot is required' })
-    .min(1, 'Please select a preferred time slot'),
+  preferredTime: z.string().optional().default('Morning (9 AM - 12 PM)'),
 
   message: z.string().optional().default(''),
 });
+
 
 export const updateStatusSchema = z.object({
   status: z.enum(STATUS_ENUM, {

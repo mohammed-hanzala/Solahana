@@ -16,7 +16,11 @@ import {
   Building2,
   Sparkles,
   Award,
-  Scroll
+  Scroll,
+  BarChart3,
+  Landmark,
+  Rocket,
+  Globe
 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -35,6 +39,7 @@ export default function Navbar({ onOpenSearch }) {
   const dropdownTimeoutRef = useRef(null);
 
   const [mobilePlanningOpen, setMobilePlanningOpen] = useState(false);
+  const [mobileInvestOpen, setMobileInvestOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,7 +96,7 @@ export default function Navbar({ onOpenSearch }) {
     navigate('/admin/login');
   };
 
-  // Dropdown Configurations (Fintoo-style consolidated Planning dropdown)
+  // Dropdown Configurations (Fintoo-style 5 core Invest options)
   const dropdownData = {
     planning: [
       { title: 'Financial Planning', path: '/financial-planning', desc: 'Comprehensive 360° financial roadmap', icon: PieChart },
@@ -101,11 +106,19 @@ export default function Navbar({ onOpenSearch }) {
       { title: 'Risk Management', path: '/contact', desc: 'Comprehensive health, life & family cover', icon: ShieldCheck },
       { title: 'Estate Planning', path: '/goals', desc: 'Legacy, Will & Private Family Trust succession', icon: Scroll },
     ],
+    invest: [
+      { title: 'Mutual Funds', path: '/invest/mutual-funds', desc: 'Direct SIP & Lumpsum equity/debt schemes', icon: TrendingUp },
+      { title: 'Bonds', path: '/invest/bonds', desc: 'High-yield government & corporate bonds', icon: Landmark },
+      { title: 'Domestic Equity', path: '/invest/domestic-equity', desc: 'Curated Indian equity model portfolios', icon: BarChart3 },
+      { title: 'International Equity', path: '/invest/international-equity', desc: 'Global stock portfolios & US equity exposure', icon: Globe },
+      { title: 'IPO', path: '/invest/ipo', desc: 'Early bidding in high-growth listings', icon: Rocket },
+    ],
     resources: [
       { title: 'Financial Calculators', path: '/calculators', desc: 'SIP, Retirement & Tax calculators', icon: Calculator },
       { title: 'Knowledge Center', path: '/blogs', desc: 'Expert financial insights & guides', icon: Sparkles },
     ],
   };
+
 
   const isPlanningActive = 
     pathname === '/financial-planning' || 
@@ -113,6 +126,8 @@ export default function Navbar({ onOpenSearch }) {
     pathname === '/tax-planning' || 
     pathname === '/goals' || 
     pathname.startsWith('/calculators/retirement');
+
+  const isInvestActive = pathname.startsWith('/invest');
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -123,7 +138,7 @@ export default function Navbar({ onOpenSearch }) {
             : 'bg-[#FCFAF6]/90 backdrop-blur-md border-b border-[#C89B3C]/20'
         }`}
       >
-        <div className="max-w-[1300px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-[1320px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* ========================================================= */}
           {/* LEFT: SOLAHANA LOGO (FIXED FAR LEFT)                      */}
@@ -143,15 +158,15 @@ export default function Navbar({ onOpenSearch }) {
 
           {/* ========================================================= */}
           {/* CENTER-RIGHT: FINTOO-STYLE NAVIGATION LINKS               */}
-          {/* ORDER: Planning ▼ | Pricing | Resources ▼ | Contact Us | About Us */}
+          {/* ORDER: Planning ▼ | Invest ▼ | Pricing | Resources ▼ | Contact Us | About Us */}
           {/* ========================================================= */}
           {isAdminRoute ? (
-            <div className="hidden lg:flex items-center gap-2 px-5 py-2 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-xs font-bold text-[#9A7326] whitespace-nowrap ml-auto mr-6">
+            <div className="hidden lg:flex items-center gap-2 px-5 py-2 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-xs font-bold text-[#9A7326] whitespace-nowrap ml-auto mr-4">
               <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
               <span>ADMINISTRATOR GOVERNANCE DESK</span>
             </div>
           ) : (
-            <nav className="hidden lg:flex items-center gap-3.5 lg:gap-5 xl:gap-7 font-inter text-xs xl:text-[13px] font-semibold text-[#0F172A] whitespace-nowrap ml-auto mr-6 xl:mr-10">
+            <nav className="hidden lg:flex items-center gap-1.5 lg:gap-3 xl:gap-5 font-inter text-xs xl:text-[13px] font-semibold text-[#0F172A] whitespace-nowrap ml-auto mr-3 xl:mr-5">
               
               {/* 1. Planning (Dropdown with 6 Options) */}
               <div 
@@ -161,14 +176,14 @@ export default function Navbar({ onOpenSearch }) {
               >
                 <button
                   onClick={(e) => handleNavClick(e, 'planning')}
-                  className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1 relative whitespace-nowrap ${
+                  className={`px-3 py-2 rounded-lg transition-all flex items-center gap-1 relative whitespace-nowrap ${
                     isPlanningActive ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
                   }`}
                 >
                   <span className="whitespace-nowrap">Planning</span>
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'planning' ? 'rotate-180 text-[#C89B3C]' : ''}`} />
                   {isPlanningActive && (
-                    <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
+                    <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#C89B3C] rounded-full" />
                   )}
                 </button>
 
@@ -209,20 +224,71 @@ export default function Navbar({ onOpenSearch }) {
                 </AnimatePresence>
               </div>
 
-              {/* 2. Pricing */}
+              {/* 2. Invest (Clean Compact Dropdown: Icon + Name Only) */}
+              <div 
+                className="relative"
+                onMouseEnter={() => handleMouseEnterDropdown('invest')}
+                onMouseLeave={handleMouseLeaveDropdown}
+              >
+                <button
+                  onClick={(e) => handleNavClick(e, '/invest/mutual-funds')}
+                  className={`px-3 py-2 rounded-lg transition-all flex items-center gap-1 relative whitespace-nowrap ${
+                    isInvestActive ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
+                  }`}
+                >
+                  <span className="whitespace-nowrap">Invest</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'invest' ? 'rotate-180 text-[#C89B3C]' : ''}`} />
+                  {isInvestActive && (
+                    <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#C89B3C] rounded-full" />
+                  )}
+                </button>
+
+                {/* Clean Compact Fintoo-Style Invest Dropdown */}
+                <AnimatePresence>
+                  {activeDropdown === 'invest' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.2, ease: 'easeOut' }}
+                      className="absolute top-full left-0 mt-2 w-56 sm:w-60 bg-white rounded-2xl border border-[#C89B3C]/30 shadow-xl p-2 z-50 space-y-1"
+                    >
+                      {dropdownData.invest.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <button
+                            key={item.title}
+                            onClick={(e) => handleNavClick(e, item.path)}
+                            className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#FAF8F5] transition-colors flex items-center gap-3 group cursor-pointer"
+                          >
+                            <div className="p-1.5 rounded-lg bg-[#C89B3C]/10 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white transition-colors shrink-0">
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <span className="text-xs font-bold text-[#0F172A] group-hover:text-[#C89B3C] transition-colors whitespace-nowrap">
+                              {item.title}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* 3. Pricing */}
               <button
                 onClick={(e) => handleNavClick(e, 'pricing')}
-                className={`px-3.5 py-2 rounded-lg transition-all relative whitespace-nowrap ${
+                className={`px-3 py-2 rounded-lg transition-all relative whitespace-nowrap ${
                   pathname === '/pricing' ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
                 }`}
               >
                 <span className="whitespace-nowrap">Pricing</span>
                 {pathname === '/pricing' && (
-                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
+                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#C89B3C] rounded-full" />
                 )}
               </button>
 
-              {/* 3. Resources (With Dropdown) */}
+              {/* 4. Resources (With Dropdown) */}
               <div 
                 className="relative"
                 onMouseEnter={() => handleMouseEnterDropdown('resources')}
@@ -230,7 +296,7 @@ export default function Navbar({ onOpenSearch }) {
               >
                 <button
                   onClick={(e) => handleNavClick(e, 'resources')}
-                  className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1 relative whitespace-nowrap ${
+                  className={`px-3 py-2 rounded-lg transition-all flex items-center gap-1 relative whitespace-nowrap ${
                     pathname.startsWith('/blogs') || pathname.startsWith('/calculators')
                       ? 'text-[#C89B3C]'
                       : 'hover:text-[#C89B3C]'
@@ -239,7 +305,7 @@ export default function Navbar({ onOpenSearch }) {
                   <span className="whitespace-nowrap">Resources</span>
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'resources' ? 'rotate-180 text-[#C89B3C]' : ''}`} />
                   {(pathname.startsWith('/blogs') || pathname.startsWith('/calculators')) && (
-                    <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
+                    <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#C89B3C] rounded-full" />
                   )}
                 </button>
 
@@ -275,29 +341,29 @@ export default function Navbar({ onOpenSearch }) {
                 </AnimatePresence>
               </div>
 
-              {/* 4. Contact Us */}
+              {/* 5. Contact Us */}
               <button
                 onClick={(e) => handleNavClick(e, 'contact')}
-                className={`px-3.5 py-2 rounded-lg transition-all relative whitespace-nowrap ${
+                className={`px-3 py-2 rounded-lg transition-all relative whitespace-nowrap ${
                   pathname === '/contact' ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
                 }`}
               >
                 <span className="whitespace-nowrap">Contact Us</span>
                 {pathname === '/contact' && (
-                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
+                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#C89B3C] rounded-full" />
                 )}
               </button>
 
-              {/* 5. About Us */}
+              {/* 6. About Us */}
               <button
                 onClick={(e) => handleNavClick(e, 'about')}
-                className={`px-3.5 py-2 rounded-lg transition-all relative whitespace-nowrap ${
+                className={`px-3 py-2 rounded-lg transition-all relative whitespace-nowrap ${
                   pathname === '/about' ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
                 }`}
               >
                 <span className="whitespace-nowrap">About Us</span>
                 {pathname === '/about' && (
-                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
+                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#C89B3C] rounded-full" />
                 )}
               </button>
 
@@ -305,9 +371,9 @@ export default function Navbar({ onOpenSearch }) {
           )}
 
           {/* ========================================================= */}
-          {/* RIGHT: SEARCH, PROFILE & GOLD CTA BUTTON (DESKTOP)        */}
+          {/* RIGHT: SEARCH, PROFILE & GOLD CTA BUTTON (SPACED FIX)     */}
           {/* ========================================================= */}
-          <div className="hidden lg:flex items-center space-x-3 shrink-0 whitespace-nowrap">
+          <div className="hidden lg:flex items-center gap-2.5 lg:gap-3 shrink-0 whitespace-nowrap">
             {isAdminRoute ? (
               <div className="flex items-center gap-3 whitespace-nowrap">
                 {user && (
@@ -365,10 +431,10 @@ export default function Navbar({ onOpenSearch }) {
                   </button>
                 )}
 
-                {/* Primary Gold CTA Button */}
+                {/* Primary Gold CTA Button (Shifted right with extra spacing from profile icon) */}
                 <button
                   onClick={(e) => handleNavClick(e, 'contact')}
-                  className="gold-glow-button px-4 lg:px-5 py-2.5 rounded-full text-xs font-bold text-white tracking-wide flex items-center space-x-2 group cursor-pointer shadow-md whitespace-nowrap shrink-0"
+                  className="gold-glow-button ml-2 lg:ml-3 xl:ml-4.5 px-4.5 lg:px-5 py-2.5 rounded-full text-xs font-bold text-white tracking-wide flex items-center space-x-2 group cursor-pointer shadow-md whitespace-nowrap shrink-0 hover:scale-[1.02] transition-transform"
                 >
                   <span className="whitespace-nowrap">Start Your Comprehensive Plan</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform shrink-0" />
@@ -376,6 +442,7 @@ export default function Navbar({ onOpenSearch }) {
               </>
             )}
           </div>
+
 
           {/* Mobile Hamburger Button */}
           <div className="flex items-center space-x-2 lg:hidden">
@@ -435,7 +502,8 @@ export default function Navbar({ onOpenSearch }) {
 
                 {/* Mobile Navigation Links */}
                 <div className="flex flex-col space-y-1 font-inter text-sm font-semibold text-[#0F172A]">
-                  {/* Planning Expandable Mobile Submenu */}
+                  
+                  {/* 1. Planning Expandable Mobile Submenu */}
                   <div className="space-y-1">
                     <button
                       onClick={() => setMobilePlanningOpen(!mobilePlanningOpen)}
@@ -454,6 +522,42 @@ export default function Navbar({ onOpenSearch }) {
                           className="pl-4 space-y-1 overflow-hidden"
                         >
                           {dropdownData.planning.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                              <button
+                                key={item.title}
+                                onClick={(e) => handleNavClick(e, item.path)}
+                                className="w-full text-left py-2 px-3 rounded-lg hover:bg-[#FAF8F5] text-xs font-semibold text-[#475569] hover:text-[#C89B3C] flex items-center gap-2.5 transition-colors"
+                              >
+                                <Icon className="w-3.5 h-3.5 text-[#C89B3C]" />
+                                <span>{item.title}</span>
+                              </button>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* 2. Invest Expandable Mobile Submenu */}
+                  <div className="space-y-1">
+                    <button
+                      onClick={() => setMobileInvestOpen(!mobileInvestOpen)}
+                      className="w-full flex items-center justify-between py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors text-left"
+                    >
+                      <span>Invest</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileInvestOpen ? 'rotate-180 text-[#C89B3C]' : ''}`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {mobileInvestOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="pl-4 space-y-1 overflow-hidden"
+                        >
+                          {dropdownData.invest.map((item) => {
                             const Icon = item.icon;
                             return (
                               <button
@@ -536,3 +640,4 @@ export default function Navbar({ onOpenSearch }) {
     </header>
   );
 }
+

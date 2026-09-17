@@ -1,0 +1,201 @@
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { 
+  ArrowRight, 
+  CheckCircle2, 
+  Sparkles, 
+  ShieldCheck, 
+  TrendingUp, 
+  Award,
+  Zap,
+  ChevronRight
+} from 'lucide-react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { INVEST_OPTIONS } from '../../data/investData';
+import InvestHeroIllustration from '../../components/invest/InvestHeroIllustration';
+
+export default function InvestDetailPage({ optionKey }) {
+  const navigate = useNavigate();
+  const params = useParams();
+  
+  const key = optionKey || params.category || 'mutual-funds';
+  const data = INVEST_OPTIONS[key] || INVEST_OPTIONS['mutual-funds'];
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.title = `${data.title} Investment Advisory | SOLAHANA — Wealth Management`;
+  }, [key, data.title]);
+
+  const scrollToConsultation = () => {
+    const el = document.getElementById('global-consultation-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/contact');
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#FCFAF6] text-[#0F172A] font-inter">
+      {/* ========================================================= */}
+      {/* 1. HERO SECTION WITH HUMAN MINIATURE / ILLUSTRATION       */}
+      {/* ========================================================= */}
+      <section className="relative pt-32 pb-20 lg:pt-36 lg:pb-28 overflow-hidden bg-gradient-to-b from-[#FCFAF6] via-[#FAF6EE] to-[#FCFAF6] border-b border-[#C89B3C]/15">
+        {/* Glow backlight */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#C89B3C]/10 rounded-full blur-[160px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Breadcrumbs */}
+          <div className="flex items-center gap-2 text-xs font-semibold text-[#64748B] mb-8">
+            <button onClick={() => navigate('/')} className="hover:text-[#C89B3C] transition-colors">Home</button>
+            <ChevronRight className="w-3.5 h-3.5 text-[#C89B3C]" />
+            <button onClick={() => navigate('/investments')} className="hover:text-[#C89B3C] transition-colors">Invest</button>
+            <ChevronRight className="w-3.5 h-3.5 text-[#C89B3C]" />
+            <span className="text-[#9A7326] font-bold">{data.title}</span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-7 space-y-6 text-left"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-xs font-mono font-bold uppercase tracking-widest text-[#9A7326]">
+                <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
+                <span>{data.tag}</span>
+              </div>
+
+              <h1 className="font-serif-luxury text-3xl sm:text-5xl lg:text-6xl font-bold text-[#0F172A] leading-tight tracking-tight">
+                {data.headline}
+              </h1>
+
+              <p className="text-base sm:text-lg text-[#475569] font-normal leading-relaxed max-w-2xl">
+                {data.description}
+              </p>
+
+              {/* Key Highlights Stats Bar */}
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#E7D7B5]/60">
+                {data.keyStats.map((stat, idx) => (
+                  <div key={idx} className="p-3.5 rounded-2xl bg-white border border-[#E7D7B5]/80 shadow-sm">
+                    <div className="text-base sm:text-xl font-bold font-mono text-[#9A7326]">{stat.value}</div>
+                    <div className="text-[11px] sm:text-xs text-[#64748B] mt-0.5">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-4 flex flex-wrap items-center gap-4">
+                <button
+                  onClick={scrollToConsultation}
+                  className="gold-glow-button px-8 py-4 rounded-full text-xs sm:text-sm font-bold text-white tracking-wide flex items-center gap-2 cursor-pointer shadow-lg hover:shadow-xl transition-all"
+                >
+                  <span>Get Started</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+
+                <button
+                  onClick={() => navigate('/contact')}
+                  className="px-7 py-4 rounded-full border border-[#C89B3C] text-xs sm:text-sm font-bold text-[#0F172A] bg-white hover:bg-[#C89B3C]/10 transition-all cursor-pointer flex items-center gap-2"
+                >
+                  <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
+                  <span>Talk to Fiduciary Advisor</span>
+                </button>
+              </div>
+
+            </motion.div>
+
+            {/* Right Illustration Column */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="lg:col-span-5 flex justify-center"
+            >
+              <div className="relative w-full max-w-lg p-6 rounded-3xl bg-white/80 border border-[#C89B3C]/30 shadow-2xl backdrop-blur-xl">
+                <InvestHeroIllustration type={data.slug} />
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================= */}
+      {/* 2. WHY INVEST IN THIS ASSET CLASS (FEATURE MATRIX)        */}
+      {/* ========================================================= */}
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-xs font-mono font-bold text-[#9A7326]">
+            <Zap className="w-3.5 h-3.5 text-[#C89B3C]" />
+            <span>FINANCIAL ADVANTAGES</span>
+          </div>
+          <h2 className="font-serif-luxury text-3xl sm:text-4xl font-bold text-[#0F172A]">
+            Why Choose {data.title} with SOLAHANA
+          </h2>
+          <p className="text-sm sm:text-base text-[#64748B]">
+            Engineered for high risk-adjusted returns, complete transparency, and fiduciary protection.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {data.features.map((feature, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              whileHover={{ y: -4 }}
+              className="p-8 rounded-3xl bg-white border border-[#E7D7B5] hover:border-[#C89B3C] shadow-md hover:shadow-xl transition-all duration-300 text-left flex items-start gap-5 group"
+            >
+              <div className="p-3.5 rounded-2xl bg-[#C89B3C]/10 text-[#9A7326] group-hover:bg-[#C89B3C] group-hover:text-white transition-colors shrink-0">
+                <CheckCircle2 className="w-6 h-6" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#9A7326] transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
+                  {feature.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ========================================================= */}
+      {/* 3. FIDUCIARY TRUST BANNER                                 */}
+      {/* ========================================================= */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div className="rounded-3xl bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A] p-8 sm:p-12 text-white text-center space-y-6 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-1 bg-gradient-to-r from-transparent via-[#C89B3C] to-transparent rounded-full" />
+          
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-[#C89B3C]/20 border border-[#C89B3C] flex items-center justify-center text-[#E7D7B5]">
+            <Award className="w-8 h-8" />
+          </div>
+
+          <h3 className="font-serif-luxury text-2xl sm:text-4xl font-bold">
+            Zero Commission. 100% Fiduciary Responsibility.
+          </h3>
+
+          <p className="text-xs sm:text-sm text-white/75 max-w-xl mx-auto leading-relaxed">
+            SOLAHANA operates on a zero-commission model. Every investment recommendation is selected strictly for your net-worth compounding with no hidden distributor kickbacks.
+          </p>
+
+          <button
+            onClick={scrollToConsultation}
+            className="gold-glow-button px-9 py-4 rounded-full text-xs sm:text-sm font-bold text-white tracking-wide inline-flex items-center gap-2 cursor-pointer shadow-lg hover:shadow-xl transition-all"
+          >
+            <span>Start Your Plan Now</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+}
