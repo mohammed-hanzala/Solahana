@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import consultationService from '../../services/consultationService';
+import solahanaLogo from '../../assets/solahana-logo.png';
 
 const planningInterests = [
   'Financial Planning',
@@ -203,7 +204,7 @@ export default function GlobalConsultationSection() {
               {/* SOLAHANA Logo at top of form card */}
               <div className="text-center mb-6">
                 <img 
-                  src="/solahana-logo.png" 
+                  src={solahanaLogo} 
                   alt="SOLAHANA" 
                   className="h-10 sm:h-12 w-auto mx-auto object-contain mb-2"
                 />

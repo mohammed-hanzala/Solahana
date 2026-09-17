@@ -44,7 +44,27 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
         className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible drop-shadow-[0_0_14px_rgba(200,154,60,0.5)]" 
         viewBox="0 0 580 580"
       >
-        <g className="animate-orbit-spin-30s">
+        <style>{`
+          @keyframes solahanaHeroOrbitSpin {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+          .solahana-outer-orbit-spin {
+            transform-origin: 290px 290px;
+            transform-box: view-box;
+            animation: solahanaHeroOrbitSpin 30s linear infinite;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .solahana-outer-orbit-spin {
+              animation: none !important;
+            }
+          }
+        `}</style>
+        <g className="solahana-outer-orbit-spin" style={{ transformOrigin: '290px 290px', transformBox: 'view-box' }}>
           {/* Outer Glow Halo Ring */}
           <circle 
             cx="290" 
@@ -63,16 +83,16 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
             r={ORBIT_RADIUS} 
             stroke="#C89B3C" 
             strokeWidth="2.5" 
-            strokeDasharray="14 10" 
+            strokeDasharray="16 12" 
             strokeOpacity="0.85"
             fill="none" 
           />
 
           {/* 4 Golden Satellite Dots rotating on the orbit line */}
-          <circle cx="290" cy="55" r="4.5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
-          <circle cx="525" cy="290" r="4.5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
-          <circle cx="290" cy="525" r="4.5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
-          <circle cx="55" cy="290" r="4.5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
+          <circle cx="290" cy="55" r="5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
+          <circle cx="525" cy="290" r="5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
+          <circle cx="290" cy="525" r="5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
+          <circle cx="55" cy="290" r="5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
         </g>
       </svg>
 

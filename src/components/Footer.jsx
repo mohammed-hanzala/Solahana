@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 
 import newsletterService from '../services/newsletterService';
+import solahanaLogo from '../assets/solahana-logo.png';
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -61,24 +62,8 @@ export default function Footer() {
           
           {/* COLUMN 1: SOLAHANA LOGO & BRAND BRIEF */}
           <div className="lg:col-span-4 space-y-5 text-left">
-            <button onClick={(e) => handleLinkClick(e, 'home')} className="flex items-center space-x-3 group text-left cursor-pointer">
-              <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-[#D4AF37] via-[#C89B3C] to-[#B8860B] p-[1.5px]">
-                <div className="w-full h-full bg-white rounded-full flex items-center justify-center">
-                  <span className="text-[#1A1A1A] font-serif-luxury font-bold text-lg">S</span>
-                  <span className="text-[#C89B3C] font-bold text-xs -ml-0.5">₹</span>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center space-x-0.5">
-                  <span className="text-xl font-serif-luxury font-bold tracking-tight text-[#1A1A1A] group-hover:text-[#C89B3C] transition-colors">
-                    SOLAHANA
-                  </span>
-                  <span className="text-[10px] font-bold text-[#C89B3C]">TM</span>
-                </div>
-                <span className="text-[10px] tracking-widest uppercase text-[#666666] font-medium font-sora">
-                  Your Complete Financial Partner
-                </span>
-              </div>
+            <button onClick={(e) => handleLinkClick(e, 'home')} className="flex items-center space-x-3 group text-left cursor-pointer" title="SOLAHANA Home" aria-label="SOLAHANA Home">
+              <img src={solahanaLogo} alt="SOLAHANA" className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-[1.03]" />
             </button>
 
             <p className="text-xs text-[#666666] leading-relaxed max-w-sm font-inter">

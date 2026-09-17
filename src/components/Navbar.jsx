@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import solahanaLogo from '../assets/solahana-logo.png';
 
 export default function Navbar({ onOpenSearch }) {
   const { user, logout, openAuthModal } = useAuth();
@@ -150,7 +151,7 @@ export default function Navbar({ onOpenSearch }) {
             aria-label="SOLAHANA Home"
           >
             <img 
-              src="/solahana-logo.png" 
+              src={solahanaLogo} 
               alt="SOLAHANA" 
               className="h-11 sm:h-12 lg:h-[50px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
             />
@@ -491,7 +492,7 @@ export default function Navbar({ onOpenSearch }) {
               <div className="space-y-6">
                 {/* Mobile Drawer Header */}
                 <div className="flex items-center justify-between pb-4 border-b border-[#C89B3C]/20">
-                  <img src="/solahana-logo.png" alt="SOLAHANA" className="h-12 w-auto object-contain" />
+                  <img src={solahanaLogo} alt="SOLAHANA" className="h-12 w-auto object-contain" />
                   <button 
                     onClick={() => setMobileMenuOpen(false)}
                     className="p-2 rounded-full hover:bg-gray-100 text-[#0F172A]"
