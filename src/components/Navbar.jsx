@@ -15,7 +15,8 @@ import {
   FileText,
   Building2,
   Sparkles,
-  Award
+  Award,
+  Scroll
 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -32,6 +33,8 @@ export default function Navbar({ onOpenSearch }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const dropdownTimeoutRef = useRef(null);
+
+  const [mobilePlanningOpen, setMobilePlanningOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,12 +56,14 @@ export default function Navbar({ onOpenSearch }) {
     const pathMap = {
       'home': '/',
       'about': '/about',
+      'planning': '/financial-planning',
+      'solutions': '/financial-planning',
       'services': '/financial-planning',
-      'solutions': '/goals',
       'resources': '/blogs',
       'calculators': '/calculators',
       'investments': '/investments',
       'tax-planning': '/tax-planning',
+      'pricing': '/pricing',
       'contact': '/contact',
       'dashboard': '/dashboard',
       'admin': '/admin/dashboard',
@@ -86,17 +91,15 @@ export default function Navbar({ onOpenSearch }) {
     navigate('/admin/login');
   };
 
-  // Dropdown Configurations
+  // Dropdown Configurations (Fintoo-style consolidated Planning dropdown)
   const dropdownData = {
-    services: [
+    planning: [
       { title: 'Financial Planning', path: '/financial-planning', desc: 'Comprehensive 360° financial roadmap', icon: PieChart },
-      { title: 'Wealth & Investments', path: '/investments', desc: 'Personalised compounding portfolios', icon: TrendingUp },
-      { title: 'Tax Planning', path: '/tax-planning', desc: 'Optimize Section 80C, 80D & NPS', icon: FileText },
-    ],
-    solutions: [
-      { title: 'Life Stage Goals', path: '/goals', desc: 'Education, marriage & property planning', icon: Building2 },
-      { title: 'Retirement FIRE', path: '/calculators/retirement', desc: 'Inflation-adjusted retirement freedom', icon: Award },
-      { title: 'Family Protection', path: '/contact', desc: 'Comprehensive health & life cover', icon: ShieldCheck },
+      { title: 'Retirement Planning', path: '/calculators/retirement', desc: 'Inflation-adjusted retirement freedom & SWP', icon: Award },
+      { title: 'Investment Planning', path: '/investments', desc: 'Personalised compounding wealth portfolios', icon: TrendingUp },
+      { title: 'Tax Planning', path: '/tax-planning', desc: 'Optimize Section 80C, 80D & NPS savings', icon: FileText },
+      { title: 'Risk Management', path: '/contact', desc: 'Comprehensive health, life & family cover', icon: ShieldCheck },
+      { title: 'Estate Planning', path: '/goals', desc: 'Legacy, Will & Private Family Trust succession', icon: Scroll },
     ],
     resources: [
       { title: 'Financial Calculators', path: '/calculators', desc: 'SIP, Retirement & Tax calculators', icon: Calculator },
@@ -104,22 +107,29 @@ export default function Navbar({ onOpenSearch }) {
     ],
   };
 
+  const isPlanningActive = 
+    pathname === '/financial-planning' || 
+    pathname === '/investments' || 
+    pathname === '/tax-planning' || 
+    pathname === '/goals' || 
+    pathname.startsWith('/calculators/retirement');
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       <div
-        className={`h-[88px] transition-all duration-300 ${
+        className={`h-[80px] transition-all duration-300 ${
           isScrolled
             ? 'bg-[#FCFAF6]/95 backdrop-blur-xl border-b border-[#C89B3C]/30 shadow-[0_10px_30px_rgba(200,154,75,0.12)]'
             : 'bg-[#FCFAF6]/90 backdrop-blur-md border-b border-[#C89B3C]/20'
         }`}
       >
-        <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-[1300px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* ========================================================= */}
-          {/* LEFT: SOLAHANA LOGO (PROMINENT BRAND PRESENCE)            */}
+          {/* LEFT: SOLAHANA LOGO (FIXED FAR LEFT)                      */}
           {/* ========================================================= */}
           <button 
-            onClick={(e) => handleNavClick(e, isAdminRoute ? '/admin/dashboard' : 'home')} 
+            onClick={(e) => handleNavClick(e, 'home')} 
             className="flex items-center shrink-0 cursor-pointer group py-1 text-left"
             title="SOLAHANA Home"
             aria-label="SOLAHANA Home"
@@ -127,92 +137,69 @@ export default function Navbar({ onOpenSearch }) {
             <img 
               src="/solahana-logo.png" 
               alt="SOLAHANA" 
-              className="h-14 sm:h-[60px] lg:h-[66px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03] drop-shadow-sm"
+              className="h-11 sm:h-12 lg:h-[50px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
             />
           </button>
 
           {/* ========================================================= */}
-          {/* CENTER: FINTOO-STYLE NAVIGATION LINKS (DESKTOP)           */}
+          {/* CENTER-RIGHT: FINTOO-STYLE NAVIGATION LINKS               */}
+          {/* ORDER: Planning ▼ | Pricing | Resources ▼ | Contact Us | About Us */}
           {/* ========================================================= */}
           {isAdminRoute ? (
-            <div className="hidden lg:flex items-center gap-2 px-5 py-2 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-xs font-bold text-[#9A7326]">
+            <div className="hidden lg:flex items-center gap-2 px-5 py-2 rounded-full bg-[#C89B3C]/10 border border-[#C89B3C]/30 text-xs font-bold text-[#9A7326] whitespace-nowrap ml-auto mr-6">
               <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
               <span>ADMINISTRATOR GOVERNANCE DESK</span>
             </div>
           ) : (
-            <nav className="hidden lg:flex items-center space-x-1 sm:space-x-2 font-inter text-xs sm:text-[13px] font-semibold text-[#0F172A]">
+            <nav className="hidden lg:flex items-center gap-3.5 lg:gap-5 xl:gap-7 font-inter text-xs xl:text-[13px] font-semibold text-[#0F172A] whitespace-nowrap ml-auto mr-6 xl:mr-10">
               
-              {/* Home */}
-              <button
-                onClick={(e) => handleNavClick(e, 'home')}
-                className={`px-3.5 py-2 rounded-lg transition-all relative ${
-                  pathname === '/' ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
-                }`}
-              >
-                Home
-                {pathname === '/' && (
-                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
-                )}
-              </button>
-
-              {/* About Us */}
-              <button
-                onClick={(e) => handleNavClick(e, 'about')}
-                className={`px-3.5 py-2 rounded-lg transition-all relative ${
-                  pathname === '/about' ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
-                }`}
-              >
-                About Us
-                {pathname === '/about' && (
-                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
-                )}
-              </button>
-
-              {/* Services (With Dropdown) */}
+              {/* 1. Planning (Dropdown with 6 Options) */}
               <div 
                 className="relative"
-                onMouseEnter={() => handleMouseEnterDropdown('services')}
+                onMouseEnter={() => handleMouseEnterDropdown('planning')}
                 onMouseLeave={handleMouseLeaveDropdown}
               >
                 <button
-                  onClick={(e) => handleNavClick(e, 'services')}
-                  className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1 relative ${
-                    pathname === '/financial-planning' || pathname === '/investments' || pathname === '/tax-planning'
-                      ? 'text-[#C89B3C] font-bold'
-                      : 'hover:text-[#C89B3C]'
+                  onClick={(e) => handleNavClick(e, 'planning')}
+                  className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1 relative whitespace-nowrap ${
+                    isPlanningActive ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
                   }`}
                 >
-                  <span>Services</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'services' ? 'rotate-180 text-[#C89B3C]' : ''}`} />
-                  {(pathname === '/financial-planning' || pathname === '/investments' || pathname === '/tax-planning') && (
+                  <span className="whitespace-nowrap">Planning</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'planning' ? 'rotate-180 text-[#C89B3C]' : ''}`} />
+                  {isPlanningActive && (
                     <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
                   )}
                 </button>
 
-                {/* Dropdown Menu */}
+                {/* Premium Fintech Planning Dropdown Menu */}
                 <AnimatePresence>
-                  {activeDropdown === 'services' && (
+                  {activeDropdown === 'planning' && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl border border-[#C89B3C]/30 shadow-xl p-3 z-50 space-y-1"
+                      transition={{ duration: 0.25, ease: 'easeOut' }}
+                      className="absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl border border-[#C89B3C]/30 shadow-xl p-3 z-50 space-y-1"
                     >
-                      {dropdownData.services.map((item) => {
+                      {dropdownData.planning.map((item) => {
                         const Icon = item.icon;
                         return (
                           <button
                             key={item.title}
                             onClick={(e) => handleNavClick(e, item.path)}
-                            className="w-full text-left p-2.5 rounded-xl hover:bg-[#FAF8F5] transition-colors flex items-start gap-3 group"
+                            className="w-full text-left p-2.5 rounded-xl hover:bg-[#FAF8F5] transition-colors flex items-start gap-3 group cursor-pointer"
                           >
-                            <div className="p-2 rounded-lg bg-[#C89B3C]/10 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white transition-colors">
-                              <Icon className="w-4 h-4" />
+                            <div className="p-2 rounded-lg bg-[#C89B3C]/10 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white transition-colors shrink-0">
+                              <Icon className="w-4.5 h-4.5" />
                             </div>
                             <div>
-                              <div className="text-xs font-bold text-[#0F172A] group-hover:text-[#C89B3C] transition-colors">{item.title}</div>
-                              <div className="text-[11px] text-[#64748B] leading-snug">{item.desc}</div>
+                              <div className="text-xs font-bold text-[#0F172A] group-hover:text-[#C89B3C] transition-colors">
+                                {item.title}
+                              </div>
+                              <div className="text-[11px] text-[#64748B] leading-snug mt-0.5">
+                                {item.desc}
+                              </div>
                             </div>
                           </button>
                         );
@@ -222,58 +209,20 @@ export default function Navbar({ onOpenSearch }) {
                 </AnimatePresence>
               </div>
 
-              {/* Planning Solutions (With Dropdown) */}
-              <div 
-                className="relative"
-                onMouseEnter={() => handleMouseEnterDropdown('solutions')}
-                onMouseLeave={handleMouseLeaveDropdown}
+              {/* 2. Pricing */}
+              <button
+                onClick={(e) => handleNavClick(e, 'pricing')}
+                className={`px-3.5 py-2 rounded-lg transition-all relative whitespace-nowrap ${
+                  pathname === '/pricing' ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
+                }`}
               >
-                <button
-                  onClick={(e) => handleNavClick(e, 'solutions')}
-                  className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1 relative ${
-                    pathname === '/goals' ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
-                  }`}
-                >
-                  <span>Planning Solutions</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'solutions' ? 'rotate-180 text-[#C89B3C]' : ''}`} />
-                  {pathname === '/goals' && (
-                    <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
-                  )}
-                </button>
+                <span className="whitespace-nowrap">Pricing</span>
+                {pathname === '/pricing' && (
+                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
+                )}
+              </button>
 
-                <AnimatePresence>
-                  {activeDropdown === 'solutions' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl border border-[#C89B3C]/30 shadow-xl p-3 z-50 space-y-1"
-                    >
-                      {dropdownData.solutions.map((item) => {
-                        const Icon = item.icon;
-                        return (
-                          <button
-                            key={item.title}
-                            onClick={(e) => handleNavClick(e, item.path)}
-                            className="w-full text-left p-2.5 rounded-xl hover:bg-[#FAF8F5] transition-colors flex items-start gap-3 group"
-                          >
-                            <div className="p-2 rounded-lg bg-[#C89B3C]/10 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white transition-colors">
-                              <Icon className="w-4 h-4" />
-                            </div>
-                            <div>
-                              <div className="text-xs font-bold text-[#0F172A] group-hover:text-[#C89B3C] transition-colors">{item.title}</div>
-                              <div className="text-[11px] text-[#64748B] leading-snug">{item.desc}</div>
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Resources (With Dropdown) */}
+              {/* 3. Resources (With Dropdown) */}
               <div 
                 className="relative"
                 onMouseEnter={() => handleMouseEnterDropdown('resources')}
@@ -281,13 +230,13 @@ export default function Navbar({ onOpenSearch }) {
               >
                 <button
                   onClick={(e) => handleNavClick(e, 'resources')}
-                  className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1 relative ${
+                  className={`px-3.5 py-2 rounded-lg transition-all flex items-center gap-1 relative whitespace-nowrap ${
                     pathname.startsWith('/blogs') || pathname.startsWith('/calculators')
-                      ? 'text-[#C89B3C] font-bold'
+                      ? 'text-[#C89B3C]'
                       : 'hover:text-[#C89B3C]'
                   }`}
                 >
-                  <span>Resources</span>
+                  <span className="whitespace-nowrap">Resources</span>
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'resources' ? 'rotate-180 text-[#C89B3C]' : ''}`} />
                   {(pathname.startsWith('/blogs') || pathname.startsWith('/calculators')) && (
                     <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
@@ -309,9 +258,9 @@ export default function Navbar({ onOpenSearch }) {
                           <button
                             key={item.title}
                             onClick={(e) => handleNavClick(e, item.path)}
-                            className="w-full text-left p-2.5 rounded-xl hover:bg-[#FAF8F5] transition-colors flex items-start gap-3 group"
+                            className="w-full text-left p-2.5 rounded-xl hover:bg-[#FAF8F5] transition-colors flex items-start gap-3 group cursor-pointer"
                           >
-                            <div className="p-2 rounded-lg bg-[#C89B3C]/10 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white transition-colors">
+                            <div className="p-2 rounded-lg bg-[#C89B3C]/10 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white transition-colors shrink-0">
                               <Icon className="w-4 h-4" />
                             </div>
                             <div>
@@ -326,15 +275,28 @@ export default function Navbar({ onOpenSearch }) {
                 </AnimatePresence>
               </div>
 
-              {/* Contact Us */}
+              {/* 4. Contact Us */}
               <button
                 onClick={(e) => handleNavClick(e, 'contact')}
-                className={`px-3.5 py-2 rounded-lg transition-all relative ${
+                className={`px-3.5 py-2 rounded-lg transition-all relative whitespace-nowrap ${
                   pathname === '/contact' ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
                 }`}
               >
-                Contact Us
+                <span className="whitespace-nowrap">Contact Us</span>
                 {pathname === '/contact' && (
+                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
+                )}
+              </button>
+
+              {/* 5. About Us */}
+              <button
+                onClick={(e) => handleNavClick(e, 'about')}
+                className={`px-3.5 py-2 rounded-lg transition-all relative whitespace-nowrap ${
+                  pathname === '/about' ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
+                }`}
+              >
+                <span className="whitespace-nowrap">About Us</span>
+                {pathname === '/about' && (
                   <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3.5 right-3.5 h-[2.5px] bg-[#C89B3C] rounded-full" />
                 )}
               </button>
@@ -345,18 +307,18 @@ export default function Navbar({ onOpenSearch }) {
           {/* ========================================================= */}
           {/* RIGHT: SEARCH, PROFILE & GOLD CTA BUTTON (DESKTOP)        */}
           {/* ========================================================= */}
-          <div className="hidden lg:flex items-center space-x-3.5">
+          <div className="hidden lg:flex items-center space-x-3 shrink-0 whitespace-nowrap">
             {isAdminRoute ? (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 whitespace-nowrap">
                 {user && (
-                  <span className="text-xs font-semibold text-[#9A7326] px-3 py-1.5 rounded-xl bg-[#C89B3C]/10 border border-[#C89B3C]/30">
+                  <span className="text-xs font-semibold text-[#9A7326] px-3 py-1.5 rounded-xl bg-[#C89B3C]/10 border border-[#C89B3C]/30 whitespace-nowrap">
                     {user.name} (Admin)
                   </span>
                 )}
                 {user ? (
                   <button
                     onClick={handleAdminLogout}
-                    className="px-3.5 py-1.5 text-xs text-red-600 hover:text-white bg-red-50 hover:bg-red-600 rounded-xl border border-red-200 transition-colors cursor-pointer flex items-center gap-1.5 font-semibold"
+                    className="px-3.5 py-1.5 text-xs text-red-600 hover:text-white bg-red-50 hover:bg-red-600 rounded-xl border border-red-200 transition-colors cursor-pointer flex items-center gap-1.5 font-semibold whitespace-nowrap"
                   >
                     <LogOut className="w-3.5 h-3.5" />
                     <span>Logout</span>
@@ -364,7 +326,7 @@ export default function Navbar({ onOpenSearch }) {
                 ) : (
                   <button
                     onClick={() => navigate('/admin/login')}
-                    className="px-4 py-2 text-xs font-bold text-white bg-[#0F172A] hover:bg-[#C89A4B] rounded-xl transition-all cursor-pointer"
+                    className="px-4 py-2 text-xs font-bold text-white bg-[#0F172A] hover:bg-[#C89A4B] rounded-xl transition-all cursor-pointer whitespace-nowrap"
                   >
                     Admin Login
                   </button>
@@ -372,21 +334,21 @@ export default function Navbar({ onOpenSearch }) {
               </div>
             ) : (
               <>
-                {/* Search Icon Button (Circular White Icon with Gold Outline) */}
+                {/* Search Icon Button */}
                 <button
                   onClick={onOpenSearch}
-                  className="w-10 h-10 rounded-full bg-white border border-[#C89B3C]/30 hover:border-[#C89B3C] text-[#0F172A] hover:text-[#C89B3C] shadow-sm flex items-center justify-center transition-all cursor-pointer hover:scale-105"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-[#C89B3C]/30 hover:border-[#C89B3C] text-[#0F172A] hover:text-[#C89B3C] shadow-sm flex items-center justify-center transition-all cursor-pointer hover:scale-105 shrink-0"
                   title="Search financial goals, tools & blogs"
                   aria-label="Search"
                 >
                   <Search className="w-4 h-4" />
                 </button>
 
-                {/* Profile / Login Icon Button (Circular White Icon with Gold Outline) */}
+                {/* Profile / Login Icon Button */}
                 {user ? (
                   <button
                     onClick={(e) => handleNavClick(e, 'dashboard')}
-                    className="w-10 h-10 rounded-full bg-white border border-[#C89B3C]/30 hover:border-[#C89B3C] text-[#0F172A] hover:text-[#C89B3C] shadow-sm flex items-center justify-center transition-all cursor-pointer hover:scale-105"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-[#C89B3C]/30 hover:border-[#C89B3C] text-[#0F172A] hover:text-[#C89B3C] shadow-sm flex items-center justify-center transition-all cursor-pointer hover:scale-105 shrink-0"
                     title={`My Dashboard (${user.name})`}
                     aria-label="User Profile"
                   >
@@ -395,7 +357,7 @@ export default function Navbar({ onOpenSearch }) {
                 ) : (
                   <button
                     onClick={() => openAuthModal('login')}
-                    className="w-10 h-10 rounded-full bg-white border border-[#C89B3C]/30 hover:border-[#C89B3C] text-[#0F172A] hover:text-[#C89B3C] shadow-sm flex items-center justify-center transition-all cursor-pointer hover:scale-105"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-[#C89B3C]/30 hover:border-[#C89B3C] text-[#0F172A] hover:text-[#C89B3C] shadow-sm flex items-center justify-center transition-all cursor-pointer hover:scale-105 shrink-0"
                     title="Login / Register"
                     aria-label="Login"
                   >
@@ -406,10 +368,10 @@ export default function Navbar({ onOpenSearch }) {
                 {/* Primary Gold CTA Button */}
                 <button
                   onClick={(e) => handleNavClick(e, 'contact')}
-                  className="gold-glow-button px-5 py-2.5 rounded-full text-xs font-bold text-white tracking-wide flex items-center space-x-2 group cursor-pointer shadow-md"
+                  className="gold-glow-button px-4 lg:px-5 py-2.5 rounded-full text-xs font-bold text-white tracking-wide flex items-center space-x-2 group cursor-pointer shadow-md whitespace-nowrap shrink-0"
                 >
-                  <span>Start Your Comprehensive Plan</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  <span className="whitespace-nowrap">Start Your Comprehensive Plan</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform shrink-0" />
                 </button>
               </>
             )}
@@ -473,41 +435,68 @@ export default function Navbar({ onOpenSearch }) {
 
                 {/* Mobile Navigation Links */}
                 <div className="flex flex-col space-y-1 font-inter text-sm font-semibold text-[#0F172A]">
+                  {/* Planning Expandable Mobile Submenu */}
+                  <div className="space-y-1">
+                    <button
+                      onClick={() => setMobilePlanningOpen(!mobilePlanningOpen)}
+                      className="w-full flex items-center justify-between py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors text-left"
+                    >
+                      <span>Planning</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobilePlanningOpen ? 'rotate-180 text-[#C89B3C]' : ''}`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {mobilePlanningOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="pl-4 space-y-1 overflow-hidden"
+                        >
+                          {dropdownData.planning.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                              <button
+                                key={item.title}
+                                onClick={(e) => handleNavClick(e, item.path)}
+                                className="w-full text-left py-2 px-3 rounded-lg hover:bg-[#FAF8F5] text-xs font-semibold text-[#475569] hover:text-[#C89B3C] flex items-center gap-2.5 transition-colors"
+                              >
+                                <Icon className="w-3.5 h-3.5 text-[#C89B3C]" />
+                                <span>{item.title}</span>
+                              </button>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
                   <button
-                    onClick={(e) => handleNavClick(e, 'home')}
+                    onClick={(e) => handleNavClick(e, 'pricing')}
                     className="text-left py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors"
                   >
-                    Home
+                    Pricing
                   </button>
-                  <button
-                    onClick={(e) => handleNavClick(e, 'about')}
-                    className="text-left py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors"
-                  >
-                    About Us
-                  </button>
-                  <button
-                    onClick={(e) => handleNavClick(e, 'services')}
-                    className="text-left py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors"
-                  >
-                    Services
-                  </button>
-                  <button
-                    onClick={(e) => handleNavClick(e, 'solutions')}
-                    className="text-left py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors"
-                  >
-                    Planning Solutions
-                  </button>
+
                   <button
                     onClick={(e) => handleNavClick(e, 'resources')}
                     className="text-left py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors"
                   >
                     Resources & Calculators
                   </button>
+
                   <button
                     onClick={(e) => handleNavClick(e, 'contact')}
                     className="text-left py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors"
                   >
                     Contact Us
+                  </button>
+
+                  <button
+                    onClick={(e) => handleNavClick(e, 'about')}
+                    className="text-left py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors"
+                  >
+                    About Us
                   </button>
                 </div>
               </div>

@@ -43,6 +43,7 @@ export default function Footer() {
       'investments': '/investments',
       'tax-planning': '/tax-planning',
       'calculators': '/calculators',
+      'pricing': '/pricing',
       'contact': '/contact',
       'dashboard': '/dashboard',
     };

@@ -19,6 +19,7 @@ import FinancialPlanningPage from './pages/FinancialPlanningPage';
 import GoalsPlanningPage from './pages/GoalsPlanningPage';
 import InvestmentsPage from './pages/InvestmentsPage';
 import TaxPlanningPage from './pages/TaxPlanningPage';
+import PricingPage from './pages/PricingPage';
 import { CalculatorsPage } from './pages/CalculatorsPage';
 import { ContactPage } from './pages/ContactPage';
 import DashboardPage from './pages/DashboardPage';
@@ -89,6 +90,7 @@ export default function App() {
             <Route path="/goals" element={<GoalsPlanningPage onOpenSearch={() => setSearchOpen(true)} />} />
             <Route path="/investments" element={<InvestmentsPage onOpenSearch={() => setSearchOpen(true)} />} />
             <Route path="/tax-planning" element={<TaxPlanningPage onOpenSearch={() => setSearchOpen(true)} />} />
+            <Route path="/pricing" element={<PricingPage onOpenSearch={() => setSearchOpen(true)} />} />
             {/* Financial Calculators Suite Routes */}
             <Route path="/calculators" element={<CalculatorsLandingPage />} />
             <Route path="/calculators/sip" element={<SipCalculator />} />
