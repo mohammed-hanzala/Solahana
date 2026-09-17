@@ -196,7 +196,7 @@ export default function GlobalConsultationSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-6"
           >
-            <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-[#C89B3C]/30 shadow-2xl relative overflow-hidden">
+            <div className="bg-white rounded-3xl p-4.5 sm:p-8 lg:p-10 border-2 border-[#C89B3C]/30 shadow-2xl relative overflow-hidden">
               
               {/* Top Accent Line */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-[#C89B3C] to-transparent rounded-full" />

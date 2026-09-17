@@ -155,11 +155,9 @@ export default function Hero({ onOpenSearch }) {
     { title: 'Property', icon: Building2, x: -150, y: 150 },
     { title: 'Marriage', icon: HeartHandshake, x: -215, y: 20 },
     { title: 'Education', icon: GraduationCap, x: -170, y: -130 },
-  ];
-
-  return (
+  ];  return (
     <section 
-      className="relative min-h-[90vh] lg:min-h-screen pt-28 pb-16 lg:pt-32 lg:pb-20 bg-[#FAF8F5] overflow-hidden flex flex-col justify-between select-none"
+      className="relative min-h-[85vh] sm:min-h-[90vh] lg:min-h-screen pt-24 sm:pt-28 pb-12 sm:pb-16 lg:pt-32 lg:pb-20 bg-[#FAF8F5] overflow-hidden flex flex-col justify-between select-none"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={handleTouchStart}
@@ -173,11 +171,11 @@ export default function Hero({ onOpenSearch }) {
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Soft Golden Sunrise Gradient */}
         <div className="absolute top-0 right-0 w-3/5 h-full bg-gradient-to-l from-[#F5F0EB] via-[#FAF8F5]/90 to-transparent" />
-        <div className="absolute top-1/4 left-1/3 w-[750px] h-[750px] bg-[#C89A4B]/10 blur-[170px] rounded-full" />
-        <div className="absolute top-10 right-10 w-[550px] h-[550px] bg-[#E5C158]/12 blur-[140px] rounded-full" />
+        <div className="absolute top-1/4 left-1/3 w-[350px] sm:w-[750px] h-[350px] sm:h-[750px] bg-[#C89A4B]/10 blur-[100px] sm:blur-[170px] rounded-full" />
+        <div className="absolute top-10 right-10 w-[280px] sm:w-[550px] h-[280px] sm:h-[550px] bg-[#E5C158]/12 blur-[80px] sm:blur-[140px] rounded-full" />
 
         {/* Sunrise Skyline Silhouette Horizon */}
-        <div className="absolute bottom-0 inset-x-0 h-44 opacity-15 pointer-events-none flex items-end justify-center">
+        <div className="absolute bottom-0 inset-x-0 h-28 sm:h-44 opacity-15 pointer-events-none flex items-end justify-center">
           <svg className="w-full h-full" viewBox="0 0 1440 200" preserveAspectRatio="none" fill="none">
             <path d="M0 200 L0 160 L40 160 L40 120 L80 120 L80 160 L140 160 L140 90 L180 90 L180 160 L240 160 L240 70 L290 70 L290 160 L360 160 L360 110 L410 110 L410 160 L500 160 L500 40 L560 40 L560 160 L640 160 L640 85 L700 85 L700 160 L780 160 L780 60 L840 60 L840 160 L920 160 L920 100 L980 100 L980 160 L1060 160 L1060 50 L1120 50 L1120 160 L1200 160 L1200 95 L1260 95 L1260 160 L1340 160 L1340 130 L1440 130 L1440 200 Z" fill="url(#skylineGrad)" />
             <defs>
@@ -213,33 +211,33 @@ export default function Hero({ onOpenSearch }) {
       {/* ------------------------------------------------------------- */}
       <button
         onClick={() => setActiveSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-        className="absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-30 p-3 sm:p-4 rounded-full bg-white/80 hover:bg-white border border-[#C89A4B]/40 text-[#0F172A] shadow-xl backdrop-blur-md transition-all hover:scale-110 hover:border-[#C89A4B] cursor-pointer"
+        className="absolute left-2 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-4 rounded-full bg-white/80 hover:bg-white border border-[#C89A4B]/40 text-[#0F172A] shadow-lg backdrop-blur-md transition-all hover:scale-110 hover:border-[#C89A4B] cursor-pointer"
         title="Previous Slide"
         aria-label="Previous Slide"
       >
-        <ChevronLeft className="w-5 h-5 text-[#0F172A]" />
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-[#0F172A]" />
       </button>
 
       <button
         onClick={() => setActiveSlide((prev) => (prev + 1) % heroSlides.length)}
-        className="absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-30 p-3 sm:p-4 rounded-full bg-white/80 hover:bg-white border border-[#C89A4B]/40 text-[#0F172A] shadow-xl backdrop-blur-md transition-all hover:scale-110 hover:border-[#C89A4B] cursor-pointer"
+        className="absolute right-2 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-4 rounded-full bg-white/80 hover:bg-white border border-[#C89A4B]/40 text-[#0F172A] shadow-lg backdrop-blur-md transition-all hover:scale-110 hover:border-[#C89A4B] cursor-pointer"
         title="Next Slide"
         aria-label="Next Slide"
       >
-        <ChevronRight className="w-5 h-5 text-[#0F172A]" />
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#0F172A]" />
       </button>
 
       {/* ------------------------------------------------------------- */}
-      {/* MAIN CAROUSEL SLIDE CONTAINER (42% Left, 58% Right Desktop)   */}
+      {/* MAIN CAROUSEL SLIDE CONTAINER (Stacked Vertically on Mobile)  */}
       {/* ------------------------------------------------------------- */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 my-auto">
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 lg:gap-10">
           
           {/* ========================================================= */}
-          {/* LEFT COLUMN: TYPOGRAPHY & STORYTELLING COPY (42% Width)   */}
+          {/* LEFT COLUMN: TYPOGRAPHY & STORYTELLING COPY               */}
           {/* ========================================================= */}
-          <div className="w-full lg:w-[42%] text-left space-y-5 shrink-0">
-            {/* Left Column Text Animation (Fintoo 800ms Fade + Subtle Rise) */}
+          <div className="w-full lg:w-[42%] text-left space-y-3 sm:space-y-5 shrink-0">
+            {/* Left Column Text Animation */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide.id}
@@ -247,56 +245,56 @@ export default function Hero({ onOpenSearch }) {
                 animate={{ opacity: 1, y: 0, x: 0 }}
                 exit={{ opacity: 0, y: -15, x: 10 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] }}
-                className="space-y-3 sm:space-y-4"
+                className="space-y-2 sm:space-y-4"
               >
                 {/* Eyebrow Category Label */}
                 <div className="inline-flex items-center space-x-2">
-                  <span className="text-xs font-sora font-semibold tracking-widest text-[#64748B] uppercase">
+                  <span className="text-[11px] sm:text-xs font-sora font-semibold tracking-widest text-[#64748B] uppercase">
                     {currentSlide.badge}
                   </span>
                 </div>
 
                 {/* Editorial Luxury Headline */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif-luxury font-bold text-[#0F172A] leading-[1.12] tracking-tight">
+                <h1 className="text-2xl sm:text-4xl lg:text-6xl font-serif-luxury font-bold text-[#0F172A] leading-tight tracking-tight">
                   {currentSlide.titleLine1} <br />
                   <span>{currentSlide.titleLine2}</span> <br />
-                  <span className="font-alex-brush text-5xl sm:text-6xl lg:text-7xl text-[#C89A4B] font-normal block mt-1">
+                  <span className="font-alex-brush text-4xl sm:text-5xl lg:text-7xl text-[#C89A4B] font-normal block mt-0.5 sm:mt-1">
                     {currentSlide.scriptText}
                   </span>
                 </h1>
 
                 {/* Description */}
-                <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-xl font-inter font-normal pt-1">
+                <p className="text-xs sm:text-base lg:text-lg text-[#475569] leading-relaxed max-w-xl font-inter font-normal pt-0.5">
                   {currentSlide.subtitle}
                 </p>
               </motion.div>
             </AnimatePresence>
 
             {/* Primary Action Button (Gold Pill with Shimmer & Arrow Slide) */}
-            <div className="pt-2">
+            <div className="pt-1 sm:pt-2">
               <Link
                 to={currentSlide.ctaRoute}
-                className="gold-glow-button px-9 py-4 rounded-full text-sm font-bold text-white tracking-wide inline-flex items-center justify-center space-x-3 group shadow-[0_10px_30px_rgba(200,154,75,0.35)] cursor-pointer hover:shadow-[0_15px_40px_rgba(200,154,75,0.5)] transition-all"
+                className="gold-glow-button px-6 sm:px-9 py-3 sm:py-4 rounded-full text-xs sm:text-sm font-bold text-white tracking-wide inline-flex items-center justify-center space-x-2.5 sm:space-x-3 group shadow-[0_10px_30px_rgba(200,154,75,0.35)] cursor-pointer hover:shadow-[0_15px_40px_rgba(200,154,75,0.5)] transition-all"
               >
                 <span>{currentSlide.ctaText}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </div>
 
             {/* Trust Strip Indicator */}
-            <div className="pt-6 border-t border-[#C89A4B]/20 flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-[#0F172A] font-inter">
-              <div className="flex items-center space-x-2 group cursor-pointer transition-transform hover:scale-105">
-                <ShieldCheck className="w-4 h-4 text-[#C89A4B] shrink-0" />
+            <div className="pt-4 sm:pt-6 border-t border-[#C89A4B]/20 flex flex-wrap items-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-[#0F172A] font-inter">
+              <div className="flex items-center space-x-1.5 sm:space-x-2 group cursor-pointer transition-transform hover:scale-105">
+                <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C89A4B] shrink-0" />
                 <span className="font-semibold">Trusted <span className="text-[#64748B] font-normal">by Thousands</span></span>
               </div>
               <span className="text-[#C89A4B]/40 hidden sm:inline">|</span>
-              <div className="flex items-center space-x-2 group cursor-pointer transition-transform hover:scale-105">
-                <Users className="w-4 h-4 text-[#C89A4B] shrink-0" />
+              <div className="flex items-center space-x-1.5 sm:space-x-2 group cursor-pointer transition-transform hover:scale-105">
+                <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C89A4B] shrink-0" />
                 <span className="font-semibold">Transparent <span className="text-[#64748B] font-normal">Process</span></span>
               </div>
               <span className="text-[#C89A4B]/40 hidden sm:inline">|</span>
-              <div className="flex items-center space-x-2 group cursor-pointer transition-transform hover:scale-105">
-                <Star className="w-4 h-4 text-[#C89A4B] shrink-0" />
+              <div className="flex items-center space-x-1.5 sm:space-x-2 group cursor-pointer transition-transform hover:scale-105">
+                <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C89A4B] shrink-0" />
                 <span className="font-semibold">Personalised <span className="text-[#64748B] font-normal">For You</span></span>
               </div>
             </div>
@@ -304,9 +302,9 @@ export default function Hero({ onOpenSearch }) {
           </div>
 
           {/* ========================================================= */}
-          {/* RIGHT COLUMN: 20-25% LARGER ILLUSTRATION FOCUS (58% Width) */}
+          {/* RIGHT COLUMN: ILLUSTRATION FOCUS                           */}
           {/* ========================================================= */}
-          <div className="w-full lg:w-[58%] relative flex items-center justify-center min-h-[480px] sm:min-h-[560px] lg:min-h-[620px]">
+          <div className="w-full lg:w-[58%] relative flex items-center justify-center min-h-[280px] sm:min-h-[420px] lg:min-h-[620px]">
             
             <AnimatePresence mode="wait">
               <motion.div
@@ -315,7 +313,7 @@ export default function Hero({ onOpenSearch }) {
                 animate={{ opacity: 1, scale: 1.0, x: 0 }}
                 exit={{ opacity: 0, scale: 0.97, x: -15 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] }}
-                className="w-full max-w-[620px] aspect-square relative flex items-center justify-center"
+                className="w-full max-w-[320px] sm:max-w-[460px] lg:max-w-[620px] aspect-square relative flex items-center justify-center overflow-visible"
               >
                 {activeSlide === 0 && <HeroFintechIllustration onOpenSearch={onOpenSearch} />}
                 {activeSlide === 1 && <TaxPlanningIllustration />}
@@ -333,18 +331,18 @@ export default function Hero({ onOpenSearch }) {
       </div>
 
       {/* ========================================================= */}
-      {/* HERO FOOTER TICKER BANNER & SINGLE BOTTOM-RIGHT DOTS      */}
+      {/* HERO FOOTER TICKER BANNER                                 */}
       {/* ========================================================= */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 pt-2 pb-2">
-        <div className="border-t border-[#C89A4B]/20 pt-4 flex items-center justify-between text-xs font-inter text-[#64748B]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 pt-2 pb-6 sm:pb-2">
+        <div className="border-t border-[#C89A4B]/20 pt-3 sm:pt-4 flex items-center justify-between text-[11px] sm:text-xs font-inter text-[#64748B]">
           
           {/* Ticker Banner & Emotion Label */}
-          <div className="flex items-center space-x-3 font-sora font-semibold tracking-widest text-[#0F172A] uppercase">
+          <div className="flex items-center space-x-2 sm:space-x-3 font-sora font-semibold tracking-widest text-[#0F172A] uppercase">
             <span>PLAN TODAY</span>
-            <span className="text-[#C89A4B]">|</span>
+            <span className="text-[#C89B3C]">|</span>
             <span>SECURE TOMORROW</span>
-            <span className="text-[#C89A4B] hidden md:inline">•</span>
-            <span className="text-[#C89A4B] font-serif-luxury lowercase tracking-normal italic text-sm hidden md:inline">
+            <span className="text-[#C89B3C] hidden md:inline">•</span>
+            <span className="text-[#C89B3C] font-serif-luxury lowercase tracking-normal italic text-sm hidden md:inline">
               {currentSlide.emotion}
             </span>
           </div>
@@ -353,17 +351,17 @@ export default function Hero({ onOpenSearch }) {
       </div>
 
       {/* ========================================================= */}
-      {/* SINGLE PREMIUM BOTTOM-RIGHT CAROUSEL NAVIGATION INDICATOR  */}
+      {/* CENTERED BOTTOM CAROUSEL NAVIGATION INDICATOR (MOBILE FIX) */}
       {/* ========================================================= */}
-      <div className="absolute bottom-6 right-6 sm:right-8 lg:bottom-8 lg:right-12 z-30 flex items-center space-x-2.5 bg-white/85 backdrop-blur-md px-4 py-2 rounded-full border border-[#C89A4B]/30 shadow-lg">
+      <div className="absolute bottom-2 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center space-x-2 sm:space-x-2.5 bg-white/90 backdrop-blur-md px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#C89A4B]/30 shadow-md">
         {heroSlides.map((slide, idx) => (
           <button
             key={`single-dot-${slide.id}`}
             onClick={() => setActiveSlide(idx)}
-            className={`h-2.5 rounded-full transition-all duration-500 cursor-pointer ${
+            className={`h-2 sm:h-2.5 rounded-full transition-all duration-500 cursor-pointer ${
               activeSlide === idx
-                ? 'bg-[#C89A4B] w-7 shadow-[0_0_10px_rgba(200,154,75,0.5)]'
-                : 'bg-[#C89A4B]/30 hover:bg-[#C89A4B]/70 w-2.5'
+                ? 'bg-[#C89B3C] w-5 sm:w-7 shadow-[0_0_10px_rgba(200,154,75,0.5)]'
+                : 'bg-[#C89B3C]/30 hover:bg-[#C89B3C]/70 w-2 sm:w-2.5'
             }`}
             title={`Slide ${idx + 1}: ${slide.badge}`}
           />

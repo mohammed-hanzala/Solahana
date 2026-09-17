@@ -13,7 +13,7 @@ import {
 
 export default function FinancialSnapshot() {
   return (
-    <section className="relative z-10 py-24 bg-[#F3EFE9] border-t border-[#C89A4B]/20 overflow-hidden">
+    <section className="relative z-10 py-12 sm:py-20 lg:py-24 bg-[#F3EFE9] border-t border-[#C89A4B]/20 overflow-hidden">
       
       {/* Background Radial Lights */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-[#C89A4B]/10 blur-[130px] rounded-full pointer-events-none" />
@@ -21,7 +21,7 @@ export default function FinancialSnapshot() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto mb-16">
+        <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}

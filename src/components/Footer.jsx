@@ -57,8 +57,8 @@ export default function Footer() {
     <footer className="relative z-20 bg-white border-t border-[#E7D7B5] text-[#1A1A1A]">
       
       {/* Main Footer Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-12">
           
           {/* COLUMN 1: SOLAHANA LOGO & BRAND BRIEF */}
           <div className="lg:col-span-4 space-y-5 text-left">
@@ -162,7 +162,7 @@ export default function Footer() {
               Subscribe for clear, practical financial insights delivered to your inbox every Sunday.
             </p>
 
-            <form onSubmit={handleSubscribe} className="flex items-center space-x-2">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
               <div className="relative flex-1">
                 <Mail className="w-4 h-4 text-[#888888] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input

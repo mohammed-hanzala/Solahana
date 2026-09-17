@@ -194,13 +194,15 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
       </motion.div>
 
       {/* ------------------------------------------------------------- */}
-      {/* 4. 7 GOAL BUBBLES ALL MATCHING RETIREMENT RADIUS (235px)     */}
+      {/* 4. 7 GOAL BUBBLES SCALED PROPORTIONALLY (PERCENTAGE POSITIONS) */}
       {/* ------------------------------------------------------------- */}
       {circularNodes.map((node, index) => {
         const Icon = node.icon;
         const rad = (node.angle * Math.PI) / 180;
         const x = Math.cos(rad) * ORBIT_RADIUS;
         const y = Math.sin(rad) * ORBIT_RADIUS;
+        const percentX = (x / 580) * 100;
+        const percentY = (y / 580) * 100;
         const isLabelAbove = node.labelPos === 'above';
 
         return (
@@ -208,8 +210,8 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
             key={node.id}
             className="absolute z-30 -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
             style={{
-              left: `calc(50% + ${x}px)`,
-              top: `calc(50% + ${y}px)`,
+              left: `calc(50% + ${percentX}%)`,
+              top: `calc(50% + ${percentY}%)`,
             }}
           >
             <motion.div
@@ -221,15 +223,15 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
               className="relative cursor-pointer group flex flex-col items-center justify-center"
             >
               {/* White & Gold Circular Goal Bubble */}
-              <div className="w-14 h-14 rounded-full bg-white border-2 border-[#C89B3C] shadow-[0_10px_25px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.45)] transition-all flex items-center justify-center shrink-0">
-                <Icon className="w-6 h-6 text-[#9A7326] group-hover:text-[#C89B3C] transition-colors" />
+              <div className="w-9 h-9 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full bg-white border-2 border-[#C89B3C] shadow-[0_6px_18px_rgba(200,154,75,0.25)] group-hover:border-[#9A7326] group-hover:shadow-[0_12px_30px_rgba(200,154,75,0.45)] transition-all flex items-center justify-center shrink-0">
+                <Icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#9A7326] group-hover:text-[#C89B3C] transition-colors" />
               </div>
 
               {/* Label Tooltip Pill */}
               <span 
                 className={`absolute ${
-                  isLabelAbove ? 'bottom-full mb-2' : 'top-full mt-2'
-                } text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center pointer-events-none`}
+                  isLabelAbove ? 'bottom-full mb-1 sm:mb-2' : 'top-full mt-1 sm:mt-2'
+                } text-[9px] sm:text-[10px] lg:text-[11px] font-semibold text-[#0F172A] bg-white/95 px-2 py-0.5 rounded-full border border-[#C89B3C]/30 shadow-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap text-center pointer-events-none`}
               >
                 {node.title}
               </span>

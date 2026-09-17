@@ -5,7 +5,7 @@ import { ArrowRight, Sparkles, Calendar, ShieldCheck, Lock } from 'lucide-react'
 
 export default function FinalCTA({ onOpenSearch }) {
   return (
-    <section className="relative z-10 py-28 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
+    <section className="relative z-10 py-12 sm:py-20 lg:py-28 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
       
       {/* Background Soft Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-[#C89A4B]/10 blur-[140px] rounded-full pointer-events-none" />
@@ -16,7 +16,7 @@ export default function FinalCTA({ onOpenSearch }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="rounded-[40px] p-8 sm:p-16 bg-white border-2 border-[#C89A4B]/30 backdrop-blur-2xl text-center space-y-6 shadow-xl relative overflow-hidden"
+          className="rounded-[30px] sm:rounded-[40px] p-5 sm:p-16 bg-white border-2 border-[#C89A4B]/30 backdrop-blur-2xl text-center space-y-5 sm:space-y-6 shadow-xl relative overflow-hidden"
         >
           {/* Badge */}
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full gold-badge text-xs font-semibold text-[#9A7326] border border-[#C89A4B]/30">
