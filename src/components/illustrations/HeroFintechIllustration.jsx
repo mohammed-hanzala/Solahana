@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { 
   GraduationCap, 
   Coins, 
@@ -11,6 +11,8 @@ import {
 } from 'lucide-react';
 
 export default function HeroFintechIllustration({ onOpenSearch }) {
+  const shouldReduceMotion = useReducedMotion();
+
   // Constant Orbit Radius (235px) - Exact match for Retirement & all 7 orbital nodes
   const ORBIT_RADIUS = 235;
 
@@ -37,32 +39,41 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
       </div>
 
       {/* SVG Orbit Line passing through exact center of every badge (r = 235px) */}
+      {/* Smooth linear 30s rotation of outer gold dashed orbit line & satellite accents only */}
       <svg 
-        className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible" 
+        className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible drop-shadow-[0_0_14px_rgba(200,154,60,0.5)]" 
         viewBox="0 0 580 580"
       >
-        {/* Outer Glow Halo Ring */}
-        <circle 
-          cx="290" 
-          cy="290" 
-          r={ORBIT_RADIUS} 
-          stroke="#C89B3C" 
-          strokeWidth="6" 
-          strokeOpacity="0.2" 
-          fill="none" 
-        />
+        <g className="animate-orbit-spin-30s">
+          {/* Outer Glow Halo Ring */}
+          <circle 
+            cx="290" 
+            cy="290" 
+            r={ORBIT_RADIUS} 
+            stroke="#C89B3C" 
+            strokeWidth="6" 
+            strokeOpacity="0.25" 
+            fill="none" 
+          />
 
-        {/* Primary Gold Dashed Orbit Line */}
-        <circle 
-          cx="290" 
-          cy="290" 
-          r={ORBIT_RADIUS} 
-          stroke="#C89B3C" 
-          strokeWidth="2.5" 
-          strokeDasharray="8 6" 
-          strokeOpacity="0.75"
-          fill="none" 
-        />
+          {/* Primary Gold Dashed Orbit Line */}
+          <circle 
+            cx="290" 
+            cy="290" 
+            r={ORBIT_RADIUS} 
+            stroke="#C89B3C" 
+            strokeWidth="2.5" 
+            strokeDasharray="14 10" 
+            strokeOpacity="0.85"
+            fill="none" 
+          />
+
+          {/* 4 Golden Satellite Dots rotating on the orbit line */}
+          <circle cx="290" cy="55" r="4.5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
+          <circle cx="525" cy="290" r="4.5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
+          <circle cx="290" cy="525" r="4.5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
+          <circle cx="55" cy="290" r="4.5" fill="#E5C158" className="drop-shadow-[0_0_8px_#C89B3C]" />
+        </g>
       </svg>
 
       {/* ------------------------------------------------------------- */}

@@ -431,10 +431,10 @@ export default function Navbar({ onOpenSearch }) {
                   </button>
                 )}
 
-                {/* Primary Gold CTA Button (Shifted right with extra spacing from profile icon) */}
+                {/* Primary Gold CTA Button (Pinned far right with 20-24px breathing space from profile icon) */}
                 <button
                   onClick={(e) => handleNavClick(e, 'contact')}
-                  className="gold-glow-button ml-2 lg:ml-3 xl:ml-4.5 px-4.5 lg:px-5 py-2.5 rounded-full text-xs font-bold text-white tracking-wide flex items-center space-x-2 group cursor-pointer shadow-md whitespace-nowrap shrink-0 hover:scale-[1.02] transition-transform"
+                  className="gold-glow-button ml-5 lg:ml-5.5 xl:ml-6 px-4.5 lg:px-5 py-2.5 rounded-full text-xs font-bold text-white tracking-wide flex items-center space-x-2 group cursor-pointer shadow-md whitespace-nowrap shrink-0 hover:scale-[1.02] transition-transform"
                 >
                   <span className="whitespace-nowrap">Start Your Comprehensive Plan</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform shrink-0" />

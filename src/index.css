@@ -249,7 +249,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   animation: floatDelayed 5s infinite ease-in-out 1.5s;
 }
 
-@keyframes spinSlow {
+@keyframes orbitSpinSlow {
   from {
     transform: rotate(0deg);
   }
@@ -260,4 +260,16 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .animate-spin-slow {
   animation: spinSlow 40s linear infinite;
+}
+
+.animate-orbit-spin-30s {
+  transform-origin: 290px 290px;
+  transform-box: fill-box;
+  animation: orbitSpinSlow 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit-spin-30s {
+    animation: none !important;
+  }
 }
