@@ -5,7 +5,6 @@ import TaxServices from '../components/tax/TaxServices';
 import WhyChooseSolahanaTax from '../components/tax/WhyChooseSolahanaTax';
 import TaxBenefits from '../components/tax/TaxBenefits';
 import TaxCalculator from '../components/tax/TaxCalculator';
-import GlobalConsultationSection from '../components/common/GlobalConsultationSection';
 
 export default function TaxPlanningPage({ onOpenSearch }) {
   useEffect(() => {
@@ -48,9 +47,6 @@ export default function TaxPlanningPage({ onOpenSearch }) {
 
       {/* 6. TAX PLANNING CALCULATOR (LAST CONTENT SECTION) */}
       <TaxCalculator />
-
-      {/* 7. CONSULTATION BOOKING SECTION */}
-      <GlobalConsultationSection />
     </div>
   );
 }

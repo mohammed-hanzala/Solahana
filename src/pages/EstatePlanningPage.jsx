@@ -4,7 +4,6 @@ import WhyEstatePlanningMatters from '../components/estate/WhyEstatePlanningMatt
 import EstateSolutions from '../components/estate/EstateSolutions';
 import WhyChooseSolahanaEstate from '../components/estate/WhyChooseSolahanaEstate';
 import EstateBenefits from '../components/estate/EstateBenefits';
-import GlobalConsultationSection from '../components/common/GlobalConsultationSection';
 
 export default function EstatePlanningPage({ onOpenSearch }) {
   useEffect(() => {
@@ -37,9 +36,6 @@ export default function EstatePlanningPage({ onOpenSearch }) {
 
       {/* 5. ESTATE PLANNING BENEFITS */}
       <EstateBenefits onStartEstatePlanning={scrollToConsultation} />
-
-      {/* 6. CONSULTATION BOOKING SECTION */}
-      <GlobalConsultationSection />
     </div>
   );
 }

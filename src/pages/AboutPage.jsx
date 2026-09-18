@@ -6,7 +6,6 @@ import AboutValues from '../components/about/AboutValues';
 import WhySolahanaExists from '../components/about/WhySolahanaExists';
 import AboutConnectOptions from '../components/about/AboutConnectOptions';
 import AboutOfficeLocation from '../components/about/AboutOfficeLocation';
-import GlobalConsultationSection from '../components/common/GlobalConsultationSection';
 
 export default function AboutPage({ onOpenSearch }) {
   useEffect(() => {
@@ -45,9 +44,6 @@ export default function AboutPage({ onOpenSearch }) {
 
       {/* SECTION 7: OFFICE LOCATION & WORKING HOURS (MERGED CONTACT) */}
       <AboutOfficeLocation />
-
-      {/* SECTION 8: CONSULTATION BOOKING FORM */}
-      <GlobalConsultationSection />
     </div>
   );
 }

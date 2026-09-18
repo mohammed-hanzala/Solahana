@@ -4,7 +4,6 @@ import WhyInvestingMatters from '../components/investments/WhyInvestingMatters';
 import InvestmentCategories from '../components/investments/InvestmentCategories';
 import WhyChooseSolahanaInvestment from '../components/investments/WhyChooseSolahanaInvestment';
 import InvestmentCalculator from '../components/investments/InvestmentCalculator';
-import GlobalConsultationSection from '../components/common/GlobalConsultationSection';
 
 export default function InvestmentsPage({ onOpenSearch }) {
   useEffect(() => {
@@ -44,9 +43,6 @@ export default function InvestmentsPage({ onOpenSearch }) {
 
       {/* 5. INVESTMENT CALCULATOR */}
       <InvestmentCalculator />
-
-      {/* 6. CONSULTATION BOOKING SECTION */}
-      <GlobalConsultationSection />
     </div>
   );
 }

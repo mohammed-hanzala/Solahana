@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { ShieldCheck, Flame, RotateCcw, Bookmark, Sparkles, TrendingUp, Calendar, Wallet } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { calculateRetirement, formatINR } from '../../utils/calculatorEngine';
-import GlobalConsultationSection from '../common/GlobalConsultationSection';
 
 import RetirementHero from '../planning/RetirementHero';
 import WhyRetirementMatters from '../planning/WhyRetirementMatters';
@@ -414,9 +413,6 @@ export default function RetirementCalculator() {
 
         </div>
       </section>
-
-      {/* 8. CALLBACK / CONSULTATION FORM (SECTION 8 BEFORE FOOTER) */}
-      <GlobalConsultationSection />
 
     </div>
   );
