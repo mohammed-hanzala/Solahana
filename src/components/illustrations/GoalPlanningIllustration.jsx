@@ -2,46 +2,53 @@ import React from 'react';
 
 export default function GoalPlanningIllustration() {
   return (
-    <div className="w-full h-44 sm:h-48 flex items-center justify-center select-none overflow-hidden">
-      <svg className="w-full h-full drop-shadow-md overflow-visible" viewBox="0 0 320 180" fill="none">
+    <div className="w-full h-full flex items-center justify-center select-none">
+      <svg className="w-full h-full drop-shadow-sm" viewBox="0 0 320 180" fill="none">
         {/* Soft Ambient Background Glow */}
         <circle cx="160" cy="90" r="70" fill="#C89B3C" opacity="0.08" />
 
-        {/* Life Goal Board Display */}
-        <rect x="25" y="15" width="270" height="150" rx="14" fill="#FFFFFF" stroke="#E7D7B5" strokeWidth="1.5" />
+        {/* Risk Protection Board */}
+        <rect x="20" y="12" width="280" height="156" rx="16" fill="#FFFFFF" stroke="#E7D7B5" strokeWidth="1.5" />
         
-        {/* Top Header */}
-        <line x1="40" y1="35" x2="140" y2="35" stroke="#C89B3C" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="270" cy="35" r="4" fill="#10B981" />
+        {/* Top Header Line */}
+        <line x1="36" y1="32" x2="140" y2="32" stroke="#C89B3C" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="280" cy="32" r="4" fill="#10B981" />
 
-        {/* Milestone Curve Line */}
-        <path d="M 40 120 L 110 85 L 180 95 L 265 45" stroke="#C89B3C" strokeWidth="3" strokeLinecap="round" strokeDasharray="4 4" fill="none" />
+        {/* Protective Golden Shield Arch */}
+        <path d="M 60 120 C 60 50, 200 50, 200 120" stroke="#C89B3C" strokeWidth="2.5" strokeDasharray="6 4" fill="none" />
+        
+        {/* Shield Icon SVG Badge in Center */}
+        <circle cx="130" cy="55" r="18" fill="#FAF6EE" stroke="#C89B3C" strokeWidth="1.5" />
+        <path d="M 130 45 L 140 50 V 58 C 140 65, 130 70, 130 70 C 130 70, 120 65, 120 58 V 50 L 130 45 Z" fill="#C89B3C" opacity="0.85" />
 
-        {/* Father (Human Vector Figure - 30% Larger) */}
-        <circle cx="70" cy="55" r="16" fill="#FDBA74" />
-        {/* Hair */}
-        <path d="M 57 55 C 57 40, 83 40, 83 55 Z" fill="#1A1A1A" />
-        {/* Torso */}
-        <path d="M 55 75 L 85 75 L 81 142 L 59 142 Z" fill="#1A1A1A" />
+        {/* Husband Figure (Protected Family) */}
+        <g transform="translate(0, 5)">
+          <circle cx="90" cy="65" r="13" fill="#FDBA74" />
+          <path d="M 79 65 C 79 52, 101 52, 101 65 Z" fill="#0F172A" />
+          <path d="M 76 83 L 104 83 L 100 138 L 80 138 Z" fill="#0F172A" />
+        </g>
 
-        {/* Mother (Human Vector Figure - 30% Larger) */}
-        <circle cx="115" cy="58" r="14" fill="#FDBA74" />
-        {/* Hair */}
-        <path d="M 104 58 C 104 45, 126 45, 126 58 Z" fill="#B8860B" />
-        {/* Torso */}
-        <path d="M 103 78 L 127 78 L 123 142 L 107 142 Z" fill="#B8860B" />
+        {/* Wife Figure */}
+        <g transform="translate(10, 8)">
+          <circle cx="130" cy="68" r="12" fill="#FDBA74" />
+          <path d="M 120 68 C 120 56, 140 56, 140 68 Z" fill="#9A7326" />
+          <path d="M 118 84 L 142 84 L 138 138 L 122 138 Z" fill="#C89B3C" />
+        </g>
 
-        {/* Child (Human Vector Figure - 30% Larger) */}
-        <circle cx="92" cy="85" r="10" fill="#FDBA74" />
-        <path d="M 84 98 L 100 98 L 98 142 L 86 142 Z" fill="#C89B3C" />
+        {/* Child Figure */}
+        <g transform="translate(5, 12)">
+          <circle cx="112" cy="85" r="9" fill="#FDBA74" />
+          <path d="M 104 96 L 120 96 L 117 138 L 107 138 Z" fill="#0F172A" opacity="0.8" />
+        </g>
 
-        {/* Goal Milestone Card (Home & Education) */}
-        <g transform="translate(155, 30)">
-          <rect width="125" height="42" rx="8" fill="#FCFAF6" stroke="#E7D7B5" strokeWidth="1.5" />
-          <text x="62.5" y="18" fill="#1A1A1A" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Dream Home & Education</text>
-          <text x="62.5" y="32" fill="#C89B3C" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">₹1.20 Cr Goal Blueprint</text>
+        {/* Health & Term Cover Badge Card */}
+        <g transform="translate(145, 115)">
+          <rect width="115" height="34" rx="8" fill="#FCFAF6" stroke="#C89B3C" strokeWidth="1.5" className="drop-shadow-sm" />
+          <text x="57.5" y="15" fill="#0F172A" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Risk & Health Shield</text>
+          <text x="57.5" y="27" fill="#C89B3C" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">100% Family Coverage</text>
         </g>
       </svg>
     </div>
   );
 }
+

@@ -1,79 +1,53 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Calculator, ShieldCheck, FileText } from 'lucide-react';
 
 export default function TaxPlanningIllustration() {
   return (
-    <div className="relative w-full max-w-[480px] aspect-4/3 flex items-center justify-center select-none">
-      <div className="w-full h-full rounded-3xl bg-white/95 border border-[#C89A4B]/30 p-6 shadow-xl backdrop-blur-xl relative overflow-hidden flex flex-col justify-between text-left">
-        {/* Soft Background Gold Glow */}
-        <div className="absolute top-0 right-0 w-48 h-48 bg-[#C89A4B]/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="w-full h-full flex items-center justify-center select-none">
+      <svg className="w-full h-full drop-shadow-sm" viewBox="0 0 320 180" fill="none">
+        {/* Soft Ambient Background Glow */}
+        <circle cx="160" cy="90" r="70" fill="#C89B3C" opacity="0.08" />
 
-        {/* Top Header */}
-        <div className="flex items-center justify-between border-b border-[#C89A4B]/15 pb-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-[#9A7326] flex items-center justify-center font-bold">
-              <Calculator className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-sm font-serif-luxury font-bold text-[#0F172A]">Tax Harvesting & Planning</div>
-              <div className="text-[11px] text-[#64748B]">Section 80C, 80D, NPS & LTCG Structuring</div>
-            </div>
-          </div>
-          <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono text-[10px] font-semibold">
-            Tax Optimized
-          </span>
-        </div>
+        {/* Tax Dashboard Display Board */}
+        <rect x="20" y="12" width="280" height="156" rx="16" fill="#FFFFFF" stroke="#E7D7B5" strokeWidth="1.5" />
+        
+        {/* Top Header Line */}
+        <line x1="36" y1="32" x2="140" y2="32" stroke="#C89B3C" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="280" cy="32" r="4" fill="#10B981" />
 
-        {/* Central Vector SVG Graphic — Advisor Helping Client with Tax Planning */}
-        <div className="my-3 w-full flex items-center justify-center">
-          <svg className="w-full h-36 drop-shadow-md overflow-visible" viewBox="0 0 340 140" fill="none">
-            {/* Tax Strategy Sheet Document */}
-            <rect x="110" y="10" width="120" height="120" rx="10" fill="#FAF8F5" stroke="#C89A4B" strokeWidth="1.5" />
-            <line x1="125" y1="28" x2="200" y2="28" stroke="#9A7326" strokeWidth="3" strokeLinecap="round" />
-            <line x1="125" y1="42" x2="190" y2="42" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" />
-            <line x1="125" y1="56" x2="180" y2="56" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" />
-            <line x1="125" y1="70" x2="195" y2="70" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" />
+        {/* Tax Document Sheet */}
+        <rect x="110" y="38" width="100" height="110" rx="10" fill="#FCFAF6" stroke="#C89B3C" strokeWidth="1.5" />
+        <line x1="125" y1="52" x2="190" y2="52" stroke="#C89B3C" strokeWidth="2.5" strokeLinecap="round" />
+        <line x1="125" y1="64" x2="180" y2="64" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="125" y1="76" x2="185" y2="76" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="125" y1="88" x2="175" y2="88" stroke="#94A3B8" strokeWidth="1.5" strokeLinecap="round" />
 
-            {/* Approved Stamp */}
-            <circle cx="195" cy="95" r="14" fill="#10B981" opacity="0.15" />
-            <path d="M 189 95 L 193 99 L 201 91" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        {/* Approved Stamp */}
+        <circle cx="185" cy="115" r="13" fill="#10B981" opacity="0.15" />
+        <path d="M 179 115 L 183 119 L 191 111" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
 
-            {/* Left Human Figure (Financial Advisor presenting document) */}
-            <circle cx="65" cy="40" r="11" fill="#FDBA74" />
-            <path d="M 55 40 C 55 28, 75 28, 75 40 Z" fill="#0F172A" />
-            <path d="M 52 55 L 78 55 L 75 100 L 55 100 Z" fill="#0F172A" />
-            <path d="M 68 62 Q 95 55 115 50" stroke="#0F172A" strokeWidth="4" strokeLinecap="round" fill="none" />
+        {/* Fiduciary Advisor Figure (Left) */}
+        <g transform="translate(-15, 5)">
+          <circle cx="85" cy="55" r="14" fill="#FDBA74" />
+          <path d="M 73 55 C 73 41, 97 41, 97 55 Z" fill="#0F172A" />
+          <path d="M 70 75 C 70 75, 77 72, 85 72 C 93 72, 100 75, 100 75 L 96 138 L 74 138 Z" fill="#0F172A" />
+          <path d="M 85 82 Q 105 75 125 70" stroke="#0F172A" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+        </g>
 
-            {/* Right Human Figure (Client reviewing tax strategy) */}
-            <circle cx="275" cy="40" r="11" fill="#FDBA74" />
-            <path d="M 265 40 C 265 28, 285 28, 285 40 Z" fill="#9A7326" />
-            <path d="M 262 55 L 288 55 L 285 100 L 265 100 Z" fill="#9A7326" />
-            <path d="M 270 62 Q 245 55 225 50" stroke="#9A7326" strokeWidth="4" strokeLinecap="round" fill="none" />
+        {/* Client Figure (Right) */}
+        <g transform="translate(15, 5)">
+          <circle cx="235" cy="55" r="14" fill="#FDBA74" />
+          <path d="M 223 55 C 223 41, 247 41, 247 55 Z" fill="#9A7326" />
+          <path d="M 220 75 C 220 75, 227 72, 235 72 C 243 72, 250 75, 250 75 L 246 138 L 224 138 Z" fill="#C89B3C" />
+          <path d="M 225 82 Q 205 75 185 70" stroke="#C89B3C" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+        </g>
 
-            {/* Floating Tax Savings Badge */}
-            <rect x="15" y="85" width="95" height="42" rx="8" fill="#FFFFFF" stroke="#C89A4B" strokeWidth="1.5" />
-            <text x="25" y="100" fill="#9A7326" fontSize="9" fontFamily="sans-serif" fontWeight="bold">TAX SAVED</text>
-            <text x="25" y="118" fill="#0F172A" fontSize="13" fontFamily="sans-serif" fontWeight="bold">₹1,50,000/yr</text>
-          </svg>
-        </div>
-
-        {/* Footer Metrics */}
-        <div className="grid grid-cols-3 gap-2">
-          <div className="p-2.5 rounded-xl bg-[#FAF8F5] border border-[#C89A4B]/20 text-center">
-            <div className="text-[10px] text-[#64748B]">Sec 80C</div>
-            <div className="text-xs font-bold text-[#9A7326] font-sora">₹1.5 Lakh</div>
-          </div>
-          <div className="p-2.5 rounded-xl bg-[#FAF8F5] border border-[#C89A4B]/20 text-center">
-            <div className="text-[10px] text-[#64748B]">Sec 80D</div>
-            <div className="text-xs font-bold text-[#9A7326] font-sora">₹75,000</div>
-          </div>
-          <div className="p-2.5 rounded-xl bg-[#FAF8F5] border border-[#C89A4B]/20 text-center">
-            <div className="text-[10px] text-[#64748B]">NPS Sec 80CCD</div>
-            <div className="text-xs font-bold text-emerald-700 font-sora">₹50,000</div>
-          </div>
-        </div>
-      </div>
+        {/* Tax Saved Badge Card */}
+        <g transform="translate(135, 115)">
+          <rect width="105" height="34" rx="8" fill="#FCFAF6" stroke="#C89B3C" strokeWidth="1.5" className="drop-shadow-sm" />
+          <text x="52.5" y="15" fill="#0F172A" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Tax Optimization</text>
+          <text x="52.5" y="27" fill="#10B981" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Sec 80C • 80D • NPS</text>
+        </g>
+      </svg>
     </div>
   );
 }

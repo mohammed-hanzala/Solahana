@@ -1,73 +1,50 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Building2, Scroll, ShieldCheck, Landmark } from 'lucide-react';
 
 export default function EstatePlanningIllustration() {
   return (
-    <div className="relative w-full max-w-[480px] aspect-4/3 flex items-center justify-center select-none">
-      <div className="w-full h-full rounded-[24px] bg-white border border-[#E7D7B5] p-6 shadow-[0_10px_30px_rgba(200,155,60,0.08)] backdrop-blur-xl relative overflow-hidden flex flex-col justify-between text-left">
+    <div className="w-full h-full flex items-center justify-center select-none">
+      <svg className="w-full h-full drop-shadow-sm" viewBox="0 0 320 180" fill="none">
+        {/* Soft Ambient Background Glow */}
+        <circle cx="160" cy="90" r="70" fill="#C89B3C" opacity="0.08" />
+
+        {/* Estate Planning Display Board */}
+        <rect x="20" y="12" width="280" height="156" rx="16" fill="#FFFFFF" stroke="#E7D7B5" strokeWidth="1.5" />
         
-        {/* Card Top Header */}
-        <div className="flex items-center justify-between border-b border-[#E7D7B5] pb-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-[#F8F5EF] border border-[#E7D7B5] text-[#C89B3C] flex items-center justify-center font-bold">
-              <Building2 className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-sm font-serif-luxury font-bold text-[#1A1A1A]">Estate & Legacy Planning</div>
-              <div className="text-[11px] text-[#666666]">Wills, Private Trusts & Succession</div>
-            </div>
-          </div>
-          <span className="px-3 py-1 rounded-full bg-[#F8F5EF] border border-[#E7D7B5] text-[#B8860B] font-mono text-[10px] font-semibold">
-            Legacy Secured
-          </span>
-        </div>
+        {/* Top Header Line */}
+        <line x1="36" y1="32" x2="140" y2="32" stroke="#C89B3C" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="280" cy="32" r="4" fill="#10B981" />
 
-        {/* Vector SVG Estate & House Graphic */}
-        <div className="my-2 w-full flex items-center justify-center">
-          <svg className="w-full h-36" viewBox="0 0 320 140" fill="none">
-            {/* Background Shield Outline */}
-            <path d="M 160 10 L 220 30 V 70 C 220 100 160 125 160 125 C 160 125 100 100 100 70 V 30 Z" fill="#F8F5EF" stroke="#E7D7B5" strokeWidth="1.5" />
+        {/* Background Shield Outline */}
+        <path d="M 160 38 L 210 55 V 90 C 210 115 160 135 160 135 C 160 135 110 115 110 90 V 55 Z" fill="#FAF6EE" stroke="#E7D7B5" strokeWidth="1.5" />
 
-            {/* Estate Manor House Silhouette */}
-            <path d="M 130 55 L 160 30 L 190 55 V 95 H 130 Z" fill="#FFFFFF" stroke="#C89B3C" strokeWidth="2" />
-            <path d="M 152 75 H 168 V 95 H 152 Z" fill="#B8860B" />
-            <rect x="140" y="60" width="12" height="12" rx="2" fill="#F8F5EF" stroke="#E7D7B5" strokeWidth="1" />
-            <rect x="168" y="60" width="12" height="12" rx="2" fill="#F8F5EF" stroke="#E7D7B5" strokeWidth="1" />
+        {/* Estate Manor House Silhouette */}
+        <path d="M 135 75 L 160 55 L 185 75 V 110 H 135 Z" fill="#FFFFFF" stroke="#C89B3C" strokeWidth="2" />
+        <path d="M 153 92 H 167 V 110 H 153 Z" fill="#9A7326" />
 
-            {/* Left Badge: Will & Succession */}
-            <g transform="translate(12, 40)">
-              <rect width="78" height="42" rx="6" fill="#FFFFFF" stroke="#E7D7B5" strokeWidth="1.5" />
-              <text x="39" y="16" fill="#666666" fontSize="8" textAnchor="middle">Will & Succession</text>
-              <text x="39" y="30" fill="#1A1A1A" fontSize="11" fontWeight="bold" textAnchor="middle">100% Legal</text>
-            </g>
+        {/* Senior Patriarch Figure (Left) */}
+        <g transform="translate(-15, 5)">
+          <circle cx="75" cy="55" r="14" fill="#FDBA74" />
+          <path d="M 63 55 C 63 41, 87 41, 87 55 Z" fill="#0F172A" />
+          <path d="M 60 75 C 60 75, 67 72, 75 72 C 83 72, 90 75, 90 75 L 86 138 L 64 138 Z" fill="#0F172A" />
+          <path d="M 75 82 Q 95 75 115 70" stroke="#0F172A" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+        </g>
 
-            {/* Right Badge: Family Trust */}
-            <g transform="translate(230, 40)">
-              <rect width="78" height="42" rx="6" fill="#FFFFFF" stroke="#E7D7B5" strokeWidth="1.5" />
-              <text x="39" y="16" fill="#666666" fontSize="8" textAnchor="middle">Family Trust</text>
-              <text x="39" y="30" fill="#1A1A1A" fontSize="11" fontWeight="bold" textAnchor="middle">Protected</text>
-            </g>
-          </svg>
-        </div>
+        {/* Heir / Family Figure (Right) */}
+        <g transform="translate(15, 5)">
+          <circle cx="245" cy="55" r="14" fill="#FDBA74" />
+          <path d="M 233 55 C 233 41, 257 41, 257 55 Z" fill="#9A7326" />
+          <path d="M 230 75 C 230 75, 237 72, 245 72 C 253 72, 260 75, 260 75 L 256 138 L 234 138 Z" fill="#C89B3C" />
+          <path d="M 235 82 Q 215 75 195 70" stroke="#C89B3C" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+        </g>
 
-        {/* Bottom Feature Badges */}
-        <div className="grid grid-cols-3 gap-2">
-          <div className="p-2.5 rounded-xl bg-[#F8F5EF] border border-[#E7D7B5] text-center">
-            <div className="text-[10px] text-[#666666]">Asset Protection</div>
-            <div className="text-xs font-bold text-[#1A1A1A] font-sora">Seamless</div>
-          </div>
-          <div className="p-2.5 rounded-xl bg-[#F8F5EF] border border-[#E7D7B5] text-center">
-            <div className="text-[10px] text-[#666666]">Succession</div>
-            <div className="text-xs font-bold text-[#1A1A1A] font-sora">Zero Dispute</div>
-          </div>
-          <div className="p-2.5 rounded-xl bg-[#F8F5EF] border border-[#E7D7B5] text-center">
-            <div className="text-[10px] text-[#666666]">Family Legacy</div>
-            <div className="text-xs font-bold text-[#1A1A1A] font-sora">Generation+</div>
-          </div>
-        </div>
-
-      </div>
+        {/* Private Trust Badge Card */}
+        <g transform="translate(135, 115)">
+          <rect width="105" height="34" rx="8" fill="#FCFAF6" stroke="#C89B3C" strokeWidth="1.5" className="drop-shadow-sm" />
+          <text x="52.5" y="15" fill="#0F172A" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Estate & Legacy</text>
+          <text x="52.5" y="27" fill="#C89B3C" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Wills & Private Trusts</text>
+        </g>
+      </svg>
     </div>
   );
 }
+

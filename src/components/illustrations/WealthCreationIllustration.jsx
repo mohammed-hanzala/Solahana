@@ -2,44 +2,48 @@ import React from 'react';
 
 export default function WealthCreationIllustration() {
   return (
-    <div className="w-full h-44 sm:h-48 flex items-center justify-center select-none overflow-hidden">
-      <svg className="w-full h-full drop-shadow-md overflow-visible" viewBox="0 0 320 180" fill="none">
+    <div className="w-full h-full flex items-center justify-center select-none">
+      <svg className="w-full h-full drop-shadow-sm" viewBox="0 0 320 180" fill="none">
         {/* Soft Ambient Background Glow */}
         <circle cx="160" cy="90" r="70" fill="#C89B3C" opacity="0.08" />
 
         {/* Wealth Dashboard Board */}
-        <rect x="25" y="15" width="270" height="150" rx="14" fill="#FFFFFF" stroke="#E7D7B5" strokeWidth="1.5" />
+        <rect x="20" y="12" width="280" height="156" rx="16" fill="#FFFFFF" stroke="#E7D7B5" strokeWidth="1.5" />
         
         {/* Top Header */}
-        <line x1="40" y1="35" x2="150" y2="35" stroke="#C89B3C" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="270" cy="35" r="4" fill="#10B981" />
+        <line x1="36" y1="32" x2="140" y2="32" stroke="#C89B3C" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="280" cy="32" r="4" fill="#10B981" />
 
         {/* Compounding Growth Bars */}
-        <rect x="45" y="100" width="22" height="35" rx="4" fill="#E7D7B5" />
-        <rect x="80" y="80" width="22" height="55" rx="4" fill="#C89B3C" opacity="0.4" />
-        <rect x="115" y="60" width="22" height="75" rx="4" fill="#C89B3C" opacity="0.7" />
-        <rect x="150" y="40" width="22" height="95" rx="4" fill="#C89B3C" />
+        <rect x="42" y="102" width="24" height="35" rx="5" fill="#E7D7B5" />
+        <rect x="78" y="82" width="24" height="55" rx="5" fill="#C89B3C" opacity="0.4" />
+        <rect x="114" y="62" width="24" height="75" rx="5" fill="#C89B3C" opacity="0.75" />
+        <rect x="150" y="42" width="24" height="95" rx="5" fill="#C89B3C" />
 
         {/* Growth Trend Line */}
-        <path d="M 45 105 L 80 85 L 115 65 L 150 45 L 200 35" stroke="#10B981" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="200" cy="35" r="5" fill="#10B981" />
+        <path d="M 42 107 L 78 87 L 114 67 L 150 47 L 195 37" stroke="#10B981" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="195" cy="37" r="5" fill="#10B981" />
 
-        {/* Human Figure (Investor Analyzing Wealth Portfolio - 30% Larger) */}
-        <circle cx="245" cy="55" r="16" fill="#FDBA74" />
-        {/* Hair */}
-        <path d="M 232 55 C 232 40, 258 40, 258 55 Z" fill="#1A1A1A" />
-        {/* Torso */}
-        <path d="M 230 75 L 260 75 L 256 142 L 234 142 Z" fill="#1A1A1A" />
-        {/* Arm Pointing to Wealth Growth Bar */}
-        <path d="M 235 85 Q 200 70 175 60" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+        {/* Investor Figure (Right) */}
+        <g transform="translate(10, 5)">
+          {/* Head */}
+          <circle cx="235" cy="55" r="14" fill="#FDBA74" />
+          {/* Hair */}
+          <path d="M 223 55 C 223 41, 247 41, 247 55 Z" fill="#0F172A" />
+          {/* Torso Navy */}
+          <path d="M 220 75 C 220 75, 227 72, 235 72 C 243 72, 250 75, 250 75 L 246 138 L 224 138 Z" fill="#0F172A" />
+          {/* Arm pointing to growth bar */}
+          <path d="M 225 85 Q 190 70 166 60" stroke="#0F172A" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+        </g>
 
         {/* Wealth Corpus Card */}
-        <g transform="translate(140, 110)">
-          <rect width="95" height="34" rx="8" fill="#FCFAF6" stroke="#E7D7B5" strokeWidth="1.5" />
-          <text x="47.5" y="15" fill="#1A1A1A" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Wealth Compounding</text>
-          <text x="47.5" y="27" fill="#10B981" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">+14.2% CAGR</text>
+        <g transform="translate(135, 115)">
+          <rect width="105" height="34" rx="8" fill="#FCFAF6" stroke="#E7D7B5" strokeWidth="1.5" className="drop-shadow-sm" />
+          <text x="52.5" y="15" fill="#0F172A" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Compounding Wealth</text>
+          <text x="52.5" y="27" fill="#10B981" fontSize="9" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Goal-Based SIPs</text>
         </g>
       </svg>
     </div>
   );
 }
+
