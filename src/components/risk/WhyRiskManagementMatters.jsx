@@ -1,28 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrendingDown, ShieldCheck, Target, Landmark } from 'lucide-react';
+import { ShieldCheck, HeartPulse, Wallet, Lock } from 'lucide-react';
 
-export default function WhyTaxPlanningMatters() {
+export default function WhyRiskManagementMatters() {
   const cards = [
     {
-      icon: TrendingDown,
-      title: 'Reduce Tax Liability',
-      description: 'Lower your total taxable income legally through regime optimization and structured deduction planning.',
-    },
-    {
       icon: ShieldCheck,
-      title: 'Maximize Tax Savings',
-      description: 'Fully utilize Section 80C, 80D, NPS 80CCD (1B), and LTCG exemptions to keep more of your earnings.',
+      title: 'Family Protection',
+      description: 'Ensure your dependents maintain complete financial security and lifestyle continuity under any unforeseen life event.',
     },
     {
-      icon: Target,
-      title: 'Goal-Based Tax Planning',
-      description: 'Align tax-saving ELSS and pension investments directly with concrete life targets like retirement.',
+      icon: Wallet,
+      title: 'Income Protection',
+      description: 'Protect your earning capacity against critical illness, temporary disability, or sudden economic disruption.',
     },
     {
-      icon: Landmark,
-      title: 'Wealth Preservation',
-      description: 'Eliminate unnecessary tax leakage so compounding capital stays invested in your portfolio year after year.',
+      icon: HeartPulse,
+      title: 'Health & Medical Security',
+      description: 'Defend your accumulated wealth against rising hospital inflation using comprehensive health and super top-up covers.',
+    },
+    {
+      icon: Lock,
+      title: 'Wealth Protection',
+      description: 'Ring-fence core investment assets so medical or personal emergencies never force distress liquidations.',
     },
   ];
 
@@ -33,13 +33,13 @@ export default function WhyTaxPlanningMatters() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
           <span className="text-xs uppercase font-mono tracking-widest text-[#B8860B] font-semibold">
-            PROACTIVE TAX ARCHITECTURE
+            FINANCIAL SHIELD
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif-luxury font-bold text-[#0F172A]">
-            Why Tax Planning Matters
+            Why Risk Management Matters
           </h2>
           <p className="text-sm sm:text-base text-[#475569]">
-            Proactive tax planning ensures you pay only what is legally required while compounding net wealth faster.
+            A robust risk management blueprint safeguards your family and preserves your compounding wealth.
           </p>
         </div>
 

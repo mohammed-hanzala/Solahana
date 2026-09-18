@@ -104,8 +104,8 @@ export default function Navbar({ onOpenSearch }) {
       { title: 'Retirement Planning', path: '/calculators/retirement', desc: 'Inflation-adjusted retirement freedom & SWP', icon: Award },
       { title: 'Investment Planning', path: '/investments', desc: 'Personalised compounding wealth portfolios', icon: TrendingUp },
       { title: 'Tax Planning', path: '/tax-planning', desc: 'Optimize Section 80C, 80D & NPS savings', icon: FileText },
-      { title: 'Risk Management', path: '/contact', desc: 'Comprehensive health, life & family cover', icon: ShieldCheck },
-      { title: 'Estate Planning', path: '/goals', desc: 'Legacy, Will & Private Family Trust succession', icon: Scroll },
+      { title: 'Risk Management', path: '/risk-management', desc: 'Comprehensive health, life & family cover', icon: ShieldCheck },
+      { title: 'Estate Planning', path: '/estate-planning', desc: 'Legacy, Will & Private Family Trust succession', icon: Scroll },
     ],
     invest: [
       { title: 'Mutual Funds', path: '/invest/mutual-funds', desc: 'Direct SIP & Lumpsum equity/debt schemes', icon: TrendingUp },

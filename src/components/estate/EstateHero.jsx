@@ -1,30 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, PhoneCall, ShieldCheck, Sparkles } from 'lucide-react';
-import InvestmentPortfolioIllustration from '../illustrations/InvestmentPortfolioIllustration';
+import EstatePlanningIllustration from '../illustrations/EstatePlanningIllustration';
 
-export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) {
-  const scrollToCalculator = () => {
-    const el = document.getElementById('investment-calculator');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else if (onStartPlanning) {
-      onStartPlanning();
-    }
-  };
-
+export default function EstateHero({ onStartEstatePlanning, onRequestCallback }) {
   const scrollToConsultation = () => {
     const el = document.getElementById('global-consultation-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
-    } else if (onRequestCallback) {
-      onRequestCallback();
+    } else if (onStartEstatePlanning) {
+      onStartEstatePlanning();
     }
   };
 
   return (
     <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 bg-gradient-to-b from-[#FAF8F5] via-[#FFFDF9] to-[#FAF8F5] overflow-hidden">
-      {/* Background Subtle Gold Glow */}
+      {/* Background Gold Ambient Glow */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C89B3C]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#E7D7B5]/20 rounded-full blur-2xl pointer-events-none" />
 
@@ -41,46 +32,46 @@ export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) 
             {/* Pill Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E7D7B5] shadow-xs text-xs font-medium text-[#B8860B]">
               <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
-              <span>Fintoo-Inspired Investment Blueprint</span>
+              <span>Multi-Generational Legacy Blueprint</span>
             </div>
 
             {/* Headline */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] leading-tight tracking-tight">
-              Goal-Based <span className="gradient-gold-text">Investment Planning</span> for Long-Term Wealth
+              Preserve Your Family Legacy &amp; <span className="gradient-gold-text">Secure Multi-Generational Wealth</span>
             </h1>
 
             {/* Short 2-line Description */}
             <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-xl font-sans">
-              Build a disciplined, zero-commission multi-asset investment portfolio tailored to your family milestones, risk profile, and wealth targets.
+              Formulate a seamless estate, Will, and private family trust strategy to transfer wealth without legal friction or family disputes.
             </p>
 
             {/* Key Bullets */}
             <div className="grid grid-cols-2 gap-3 pt-2">
               <div className="flex items-center gap-2 text-xs font-semibold text-[#0F172A]">
                 <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
-                <span>Zero-Commission Direct Funds</span>
+                <span>100% Legally Binding Will Drafting</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-[#0F172A]">
                 <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
-                <span>Multi-Asset Diversification</span>
+                <span>Private Family Trust Structure</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-[#0F172A]">
                 <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
-                <span>Dynamic Annual Rebalancing</span>
+                <span>Smooth Business Succession</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-[#0F172A]">
                 <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
-                <span>Tax-Optimized Compounding</span>
+                <span>Probate &amp; Asset Protection</span>
               </div>
             </div>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
               <button
-                onClick={scrollToCalculator}
+                onClick={scrollToConsultation}
                 className="btn-gold px-7 py-3.5 rounded-full font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-[#C89B3C]/20 hover:shadow-xl transition-all cursor-pointer"
               >
-                <span>Start Investment Planning</span>
+                <span>Start Estate Planning</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -96,7 +87,7 @@ export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) 
             {/* Fiduciary Assurance Note */}
             <p className="text-xs text-[#64748B] flex items-center gap-1.5 pt-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              100% Direct Plans • SEBI registered fiduciary framework • Zero distributor markups
+              Confidential legal &amp; fiduciary consultation • Tailored for Indian families &amp; business owners
             </p>
           </motion.div>
 
@@ -107,7 +98,7 @@ export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) 
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-6 flex justify-center"
           >
-            <InvestmentPortfolioIllustration />
+            <EstatePlanningIllustration />
           </motion.div>
 
         </div>

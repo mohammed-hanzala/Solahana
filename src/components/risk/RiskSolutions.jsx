@@ -1,38 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calculator, TrendingUp, ShieldAlert, Briefcase, Users, Landmark, ArrowUpRight } from 'lucide-react';
+import { ShieldCheck, HeartPulse, FileText, Activity, Users, Lock, ArrowUpRight } from 'lucide-react';
 
-export default function TaxServices({ onSelectService }) {
+export default function RiskSolutions({ onSelectSolution }) {
   const solutions = [
     {
-      icon: Calculator,
-      title: 'Income Tax Planning',
-      desc: 'Slab optimization & Old vs New Regime strategy for salaried professionals and business owners.',
+      icon: ShieldCheck,
+      title: 'Life Insurance Planning',
+      desc: 'Pure term cover structuring calculated to replace Human Life Value (HLV) and protect dependents.',
     },
     {
-      icon: TrendingUp,
-      title: 'Capital Gains Planning',
-      desc: 'Tax-loss harvesting and LTCG ₹1.25 Lakh annual exemption management across equities and real estate.',
+      icon: HeartPulse,
+      title: 'Health Insurance Planning',
+      desc: 'Comprehensive base health policies paired with high-deductible super top-up medical shields.',
     },
     {
-      icon: ShieldAlert,
-      title: 'ELSS & Tax Saving Funds',
-      desc: 'Shortest 3-year lock-in Section 80C equity mutual fund allocations for high compounding growth.',
+      icon: FileText,
+      title: 'Term Insurance Planning',
+      desc: 'High-sum-assured term protection with critical illness and accidental disability rider add-ons.',
     },
     {
-      icon: Briefcase,
-      title: 'Salary & Business Tax',
-      desc: 'HRA, LTA, NPS Tier-1 Section 80CCD (1B) deductions, and business expense structuring.',
+      icon: Activity,
+      title: 'Critical Illness Planning',
+      desc: 'Lumpsum payout protection against major medical diagnoses, treatment costs, and income loss.',
     },
     {
       icon: Users,
-      title: 'HUF / Family Tax Planning',
-      desc: 'Hindu Undivided Family creation and legal income splitting across multi-generational family accounts.',
+      title: 'Family Protection Planning',
+      desc: '360° risk audit covering home loans, child education liabilities, and dependent family security.',
     },
     {
-      icon: Landmark,
-      title: 'Tax-Efficient Wealth Transfer',
-      desc: 'Estate planning, trust formation, and SWP drawdowns designed to eliminate inheritance tax bottlenecks.',
+      icon: Lock,
+      title: 'Wealth Protection Planning',
+      desc: '6-month liquid emergency reserves and asset ring-fencing strategies against market shocks.',
     },
   ];
 
@@ -43,13 +43,13 @@ export default function TaxServices({ onSelectService }) {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
           <span className="text-xs uppercase font-mono tracking-widest text-[#B8860B] font-semibold">
-            TAX SERVICES SUITE
+            PROTECTION SOLUTIONS SUITE
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif-luxury font-bold text-[#0F172A]">
-            Tax Planning Solutions
+            Risk Management Solutions
           </h2>
           <p className="text-sm sm:text-base text-[#475569]">
-            Comprehensive tax strategies engineered to minimize liabilities legally across every asset class.
+            Comprehensive risk protection strategies engineered to ring-fence your family and capital.
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export default function TaxServices({ onSelectService }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                onClick={() => onSelectService && onSelectService(sol.title)}
+                onClick={() => onSelectSolution && onSelectSolution(sol.title)}
                 className="p-7 sm:p-8 rounded-3xl bg-[#FAF8F5] border border-[#E7D7B5] hover:border-[#C89B3C] shadow-sm hover:shadow-lg transition-all duration-300 text-left flex flex-col justify-between group cursor-pointer"
               >
                 <div>
@@ -85,7 +85,7 @@ export default function TaxServices({ onSelectService }) {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-[#E7D7B5]/60 flex items-center justify-between text-xs font-semibold text-[#0F172A] group-hover:text-[#B8860B] transition-colors">
-                  <span>Explore Solution</span>
+                  <span>Explore Protection</span>
                   <span>→</span>
                 </div>
               </motion.div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, PhoneCall, ShieldCheck, Sparkles } from 'lucide-react';
-import InvestmentPortfolioIllustration from '../illustrations/InvestmentPortfolioIllustration';
+import RetirementHeroIllustration from '../illustrations/RetirementHeroIllustration';
 
-export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) {
+export default function RetirementHero({ onStartPlanning, onRequestCallback }) {
   const scrollToCalculator = () => {
-    const el = document.getElementById('investment-calculator');
+    const el = document.getElementById('retirement-calculator');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     } else if (onStartPlanning) {
@@ -13,18 +13,9 @@ export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) 
     }
   };
 
-  const scrollToConsultation = () => {
-    const el = document.getElementById('global-consultation-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else if (onRequestCallback) {
-      onRequestCallback();
-    }
-  };
-
   return (
     <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 bg-gradient-to-b from-[#FAF8F5] via-[#FFFDF9] to-[#FAF8F5] overflow-hidden">
-      {/* Background Subtle Gold Glow */}
+      {/* Background Decorative Gold Grid Glow */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C89B3C]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#E7D7B5]/20 rounded-full blur-2xl pointer-events-none" />
 
@@ -41,36 +32,36 @@ export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) 
             {/* Pill Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E7D7B5] shadow-xs text-xs font-medium text-[#B8860B]">
               <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
-              <span>Fintoo-Inspired Investment Blueprint</span>
+              <span>Fintoo-Inspired Retirement Blueprint</span>
             </div>
 
             {/* Headline */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] leading-tight tracking-tight">
-              Goal-Based <span className="gradient-gold-text">Investment Planning</span> for Long-Term Wealth
+              Build an Inflation-Proof Nest Egg &amp; <span className="gradient-gold-text">Retire with Freedom</span>
             </h1>
 
             {/* Short 2-line Description */}
             <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-xl font-sans">
-              Build a disciplined, zero-commission multi-asset investment portfolio tailored to your family milestones, risk profile, and wealth targets.
+              Formulate a personalized retirement strategy with inflation protection, systematic withdrawal plans (SWP), and tax-optimized wealth longevity.
             </p>
 
-            {/* Key Bullets */}
+            {/* Key Highlights Bullets */}
             <div className="grid grid-cols-2 gap-3 pt-2">
               <div className="flex items-center gap-2 text-xs font-semibold text-[#0F172A]">
                 <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
-                <span>Zero-Commission Direct Funds</span>
+                <span>Inflation-Adjusted Corpus</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-[#0F172A]">
                 <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
-                <span>Multi-Asset Diversification</span>
+                <span>Tax-Efficient Monthly Cashflows</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-[#0F172A]">
                 <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
-                <span>Dynamic Annual Rebalancing</span>
+                <span>NPS &amp; Pension Optimization</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-semibold text-[#0F172A]">
                 <ShieldCheck className="w-4 h-4 text-[#C89B3C]" />
-                <span>Tax-Optimized Compounding</span>
+                <span>Legacy &amp; Estate Protection</span>
               </div>
             </div>
 
@@ -80,12 +71,12 @@ export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) 
                 onClick={scrollToCalculator}
                 className="btn-gold px-7 py-3.5 rounded-full font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-[#C89B3C]/20 hover:shadow-xl transition-all cursor-pointer"
               >
-                <span>Start Investment Planning</span>
+                <span>Start Retirement Planning</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <button
-                onClick={scrollToConsultation}
+                onClick={onRequestCallback}
                 className="px-6 py-3.5 rounded-full border border-[#C89B3C]/50 hover:border-[#C89B3C] text-[#0F172A] hover:bg-[#FAF8F5] font-semibold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
               >
                 <PhoneCall className="w-4 h-4 text-[#B8860B]" />
@@ -96,7 +87,7 @@ export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) 
             {/* Fiduciary Assurance Note */}
             <p className="text-xs text-[#64748B] flex items-center gap-1.5 pt-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              100% Direct Plans • SEBI registered fiduciary framework • Zero distributor markups
+              Zero-commission fiduciary planning • Customized for Indian senior professionals &amp; families
             </p>
           </motion.div>
 
@@ -107,7 +98,7 @@ export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) 
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-6 flex justify-center"
           >
-            <InvestmentPortfolioIllustration />
+            <RetirementHeroIllustration />
           </motion.div>
 
         </div>

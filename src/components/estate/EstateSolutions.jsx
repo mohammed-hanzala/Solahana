@@ -1,38 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calculator, TrendingUp, ShieldAlert, Briefcase, Users, Landmark, ArrowUpRight } from 'lucide-react';
+import { Scroll, Landmark, Share2, Users, Briefcase, Award, ArrowUpRight } from 'lucide-react';
 
-export default function TaxServices({ onSelectService }) {
+export default function EstateSolutions({ onSelectSolution }) {
   const solutions = [
     {
-      icon: Calculator,
-      title: 'Income Tax Planning',
-      desc: 'Slab optimization & Old vs New Regime strategy for salaried professionals and business owners.',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Capital Gains Planning',
-      desc: 'Tax-loss harvesting and LTCG ₹1.25 Lakh annual exemption management across equities and real estate.',
-    },
-    {
-      icon: ShieldAlert,
-      title: 'ELSS & Tax Saving Funds',
-      desc: 'Shortest 3-year lock-in Section 80C equity mutual fund allocations for high compounding growth.',
-    },
-    {
-      icon: Briefcase,
-      title: 'Salary & Business Tax',
-      desc: 'HRA, LTA, NPS Tier-1 Section 80CCD (1B) deductions, and business expense structuring.',
-    },
-    {
-      icon: Users,
-      title: 'HUF / Family Tax Planning',
-      desc: 'Hindu Undivided Family creation and legal income splitting across multi-generational family accounts.',
+      icon: Scroll,
+      title: 'Will Planning',
+      desc: 'Legally binding Will drafting to ensure smooth asset distribution and zero family conflict.',
     },
     {
       icon: Landmark,
-      title: 'Tax-Efficient Wealth Transfer',
-      desc: 'Estate planning, trust formation, and SWP drawdowns designed to eliminate inheritance tax bottlenecks.',
+      title: 'Trust Planning',
+      desc: 'Private Family Trust formation for asset protection, minor care, and estate tax shielding.',
+    },
+    {
+      icon: Share2,
+      title: 'Asset Distribution Planning',
+      desc: 'Mapping real estate, equities, business shares, and liquidity seamlessly to designated heirs.',
+    },
+    {
+      icon: Users,
+      title: 'Family Wealth Transfer',
+      desc: 'Structured succession frameworks for multi-generational wealth continuity and zero probate delays.',
+    },
+    {
+      icon: Briefcase,
+      title: 'Succession Planning',
+      desc: 'Structuring business ownership transfer and operational management for family enterprises.',
+    },
+    {
+      icon: Award,
+      title: 'Legacy Planning',
+      desc: 'Philanthropic foundation structuring and multi-generational family legacy governance.',
     },
   ];
 
@@ -43,13 +43,13 @@ export default function TaxServices({ onSelectService }) {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
           <span className="text-xs uppercase font-mono tracking-widest text-[#B8860B] font-semibold">
-            TAX SERVICES SUITE
+            ESTATE SERVICES SUITE
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif-luxury font-bold text-[#0F172A]">
-            Tax Planning Solutions
+            Estate Planning Solutions
           </h2>
           <p className="text-sm sm:text-base text-[#475569]">
-            Comprehensive tax strategies engineered to minimize liabilities legally across every asset class.
+            Tailored legal and financial solutions designed to protect your wealth and preserve your legacy.
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export default function TaxServices({ onSelectService }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                onClick={() => onSelectService && onSelectService(sol.title)}
+                onClick={() => onSelectSolution && onSelectSolution(sol.title)}
                 className="p-7 sm:p-8 rounded-3xl bg-[#FAF8F5] border border-[#E7D7B5] hover:border-[#C89B3C] shadow-sm hover:shadow-lg transition-all duration-300 text-left flex flex-col justify-between group cursor-pointer"
               >
                 <div>

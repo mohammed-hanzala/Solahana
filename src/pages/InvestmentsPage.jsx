@@ -1,40 +1,52 @@
 import React, { useEffect } from 'react';
 import InvestmentsHero from '../components/investments/InvestmentsHero';
-import BuildPortfolioProcess from '../components/investments/BuildPortfolioProcess';
+import WhyInvestingMatters from '../components/investments/WhyInvestingMatters';
 import InvestmentCategories from '../components/investments/InvestmentCategories';
-import InvestmentsCTA from '../components/investments/InvestmentsCTA';
+import WhyChooseSolahanaInvestment from '../components/investments/WhyChooseSolahanaInvestment';
+import InvestmentCalculator from '../components/investments/InvestmentCalculator';
+import GlobalConsultationSection from '../components/common/GlobalConsultationSection';
 
 export default function InvestmentsPage({ onOpenSearch }) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const handleExploreOptions = () => {
-    const el = document.getElementById('investment-categories');
+  const scrollToCalculator = () => {
+    const el = document.getElementById('investment-calculator');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToConsultation = () => {
+    const el = document.getElementById('global-consultation-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="relative z-10">
-      {/* SECTION 1: HERO BANNER & OVERVIEW */}
+    <div className="relative z-10 bg-[#FAF8F5]">
+      {/* 1. HERO SECTION */}
       <InvestmentsHero 
-        onExploreOptions={handleExploreOptions}
-        onStartPlanning={onOpenSearch}
+        onStartPlanning={scrollToCalculator}
+        onRequestCallback={scrollToConsultation}
       />
 
-      {/* SECTION 2: THE PORTFOLIO METHODOLOGY */}
-      <BuildPortfolioProcess />
+      {/* 2. WHY INVESTMENT PLANNING MATTERS */}
+      <WhyInvestingMatters />
 
-      {/* SECTION 3: MULTI-ASSET MATRIX */}
-      <InvestmentCategories onSelectCategory={onOpenSearch} />
+      {/* 3. INVESTMENT PLANNING SOLUTIONS */}
+      <InvestmentCategories />
 
-      {/* SECTION 4: CONSULTATION CTA */}
-      <InvestmentsCTA 
-        onStartPlanning={onOpenSearch}
-        onBookConsultation={onOpenSearch}
-      />
+      {/* 4. WHY CHOOSE SOLAHANA */}
+      <WhyChooseSolahanaInvestment />
+
+      {/* 5. INVESTMENT CALCULATOR */}
+      <InvestmentCalculator />
+
+      {/* 6. CONSULTATION BOOKING SECTION */}
+      <GlobalConsultationSection />
     </div>
   );
 }

@@ -1,28 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrendingDown, ShieldCheck, Target, Landmark } from 'lucide-react';
+import { Landmark, TrendingUp, Wallet, ShieldCheck } from 'lucide-react';
 
-export default function WhyTaxPlanningMatters() {
+export default function WhyRetirementMatters() {
   const cards = [
     {
-      icon: TrendingDown,
-      title: 'Reduce Tax Liability',
-      description: 'Lower your total taxable income legally through regime optimization and structured deduction planning.',
+      icon: Landmark,
+      title: 'Retirement Corpus',
+      description: 'Build a dedicated, inflation-adjusted nest egg to comfortably sustain 25+ post-retirement years without lifestyle compromise.',
+    },
+    {
+      icon: TrendingUp,
+      title: 'Inflation Protection',
+      description: 'Defend your purchasing power against rising medical and living costs using growth-oriented multi-asset portfolios.',
+    },
+    {
+      icon: Wallet,
+      title: 'Monthly Income Planning',
+      description: 'Structure predictable, tax-efficient monthly cashflows via Systematic Withdrawal Plans (SWP) and annuity laddering.',
     },
     {
       icon: ShieldCheck,
-      title: 'Maximize Tax Savings',
-      description: 'Fully utilize Section 80C, 80D, NPS 80CCD (1B), and LTCG exemptions to keep more of your earnings.',
-    },
-    {
-      icon: Target,
-      title: 'Goal-Based Tax Planning',
-      description: 'Align tax-saving ELSS and pension investments directly with concrete life targets like retirement.',
-    },
-    {
-      icon: Landmark,
       title: 'Wealth Preservation',
-      description: 'Eliminate unnecessary tax leakage so compounding capital stays invested in your portfolio year after year.',
+      description: 'Safeguard your accumulated principal while balancing equity-debt allocations to ensure your capital outlives retirement.',
     },
   ];
 
@@ -33,13 +33,13 @@ export default function WhyTaxPlanningMatters() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
           <span className="text-xs uppercase font-mono tracking-widest text-[#B8860B] font-semibold">
-            PROACTIVE TAX ARCHITECTURE
+            FINANCIAL SECURITY FOR LIFE
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif-luxury font-bold text-[#0F172A]">
-            Why Tax Planning Matters
+            Why Retirement Planning Matters
           </h2>
           <p className="text-sm sm:text-base text-[#475569]">
-            Proactive tax planning ensures you pay only what is legally required while compounding net wealth faster.
+            A structured retirement strategy ensures complete financial independence, medical security, and lifelong peace of mind.
           </p>
         </div>
 
@@ -57,19 +57,23 @@ export default function WhyTaxPlanningMatters() {
                 className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E7D7B5] shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] border border-[#C89B3C]/40 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white flex items-center justify-center mb-5 transition-colors shadow-xs">
+                  {/* Icon Container */}
+                  <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] border border-[#C89B3C]/40 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white flex items-center justify-center mb-5 transition-colors duration-300 shadow-xs">
                     <Icon className="w-6 h-6" />
                   </div>
 
+                  {/* Title */}
                   <h3 className="text-lg font-serif-luxury font-bold text-[#0F172A] mb-2 group-hover:text-[#B8860B] transition-colors">
                     {card.title}
                   </h3>
 
+                  {/* Max 2-line Description */}
                   <p className="text-xs sm:text-sm text-[#475569] leading-relaxed line-clamp-2">
                     {card.description}
                   </p>
                 </div>
 
+                {/* Bottom Gold Accent Bar */}
                 <div className="mt-6 w-full h-1 rounded-full bg-[#FAF8F5] group-hover:bg-[#C89B3C]/40 transition-colors" />
               </motion.div>
             );

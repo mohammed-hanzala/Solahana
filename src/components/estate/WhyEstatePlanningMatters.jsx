@@ -1,28 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrendingDown, ShieldCheck, Target, Landmark } from 'lucide-react';
+import { ShieldCheck, Share2, Lock, Users } from 'lucide-react';
 
-export default function WhyTaxPlanningMatters() {
+export default function WhyEstatePlanningMatters() {
   const cards = [
     {
-      icon: TrendingDown,
-      title: 'Reduce Tax Liability',
-      description: 'Lower your total taxable income legally through regime optimization and structured deduction planning.',
-    },
-    {
       icon: ShieldCheck,
-      title: 'Maximize Tax Savings',
-      description: 'Fully utilize Section 80C, 80D, NPS 80CCD (1B), and LTCG exemptions to keep more of your earnings.',
+      title: "Protect Your Family's Legacy",
+      description: 'Ensure your hard-earned wealth is passed down according to your precise wishes without legal disputes or ambiguity.',
     },
     {
-      icon: Target,
-      title: 'Goal-Based Tax Planning',
-      description: 'Align tax-saving ELSS and pension investments directly with concrete life targets like retirement.',
+      icon: Share2,
+      title: 'Wealth Distribution Planning',
+      description: 'Structure smooth, frictionless asset transfers to your spouse, children, and designated beneficiaries.',
     },
     {
-      icon: Landmark,
-      title: 'Wealth Preservation',
-      description: 'Eliminate unnecessary tax leakage so compounding capital stays invested in your portfolio year after year.',
+      icon: Lock,
+      title: 'Asset Protection',
+      description: 'Ring-fence multi-generational assets from external liabilities, prolonged probate delays, and tax leakage.',
+    },
+    {
+      icon: Users,
+      title: 'Secure Future Generations',
+      description: 'Establish long-term trusts and structured financial roadmaps for minor children and future grandchildren.',
     },
   ];
 
@@ -33,13 +33,13 @@ export default function WhyTaxPlanningMatters() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
           <span className="text-xs uppercase font-mono tracking-widest text-[#B8860B] font-semibold">
-            PROACTIVE TAX ARCHITECTURE
+            LEGACY SECURITY
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif-luxury font-bold text-[#0F172A]">
-            Why Tax Planning Matters
+            Why Estate Planning Matters
           </h2>
           <p className="text-sm sm:text-base text-[#475569]">
-            Proactive tax planning ensures you pay only what is legally required while compounding net wealth faster.
+            A structured estate plan guarantees that your lifelong wealth continues to nurture your family for generations.
           </p>
         </div>
 

@@ -19,6 +19,8 @@ import FinancialPlanningPage from './pages/FinancialPlanningPage';
 import GoalsPlanningPage from './pages/GoalsPlanningPage';
 import InvestmentsPage from './pages/InvestmentsPage';
 import TaxPlanningPage from './pages/TaxPlanningPage';
+import RiskManagementPage from './pages/RiskManagementPage';
+import EstatePlanningPage from './pages/EstatePlanningPage';
 import PricingPage from './pages/PricingPage';
 import { CalculatorsPage } from './pages/CalculatorsPage';
 import { ContactPage } from './pages/ContactPage';
@@ -114,6 +116,8 @@ function AppContent() {
 
 
           <Route path="/tax-planning" element={<TaxPlanningPage onOpenSearch={() => setSearchOpen(true)} />} />
+          <Route path="/risk-management" element={<RiskManagementPage onOpenSearch={() => setSearchOpen(true)} />} />
+          <Route path="/estate-planning" element={<EstatePlanningPage onOpenSearch={() => setSearchOpen(true)} />} />
 
           <Route path="/pricing" element={<PricingPage onOpenSearch={() => setSearchOpen(true)} />} />
           {/* Financial Calculators Suite Routes */}
