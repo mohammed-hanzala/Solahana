@@ -17,12 +17,12 @@ import {
 
 export default function WhatIsFinancialPlanning() {
   const journeyMilestones = [
-    { name: 'Emergency Fund', desc: '6 Months Shield', icon: ShieldAlert, pos: 'top-[8%] left-[10%]' },
-    { name: 'Dream Home', desc: 'Down Payment Fund', icon: Home, pos: 'top-[26%] right-[8%]' },
-    { name: 'Child Education', desc: 'Higher Studies Fund', icon: GraduationCap, pos: 'top-[44%] left-[12%]' },
-    { name: 'Family Protection', desc: 'Term & Health Cover', icon: ShieldCheck, pos: 'top-[62%] right-[10%]' },
-    { name: 'Wealth Creation', desc: 'Disciplined SIPs', icon: TrendingUp, pos: 'top-[78%] left-[15%]' },
-    { name: 'Retirement FIRE', desc: 'Target ₹10 Cr Corpus', icon: Target, pos: 'top-[92%] right-[12%]' },
+    { name: 'Emergency Fund', desc: '6 Months Shield', icon: ShieldAlert, pos: 'top-[6%] left-[8%]' },
+    { name: 'Dream Home', desc: 'Down Payment Fund', icon: Home, pos: 'top-[23%] right-[8%]' },
+    { name: 'Child Education', desc: 'Higher Studies Fund', icon: GraduationCap, pos: 'top-[40%] left-[8%]' },
+    { name: 'Family Protection', desc: 'Term & Health Cover', icon: ShieldCheck, pos: 'top-[57%] right-[8%]' },
+    { name: 'Wealth Creation', desc: 'Disciplined SIPs', icon: TrendingUp, pos: 'top-[74%] left-[8%]' },
+    { name: 'Retirement FIRE', desc: 'Target ₹10 Cr Corpus', icon: Target, pos: 'top-[90%] right-[8%]' },
   ];
 
   const planningSteps = [
@@ -112,19 +112,38 @@ export default function WhatIsFinancialPlanning() {
           </motion.p>
         </div>
 
-        {/* TWO-COLUMN LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* TWO-COLUMN LAYOUT WITH EQUAL HEIGHT STRETCH */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
           
-          {/* LEFT SIDE: LIFE JOURNEY MAP */}
+          {/* LEFT SIDE: LIFE JOURNEY MAP (MATCHES RIGHT SIDE STEPS HEIGHT) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-6 relative h-[520px] sm:h-[580px] rounded-3xl p-6 bg-white border border-[#C89A4B]/30 backdrop-blur-xl shadow-lg flex flex-col justify-between overflow-hidden"
+            className="lg:col-span-6 relative h-full min-h-[600px] sm:min-h-[650px] lg:min-h-[670px] rounded-3xl p-6 bg-white border border-[#C89A4B]/30 backdrop-blur-xl shadow-lg flex flex-col justify-between overflow-hidden"
           >
-            <svg className="absolute inset-0 w-full h-full stroke-[#C89A4B]/40 fill-none pointer-events-none" viewBox="0 0 500 550">
-              <path d="M 80,60 C 350,120 400,220 100,280 C -50,340 380,420 400,500" strokeWidth="2.5" strokeDasharray="6 6" />
+            {/* Smooth Continuous Curved Dashed Trace Line Connecting All 6 Milestones Perfectly */}
+            <svg className="absolute inset-0 w-full h-full fill-none pointer-events-none" viewBox="0 0 500 620">
+              <path 
+                d="M 130,65 C 290,65 210,171 370,171 C 530,171 -30,276 130,276 C 290,276 210,381 370,381 C 530,381 -30,486 130,486 C 290,486 210,586 370,586" 
+                stroke="#C89A4B"
+                strokeWidth="2.5" 
+                strokeDasharray="6 6" 
+                strokeLinecap="round"
+                opacity="0.65"
+              />
+              {/* Gold Milestone Center Anchor Nodes */}
+              {[
+                { x: 130, y: 65 },
+                { x: 370, y: 171 },
+                { x: 130, y: 276 },
+                { x: 370, y: 381 },
+                { x: 130, y: 486 },
+                { x: 370, y: 586 },
+              ].map((pt, i) => (
+                <circle key={i} cx={pt.x} cy={pt.y} r="4" fill="#C89A4B" stroke="#FFFFFF" strokeWidth="1.5" />
+              ))}
             </svg>
 
             {/* Title Badge */}
@@ -150,16 +169,16 @@ export default function WhatIsFinancialPlanning() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.12 }}
                     whileHover={{ scale: 1.08 }}
-                    className={`absolute ${m.pos} p-3 rounded-2xl bg-white border border-[#C89A4B]/35 shadow-md flex items-center space-x-3 cursor-pointer group`}
+                    className={`absolute ${m.pos} p-3 rounded-2xl bg-white border border-[#C89A4B]/35 shadow-md flex items-center space-x-3 cursor-pointer group transition-all duration-300`}
                   >
                     <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#E5C158] to-[#C89A4B] text-white flex items-center justify-center font-bold shrink-0 shadow-sm group-hover:rotate-12 transition-transform">
                       <IconComponent className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-xs font-semibold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors">
+                      <div className="text-xs font-semibold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors whitespace-nowrap">
                         {m.name}
                       </div>
-                      <div className="text-[10px] text-[#64748B] font-num">
+                      <div className="text-[10px] text-[#64748B] font-num whitespace-nowrap">
                         {m.desc}
                       </div>
                     </div>

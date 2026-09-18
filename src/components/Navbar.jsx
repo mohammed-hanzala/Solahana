@@ -153,7 +153,7 @@ export default function Navbar({ onOpenSearch }) {
             <img 
               src={solahanaLogo} 
               alt="SOLAHANA" 
-              className="h-11 sm:h-12 lg:h-[50px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+              className="h-[50px] sm:h-[55px] lg:h-[57px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
             />
           </button>
 
