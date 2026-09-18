@@ -70,7 +70,7 @@ export default function Navbar({ onOpenSearch }) {
       'investments': '/investments',
       'tax-planning': '/tax-planning',
       'pricing': '/pricing',
-      'contact': '/contact',
+      'contact': '/about',
       'dashboard': '/dashboard',
       'admin': '/admin/dashboard',
       'admin-login': '/admin/login',
@@ -97,7 +97,7 @@ export default function Navbar({ onOpenSearch }) {
     navigate('/admin/login');
   };
 
-  // Dropdown Configurations (Fintoo-style 5 core Invest options)
+  // Dropdown Configurations (SOLAHANA Core Planning & Investment Options)
   const dropdownData = {
     planning: [
       { title: 'Financial Planning', path: '/financial-planning', desc: 'Comprehensive 360° financial roadmap', icon: PieChart },
@@ -244,7 +244,7 @@ export default function Navbar({ onOpenSearch }) {
                   )}
                 </button>
 
-                {/* Clean Compact Fintoo-Style Invest Dropdown */}
+                {/* Clean Compact SOLAHANA Invest Dropdown */}
                 <AnimatePresence>
                   {activeDropdown === 'invest' && (
                     <motion.div
@@ -342,20 +342,7 @@ export default function Navbar({ onOpenSearch }) {
                 </AnimatePresence>
               </div>
 
-              {/* 5. Contact Us */}
-              <button
-                onClick={(e) => handleNavClick(e, 'contact')}
-                className={`px-3 py-2 rounded-lg transition-all relative whitespace-nowrap ${
-                  pathname === '/contact' ? 'text-[#C89B3C] font-bold' : 'hover:text-[#C89B3C]'
-                }`}
-              >
-                <span className="whitespace-nowrap">Contact Us</span>
-                {pathname === '/contact' && (
-                  <motion.div layoutId="activeUnderline" className="absolute bottom-0 left-3 right-3 h-[2.5px] bg-[#C89B3C] rounded-full" />
-                )}
-              </button>
-
-              {/* 6. About Us */}
+              {/* 5. About Us */}
               <button
                 onClick={(e) => handleNavClick(e, 'about')}
                 className={`px-3 py-2 rounded-lg transition-all relative whitespace-nowrap ${
@@ -591,13 +578,6 @@ export default function Navbar({ onOpenSearch }) {
                   </button>
 
                   <button
-                    onClick={(e) => handleNavClick(e, 'contact')}
-                    className="text-left py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors"
-                  >
-                    Contact Us
-                  </button>
-
-                  <button
                     onClick={(e) => handleNavClick(e, 'about')}
                     className="text-left py-2.5 px-3 rounded-xl hover:bg-[#FAF8F5] hover:text-[#C89B3C] transition-colors"
                   >
@@ -627,7 +607,7 @@ export default function Navbar({ onOpenSearch }) {
                 )}
 
                 <button
-                  onClick={(e) => handleNavClick(e, 'contact')}
+                  onClick={(e) => handleNavClick(e, 'financial-planning')}
                   className="w-full gold-glow-button text-center py-3 rounded-full text-xs font-bold text-white flex items-center justify-center gap-2"
                 >
                   <span>Start Your Comprehensive Plan</span>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, PhoneCall, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, PhoneCall, ShieldCheck } from 'lucide-react';
 import TaxPlanningIllustration from '../illustrations/TaxPlanningIllustration';
 
 export default function TaxHero({ onStartTaxPlanning, onRequestCallback }) {
@@ -38,15 +38,9 @@ export default function TaxHero({ onStartTaxPlanning, onRequestCallback }) {
             transition={{ duration: 0.6 }}
             className="lg:col-span-6 text-left space-y-6"
           >
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E7D7B5] shadow-xs text-xs font-medium text-[#B8860B]">
-              <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
-              <span>Fintoo-Inspired Tax Blueprint</span>
-            </div>
-
-            {/* Headline */}
+            {/* Page Title */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] leading-tight tracking-tight">
-              Tax-Efficient <span className="gradient-gold-text">Financial Planning</span> to Maximize Net Wealth
+              Tax Planning
             </h1>
 
             {/* Short 2-line Description */}

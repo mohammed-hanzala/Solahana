@@ -7,7 +7,6 @@ import TrustStrip from './components/TrustStrip';
 import WhatIsFinancialPlanning from './components/WhatIsFinancialPlanning';
 import WhoWeServe from './components/WhoWeServe';
 import SolahanaServices from './components/SolahanaServices';
-import FinancialSnapshot from './components/FinancialSnapshot';
 import ClientStories from './components/ClientStories';
 import FAQSection from './components/FAQSection';
 import FinalCTA from './components/FinalCTA';
@@ -23,7 +22,6 @@ import RiskManagementPage from './pages/RiskManagementPage';
 import EstatePlanningPage from './pages/EstatePlanningPage';
 import PricingPage from './pages/PricingPage';
 import { CalculatorsPage } from './pages/CalculatorsPage';
-import { ContactPage } from './pages/ContactPage';
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
@@ -71,7 +69,6 @@ function HomePage({ onOpenSearch }) {
       <WhoWeServe />
       <StagePlanningSection onOpenSearch={onOpenSearch} />
       <SolahanaServices />
-      <FinancialSnapshot />
       <ClientStories />
       <FAQSection />
     </>
@@ -134,7 +131,7 @@ function AppContent() {
           <Route path="/blogs" element={<BlogsLandingPage />} />
           <Route path="/blogs/:slug" element={<BlogDetailsPage />} />
 
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/contact" element={<Navigate to="/about" replace />} />
 
           {/* User Dashboard */}
           <Route

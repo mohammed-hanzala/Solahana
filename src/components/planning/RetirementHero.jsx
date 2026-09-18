@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, PhoneCall, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, PhoneCall, ShieldCheck } from 'lucide-react';
 import RetirementHeroIllustration from '../illustrations/RetirementHeroIllustration';
 
 export default function RetirementHero({ onStartPlanning, onRequestCallback }) {
@@ -13,9 +13,18 @@ export default function RetirementHero({ onStartPlanning, onRequestCallback }) {
     }
   };
 
+  const scrollToConsultation = () => {
+    const el = document.getElementById('global-consultation-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else if (onRequestCallback) {
+      onRequestCallback();
+    }
+  };
+
   return (
     <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 bg-gradient-to-b from-[#FAF8F5] via-[#FFFDF9] to-[#FAF8F5] overflow-hidden">
-      {/* Background Decorative Gold Grid Glow */}
+      {/* Background Gold Glow */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C89B3C]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#E7D7B5]/20 rounded-full blur-2xl pointer-events-none" />
 
@@ -29,15 +38,9 @@ export default function RetirementHero({ onStartPlanning, onRequestCallback }) {
             transition={{ duration: 0.6 }}
             className="lg:col-span-6 text-left space-y-6"
           >
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E7D7B5] shadow-xs text-xs font-medium text-[#B8860B]">
-              <Sparkles className="w-3.5 h-3.5 text-[#C89B3C]" />
-              <span>Fintoo-Inspired Retirement Blueprint</span>
-            </div>
-
-            {/* Headline */}
+            {/* Page Title */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] leading-tight tracking-tight">
-              Build an Inflation-Proof Nest Egg &amp; <span className="gradient-gold-text">Retire with Freedom</span>
+              Retirement Planning
             </h1>
 
             {/* Short 2-line Description */}
@@ -76,7 +79,7 @@ export default function RetirementHero({ onStartPlanning, onRequestCallback }) {
               </button>
 
               <button
-                onClick={onRequestCallback}
+                onClick={scrollToConsultation}
                 className="px-6 py-3.5 rounded-full border border-[#C89B3C]/50 hover:border-[#C89B3C] text-[#0F172A] hover:bg-[#FAF8F5] font-semibold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
               >
                 <PhoneCall className="w-4 h-4 text-[#B8860B]" />

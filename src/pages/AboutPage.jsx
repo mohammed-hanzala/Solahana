@@ -4,7 +4,9 @@ import AboutStory from '../components/about/AboutStory';
 import AboutMissionVision from '../components/about/AboutMissionVision';
 import AboutValues from '../components/about/AboutValues';
 import WhySolahanaExists from '../components/about/WhySolahanaExists';
-import AboutCTA from '../components/about/AboutCTA';
+import AboutConnectOptions from '../components/about/AboutConnectOptions';
+import AboutOfficeLocation from '../components/about/AboutOfficeLocation';
+import GlobalConsultationSection from '../components/common/GlobalConsultationSection';
 
 export default function AboutPage({ onOpenSearch }) {
   useEffect(() => {
@@ -19,7 +21,7 @@ export default function AboutPage({ onOpenSearch }) {
   };
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 bg-[#FAF8F5]">
       {/* SECTION 1: HERO BANNER */}
       <AboutHero 
         onExplorePhilosophy={handleExplorePhilosophy}
@@ -38,11 +40,14 @@ export default function AboutPage({ onOpenSearch }) {
       {/* SECTION 5: WHY SOLAHANA EXISTS */}
       <WhySolahanaExists />
 
-      {/* SECTION 6: FINAL CTA */}
-      <AboutCTA 
-        onStartPlanning={onOpenSearch}
-        onBookConsultation={onOpenSearch}
-      />
+      {/* SECTION 6: CHOOSE HOW TO CONNECT (MERGED CONTACT) */}
+      <AboutConnectOptions />
+
+      {/* SECTION 7: OFFICE LOCATION & WORKING HOURS (MERGED CONTACT) */}
+      <AboutOfficeLocation />
+
+      {/* SECTION 8: CONSULTATION BOOKING FORM */}
+      <GlobalConsultationSection />
     </div>
   );
 }

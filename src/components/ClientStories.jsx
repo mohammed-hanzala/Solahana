@@ -1,147 +1,312 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote, ChevronLeft, ChevronRight, Sparkles, MapPin } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+
+// Google 'G' Logo SVG Component
+const GoogleGIcon = ({ className = "w-5 h-5" }) => (
+  <svg className={className} viewBox="0 0 24 24">
+    <path
+      fill="#4285F4"
+      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+    />
+    <path
+      fill="#34A853"
+      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+    />
+    <path
+      fill="#FBBC05"
+      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+    />
+    <path
+      fill="#EA4335"
+      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+    />
+  </svg>
+);
 
 export default function ClientStories() {
   const testimonials = [
     {
       name: 'Rohan Sharma',
       role: 'Senior Software Architect',
-      location: 'Bangalore, India',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
-      text: 'SOLAHANA brought total clarity to my finances. They structured my NPS, Section 80C tax savings, and monthly step-up SIPs. My early retirement FIRE roadmap is now 68% ahead of schedule with zero guesswork.',
-      tag: 'Salaried Professional',
+      text: 'SOLAHANA brought total clarity to my personal finances. They structured my NPS, tax savings under Section 80C, and step-up SIPs. My early retirement roadmap is now 2 years ahead of plan.',
       rating: 5,
+      date: '2 weeks ago',
     },
     {
-      name: 'Ananya & Vikram Deshmukh',
-      role: 'Co-Founders, Tech scale-up',
-      location: 'Mumbai, India',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
-      text: 'Managing business profits while structuring personal family wealth was complex until we partnered with SOLAHANA. Their team set up our corporate treasury liquidity, tax-efficient profit extraction, and children’s education fund.',
-      tag: 'Business Owners',
+      name: 'Ananya Deshmukh',
+      role: 'Tech Startup Founder',
+      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200',
+      text: 'Managing corporate profits while structuring personal wealth was complex. SOLAHANA’s fee-only model gave us complete transparency and tax efficiency without high-commission sales pitches.',
       rating: 5,
+      date: '1 month ago',
     },
     {
       name: 'Dr. Rajesh Gupta',
       role: 'Senior Cardiac Surgeon',
-      location: 'New Delhi, India',
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200',
-      text: 'Retirement planning used to feel overwhelming given my hectic hospital schedule. SOLAHANA mapped out an inflation-protected passive income strategy that gives my family total financial security.',
-      tag: 'Family Retirement',
+      text: 'With a hectic surgical schedule, I had no time to manage investments. SOLAHANA created an automated, inflation-protected passive income strategy for my family’s security.',
       rating: 5,
+      date: '3 weeks ago',
+    },
+    {
+      name: 'Priya Nair',
+      role: 'Global HR Director',
+      avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200',
+      text: 'The estate and tax planning guidance was exceptional. They organized our international assets, private trust structures, and goal-based portfolios seamlessly.',
+      rating: 5,
+      date: '2 months ago',
+    },
+    {
+      name: 'Vikramaditya Mehta',
+      role: 'NRI Business Executive',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
+      text: 'Cross-border wealth management for NRIs is usually complicated, but SOLAHANA made it effortless. Highly professional, responsive, and truly client-first approach.',
+      rating: 5,
+      date: '1 month ago',
+    },
+    {
+      name: 'Sanjay Kulkarni',
+      role: 'Director of Engineering',
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200',
+      text: 'Clear, unbiased financial planning with zero commission conflicts. Their annual portfolio rebalancing and risk assessment gave my family absolute peace of mind.',
+      rating: 5,
+      date: '3 weeks ago',
     },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const nextTestimonial = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  // Swipe gesture state
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // Responsive card count tracking
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setItemsPerPage(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, testimonials.length - itemsPerPage);
+
+  // Clamp active index when itemsPerPage changes
+  useEffect(() => {
+    if (activeIndex > maxIndex) {
+      setActiveIndex(maxIndex);
+    }
+  }, [itemsPerPage, maxIndex, activeIndex]);
+
+  // Auto-slide every 4.5 seconds (paused on hover)
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [isHovered, maxIndex]);
+
+  const nextSlide = () => {
+    setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
-  const prevTestimonial = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const prevSlide = () => {
+    setActiveIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 40;
+
+    if (distance > minSwipeDistance) {
+      nextSlide();
+    } else if (distance < -minSwipeDistance) {
+      prevSlide();
+    }
   };
 
   return (
-    <section className="relative z-10 py-8 sm:py-10 lg:py-12 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
-      
+    <section className="relative z-10 py-12 sm:py-16 lg:py-20 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Heading */}
-        <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto mb-5 sm:mb-6 lg:mb-8">
+        {/* Minimal Section Header */}
+        <div className="text-center space-y-3 max-w-3xl mx-auto mb-8 sm:mb-12">
+          {/* Google Reviews Badge Pill */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full gold-badge text-xs font-semibold text-[#9A7326] border border-[#C89A4B]/35 shadow-sm"
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white border border-slate-200/80 shadow-sm text-xs font-semibold text-[#0F172A]"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#C89A4B]" />
-            <span className="font-sora tracking-wide uppercase text-[11px]">CLIENT TESTIMONIALS</span>
+            <GoogleGIcon className="w-4 h-4" />
+            <span className="font-medium text-[#475569]">Google Reviews</span>
+            <span className="text-[#C89B3C] font-bold">4.9 ★★★★★</span>
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] tracking-tight leading-tight"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-serif-luxury font-bold text-[#0F172A] tracking-tight"
           >
-            Trusted by Families Across{' '}
-            <span className="gold-gradient-text italic font-serif-luxury">India</span>
+            What Our Clients Say
           </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed line-clamp-2"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-base sm:text-lg text-[#475569] font-inter leading-relaxed line-clamp-1"
           >
-            Read how SOLAHANA helps professionals, families, and business owners build goal-aligned wealth with zero commission conflict.
+            Real feedback from professionals and families who achieve financial independence with SOLAHANA.
           </motion.p>
         </div>
 
-        {/* Carousel Card Container */}
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="p-8 sm:p-12 rounded-3xl bg-white border border-[#C89A4B]/30 shadow-xl space-y-6 relative overflow-hidden"
-          >
-            <Quote className="w-12 h-12 text-[#C89A4B]/20 absolute top-6 right-8 pointer-events-none" />
+        {/* Carousel Container */}
+        <div
+          className="relative max-w-7xl mx-auto"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Viewport & Sliding Track */}
+          <div className="overflow-hidden py-2 px-1">
+            <div
+              className="flex transition-transform duration-500 ease-out"
+              style={{
+                transform: `translateX(-${activeIndex * (100 / itemsPerPage)}%)`,
+              }}
+            >
+              {testimonials.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 px-3 flex flex-col"
+                  style={{ width: `${100 / itemsPerPage}%` }}
+                >
+                  <div className="bg-white rounded-[24px] border border-slate-100 shadow-lg shadow-slate-200/50 p-6 sm:p-7 flex flex-col justify-between h-full hover:shadow-xl transition-all duration-300 relative group border-t-2 hover:border-t-[#C89B3C]">
+                    
+                    {/* Card Header: Google Badge & Rating */}
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <GoogleGIcon className="w-5 h-5" />
+                          <span className="text-xs font-semibold text-slate-500 tracking-wide">
+                            Google Review
+                          </span>
+                        </div>
+                        <Quote className="w-6 h-6 text-[#C89A4B]/20 group-hover:text-[#C89A4B]/40 transition-colors" />
+                      </div>
 
-            <div className="flex items-center space-x-1 text-[#C89A4B]">
-              {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-[#C89A4B]" />
+                      {/* 5 Gold Stars */}
+                      <div className="flex items-center space-x-1">
+                        {[...Array(item.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-[#C89B3C] text-[#C89B3C]" />
+                        ))}
+                      </div>
+
+                      {/* Review Text (3-4 lines) */}
+                      <p className="text-sm sm:text-base text-[#0F172A]/90 font-inter leading-relaxed line-clamp-4 min-h-[96px]">
+                        "{item.text}"
+                      </p>
+                    </div>
+
+                    {/* Reviewer Profile */}
+                    <div className="pt-5 mt-5 border-t border-slate-100 flex items-center space-x-3.5">
+                      <img
+                        src={item.avatar}
+                        alt={item.name}
+                        className="w-11 h-11 rounded-full object-cover border-2 border-[#C89A4B]/40 shadow-sm flex-shrink-0"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-sm font-bold text-[#0F172A] truncate font-serif-luxury">
+                          {item.name}
+                        </h4>
+                        {item.role && (
+                          <p className="text-xs text-[#64748B] truncate font-inter">
+                            {item.role}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Controls & Pagination */}
+          <div className="flex items-center justify-between mt-8 max-w-xs mx-auto sm:max-w-none">
+            
+            {/* Left Arrow Button */}
+            <button
+              onClick={prevSlide}
+              aria-label="Previous review"
+              className="p-3 rounded-full bg-white border border-slate-200 text-[#0F172A] shadow-md hover:bg-[#0F172A] hover:text-[#C89B3C] hover:border-[#0F172A] transition-all duration-300"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            {/* Pagination Dots */}
+            <div className="flex items-center space-x-2">
+              {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveIndex(idx)}
+                  aria-label={`Go to review slide ${idx + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    activeIndex === idx
+                      ? 'w-8 bg-[#C89B3C]'
+                      : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                  }`}
+                />
               ))}
             </div>
 
-            <p className="text-base sm:text-xl text-[#0F172A] font-serif-luxury italic leading-relaxed">
-              "{testimonials[activeIndex].text}"
-            </p>
+            {/* Right Arrow Button */}
+            <button
+              onClick={nextSlide}
+              aria-label="Next review"
+              className="p-3 rounded-full bg-white border border-slate-200 text-[#0F172A] shadow-md hover:bg-[#0F172A] hover:text-[#C89B3C] hover:border-[#0F172A] transition-all duration-300"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
 
-            <div className="pt-6 border-t border-[#C89A4B]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-center space-x-4">
-                <img
-                  src={testimonials[activeIndex].avatar}
-                  alt={testimonials[activeIndex].name}
-                  className="w-12 h-12 rounded-full border-2 border-[#C89A4B] object-cover shadow-sm"
-                />
-                <div>
-                  <div className="text-base font-serif-luxury font-bold text-[#0F172A]">
-                    {testimonials[activeIndex].name}
-                  </div>
-                  <div className="text-xs text-[#64748B] flex items-center gap-1 mt-0.5">
-                    <span>{testimonials[activeIndex].role}</span>
-                    <span>•</span>
-                    <span className="flex items-center gap-0.5"><MapPin className="w-3 h-3 text-[#C89A4B]" /> {testimonials[activeIndex].location}</span>
-                  </div>
-                </div>
-              </div>
+          </div>
 
-              <div className="flex items-center space-x-3">
-                <button
-                  onClick={prevTestimonial}
-                  className="p-2 rounded-full border border-[#C89A4B]/30 text-[#0F172A] hover:bg-[#C89A4B]/10 transition-colors"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={nextTestimonial}
-                  className="p-2 rounded-full border border-[#C89A4B]/30 text-[#0F172A] hover:bg-[#C89A4B]/10 transition-colors"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          </motion.div>
         </div>
 
       </div>
     </section>
   );
 }
+

@@ -18,7 +18,7 @@ export default function RetirementHeroIllustration() {
               </svg>
             </div>
             <div>
-              <div className="text-sm font-serif-luxury font-bold text-[#0F172A]">Retirement Freedom Blueprint</div>
+              <div className="text-sm font-serif-luxury font-bold text-[#0F172A]">Retirement Planning Portfolio</div>
               <div className="text-[11px] text-[#64748B]">Inflation-Adjusted FIRE & SWP Portfolio</div>
             </div>
           </div>
