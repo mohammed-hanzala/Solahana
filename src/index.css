@@ -298,23 +298,26 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 /* ========================================================================== */
-/* DESKTOP-VIEW-ON-MOBILE RESPONSIVE FIX                                      */
-/* Fix huge empty blank space above hero content when "Desktop Site" mode     */
-/* is enabled on mobile browsers (viewport >= 1024px on touch/portrait)      */
+/* DESKTOP SITE MODE ON MOBILE BROWSERS FIX ONLY                              */
+/* When "Desktop Site" mode is toggled on mobile Chrome / Safari / Samsung    */
+/* Internet, viewport width is forced to >= 980px/1024px while aspect ratio    */
+/* is tall (portrait) or primary pointer is touch (pointer: coarse).         */
 /* ========================================================================== */
-@media (min-width: 1024px) and (pointer: coarse),
-       (min-width: 1024px) and (max-aspect-ratio: 13/10) {
+@media (min-width: 980px) and (pointer: coarse),
+       (min-width: 980px) and (max-aspect-ratio: 1.25/1) {
   .hero-desktop-mobile-fix {
     min-height: auto !important;
     height: auto !important;
     max-height: none !important;
-    padding-top: 104px !important;
-    padding-bottom: 32px !important;
+    padding-top: 84px !important;
+    padding-bottom: 24px !important;
   }
 
+  .hero-desktop-mobile-fix .my-auto,
   .hero-desktop-mobile-fix > div {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
   }
 }
+
 
