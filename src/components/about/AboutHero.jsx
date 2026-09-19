@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function AboutHero({ onExplorePhilosophy, onOpenSearch }) {
   return (
-    <section className="relative pt-24 pb-14 md:pt-32 md:pb-20 overflow-hidden bg-[#FAF8F5]">
+    <section className="hero-desktop-mobile-fix relative pt-28 pb-14 md:pt-32 md:pb-20 overflow-hidden bg-[#FAF8F5]">
       {/* Background Soft Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#C89A4B]/10 blur-[120px] pointer-events-none rounded-full" />
       

@@ -296,3 +296,25 @@ input[type="range"]::-webkit-slider-thumb:hover {
     animation: none !important;
   }
 }
+
+/* ========================================================================== */
+/* DESKTOP-VIEW-ON-MOBILE RESPONSIVE FIX                                      */
+/* Fix huge empty blank space above hero content when "Desktop Site" mode     */
+/* is enabled on mobile browsers (viewport >= 1024px on touch/portrait)      */
+/* ========================================================================== */
+@media (min-width: 1024px) and (pointer: coarse),
+       (min-width: 1024px) and (max-aspect-ratio: 13/10) {
+  .hero-desktop-mobile-fix {
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    padding-top: 104px !important;
+    padding-bottom: 32px !important;
+  }
+
+  .hero-desktop-mobile-fix > div {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+

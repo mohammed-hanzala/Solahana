@@ -23,7 +23,7 @@ export default function InvestmentsHero({ onStartPlanning, onRequestCallback }) 
   };
 
   return (
-    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 bg-gradient-to-b from-[#FAF8F5] via-[#FFFDF9] to-[#FAF8F5] overflow-hidden">
+    <section className="hero-desktop-mobile-fix relative pt-28 pb-16 sm:pt-36 sm:pb-24 bg-gradient-to-b from-[#FAF8F5] via-[#FFFDF9] to-[#FAF8F5] overflow-hidden">
       {/* Background Subtle Gold Glow */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C89B3C]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#E7D7B5]/20 rounded-full blur-2xl pointer-events-none" />

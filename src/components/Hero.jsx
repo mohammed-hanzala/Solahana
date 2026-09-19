@@ -157,7 +157,7 @@ export default function Hero({ onOpenSearch }) {
     { title: 'Education', icon: GraduationCap, x: -170, y: -130 },
   ];  return (
     <section 
-      className="relative min-h-[70vh] sm:min-h-[80vh] lg:min-h-[85vh] pt-16 sm:pt-20 lg:pt-20 pb-6 sm:pb-8 lg:pb-10 bg-[#FAF8F5] overflow-hidden flex flex-col justify-between select-none"
+      className="hero-desktop-mobile-fix relative min-h-[70vh] sm:min-h-[80vh] lg:min-h-[85vh] lg:max-h-[820px] pt-28 sm:pt-28 lg:pt-20 pb-6 sm:pb-8 lg:pb-10 bg-[#FAF8F5] overflow-hidden flex flex-col justify-between select-none"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={handleTouchStart}

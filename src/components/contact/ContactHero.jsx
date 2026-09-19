@@ -12,7 +12,7 @@ export const ContactHero = () => {
   };
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#FAF8F5] overflow-hidden">
+    <section className="hero-desktop-mobile-fix relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#FAF8F5] overflow-hidden">
       {/* Background Soft Glow */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#C89A4B]/10 rounded-full blur-[160px] pointer-events-none" />
 

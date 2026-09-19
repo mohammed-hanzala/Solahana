@@ -4,7 +4,7 @@ import { ArrowRight, Compass, Calculator, TrendingUp, Target, ShieldCheck, Spark
 
 export default function CalculatorsHero({ onExploreCalculators, onStartPlanning }) {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-[#020B2D]">
+    <section className="hero-desktop-mobile-fix relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-[#020B2D]">
       {/* Golden Radial Background Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-gradient-to-br from-[#C8A24A]/20 via-[#071C48]/40 to-transparent blur-[140px] pointer-events-none rounded-full" />
 
