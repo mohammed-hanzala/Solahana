@@ -27,18 +27,18 @@ export default function WhyChooseSolahanaTax() {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-[#FAF8F5] relative overflow-hidden border-t border-[#E7D7B5]">
+    <section className="py-16 sm:py-24 bg-[#FDF8EE] relative overflow-hidden border-t border-[#C89A4B]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
-          <span className="text-xs uppercase font-mono tracking-widest text-[#B8860B] font-semibold">
+          <span className="text-xs uppercase font-sans tracking-widest text-[#9A7326] font-semibold">
             THE SOLAHANA DIFFERENCE
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif-luxury font-bold text-[#0F172A]">
             Why Choose SOLAHANA
           </h2>
-          <p className="text-sm sm:text-base text-[#475569]">
+          <p className="text-sm sm:text-base text-[#475569] font-sans">
             Disciplined tax architecture that turns tax liabilities into wealth-building opportunities.
           </p>
         </div>
@@ -54,23 +54,23 @@ export default function WhyChooseSolahanaTax() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="p-6 sm:p-7 rounded-3xl bg-white border border-[#E7D7B5] shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between group"
+                className="p-6 sm:p-7 rounded-[22px] bg-white border border-[#C89A4B]/20 shadow-[0_10px_30px_rgba(200,154,75,0.06)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] border border-[#C89B3C]/40 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white flex items-center justify-center mb-5 transition-colors shadow-xs">
+                  <div className="w-12 h-12 rounded-2xl bg-[#FCFAF5] border border-[#C89A4B]/30 text-[#C89A4B] group-hover:bg-[#C89A4B] group-hover:text-white flex items-center justify-center mb-5 transition-colors shadow-xs">
                     <Icon className="w-6 h-6" />
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-serif-luxury font-bold text-[#0F172A] group-hover:text-[#B8860B] transition-colors mb-2">
+                  <h3 className="text-base sm:text-lg font-serif-luxury font-bold text-[#0F172A] group-hover:text-[#C89A4B] transition-colors mb-2">
                     {feat.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed line-clamp-3">
+                  <p className="text-xs sm:text-sm text-[#475569] font-sans leading-relaxed line-clamp-3">
                     {feat.desc}
                   </p>
                 </div>
 
-                <div className="mt-6 w-full h-1 rounded-full bg-[#FAF8F5] group-hover:bg-[#C89B3C]/40 transition-colors" />
+                <div className="mt-6 w-full h-1 rounded-full bg-[#FCFAF5] group-hover:bg-[#C89A4B]/30 transition-colors" />
               </motion.div>
             );
           })}

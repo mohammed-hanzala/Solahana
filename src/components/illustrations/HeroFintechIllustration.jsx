@@ -28,7 +28,7 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
   ];
 
   return (
-    <div className="relative w-full max-w-[580px] aspect-square flex items-center justify-center select-none">
+    <div className="relative w-full max-w-[580px] lg:max-w-[635px] aspect-square flex items-center justify-center select-none">
       
       {/* ------------------------------------------------------------- */}
       {/* 1. AMBIENT GLOW & GOLD DASHED ORBIT PATH                      */}
@@ -153,7 +153,7 @@ export default function HeroFintechIllustration({ onOpenSearch }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute z-20 bottom-1 w-24 h-40 sm:w-28 sm:h-44 flex flex-col items-center justify-end pointer-events-none"
+        className="absolute z-20 bottom-1 w-24 h-40 sm:w-28 sm:h-44 lg:w-[122px] lg:h-[192px] flex flex-col items-center justify-end pointer-events-none"
       >
         <svg className="w-full h-full drop-shadow-xl" viewBox="0 0 120 200" fill="none">
           {/* Ground Shadow */}

@@ -65,7 +65,7 @@ export default function WhatIsFinancialPlanning() {
   ];
 
   return (
-    <section className="relative z-10 py-8 sm:py-10 lg:py-12 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
+    <section className="relative z-10 py-8 sm:py-10 lg:py-12 bg-white border-t border-[#C89A4B]/20 overflow-hidden">
       
       {/* Background Soft Glows */}
       <div className="absolute top-1/3 left-10 w-[600px] h-[600px] bg-[#C89A4B]/8 rounded-full blur-[150px] pointer-events-none" />

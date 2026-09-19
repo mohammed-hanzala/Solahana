@@ -78,7 +78,7 @@ export default function TrustStrip() {
   ];
 
   return (
-    <section className="relative z-20 py-10 sm:py-14 lg:py-16 bg-[#FCFAF6] border-y border-[#E7D7B5]/60 overflow-hidden text-left">
+    <section className="relative z-20 py-10 sm:py-14 lg:py-16 bg-[#FFFDF8] border-y border-[#E7D7B5]/60 overflow-hidden text-left">
       
       {/* Background Soft Glows */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#C89B3C]/5 rounded-full blur-[140px] pointer-events-none" />
@@ -159,4 +159,3 @@ export default function TrustStrip() {
     </section>
   );
 }
-

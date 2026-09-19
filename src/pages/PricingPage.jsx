@@ -130,7 +130,7 @@ export default function PricingPage({ onOpenSearch }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ y: -6 }}
-            className="rounded-3xl bg-white border-2 border-[#E7D7B5] hover:border-[#C89B3C] shadow-xl hover:shadow-2xl transition-all duration-300 p-8 sm:p-10 lg:p-12 flex flex-col justify-between relative group h-full"
+            className="rounded-[22px] bg-[#FFFDF8] border-2 border-[#E7D7B5] hover:border-[#C89B3C] shadow-lg hover:shadow-2xl transition-all duration-300 p-8 sm:p-10 lg:p-12 flex flex-col justify-between relative group h-full"
           >
             <div>
               {/* Top Accent Badge */}
@@ -189,7 +189,7 @@ export default function PricingPage({ onOpenSearch }) {
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
             whileHover={{ y: -6 }}
-            className="rounded-3xl bg-white border-2 border-[#E7D7B5] hover:border-[#C89B3C] shadow-xl hover:shadow-2xl transition-all duration-300 p-8 sm:p-10 lg:p-12 flex flex-col justify-between relative group h-full"
+            className="rounded-[22px] bg-[#FAF5EA] border-2 border-[#E7D7B5] hover:border-[#C89B3C] shadow-lg hover:shadow-2xl transition-all duration-300 p-8 sm:p-10 lg:p-12 flex flex-col justify-between relative group h-full"
           >
             <div>
               {/* Top Accent Badge */}

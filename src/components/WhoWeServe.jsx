@@ -40,7 +40,7 @@ export default function WhoWeServe() {
   ];
 
   return (
-    <section className="relative z-10 py-8 sm:py-10 lg:py-12 bg-[#FAF8F5] border-t border-[#C89A4B]/20 overflow-hidden">
+    <section className="relative z-10 py-8 sm:py-10 lg:py-12 bg-[#FCFAF5] border-t border-[#C89A4B]/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}

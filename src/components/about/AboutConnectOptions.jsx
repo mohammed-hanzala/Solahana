@@ -47,18 +47,18 @@ export default function AboutConnectOptions() {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-[#FAF8F5] relative overflow-hidden border-t border-[#E7D7B5]">
+    <section className="py-16 sm:py-24 bg-[#FCFAF5] relative overflow-hidden border-t border-[#C89A4B]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
-          <span className="text-xs uppercase font-mono tracking-widest text-[#B8860B] font-semibold">
+          <span className="text-xs uppercase font-sans tracking-widest text-[#9A7326] font-semibold">
             CHOOSE HOW TO CONNECT
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif-luxury font-bold text-[#0F172A]">
             Connect With SOLAHANA
           </h2>
-          <p className="text-sm sm:text-base text-[#475569]">
+          <p className="text-sm sm:text-base text-[#475569] font-sans">
             Select your preferred communication channel to initiate your personalized wealth planning conversation.
           </p>
         </div>
@@ -74,18 +74,18 @@ export default function AboutConnectOptions() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E7D7B5] shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between group"
+                className="bg-white rounded-[22px] p-6 sm:p-7 border border-[#C89A4B]/20 shadow-[0_10px_30px_rgba(200,154,75,0.06)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] border border-[#C89B3C]/40 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white flex items-center justify-center mb-5 transition-colors shadow-xs">
+                  <div className="w-12 h-12 rounded-2xl bg-[#FCFAF5] border border-[#C89A4B]/30 text-[#C89A4B] group-hover:bg-[#C89A4B] group-hover:text-white flex items-center justify-center mb-5 transition-colors shadow-xs">
                     <Icon className="w-6 h-6" />
                   </div>
 
-                  <h3 className="text-lg font-serif-luxury font-bold text-[#0F172A] mb-2 group-hover:text-[#B8860B] transition-colors">
+                  <h3 className="text-lg font-serif-luxury font-bold text-[#0F172A] mb-2 group-hover:text-[#C89A4B] transition-colors">
                     {opt.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed line-clamp-2 mb-6">
+                  <p className="text-xs sm:text-sm text-[#475569] font-sans leading-relaxed line-clamp-2 mb-6">
                     {opt.description}
                   </p>
                 </div>
@@ -93,7 +93,7 @@ export default function AboutConnectOptions() {
                 {opt.onClick ? (
                   <button
                     onClick={opt.onClick}
-                    className="w-full py-3 px-4 rounded-xl bg-[#FAF8F5] border border-[#E7D7B5] group-hover:bg-[#C89B3C] group-hover:border-[#C89B3C] text-[#0F172A] group-hover:text-white font-semibold text-xs transition-all duration-300 flex items-center justify-between cursor-pointer"
+                    className="w-full py-3 px-4 rounded-full bg-[#FCFAF5] border border-[#C89A4B]/30 group-hover:bg-[#C89A4B] group-hover:border-[#C89A4B] text-[#0F172A] group-hover:text-white font-semibold text-xs transition-all duration-300 flex items-center justify-between cursor-pointer"
                   >
                     <span>{opt.actionText}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -103,7 +103,7 @@ export default function AboutConnectOptions() {
                     href={opt.href}
                     target={opt.target}
                     rel={opt.target ? 'noopener noreferrer' : undefined}
-                    className="w-full py-3 px-4 rounded-xl bg-[#FAF8F5] border border-[#E7D7B5] group-hover:bg-[#C89B3C] group-hover:border-[#C89B3C] text-[#0F172A] group-hover:text-white font-semibold text-xs transition-all duration-300 flex items-center justify-between"
+                    className="w-full py-3 px-4 rounded-full bg-[#FCFAF5] border border-[#C89A4B]/30 group-hover:bg-[#C89A4B] group-hover:border-[#C89A4B] text-[#0F172A] group-hover:text-white font-semibold text-xs transition-all duration-300 flex items-center justify-between"
                   >
                     <span>{opt.actionText}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

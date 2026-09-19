@@ -151,7 +151,7 @@ export default function StagePlanningSection({ onOpenSearch }) {
   const selectedIndex = lifeStages.findIndex(s => s.id === selectedStage.id);
 
   return (
-    <section className="py-8 sm:py-10 lg:py-12 relative overflow-hidden bg-[#FCFAF6] border-y border-[#E7D7B5] text-left">
+    <section className="py-8 sm:py-10 lg:py-12 relative overflow-hidden bg-[#FDF8EE] border-y border-[#E7D7B5] text-left">
       {/* Background Ambient Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-[#C89B3C]/8 rounded-full blur-[180px] pointer-events-none" />
 

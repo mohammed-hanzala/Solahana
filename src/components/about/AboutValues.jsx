@@ -43,12 +43,12 @@ export default function AboutValues() {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-[#F3EFE9] border-t border-[#C89A4B]/20">
+    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-white border-t border-[#C89A4B]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full gold-badge text-[#9A7326] text-xs font-semibold uppercase tracking-widest font-sora">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full gold-badge text-[#9A7326] text-xs font-semibold uppercase tracking-widest font-sans">
             <Star className="w-3.5 h-3.5 text-[#C89A4B]" />
             <span>CORE FOUNDATION</span>
           </div>
@@ -57,7 +57,7 @@ export default function AboutValues() {
             Our Guiding Values
           </h2>
 
-          <p className="text-base sm:text-lg text-[#475569] font-inter">
+          <p className="text-base sm:text-lg text-[#475569] font-sans">
             These six principles define every strategy we build at SOLAHANA.
           </p>
         </div>
@@ -74,13 +74,13 @@ export default function AboutValues() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="p-8 rounded-3xl bg-white border border-[#C89A4B]/20 hover:border-[#C89A4B] backdrop-blur-xl shadow-md transition-all space-y-4"
+                className="p-8 rounded-[22px] bg-[#FFFDF8] border border-[#C89A4B]/20 hover:border-[#C89A4B] shadow-[0_10px_30px_rgba(200,154,75,0.06)] transition-all space-y-4"
               >
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-2xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-[#C89A4B] flex items-center justify-center font-bold">
                     <IconComp className="w-6 h-6" />
                   </div>
-                  <span className="text-[10px] font-sora font-semibold text-[#9A7326] uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#FAF8F5] border border-[#C89A4B]/20">
+                  <span className="text-[10px] font-sans font-semibold text-[#9A7326] uppercase tracking-widest px-2.5 py-1 rounded-full bg-white border border-[#C89A4B]/20">
                     {item.badge}
                   </span>
                 </div>
@@ -89,7 +89,7 @@ export default function AboutValues() {
                   {item.title}
                 </h3>
 
-                <p className="text-sm text-[#475569] font-inter leading-relaxed">
+                <p className="text-sm text-[#475569] font-sans leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>

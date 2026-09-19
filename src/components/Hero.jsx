@@ -313,7 +313,7 @@ export default function Hero({ onOpenSearch }) {
                 animate={{ opacity: 1, scale: 1.0, x: 0 }}
                 exit={{ opacity: 0, scale: 0.97, x: -15 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] }}
-                className="w-full max-w-[390px] sm:max-w-[480px] lg:max-w-[620px] aspect-square relative flex items-center justify-center overflow-visible"
+                className="w-full max-w-[390px] sm:max-w-[480px] lg:max-w-[675px] aspect-square relative flex items-center justify-center overflow-visible"
               >
                 {activeSlide === 0 && <HeroFintechIllustration onOpenSearch={onOpenSearch} />}
                 {activeSlide === 1 && <TaxPlanningIllustration />}

@@ -4,19 +4,19 @@ import { Target, Eye, Sparkles } from 'lucide-react';
 
 export default function AboutMissionVision() {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-[#FAF8F5]">
+    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-[#FDF8EE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-10 sm:mb-12">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full gold-badge text-[#9A7326] text-xs font-semibold uppercase tracking-widest font-sora">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full gold-badge text-[#9A7326] text-xs font-semibold uppercase tracking-widest font-sans">
             <Sparkles className="w-3.5 h-3.5 text-[#C89A4B]" />
             <span>PURPOSE & FUTURE</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif-luxury font-bold text-[#0F172A]">
             Our Mission & Vision
           </h2>
-          <p className="text-sm sm:text-base text-[#475569] font-inter">
+          <p className="text-sm sm:text-base text-[#475569] font-sans">
             Guided by unwavering fiduciary values and long-term clarity.
           </p>
         </div>
@@ -31,14 +31,14 @@ export default function AboutMissionVision() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             whileHover={{ y: -6 }}
-            className="p-8 sm:p-10 rounded-3xl bg-white border border-[#C89A4B]/30 hover:border-[#C89A4B] transition-all duration-300 shadow-lg text-left group"
+            className="p-8 sm:p-10 rounded-[22px] bg-white border border-[#C89A4B]/20 hover:border-[#C89A4B] transition-all duration-300 shadow-[0_10px_30px_rgba(200,154,75,0.06)] text-left group"
           >
             <div className="flex items-center justify-between mb-6">
               <div className="w-14 h-14 rounded-2xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-[#C89A4B] flex items-center justify-center">
                 <Target className="w-7 h-7" />
               </div>
 
-              <span className="text-xs font-sora font-bold text-[#9A7326] uppercase tracking-widest px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#C89A4B]/30">
+              <span className="text-xs font-sans font-bold text-[#9A7326] uppercase tracking-widest px-3 py-1 rounded-full bg-[#FCFAF5] border border-[#C89A4B]/20">
                 OUR MISSION
               </span>
             </div>
@@ -51,7 +51,7 @@ export default function AboutMissionVision() {
               "Helping families make confident financial decisions through goal-aligned fiduciary planning."
             </p>
 
-            <p className="text-sm text-[#475569] font-inter leading-relaxed line-clamp-2">
+            <p className="text-sm text-[#475569] font-sans leading-relaxed">
               Replacing guesswork with structured strategy tailored around your risk profile, cashflow surplus, and tax optimization.
             </p>
           </motion.div>
@@ -63,14 +63,14 @@ export default function AboutMissionVision() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             whileHover={{ y: -6 }}
-            className="p-8 sm:p-10 rounded-3xl bg-white border border-[#C89A4B]/30 hover:border-[#C89A4B] transition-all duration-300 shadow-lg text-left group"
+            className="p-8 sm:p-10 rounded-[22px] bg-white border border-[#C89A4B]/20 hover:border-[#C89A4B] transition-all duration-300 shadow-[0_10px_30px_rgba(200,154,75,0.06)] text-left group"
           >
             <div className="flex items-center justify-between mb-6">
               <div className="w-14 h-14 rounded-2xl bg-[#C89A4B]/10 border border-[#C89A4B]/30 text-[#C89A4B] flex items-center justify-center">
                 <Eye className="w-7 h-7" />
               </div>
 
-              <span className="text-xs font-sora font-bold text-[#9A7326] uppercase tracking-widest px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#C89A4B]/30">
+              <span className="text-xs font-sans font-bold text-[#9A7326] uppercase tracking-widest px-3 py-1 rounded-full bg-[#FCFAF5] border border-[#C89A4B]/20">
                 OUR VISION
               </span>
             </div>
@@ -83,7 +83,7 @@ export default function AboutMissionVision() {
               "To be India's most trusted goal-first wealth platform — where fiduciary integrity comes first."
             </p>
 
-            <p className="text-sm text-[#475569] font-inter leading-relaxed line-clamp-2">
+            <p className="text-sm text-[#475569] font-sans leading-relaxed">
               Empowering every Indian family with transparent, zero-commission financial advice that ensures long-term peace of mind.
             </p>
           </motion.div>

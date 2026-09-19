@@ -39,7 +39,7 @@ export default function AboutStory() {
   ];
 
   return (
-    <section id="our-story" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-[#F3EFE9] border-y border-[#C89A4B]/20">
+    <section id="our-story" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-[#FCFAF5] border-y border-[#C89A4B]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

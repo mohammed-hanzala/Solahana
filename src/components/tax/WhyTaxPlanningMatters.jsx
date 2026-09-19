@@ -27,18 +27,18 @@ export default function WhyTaxPlanningMatters() {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-[#FAF8F5] relative overflow-hidden">
+    <section className="py-16 sm:py-24 bg-[#FCFAF5] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
-          <span className="text-xs uppercase font-mono tracking-widest text-[#B8860B] font-semibold">
+          <span className="text-xs uppercase font-sans tracking-widest text-[#9A7326] font-semibold">
             PROACTIVE TAX ARCHITECTURE
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif-luxury font-bold text-[#0F172A]">
             Why Tax Planning Matters
           </h2>
-          <p className="text-sm sm:text-base text-[#475569]">
+          <p className="text-sm sm:text-base text-[#475569] font-sans">
             Proactive tax planning ensures you pay only what is legally required while compounding net wealth faster.
           </p>
         </div>
@@ -54,23 +54,23 @@ export default function WhyTaxPlanningMatters() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E7D7B5] shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between group"
+                className="bg-white rounded-[22px] p-6 sm:p-7 border border-[#C89A4B]/20 shadow-[0_10px_30px_rgba(200,154,75,0.06)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] border border-[#C89B3C]/40 text-[#C89B3C] group-hover:bg-[#C89B3C] group-hover:text-white flex items-center justify-center mb-5 transition-colors shadow-xs">
+                  <div className="w-12 h-12 rounded-2xl bg-[#FCFAF5] border border-[#C89A4B]/30 text-[#C89A4B] group-hover:bg-[#C89A4B] group-hover:text-white flex items-center justify-center mb-5 transition-colors shadow-xs">
                     <Icon className="w-6 h-6" />
                   </div>
 
-                  <h3 className="text-lg font-serif-luxury font-bold text-[#0F172A] mb-2 group-hover:text-[#B8860B] transition-colors">
+                  <h3 className="text-lg font-serif-luxury font-bold text-[#0F172A] mb-2 group-hover:text-[#C89A4B] transition-colors">
                     {card.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed line-clamp-2">
+                  <p className="text-xs sm:text-sm text-[#475569] font-sans leading-relaxed line-clamp-2">
                     {card.description}
                   </p>
                 </div>
 
-                <div className="mt-6 w-full h-1 rounded-full bg-[#FAF8F5] group-hover:bg-[#C89B3C]/40 transition-colors" />
+                <div className="mt-6 w-full h-1 rounded-full bg-[#FCFAF5] group-hover:bg-[#C89A4B]/30 transition-colors" />
               </motion.div>
             );
           })}
