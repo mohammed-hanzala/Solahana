@@ -192,12 +192,13 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 
 ## 🏃 Running the Application
 
-You can run the frontend and backend in separate terminal windows.
+The frontend and backend are two separate processes and must be started in **two separate terminal windows**, using two **different** npm scripts.
 
 ### Terminal 1 — Backend Express Server
 ```bash
-node server/server.js
+npm run server
 ```
+(equivalent to `node server/server.js`)
 * Backend running at: `http://localhost:5000`
 * Health Check endpoint: `http://localhost:5000/api/health`
 
@@ -206,6 +207,8 @@ node server/server.js
 npm run dev
 ```
 * Frontend running at: `http://localhost:5173`
+
+> ⚠️ **Do not run `npm run dev` in both terminals.** This project has a single root `package.json`, and `"dev"` only starts the Vite frontend — it does **not** start Express. Running `npm run dev` a second time for the backend just launches a second Vite dev server on the next free port (e.g. `5174`), leaves port `5000` empty, and every API call fails with `404 API Route Not Found` (Vite's `/api` proxy has nothing to forward to). Always use `npm run server` (or `npm run start`) for the backend.
 
 ---
 
@@ -329,7 +332,7 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 Before submitting your first PR, verify that:
 - [x] Repository cloned and `npm install` completed.
 - [x] `.env` file created from `.env.example`.
-- [x] Backend starts cleanly via `node server/server.js`.
+- [x] Backend starts cleanly via `npm run server` (not `npm run dev` — see the warning above).
 - [x] Frontend starts cleanly via `npm run dev`.
 - [x] `http://localhost:5000/api/health` returns status `200 OK`.
 - [x] Account registration and login work via the top navigation bar.

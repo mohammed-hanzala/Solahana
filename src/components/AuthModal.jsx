@@ -94,7 +94,7 @@ export default function AuthModal() {
                 className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                   authModalTab === 'login'
                     ? 'bg-[#1A3170] text-white shadow font-bold'
-                    : 'text-white/60 hover:text-white'
+                    : 'text-[#5B6B84] hover:text-[#1A3170]'
                 }`}
               >
                 Log In
@@ -104,7 +104,7 @@ export default function AuthModal() {
                 className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                   authModalTab === 'signup'
                     ? 'bg-[#1A3170] text-white shadow font-bold'
-                    : 'text-white/60 hover:text-white'
+                    : 'text-[#5B6B84] hover:text-[#1A3170]'
                 }`}
               >
                 Register

@@ -20,7 +20,7 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     try {
-      await login(email, password);
+      await login(email, password, { isAdminLogin: true });
       navigate('/admin/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || err.message || 'Admin authentication failed. Please verify credentials.');

@@ -131,13 +131,13 @@ export default function GlobalConsultationSection() {
   };
 
   return (
-    <section id="global-consultation-section" className="relative py-14 sm:py-20 lg:py-24 bg-ink-band overflow-hidden font-inter">
+    <section id="global-consultation-section" className="relative py-10 sm:py-14 lg:py-16 bg-ink-band overflow-hidden font-inter">
       {/* Background Subtle Luxury Accents */}
       {/* faint grid texture for depth */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.07] bg-[linear-gradient(rgba(255,255,255,0.6)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.6)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
           {/* ========================================================= */}
           {/* LEFT COLUMN: HEADLINE, CONCISE COPY & FIDUCIARY HIGHLIGHTS */}
@@ -154,7 +154,7 @@ export default function GlobalConsultationSection() {
               <span>SOLAHANA PLANNING</span>
             </div>
 
-            <h2 className="font-serif-luxury text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
+            <h2 className="font-serif-luxury text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight tracking-tight">
               Schedule Your Free{' '}
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#EAD08F] via-[#D9B66A] to-[#C9A04F] font-serif-luxury">
                 Wealth Consultation
@@ -198,19 +198,19 @@ export default function GlobalConsultationSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-7"
           >
-            <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-white/60 shadow-[0_30px_80px_rgba(3,10,30,0.45)] relative overflow-hidden">
-              
+            <div className="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 border border-white/60 shadow-[0_30px_80px_rgba(3,10,30,0.45)] relative overflow-hidden">
+
               {/* Subtle Top Accent Bar */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#E6C27A] via-[#C9A04F] to-[#A67C2E]" />
 
               {/* Prominent SOLAHANA Logo Header */}
-              <div className="text-center mb-8">
-                <img 
-                  src={solahanaLogo} 
-                  alt="SOLAHANA" 
-                  className="h-12 sm:h-14 w-auto mx-auto object-contain mb-3"
+              <div className="text-center mb-6">
+                <img
+                  src={solahanaLogo}
+                  alt="SOLAHANA"
+                  className="h-10 sm:h-11 w-auto mx-auto object-contain mb-2.5"
                 />
-                <h3 className="font-serif-luxury text-xl sm:text-2xl font-bold text-[#0F1F45]">
+                <h3 className="font-serif-luxury text-lg sm:text-xl font-bold text-[#0F1F45]">
                   Book Free Consultation
                 </h3>
                 <p className="text-xs text-[#64748B] mt-1">
@@ -241,7 +241,7 @@ export default function GlobalConsultationSection() {
                   </button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 text-left">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 text-left">
                   
                   {errorMsg && (
                     <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs flex items-center gap-2">
@@ -264,7 +264,7 @@ export default function GlobalConsultationSection() {
                         placeholder="e.g. Ananya Sharma"
                         value={formData.fullName}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 pl-10 rounded-xl border border-slate-200 focus:border-[#2F5BC7] focus:ring-2 focus:ring-[#2F5BC7]/15 text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] transition-all"
+                        className="w-full px-4 py-3 pl-10 rounded-xl border border-slate-200 focus:border-[#2F5BC7] focus:ring-2 focus:ring-[#2F5BC7]/15 text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] transition-all"
                       />
                     </div>
                   </div>
@@ -295,7 +295,7 @@ export default function GlobalConsultationSection() {
                         value={formData.phone}
                         onChange={handlePhoneChange}
                         onBlur={() => setPhoneTouched(true)}
-                        className={`w-full px-4 py-3.5 pl-16 rounded-xl text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] transition-all border ${
+                        className={`w-full px-4 py-3 pl-16 rounded-xl text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] transition-all border ${
                           phoneTouched
                             ? isPhoneValid
                               ? 'border-emerald-500 focus:ring-2 focus:ring-emerald-500/20'
@@ -320,13 +320,13 @@ export default function GlobalConsultationSection() {
                         placeholder="ananya@example.com"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 pl-10 rounded-xl border border-slate-200 focus:border-[#2F5BC7] focus:ring-2 focus:ring-[#2F5BC7]/15 text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] transition-all"
+                        className="w-full px-4 py-3 pl-10 rounded-xl border border-slate-200 focus:border-[#2F5BC7] focus:ring-2 focus:ring-[#2F5BC7]/15 text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] transition-all"
                       />
                     </div>
                   </div>
 
                   {/* 4. City & Planning Interest */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div>
                       <label className="block text-xs font-semibold text-[#0F1F45] mb-1.5">
                         City *
@@ -340,7 +340,7 @@ export default function GlobalConsultationSection() {
                           placeholder="e.g. Mumbai"
                           value={formData.city}
                           onChange={handleChange}
-                          className="w-full px-4 py-3.5 pl-10 rounded-xl border border-slate-200 focus:border-[#2F5BC7] focus:ring-2 focus:ring-[#2F5BC7]/15 text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] transition-all"
+                          className="w-full px-4 py-3 pl-10 rounded-xl border border-slate-200 focus:border-[#2F5BC7] focus:ring-2 focus:ring-[#2F5BC7]/15 text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] transition-all"
                         />
                       </div>
                     </div>
@@ -353,7 +353,7 @@ export default function GlobalConsultationSection() {
                         name="goal"
                         value={formData.goal}
                         onChange={handleChange}
-                        className="w-full px-3.5 py-3.5 rounded-xl border border-slate-200 focus:border-[#2F5BC7] focus:ring-2 focus:ring-[#2F5BC7]/15 text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] cursor-pointer transition-all"
+                        className="w-full px-3.5 py-3 rounded-xl border border-slate-200 focus:border-[#2F5BC7] focus:ring-2 focus:ring-[#2F5BC7]/15 text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] cursor-pointer transition-all"
                       >
                         {planningInterests.map(interest => (
                           <option key={interest} value={interest}>
@@ -374,7 +374,7 @@ export default function GlobalConsultationSection() {
                       name="preferredTime"
                       value={formData.preferredTime}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:border-[#2F5BC7] focus:ring-2 focus:ring-[#2F5BC7]/15 text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] cursor-pointer transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#2F5BC7] focus:ring-2 focus:ring-[#2F5BC7]/15 text-xs sm:text-sm outline-none bg-[#FFFFFF]/40 focus:bg-white text-[#0F1F45] cursor-pointer transition-all"
                     >
                       {timeSlots.map(slot => (
                         <option key={slot} value={slot}>
@@ -431,7 +431,7 @@ export default function GlobalConsultationSection() {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="gold-glow-button w-full py-4 rounded-full text-white font-bold text-sm sm:text-base tracking-wide flex items-center justify-center space-x-2 cursor-pointer shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
+                      className="gold-glow-button w-full py-3.5 rounded-full text-white font-bold text-sm sm:text-base tracking-wide flex items-center justify-center space-x-2 cursor-pointer shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
                     >
                       {loading ? (
                         <Loader2 className="w-4.5 h-4.5 animate-spin text-white" />
